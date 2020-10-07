@@ -50,4 +50,4 @@ sensor:
         unit_of_measurement: 'kWh'
         
 shell_command:
-    backup_git: cd /config && git add -u && git commit -m "New Backup" && git push origin
+    backup_git: cd /config && git add -u && git commit -m "New Backup" && git push https
