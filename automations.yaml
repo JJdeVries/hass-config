@@ -104,3 +104,17 @@
     data: {}
     entity_id: remote.harmonyjorik
   mode: single
+- id: '1602060895444'
+  alias: weekly backup config
+  description: Backup the home assistant config files on sundays
+  trigger:
+  - platform: time
+    at: 04:00
+  condition:
+  - condition: time
+    weekday:
+    - sun
+  action:
+  - service: shell_command.backup_git
+    data: {}
+  mode: single
