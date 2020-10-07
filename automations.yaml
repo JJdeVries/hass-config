@@ -1,0 +1,106 @@
+- id: '1600351493180'
+  alias: Dim Livingroom lights if on
+  description: ''
+  trigger:
+  - at: '20:30'
+    platform: time
+  condition:
+  - condition: state
+    entity_id: light.livingroom_lights
+    state: 'on'
+  action:
+  - data:
+      brightness_pct: 15
+      transition: 5600
+    entity_id: light.livingroom_lights
+    service: light.turn_on
+  mode: single
+- id: '1600450266308'
+  alias: Goodmorning everybody
+  description: ''
+  trigger:
+  - platform: device
+    type: turned_on
+    device_id: 8a434918c1ff40eba881f25a6fff1769
+    entity_id: light.hall_light
+    domain: light
+  condition:
+  - condition: and
+    conditions:
+    - condition: time
+      after: '6:30'
+      weekday:
+      - mon
+      - tue
+      - wed
+      - thu
+      - fri
+    - condition: sun
+      before: sunrise
+      before_offset: 00:00:00
+  action:
+  - service: light.turn_on
+    data:
+      brightness: 70
+    entity_id: light.livingroom_lights
+  mode: single
+- id: '1600679110748'
+  alias: Evening lights turn on
+  description: ''
+  trigger:
+  - platform: sun
+    event: sunset
+    offset: -00:45:00
+  condition:
+  - condition: state
+    entity_id: group.humans
+    state: home
+  action:
+  - service: light.turn_on
+    data:
+      brightness_pct: 95
+      transition: 1800
+    entity_id: light.livingroom_lights
+  mode: single
+- id: '1600774245795'
+  alias: Media center turn on
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: media_player.living_room_tv
+    to: playing
+  condition:
+  - condition: template
+    value_template: "{% if is_state_attr('media_player.living_room_tv', 'media_content_type',\
+      \ \"movie\") -%}\n  {{not is_state_attr('remote.harmonyjorik', 'current_activity',\
+      \ 'Tv')}}\n{%- else -%}\n  {{not is_state_attr('remote.harmonyjorik', 'current_activity',\
+      \ 'Stereo')}}\n{%- endif %}"
+  action:
+  - service: remote.turn_on
+    data:
+      activity: "{% if state_attr('media_player.living_room_tv', 'media_content_type')\
+        \ == 'movie' -%}\n  Tv\n{%- elif state_attr('media_player.living_room_tv',\
+        \ 'media_content_type') == 'music' -%}\n  Stereo\n{%- endif %}"
+    entity_id: remote.harmonyjorik
+  - service: media_player.volume_set
+    data:
+      volume_level: "{% if state_attr('media_player.living_room_tv', 'media_content_type')\
+        \ == 'movie' -%}\n  1.0\n{%- elif state_attr('media_player.living_room_tv',\
+        \ 'media_content_type') == 'music' -%}\n  0.65\n{%- endif %}"
+    entity_id: media_player.living_room_tv
+  mode: single
+- id: '1600780656956'
+  alias: Media center turn off
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: media_player.living_room_tv
+    to: 'off'
+  condition:
+  - condition: template
+    value_template: '{{ trigger.from_state != "unavailable" }}'
+  action:
+  - service: remote.turn_off
+    data: {}
+    entity_id: remote.harmonyjorik
+  mode: single

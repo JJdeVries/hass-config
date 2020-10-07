@@ -1,0 +1,50 @@
+    
+# Configure a default setup of Home Assistant (frontend, api, etc)
+default_config:
+
+# Example configuration.yaml entry
+asuswrt:
+  host: 192.168.2.1
+  protocol: telnet
+  port: 23
+  interface: eth2
+  username: admin
+  password: !secret asus_router
+  sensors:
+    - devices
+    
+# Text to speech
+tts:
+  - platform: google_translate
+
+light: !include lights.yaml
+group: !include groups.yaml
+automation: !include automations.yaml
+script: !include scripts.yaml
+scene: !include scenes.yaml
+
+# Configure the TP Link Smart Plug 
+tplink:
+sensor:
+  - platform: template
+    sensors:
+      cv_amps:
+        friendly_name_template: "{{states.switch.cv_verwarming.name}} Current"
+        value_template: '{{state_attr("switch.cv_verwarming", "current_a") | float }}'
+        unit_of_measurement: 'A'
+      cv_watts:
+        friendly_name_template: "{{states.switch.cv_verwarming.name}} Consumption"
+        value_template: '{{state_attr("switch.cv_verwarming", "current_power_w") | float }}'
+        unit_of_measurement: 'W'
+      cv_total_kwh:
+        friendly_name_template: "{{states.switch.cv_verwarming.name}} Total Consumption [30 days]"
+        value_template: '{{state_attr("switch.cv_verwarming", "total_energy_kwh") | float }}'
+        unit_of_measurement: 'kWh'
+      cv_volts:
+        friendly_name_template: "{{states.switch.cv_verwarming.name}} Voltage"
+        value_template: '{{state_attr("switch.cv_verwarming", "voltage") | float }}'
+        unit_of_measurement: 'V'
+      cv_today_kwh:
+        friendly_name_template: "{{states.switch.cv_verwarming.name}} Today's Consumption"
+        value_template: '{{state_attr("switch.cv_verwarming", "today_energy_kwh") | float }}'
+        unit_of_measurement: 'kWh'

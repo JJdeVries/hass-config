@@ -1,0 +1,9 @@
+secrets.yaml
+custom_components
+www
+harmony_*
+known_devices.yaml
+*.db
+*.log
+.storage
+.HA_VERSION

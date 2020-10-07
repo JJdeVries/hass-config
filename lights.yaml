@@ -1,0 +1,9 @@
+
+
+# living room lights
+- platform: group
+  name: Livingroom Lights
+  entities:
+    - light.tv_light
+    - light.table_light_1
+    - light.table_light_2

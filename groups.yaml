@@ -1,0 +1,7 @@
+
+
+humans:
+    name: "The family"
+    entities:
+        - device_tracker.iphone
+        - device_tracker.joriks_galaxy_a7_2018
