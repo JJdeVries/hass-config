@@ -15,35 +15,6 @@
     entity_id: light.livingroom_lights
     service: light.turn_on
   mode: single
-- id: '1600450266308'
-  alias: Goodmorning everybody
-  description: ''
-  trigger:
-  - platform: device
-    type: turned_on
-    device_id: 8a434918c1ff40eba881f25a6fff1769
-    entity_id: light.hall_light
-    domain: light
-  condition:
-  - condition: and
-    conditions:
-    - condition: time
-      after: '6:30'
-      weekday:
-      - mon
-      - tue
-      - wed
-      - thu
-      - fri
-    - condition: sun
-      before: sunrise
-      before_offset: 00:00:00
-  action:
-  - service: light.turn_on
-    data:
-      brightness: 70
-    entity_id: light.livingroom_lights
-  mode: single
 - id: '1600679110748'
   alias: Evening lights turn on
   description: ''

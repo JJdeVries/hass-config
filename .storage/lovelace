@@ -1,0 +1,131 @@
+{
+    "version": 1,
+    "key": "lovelace",
+    "data": {
+        "config": {
+            "title": "Home",
+            "views": [
+                {
+                    "path": "default_view",
+                    "title": "Home",
+                    "badges": [
+                        {
+                            "entity": "group.humans"
+                        },
+                        {
+                            "entity": "person.nicole_verbeek"
+                        },
+                        {
+                            "entity": "person.jorik_de_vries"
+                        },
+                        {
+                            "entity": "sun.sun"
+                        }
+                    ],
+                    "cards": [
+                        {
+                            "entity": "weather.home",
+                            "type": "weather-forecast"
+                        },
+                        {
+                            "type": "horizontal-stack",
+                            "title": "Stereo Volume",
+                            "cards": [
+                                {
+                                    "type": "button",
+                                    "tap_action": {
+                                        "action": "call-service",
+                                        "service": "remote.send_command",
+                                        "service_data": {
+                                            "entity_id": "remote.harmonyjorik",
+                                            "device": "Yamaha AV Receiver",
+                                            "command": "VolumeDown",
+                                            "num_repeats": 10,
+                                            "delay_secs": 0.25
+                                        }
+                                    },
+                                    "entity": "remote.harmonyjorik",
+                                    "name": "minus",
+                                    "icon": "mdi:volume-minus",
+                                    "show_name": false,
+                                    "hold_action": {
+                                        "action": "call-service",
+                                        "service": "remote.send_command",
+                                        "service_data": {
+                                            "entity_id": "remote.harmonyjorik",
+                                            "device": "Yamaha AV Receiver",
+                                            "command": "Mute"
+                                        }
+                                    }
+                                },
+                                {
+                                    "type": "button",
+                                    "tap_action": {
+                                        "action": "call-service",
+                                        "service": "remote.send_command",
+                                        "service_data": {
+                                            "entity_id": "remote.harmonyjorik",
+                                            "device": "Yamaha AV Receiver",
+                                            "command": "VolumeUp",
+                                            "num_repeats": 10,
+                                            "delay_secs": 0.25
+                                        }
+                                    },
+                                    "entity": "remote.harmonyjorik",
+                                    "name": "plus",
+                                    "icon": "mdi:volume-plus",
+                                    "show_name": false,
+                                    "hold_action": {
+                                        "action": ""
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "title": "Living room lights brightness",
+                            "type": "entities",
+                            "entities": [
+                                {
+                                    "type": "custom:slider-entity-row",
+                                    "toggle": true,
+                                    "entity": "light.tv_light"
+                                },
+                                {
+                                    "type": "custom:slider-entity-row",
+                                    "toggle": true,
+                                    "entity": "light.table_light_1"
+                                },
+                                {
+                                    "type": "custom:slider-entity-row",
+                                    "toggle": true,
+                                    "entity": "light.table_light_2"
+                                }
+                            ],
+                            "state_color": true
+                        },
+                        {
+                            "title": "Living room lights color temperature",
+                            "type": "entities",
+                            "entities": [
+                                {
+                                    "type": "custom:slider-entity-row",
+                                    "attribute": "color_temp",
+                                    "toggle": true,
+                                    "entity": "light.tv_light"
+                                }
+                            ],
+                            "state_color": true
+                        },
+                        {
+                            "type": "entities",
+                            "entities": [
+                                "sensor.cv_today_kwh",
+                                "sensor.cv_total_kwh"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+}

@@ -6,4 +6,6 @@ known_devices.yaml
 *.db
 *.log
 .storage
+!.storage/lovelace
+!.storage/person
 .HA_VERSION
