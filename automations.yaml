@@ -2,7 +2,7 @@
   alias: Dim Livingroom lights if on
   description: ''
   trigger:
-  - at: '20:30'
+  - at: '20:00'
     platform: time
   condition:
   - condition: state
@@ -19,9 +19,10 @@
   alias: Evening lights turn on
   description: ''
   trigger:
-  - platform: sun
-    event: sunset
-    offset: -00:45:00
+  - platform: numeric_state
+    entity_id: sun.sun
+    attribute: elevation
+    below: '10'
   condition:
   - condition: state
     entity_id: group.humans
@@ -57,7 +58,7 @@
     data:
       volume_level: "{% if state_attr('media_player.living_room_tv', 'media_content_type')\
         \ == 'movie' -%}\n  1.0\n{%- elif state_attr('media_player.living_room_tv',\
-        \ 'media_content_type') == 'music' -%}\n  0.65\n{%- endif %}"
+        \ 'media_content_type') == 'music' -%}\n  0.55\n{%- endif %}"
     entity_id: media_player.living_room_tv
   mode: single
 - id: '1600780656956'

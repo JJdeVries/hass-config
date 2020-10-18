@@ -84,34 +84,30 @@
                         {
                             "title": "Living room lights brightness",
                             "type": "entities",
+                            "show_header_toggle": true,
                             "entities": [
+                                {
+                                    "type": "custom:slider-entity-row",
+                                    "toggle": true,
+                                    "entity": "light.livingroom_lights",
+                                    "name": "all"
+                                },
                                 {
                                     "type": "custom:slider-entity-row",
                                     "toggle": true,
                                     "entity": "light.tv_light"
                                 },
-                                {
-                                    "type": "custom:slider-entity-row",
-                                    "toggle": true,
-                                    "entity": "light.table_light_1"
-                                },
-                                {
-                                    "type": "custom:slider-entity-row",
-                                    "toggle": true,
-                                    "entity": "light.table_light_2"
-                                }
-                            ],
-                            "state_color": true
-                        },
-                        {
-                            "title": "Living room lights color temperature",
-                            "type": "entities",
-                            "entities": [
                                 {
                                     "type": "custom:slider-entity-row",
                                     "attribute": "color_temp",
                                     "toggle": true,
-                                    "entity": "light.tv_light"
+                                    "entity": "light.tv_light",
+                                    "name": "tv color"
+                                },
+                                {
+                                    "type": "custom:slider-entity-row",
+                                    "toggle": true,
+                                    "entity": "light.table_lights"
                                 }
                             ],
                             "state_color": true

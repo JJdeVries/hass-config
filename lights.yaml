@@ -1,9 +1,13 @@
-
+# Dinner table lights
+- platform: group
+  name: Table Lights
+  entities:
+    - light.table_light_1
+    - light.table_light_2
 
 # living room lights
 - platform: group
   name: Livingroom Lights
   entities:
     - light.tv_light
-    - light.table_light_1
-    - light.table_light_2
+    - light.table_lights
