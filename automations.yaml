@@ -90,3 +90,42 @@
   - service: shell_command.backup_git
     data: {}
   mode: single
+- id: '1603394623458'
+  alias: keep hall light on
+  description: Keep the motion controlled light in the hallway on. Is automatically
+    turned off at 00:00
+  trigger:
+  - platform: state
+    entity_id: light.hall_light
+    to: 'off'
+  - platform: state
+    entity_id: automation.keep_hall_light_on
+    to: 'on'
+  - platform: state
+    entity_id: input_number.hall_brightness
+  condition: []
+  action:
+  - service: light.turn_on
+    data:
+      brightness_pct: '{{ states(''input_number.hall_brightness'') | int }}'
+    entity_id: light.hall_light
+  mode: single
+- id: '1603458166556'
+  alias: Turn off hall light
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: automation.keep_hall_light_on
+    to: 'off'
+    for: 00:00:20
+  - platform: time
+    at: 00:01
+  condition: []
+  action:
+  - service: light.turn_off
+    data: {}
+    entity_id: light.hall_light
+  - service: automation.turn_off
+    data: {}
+    entity_id: automation.keep_hall_light_on
+  mode: single

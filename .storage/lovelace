@@ -82,6 +82,23 @@
                             ]
                         },
                         {
+                            "title": "Keep hall light on",
+                            "type": "entities",
+                            "state_color": true,
+                            "entities": [
+                                {
+                                    "entity": "automation.keep_hall_light_on",
+                                    "icon": "mdi:lightbulb"
+                                },
+                                {
+                                    "type": "custom:slider-entity-row",
+                                    "toggle": true,
+                                    "entity": "input_number.hall_brightness",
+                                    "name": "brightness"
+                                }
+                            ]
+                        },
+                        {
                             "title": "Living room lights brightness",
                             "type": "entities",
                             "show_header_toggle": true,
@@ -113,11 +130,17 @@
                             "state_color": true
                         },
                         {
-                            "type": "entities",
+                            "type": "history-graph",
                             "entities": [
-                                "sensor.cv_today_kwh",
-                                "sensor.cv_total_kwh"
-                            ]
+                                {
+                                    "entity": "sensor.cv_watts"
+                                },
+                                {
+                                    "entity": "sensor.cv_total_kwh"
+                                }
+                            ],
+                            "hours_to_show": 180,
+                            "refresh_interval": 0
                         }
                     ]
                 }

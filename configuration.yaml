@@ -23,6 +23,14 @@ automation: !include automations.yaml
 script: !include scripts.yaml
 scene: !include scenes.yaml
 
+input_number:
+    hall_brightness:
+        name: Brightness
+        initial: 30
+        min: 0
+        max: 100
+        step: 1
+
 # Configure the TP Link Smart Plug 
 tplink:
 sensor:
