@@ -14,6 +14,12 @@
       transition: 5600
     entity_id: light.livingroom_lights
     service: light.turn_on
+  - delay: '30'
+  - data:
+      brightness_pct: 15
+      transition: 5600
+    entity_id: light.livingroom_lights
+    service: light.turn_on
   mode: single
 - id: '1600679110748'
   alias: Evening lights turn on
