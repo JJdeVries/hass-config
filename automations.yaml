@@ -60,6 +60,11 @@
         \ == 'movie' -%}\n  Tv\n{%- elif state_attr('media_player.living_room_tv',\
         \ 'media_content_type') == 'music' -%}\n  Stereo\n{%- endif %}"
     entity_id: remote.harmonyjorik
+  - delay: '1.0'
+  - wait_template: '{{ state_attr(''remote.harmonyjorik'', ''activity_starting'')
+      == null }}'
+    continue_on_timeout: true
+    timeout: '5.0'
   - service: media_player.volume_set
     data:
       volume_level: "{% if state_attr('media_player.living_room_tv', 'media_content_type')\

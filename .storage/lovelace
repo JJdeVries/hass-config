@@ -29,7 +29,6 @@
                         },
                         {
                             "type": "horizontal-stack",
-                            "title": "Stereo Volume",
                             "cards": [
                                 {
                                     "type": "button",
