@@ -142,6 +142,221 @@
                             "refresh_interval": 0
                         }
                     ]
+                },
+                {
+                    "title": "Vacuum",
+                    "path": "vacuum",
+                    "icon": "mdi:robot-vacuum",
+                    "panel": false,
+                    "badges": [],
+                    "cards": [
+                        {
+                            "type": "entities",
+                            "entities": [
+                                {
+                                    "type": "custom:xiaomi-vacuum-card",
+                                    "entity": "vacuum.xiaomi_vacuum_cleaner",
+                                    "vendor": "xiaomi",
+                                    "buttons": false
+                                }
+                            ]
+                        },
+                        {
+                            "type": "horizontal-stack",
+                            "cards": [
+                                {
+                                    "type": "custom:button-card",
+                                    "color": "rgb(68, 115, 158)",
+                                    "icon": "mdi:home",
+                                    "entity": "vacuum.xiaomi_vacuum_cleaner",
+                                    "show_state": false,
+                                    "show_name": false,
+                                    "state": [
+                                        {
+                                            "value": "docked",
+                                            "operator": "!=",
+                                            "color": "var(--disabled-text-color)"
+                                        },
+                                        {
+                                            "value": "docked",
+                                            "operator": "=="
+                                        }
+                                    ],
+                                    "tap_action": {
+                                        "action": "call-service",
+                                        "service": "vacuum.start",
+                                        "service_data": {
+                                            "entity_id": "vacuum.xiaomi_vacuum_cleaner"
+                                        }
+                                    }
+                                },
+                                {
+                                    "type": "custom:button-card",
+                                    "color": "rgb(68, 115, 158)",
+                                    "icon": "mdi:bed",
+                                    "entity": "vacuum.xiaomi_vacuum_cleaner",
+                                    "show_state": false,
+                                    "show_name": false,
+                                    "state": [
+                                        {
+                                            "value": "docked",
+                                            "operator": "!=",
+                                            "color": "var(--disabled-text-color)"
+                                        },
+                                        {
+                                            "value": "docked",
+                                            "operator": "=="
+                                        },
+                                        {
+                                            "value": "returning home",
+                                            "operator": "=="
+                                        }
+                                    ],
+                                    "tap_action": {
+                                        "action": "call-service",
+                                        "service": "xiaomi_miio.vacuum_clean_segment",
+                                        "service_data": {
+                                            "entity_id": "vacuum.xiaomi_vacuum_cleaner",
+                                            "segments": [
+                                                1,
+                                                19
+                                            ]
+                                        }
+                                    }
+                                },
+                                {
+                                    "type": "custom:button-card",
+                                    "color": "rgb(68, 115, 158)",
+                                    "icon": "mdi:sofa",
+                                    "entity": "vacuum.xiaomi_vacuum_cleaner",
+                                    "show_state": false,
+                                    "show_name": false,
+                                    "state": [
+                                        {
+                                            "value": "docked",
+                                            "operator": "!=",
+                                            "color": "var(--disabled-text-color)"
+                                        },
+                                        {
+                                            "value": "docked",
+                                            "operator": "=="
+                                        },
+                                        {
+                                            "value": "returning to dock",
+                                            "operator": "=="
+                                        }
+                                    ],
+                                    "tap_action": {
+                                        "action": "call-service",
+                                        "service": "xiaomi_miio.vacuum_clean_segment",
+                                        "service_data": {
+                                            "entity_id": "vacuum.xiaomi_vacuum_cleaner",
+                                            "segments": [
+                                                16
+                                            ]
+                                        }
+                                    }
+                                },
+                                {
+                                    "type": "custom:button-card",
+                                    "color": "rgb(68, 115, 158)",
+                                    "icon": "mdi:kettle",
+                                    "entity": "vacuum.xiaomi_vacuum_cleaner",
+                                    "show_state": false,
+                                    "show_name": false,
+                                    "state": [
+                                        {
+                                            "value": "docked",
+                                            "operator": "!=",
+                                            "color": "var(--disabled-text-color)"
+                                        },
+                                        {
+                                            "value": "docked",
+                                            "operator": "=="
+                                        },
+                                        {
+                                            "value": "returning to dock",
+                                            "operator": "=="
+                                        }
+                                    ],
+                                    "tap_action": {
+                                        "action": "call-service",
+                                        "service": "xiaomi_miio.vacuum_clean_segment",
+                                        "service_data": {
+                                            "entity_id": "vacuum.xiaomi_vacuum_cleaner",
+                                            "segments": [
+                                                17
+                                            ]
+                                        }
+                                    }
+                                },
+                                {
+                                    "type": "custom:button-card",
+                                    "color": "rgb(68, 115, 158)",
+                                    "icon": "mdi:silverware",
+                                    "entity": "vacuum.xiaomi_vacuum_cleaner",
+                                    "show_state": false,
+                                    "show_name": false,
+                                    "state": [
+                                        {
+                                            "value": "docked",
+                                            "operator": "!=",
+                                            "color": "var(--disabled-text-color)"
+                                        },
+                                        {
+                                            "value": "docked",
+                                            "operator": "=="
+                                        },
+                                        {
+                                            "value": "returning to dock",
+                                            "operator": "=="
+                                        }
+                                    ],
+                                    "tap_action": {
+                                        "action": "call-service",
+                                        "service": "xiaomi_miio.vacuum_clean_segment",
+                                        "service_data": {
+                                            "entity_id": "vacuum.xiaomi_vacuum_cleaner",
+                                            "segments": [
+                                                18
+                                            ]
+                                        }
+                                    }
+                                },
+                                {
+                                    "type": "custom:button-card",
+                                    "color": "rgb(68, 115, 158)",
+                                    "icon": "mdi:ev-station",
+                                    "entity": "vacuum.xiaomi_vacuum_cleaner",
+                                    "show_state": false,
+                                    "show_name": false,
+                                    "state": [
+                                        {
+                                            "value": "docked",
+                                            "operator": "==",
+                                            "color": "var(--disabled-text-color)"
+                                        },
+                                        {
+                                            "value": "returning to dock",
+                                            "operator": "==",
+                                            "color": "var(--disabled-text-color)"
+                                        },
+                                        {
+                                            "value": "docked",
+                                            "operator": "!="
+                                        }
+                                    ],
+                                    "tap_action": {
+                                        "action": "call-service",
+                                        "service": "vacuum.return_to_base",
+                                        "service_data": {
+                                            "entity_id": "vacuum.xiaomi_vacuum_cleaner"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    ]
                 }
             ]
         }

@@ -140,3 +140,22 @@
     data: {}
     entity_id: automation.keep_hall_light_on
   mode: single
+- id: '1605718602600'
+  alias: Daily vacuuming
+  description: Every night clean the living room, dining room and kitchen
+  trigger:
+  - platform: time
+    at: '3:00'
+  condition:
+  - condition: state
+    entity_id: vacuum.xiaomi_vacuum_cleaner
+    state: docked
+  action:
+  - service: xiaomi_miio.vacuum_clean_segment
+    data:
+      segments:
+      - 16
+      - 17
+      - 18
+    entity_id: vacuum.xiaomi_vacuum_cleaner
+  mode: single

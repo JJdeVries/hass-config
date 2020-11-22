@@ -1,1 +1,24 @@
-[]
+- id: '1605609134803'
+  name: Play Games
+  entities:
+    light.tv_light:
+      min_mireds: 250
+      max_mireds: 454
+      brightness: 66
+      color_temp: 400
+      friendly_name: tv light
+      supported_features: 35
+      state: 'on'
+    light.table_lights:
+      min_mireds: 250
+      max_mireds: 454
+      brightness: 254
+      color_temp: 277
+      entity_id:
+      - light.table_light_1
+      - light.table_light_2
+      friendly_name: Table Lights
+      icon: mdi:lightbulb-group
+      supported_features: 35
+      state: 'on'
+  icon: mdi:puzzle

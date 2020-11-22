@@ -10,8 +10,7 @@ asuswrt:
   interface: eth2
   username: admin
   password: !secret asus_router
-  sensors:
-    - devices
+
     
 # Text to speech
 tts:
@@ -56,6 +55,12 @@ sensor:
         friendly_name_template: "{{states.switch.cv_verwarming.name}} Today's Consumption"
         value_template: '{{state_attr("switch.cv_verwarming", "today_energy_kwh") | float }}'
         unit_of_measurement: 'kWh'
-        
+
+# The vacuum
+vacuum:
+  - platform: xiaomi_miio
+    host: !secret vacuum_ip
+    token: !secret vacuum_token
+    
 shell_command:
     backup_git: cd /config && git add -u && git commit -m "New Backup" && git push https
