@@ -24,10 +24,6 @@
                     ],
                     "cards": [
                         {
-                            "entity": "weather.home",
-                            "type": "weather-forecast"
-                        },
-                        {
                             "type": "horizontal-stack",
                             "cards": [
                                 {
@@ -110,15 +106,15 @@
                                 },
                                 {
                                     "type": "custom:slider-entity-row",
+                                    "attribute": "color_temp",
                                     "toggle": true,
-                                    "entity": "light.tv_light"
+                                    "entity": "light.livingroom_lights",
+                                    "name": "color"
                                 },
                                 {
                                     "type": "custom:slider-entity-row",
-                                    "attribute": "color_temp",
                                     "toggle": true,
-                                    "entity": "light.tv_light",
-                                    "name": "tv color"
+                                    "entity": "light.tv_light"
                                 },
                                 {
                                     "type": "custom:slider-entity-row",
@@ -208,7 +204,7 @@
                                             "operator": "=="
                                         },
                                         {
-                                            "value": "returning home",
+                                            "value": "returning",
                                             "operator": "=="
                                         }
                                     ],
@@ -242,7 +238,7 @@
                                             "operator": "=="
                                         },
                                         {
-                                            "value": "returning to dock",
+                                            "value": "returning",
                                             "operator": "=="
                                         }
                                     ],
@@ -275,7 +271,7 @@
                                             "operator": "=="
                                         },
                                         {
-                                            "value": "returning to dock",
+                                            "value": "returning",
                                             "operator": "=="
                                         }
                                     ],
@@ -308,7 +304,7 @@
                                             "operator": "=="
                                         },
                                         {
-                                            "value": "returning to dock",
+                                            "value": "returning",
                                             "operator": "=="
                                         }
                                     ],
@@ -337,7 +333,7 @@
                                             "color": "var(--disabled-text-color)"
                                         },
                                         {
-                                            "value": "returning to dock",
+                                            "value": "returning",
                                             "operator": "==",
                                             "color": "var(--disabled-text-color)"
                                         },

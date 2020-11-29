@@ -1,0 +1,39 @@
+mediacenter_handler:
+  alias: Mediacenter handler
+  mode: single
+  description: "Handling turning on the media center"
+  variables:
+    use_remote: "remote.harmonyjorik"
+    video_states: ["movie", "tvshow"]
+    music_states: ["music"]
+    player_id: "media_player.living_room_tv"
+    content_type: "{{state_attr(player_id,'media_content_type')}}"
+    activity_type: >
+      {% if content_type in video_states %}
+         Tv
+      {% elif content_type in music_states %}
+         Stereo
+      {% else %}
+         Unknown
+      {% endif %}
+    volume_level: >
+      {% if '{{content_type}}' in video_states %}
+         1.0
+      {% elif '{{content_type}}' in music_states %}
+         0.55
+      {% else %}
+         0.0
+      {% endif %}
+  sequence:
+  - condition: template
+    value_template: "{{state_attr(use_remote, 'activity') != activity_type}}"
+  - service: remote.turn_on
+    data: 
+       entity_id: "{{use_remote}}"
+       activity: "{{ activity_type }}"
+  - delay:
+        minutes: 1.0
+  - service: media_player.volume_set
+    data: 
+        entity_id: "{{ player_id }}"
+        volume_level: "{{volume_level}}"
