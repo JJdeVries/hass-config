@@ -29,8 +29,8 @@
     end_pct: 100
     start_time: "20:00"
     end_time: "22:00"
-    t_dim_start: "{{as_timestamp(now().date + ' ' + start_time)}}"
-    t_dim_end: "{{as_timestamp(now().date + ' ' + end_time)}}"
+    t_dim_start: "{{as_timestamp(now().strftime('%Y-%m-%d') + ' ' + start_time)}}"
+    t_dim_end: "{{as_timestamp(now().strftime('%Y-%m-%d') + ' ' + end_time)}}"
     t_now: "{{as_timestamp(now())}}"
     enable_pct: >
        {% if t_now < t_dim_start %}
@@ -38,21 +38,27 @@
         {% elif t_now > t_dim_end %}
             end_pct
         {% else %}
-            {{begin_pct + (t_now - t_start) / (t_dim_end - t_dim_start) * (end_pct - begin_pct)}}
+            {{begin_pct + (t_now - t_dim_start) / (t_dim_end - t_dim_start) * (end_pct - begin_pct)}}
         {% endif %}
   trigger:
   - platform: state
     entity_id: group.humans
     to: home
   condition:
-    condition: state
-    entity_id: lights.livingroom_lights
+  - condition: state
+    entity_id: light.livingroom_lights
     state: 'off'
+  - condition: time
+    before: "22:30"
+  - condition: numeric_state
+    entity_id: sun.sin
+    attribute: elevation
+    below: '10'
   action:
   - service: light.turn_on
     entity_id: light.livingroom_lights
     data:
-        brightness_pct: '{{enable_pct}}'
+        brightness_pct: '{{enable_pct|float}}'
 - id: '1600679110748'
   alias: Evening lights turn on (sun)
   description: 'Turn the lights on because sun goes under'

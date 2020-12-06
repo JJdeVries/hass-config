@@ -14,11 +14,15 @@
             },
             {
                 "device_trackers": [
-                    "device_tracker.iphone"
+                    "device_tracker.iphone",
+                    "device_tracker.iphone_2",
+                    "device_tracker.iphonevannicole",
+                    "device_tracker.iphone_van_nicole"
                 ],
                 "id": "nicole_verbeek",
                 "name": "Nicole Verbeek",
-                "user_id": null
+                "user_id": "0034266ca30f4375a2704f087b5cb651",
+                "picture": null
             }
         ]
     }
