@@ -69,6 +69,9 @@
     below: '10'
   condition:
   - condition: state
+    entity_id: light.livingroom_lights
+    state: 'off'
+  - condition: state
     entity_id: group.humans
     state: home
   - condition: time
