@@ -22,3 +22,84 @@
       supported_features: 35
       state: 'on'
   icon: mdi:puzzle
+- id: '1607930711546'
+  name: Night
+  entities:
+    media_player.living_room_tv:
+      friendly_name: Living Room TV
+      supported_features: 152461
+      state: 'off'
+    automation.keep_hall_light_on:
+      last_triggered: '2020-11-22T20:03:59.903686+00:00'
+      mode: single
+      current: 0
+      id: '1603394623458'
+      friendly_name: keep hall light on
+      state: 'off'
+    automation.lights_on_home:
+      last_triggered:
+      mode: single
+      current: 0
+      id: '1608036392111'
+      friendly_name: Lights turn on (home)
+      state: 'off'
+    input_number.hall_brightness:
+      initial: 30
+      editable: false
+      min: 0
+      max: 100
+      step: 1
+      mode: slider
+      friendly_name: Brightness
+      state: '10.0'
+  icon: mdi:moon-waning-crescent
+- id: '1608038469877'
+  name: Day
+  entities:
+    automation.lights_on_home:
+      last_triggered:
+      mode: single
+      current: 0
+      id: '1608036392111'
+      friendly_name: Lights turn on (home)
+      state: 'on'
+    input_number.hall_brightness:
+      initial: 30
+      editable: false
+      min: 0
+      max: 100
+      step: 1
+      mode: slider
+      friendly_name: Brightness
+      state: '30.0'
+  icon: mdi:white-balance-sunny
+- id: '1608039175330'
+  name: Vacation
+  entities:
+    input_boolean.vacation_mode:
+      editable: true
+      friendly_name: Vacation mode
+      icon: mdi:beach
+      state: 'on'
+    automation.daily_vacuuming:
+      last_triggered: '2020-12-15T02:00:00.004809+00:00'
+      mode: single
+      current: 0
+      id: '1605718602600'
+      friendly_name: Daily vacuuming
+      state: 'off'
+    automation.evening_lights_turn_on:
+      last_triggered: '2020-12-13T13:46:01.013615+00:00'
+      mode: single
+      current: 0
+      id: '1600679110748'
+      friendly_name: Lights turn on (sun)
+      state: 'off'
+    automation.goodmorning:
+      last_triggered:
+      mode: single
+      current: 0
+      id: '1608038614647'
+      friendly_name: Goodmorning
+      state: 'off'
+  icon: mdi:beach

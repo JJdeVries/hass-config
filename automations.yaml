@@ -1,6 +1,6 @@
 - id: '1600351493180'
-  alias: Dim Livingroom lights if on
-  description: ''
+  alias: 'Lights Livingroom: dim'
+  description: Dim the livingroom lights in the evening
   trigger:
   - at: '20:00'
     platform: time
@@ -21,47 +21,9 @@
     entity_id: light.livingroom_lights
     service: light.turn_on
   mode: single
-- alias: Evening lights turn on (home)
-  id: '1606467703020'
-  description: "Turn the lights on because someone comes home"
-  variables:
-    begin_pct: 15
-    end_pct: 100
-    start_time: "20:00"
-    end_time: "22:00"
-    t_dim_start: "{{as_timestamp(now().strftime('%Y-%m-%d') + ' ' + start_time)}}"
-    t_dim_end: "{{as_timestamp(now().strftime('%Y-%m-%d') + ' ' + end_time)}}"
-    t_now: "{{as_timestamp(now())}}"
-    enable_pct: >
-       {% if t_now < t_dim_start %}
-            begin_pct
-        {% elif t_now > t_dim_end %}
-            end_pct
-        {% else %}
-            {{begin_pct + (t_now - t_dim_start) / (t_dim_end - t_dim_start) * (end_pct - begin_pct)}}
-        {% endif %}
-  trigger:
-  - platform: state
-    entity_id: group.humans
-    to: home
-  condition:
-  - condition: state
-    entity_id: light.livingroom_lights
-    state: 'off'
-  - condition: time
-    before: "22:30"
-  - condition: numeric_state
-    entity_id: sun.sin
-    attribute: elevation
-    below: '10'
-  action:
-  - service: light.turn_on
-    entity_id: light.livingroom_lights
-    data:
-        brightness_pct: '{{enable_pct|float}}'
 - id: '1600679110748'
-  alias: Evening lights turn on (sun)
-  description: 'Turn the lights on because sun goes under'
+  alias: 'Lights Livingroom: Turn on (sun)'
+  description: Turn the lights on because sun goes under
   trigger:
   - platform: numeric_state
     entity_id: sun.sun
@@ -90,9 +52,27 @@
       transition: 1800
   mode: single
 - id: '1600774245795'
-  alias: Media center turn on
-  mode: single
+  alias: 'Media Center: turn on'
   description: Turn on the mediacenter to the correct activity
+  trigger:
+  - platform: state
+    entity_id: media_player.living_room_tv
+    to: playing
+  condition:
+  - condition: template
+    value_template: '{{state_attr(use_remote, "current_activity") != activity_type}}'
+  action:
+  - service: remote.turn_on
+    data:
+      entity_id: '{{use_remote}}'
+      activity: '{{activity_type}}'
+  - delay: '5.0'
+  - service: media_player.volume_set
+    entity_id: media_player.living_room_tv
+    data:
+      entity_id: '{{player_id}}'
+      volume_level: '{{volume_level}}'
+  mode: single
   variables:
     use_remote: remote.harmonyjorik
     player_id: media_player.living_room_tv
@@ -106,27 +86,8 @@
       \ in music_states %}\n   Stereo\n{% else %}\n    Unknown\n{% endif %}\n"
     volume_level: "{% if content_type in video_states %}\n   1.0\n{% elif content_type\
       \ in music_states %}\n   0.55\n{% else %}\n    0.0\n{% endif %}\n"
-  trigger:
-  - platform: state
-    entity_id: media_player.living_room_tv
-    to: playing
-  condition:
-    condition: template
-    value_template: '{{state_attr(use_remote, "current_activity") != activity_type}}'
-  action:
-  - service: remote.turn_on
-    data:
-      entity_id: '{{use_remote}}'
-      activity: '{{activity_type}}'
-  - delay:
-      seconds: 3.0
-  - service: media_player.volume_set
-    entity_id: media_player.living_room_tv
-    data:
-      entity_id: '{{player_id}}'
-      volume_level: '{{volume_level}}'
 - id: '1600780656956'
-  alias: Media center turn off
+  alias: 'Media Center: turn off'
   description: ''
   trigger:
   - platform: state
@@ -139,7 +100,7 @@
     data: {}
   mode: single
 - id: '1602060895444'
-  alias: weekly backup config
+  alias: 'Backup: HA config'
   description: Backup the home assistant config files on sundays
   trigger:
   - platform: time
@@ -153,9 +114,8 @@
     data: {}
   mode: single
 - id: '1603394623458'
-  alias: keep hall light on
-  description: Keep the motion controlled light in the hallway on. Is automatically
-    turned off at 00:00
+  alias: 'Lights Hall: Keep on'
+  description: Keep the motion controlled light in the hallway on.
   trigger:
   - platform: state
     entity_id: light.hall_light
@@ -163,36 +123,15 @@
   - platform: state
     entity_id: automation.keep_hall_light_on
     to: 'on'
-  - platform: state
-    entity_id: input_number.hall_brightness
   condition: []
   action:
   - service: light.turn_on
     data:
-      brightness_pct: '{{ states(input_number.hall_brightness) | int }}'
+      brightness_pct: '{{ states("input_number.hall_brightness") | int }}'
     entity_id: light.hall_light
-  mode: single
-- id: '1603458166556'
-  alias: Turn off hall light
-  description: ''
-  trigger:
-  - platform: state
-    entity_id: automation.keep_hall_light_on
-    to: 'off'
-    for: 00:00:20
-  - platform: time
-    at: 00:01
-  condition: []
-  action:
-  - service: light.turn_off
-    data: {}
-    entity_id: light.hall_light
-  - service: automation.turn_off
-    data: {}
-    entity_id: automation.keep_hall_light_on
   mode: single
 - id: '1605718602600'
-  alias: Daily vacuuming
+  alias: Vacuuming
   description: Every night clean the living room, dining room and kitchen
   trigger:
   - platform: time
@@ -209,4 +148,66 @@
       - 17
       - 18
     entity_id: vacuum.xiaomi_vacuum_cleaner
+  mode: single
+- id: '1607868672746'
+  alias: Goodnight
+  description: Let's shutdown everything
+  trigger:
+  - platform: device
+    type: turned_off
+    device_id: 370a6454000711eb9cde01ebd6642b5a
+    entity_id: light.tv_light
+    domain: light
+  condition:
+  - condition: time
+    after: '22:30'
+    before: '6:00'
+  action:
+  - scene: scene.night
+  mode: single
+- id: '1608036392111'
+  alias: 'Lights Livingroom: Turn on (home)'
+  description: Turn on the lights if someone comes home
+  use_blueprint:
+    path: lights/evening_dimming.yaml
+    input:
+      start_elevation: '10'
+      dim_start_time: '20:00:00'
+      dim_end_time: '22:00:00'
+      input_person: group.humans
+      output_light: light.livingroom_lights
+      end_pct: '15'
+- id: '1608038614647'
+  alias: Goodmorning
+  description: Switch on relevant stuff
+  trigger:
+  - platform: time
+    at: '6:45'
+  condition:
+  - condition: state
+    entity_id: input_boolean.vacation_mode
+    state: 'off'
+  action:
+  - scene: scene.day
+  mode: single
+- id: '1608195471126'
+  alias: 'Lights Hall: Brightness'
+  description: Set the hall light brightness
+  trigger:
+  - platform: state
+    entity_id: light.hall_light
+    to: 'on'
+  - platform: state
+    entity_id: input_number.hall_brightness
+  condition:
+  - condition: device
+    type: is_on
+    device_id: 3709d680000711ebbaace9167b0f017d
+    entity_id: light.hall_light
+    domain: light
+  action:
+  - service: light.turn_on
+    data:
+      brightness_pct: '{{ states("input_number.hall_brightness") | int }}'
+    entity_id: light.hall_light
   mode: single

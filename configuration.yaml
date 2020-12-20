@@ -56,6 +56,18 @@ sensor:
         value_template: '{{state_attr("switch.cv_verwarming", "today_energy_kwh") | float }}'
         unit_of_measurement: 'kWh'
 
+# Enable an alert to show that vacation mode is ON
+alert:
+  vacation_mode:
+    name: Vacation Mode is Enabled
+    entity_id: input_boolean.vacation_mode
+    state: 'on'
+    repeat: 1440
+    can_acknowledge: false
+    skip_first: false
+    notifiers:
+      - persistent_notification
+
 # The vacuum
 vacuum:
   - platform: xiaomi_miio

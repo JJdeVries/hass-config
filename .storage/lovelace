@@ -77,24 +77,30 @@
                             ]
                         },
                         {
-                            "title": "Keep hall light on",
+                            "title": "Hall Light",
                             "type": "entities",
                             "state_color": true,
+                            "show_header_toggle": false,
                             "entities": [
-                                {
-                                    "entity": "automation.keep_hall_light_on",
-                                    "icon": "mdi:lightbulb"
-                                },
                                 {
                                     "type": "custom:slider-entity-row",
                                     "toggle": true,
                                     "entity": "input_number.hall_brightness",
-                                    "name": "brightness"
+                                    "name": "Brightness"
+                                },
+                                {
+                                    "entity": "automation.keep_hall_light_on",
+                                    "name": "Keep on",
+                                    "icon": "mdi:lightbulb"
+                                },
+                                {
+                                    "entity": "input_boolean.vacation_mode",
+                                    "icon": "mdi:beach"
                                 }
                             ]
                         },
                         {
-                            "title": "Living room lights brightness",
+                            "title": "Living room lights",
                             "type": "entities",
                             "show_header_toggle": true,
                             "entities": [
