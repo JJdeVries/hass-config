@@ -34,14 +34,14 @@
       mode: single
       current: 0
       id: '1603394623458'
-      friendly_name: keep hall light on
+      friendly_name: 'Lights Hall: Keep on'
       state: 'off'
     automation.lights_on_home:
       last_triggered:
       mode: single
       current: 0
       id: '1608036392111'
-      friendly_name: Lights turn on (home)
+      friendly_name: 'Lights Livingroom: Turn on (home)'
       state: 'off'
     input_number.hall_brightness:
       initial: 30
@@ -51,7 +51,14 @@
       step: 1
       mode: slider
       friendly_name: Brightness
-      state: '10.0'
+      state: '3.0'
+    automation.lights_livingroom_turn_on_home_2:
+      last_triggered: '2020-12-23T00:06:43.032097+00:00'
+      mode: single
+      current: 0
+      id: '1608561879306'
+      friendly_name: 'Lights Livingroom: Turn on (home) (blueprint)'
+      state: 'off'
   icon: mdi:moon-waning-crescent
 - id: '1608038469877'
   name: Day

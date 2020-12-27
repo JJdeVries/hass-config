@@ -205,9 +205,50 @@
     device_id: 3709d680000711ebbaace9167b0f017d
     entity_id: light.hall_light
     domain: light
+  - condition: or
+    conditions:
+    - condition: numeric_state
+      entity_id: light.hall_light
+      value_template: '{{ (state_attr(''light.hall_light'', ''brightness'') / 255
+        * 100) | round(0) }}'
+      above: input_number.hall_brightness
+    - condition: numeric_state
+      entity_id: light.hall_light
+      value_template: '{{ (state_attr(''light.hall_light'', ''brightness'') / 255
+        * 100) | round(0) }}'
+      below: input_number.hall_brightness
   action:
   - service: light.turn_on
     data:
       brightness_pct: '{{ states("input_number.hall_brightness") | int }}'
     entity_id: light.hall_light
   mode: single
+- id: '1608561879306'
+  alias: 'Lights Livingroom: Turn on (home) (blueprint)'
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: group.humans
+    to: home
+  condition:
+  - condition: numeric_state
+    entity_id: sun.sun
+    attribute: elevation
+    below: '10'
+  action:
+  - service: light.turn_on
+    data:
+      brightness_pct: 15
+    entity_id: light.livingroom_lights
+  mode: single
+- id: '1608806095722'
+  alias: 'Lights: Livingroom (dimming)'
+  description: ''
+  use_blueprint:
+    path: lights/light_dimming.yaml
+    input:
+      end_percentage: '15'
+      start_percentage: '99'
+      dim_start_time: '20:00:00'
+      dim_end_time: '21:30:00'
+      output_light: light.livingroom_lights
