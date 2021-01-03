@@ -36,13 +36,6 @@
       id: '1603394623458'
       friendly_name: 'Lights Hall: Keep on'
       state: 'off'
-    automation.lights_on_home:
-      last_triggered:
-      mode: single
-      current: 0
-      id: '1608036392111'
-      friendly_name: 'Lights Livingroom: Turn on (home)'
-      state: 'off'
     input_number.hall_brightness:
       initial: 30
       editable: false
@@ -57,19 +50,12 @@
       mode: single
       current: 0
       id: '1608561879306'
-      friendly_name: 'Lights Livingroom: Turn on (home) (blueprint)'
+      friendly_name: 'Lights Livingroom: Turn on (home)'
       state: 'off'
   icon: mdi:moon-waning-crescent
 - id: '1608038469877'
   name: Day
   entities:
-    automation.lights_on_home:
-      last_triggered:
-      mode: single
-      current: 0
-      id: '1608036392111'
-      friendly_name: Lights turn on (home)
-      state: 'on'
     input_number.hall_brightness:
       initial: 30
       editable: false
@@ -79,6 +65,13 @@
       mode: slider
       friendly_name: Brightness
       state: '30.0'
+    automation.lights_livingroom_turn_on_home_2:
+      last_triggered: '2020-12-23T00:06:43.032097+00:00'
+      mode: single
+      current: 0
+      id: '1608561879306'
+      friendly_name: 'Lights Livingroom: Turn on (home) (blueprint)'
+      state: 'on'
   icon: mdi:white-balance-sunny
 - id: '1608039175330'
   name: Vacation
