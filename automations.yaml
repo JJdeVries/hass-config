@@ -76,7 +76,7 @@
   - platform: state
     entity_id: media_player.living_room_tv
     to: idle
-    for: '1:00'
+    for: '30'
   condition: []
   action:
   - service: remote.turn_off
@@ -207,6 +207,8 @@
     entity_id: sun.sun
     attribute: elevation
     below: '10'
+  - condition: time
+    after: '12:00'
   action:
   - service: light.turn_on
     data:
@@ -214,7 +216,7 @@
     entity_id: light.livingroom_lights
   mode: single
 - id: '1608806095722'
-  alias: 'Lights: Livingroom (dimming)'
+  alias: 'Lights: Livingroom (dimming) '
   description: ''
   use_blueprint:
     path: lights/light_dimming.yaml
