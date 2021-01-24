@@ -124,6 +124,8 @@
   - condition: state
     entity_id: vacuum.xiaomi_vacuum_cleaner
     state: docked
+  - condition: template
+    value_template: '{{not state_attr(''vacuum.xiaomi_vacuum_cleaner'', ''mop_attached'')}}'
   action:
   - service: xiaomi_miio.vacuum_clean_segment
     data:
@@ -209,10 +211,13 @@
     below: '10'
   - condition: time
     after: '12:00'
+  - condition: state
+    entity_id: light.livingroom_lights
+    state: 'off'
   action:
   - service: light.turn_on
     data:
-      brightness_pct: 15
+      brightness_pct: 100
     entity_id: light.livingroom_lights
   mode: single
 - id: '1608806095722'
@@ -223,8 +228,8 @@
     input:
       end_percentage: '15'
       start_percentage: '100'
-      dim_start_time: '20:00:00'
-      dim_end_time: '21:30:00'
+      dim_start_time: '20:30:00'
+      dim_end_time: '22:00:00'
       output_light: light.livingroom_lights
 - id: '1609102126486'
   alias: 'Lights hall: Sun under'
