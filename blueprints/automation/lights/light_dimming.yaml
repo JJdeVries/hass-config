@@ -1,0 +1,137 @@
+blueprint:
+  name: Lights dimming
+  description: Dim light(s) gradually between a start and end time.
+  domain: automation
+  
+  input:
+    # Percentages input
+    start_percentage:
+      name: Start Percentage.
+      description: The starting percentage.
+      default: 100
+      selector:
+        number:
+          min: 0
+          max: 100
+          unit_of_measurement: "%"
+    end_percentage:
+      name: End Percentage.
+      description: The end percentage.
+      default: 15
+      selector:
+        number:
+          min: 0
+          max: 100
+          unit_of_measurement: "%"
+
+    # Dim timing inputs          
+    dim_start_time:
+      name: Dim start time.
+      description: Start time of dimming lights on lights.
+      selector:
+        # TODO: It would be nice to have configured defaults for time.
+        time:
+    dim_end_time:
+      name: Dim end time.
+      description: End time of dimming lights on lights.
+      selector:
+        # TODO: It would be nice to have configured defaults for time.
+        time:
+
+    # Light to dim
+    output_light:
+      name: Output Light
+      description: Light to turn on when coming home.
+      selector:
+        entity:
+          domain: light
+
+variables:
+  time_fmt: "%H:%M:%S"
+  day_fmt: "%Y-%m-%d"
+  date_fmt: "{{day_fmt + ' ' + time_fmt}}"
+
+  day_str: "{{now().strftime(day_fmt)}}"
+
+  input_start: !input dim_start_time
+  start_time_string: "{{day_str + ' ' + input_start}}"
+  start_stamp: "{{as_timestamp(strptime(start_time_string, date_fmt))}}"
+
+  input_end: !input dim_end_time
+  end_time_string: "{{day_str + ' ' + input_end}}"
+  end_stamp: "{{as_timestamp(strptime(end_time_string, date_fmt))}}"
+  
+  # For now we have a hardcoded morning 'reset'
+  morning_time_string: "{{day_str + ' 06:00:00'}}"
+  morning_stamp: "{{as_timestamp(strptime(morning_time_string, date_fmt))}}"
+  
+  now_stamp: "{{as_timestamp(now())}}"
+  
+  light_name: !input output_light
+  
+  current_pct: "{{ ((state_attr(light_name, 'brightness') or 0) / 255 * 100) | round}}"
+  start_pct: !input start_percentage
+  end_pct: !input end_percentage
+  perc_diff: "{{end_pct | int - start_pct | int}}"
+
+  t_diff: '{{(end_stamp - start_stamp)}}'
+
+  output_light_str: !input output_light
+  
+  # Let's calculate the start brightness percentage
+  enable_pct: >
+    {% if trigger.platform == 'time' %}
+      {{current_pct or start_pct}}
+    {% elif now_stamp <= start_stamp %}
+      {{start_pct}}
+    {% elif now_stamp >= end_stamp %}
+      {{end_pct}}
+    {% elif now_stamp < morning_stamp %}
+      {{end_pct}}
+    {% else %}
+      {{start_pct | int + (now_stamp - start_stamp) / t_diff * perc_diff}}
+    {% endif %}
+
+# We either start at the dim start time, or whenever the light is enabled
+# After the dim start time.
+trigger:
+- platform: time
+  at: !input dim_start_time
+- platform: state
+  entity_id: !input output_light
+  to: 'on'  
+  
+condition:
+- condition: state
+  entity_id: !input output_light
+  state: 'on'
+- condition: or
+  conditions:
+    - condition: template
+      value_template: "{{trigger.platform == 'time'}}"
+    - condition: time
+      after: !input dim_start_time
+    - condition: time
+      before: "06:00"
+
+action:
+# We always set the light on the enable percentage
+# TODO: Is this what we want? this means we change the percentage at the start
+- service: logbook.log
+  data:
+    name: "Dim Blueprint"
+    message: "Calling dim with start: {{enable_pct}}, end: {{end_pct}}, delta {{t_diff}}"
+- service: light.turn_on
+  entity_id: !input output_light
+  data:
+    brightness_pct: '{{enable_pct}}'
+# Now we dim the lights over time, which should be done if we're before the
+# finish time, and after the start_time
+- condition: template
+  value_template: '{{now_stamp >= start_stamp}}'
+- delay: '00:00:02'
+- service: light.turn_on
+  entity_id: !input output_light
+  data:
+    brightness_pct: "{{end_pct}}"
+    transition: '{{t_diff | int}}'
