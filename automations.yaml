@@ -1,33 +1,3 @@
-- id: '1600679110748'
-  alias: 'Lights Livingroom: Turn on (sun)'
-  description: Turn the lights on because sun goes under
-  trigger:
-  - platform: numeric_state
-    entity_id: sun.sun
-    attribute: elevation
-    below: '10'
-  condition:
-  - condition: state
-    entity_id: light.livingroom_lights
-    state: 'off'
-  - condition: state
-    entity_id: group.humans
-    state: home
-  - condition: time
-    before: '20:00'
-    after: '12:00'
-  action:
-  - service: light.turn_on
-    entity_id: light.livingroom_lights
-    data:
-      brightness_pct: 15
-  - delay: '1'
-  - service: light.turn_on
-    entity_id: light.livingroom_lights
-    data:
-      brightness_pct: 100
-      transition: 1800
-  mode: single
 - id: '1600774245795'
   alias: 'Media Center: turn on'
   description: Turn on the mediacenter to the correct activity
@@ -221,7 +191,7 @@
     entity_id: light.livingroom_lights
   mode: single
 - id: '1608806095722'
-  alias: 'Lights: Livingroom (dimming) '
+  alias: 'Lights Livingroom:  dimming '
   description: ''
   use_blueprint:
     path: lights/light_dimming.yaml
@@ -231,6 +201,7 @@
       dim_start_time: '20:30:00'
       dim_end_time: '22:00:00'
       output_light: light.livingroom_lights
+      end_brightness: '38'
 - id: '1609102126486'
   alias: 'Lights hall: Sun under'
   description: ''
@@ -263,3 +234,13 @@
       value: 100
     entity_id: input_number.hall_brightness
   mode: single
+- id: '1612192541242'
+  alias: 'Lights Livingroom: Turn on (sun)'
+  description: Turn on the livingroom lights if the sun goes under
+  use_blueprint:
+    path: lights/light_enable_sun.yaml
+    input:
+      duration_min: '30'
+      elevation_offset: '10'
+      output_light: light.livingroom_lights
+      end_brightness: '255'

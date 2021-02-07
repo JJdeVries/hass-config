@@ -129,19 +129,6 @@
                                 }
                             ],
                             "state_color": true
-                        },
-                        {
-                            "type": "history-graph",
-                            "entities": [
-                                {
-                                    "entity": "sensor.cv_watts"
-                                },
-                                {
-                                    "entity": "sensor.cv_total_kwh"
-                                }
-                            ],
-                            "hours_to_show": 180,
-                            "refresh_interval": 0
                         }
                     ]
                 },

@@ -4,25 +4,23 @@ blueprint:
   domain: automation
   
   input:
-    # Percentages input
-    start_percentage:
-      name: Start Percentage.
-      description: The starting percentage.
-      default: 100
+    # Brightness input
+    start_brightness:
+      name: Start Brightness.
+      description: The start brighness.
+      default: 255
       selector:
         number:
-          min: 0
-          max: 100
-          unit_of_measurement: "%"
-    end_percentage:
-      name: End Percentage.
-      description: The end percentage.
-      default: 15
+          min: 1
+          max: 255
+    end_brightness:
+      name: End Brightness.
+      description: The end brightness.
+      default: 38
       selector:
         number:
-          min: 0
-          max: 100
-          unit_of_measurement: "%"
+          min: 1
+          max: 255
 
     # Dim timing inputs          
     dim_start_time:
@@ -69,27 +67,35 @@ variables:
   
   light_name: !input output_light
   
-  current_pct: "{{ ((state_attr(light_name, 'brightness') or 0) / 255 * 100) | round}}"
-  start_pct: !input start_percentage
-  end_pct: !input end_percentage
-  perc_diff: "{{end_pct | int - start_pct | int}}"
+  current: "{{ (state_attr(light_name, 'brightness') or 0) | round}}"
+  start_brtns: !input start_brightness
+  end_brtns: !input end_brightness
+  diff: "{{end_brtns | int - start_brtns | int}}"
 
   t_diff: '{{(end_stamp - start_stamp)}}'
+  transition_time: >
+    {% if now_stamp > end_stamp %}
+      {{(end_stamp - now_stamp) | int}}
+    {% else %}
+      0
+    {% endif %}
 
   output_light_str: !input output_light
   
-  # Let's calculate the start brightness percentage
-  enable_pct: >
-    {% if trigger.platform == 'time' %}
-      {{current_pct or start_pct}}
+  overwrite_brtns: "{{trigger is defined and trigger.platform == 'state'}}"
+  
+  # Let's calculate the start brightness
+  enable_brtns: >
+    {% if not overwrite_brtns %}
+      0
     {% elif now_stamp <= start_stamp %}
-      {{start_pct}}
+      {{start_brtns}}
     {% elif now_stamp >= end_stamp %}
-      {{end_pct}}
+      {{end_brtns}}
     {% elif now_stamp < morning_stamp %}
-      {{end_pct}}
+      {{end_brtns}}
     {% else %}
-      {{start_pct | int + (now_stamp - start_stamp) / t_diff * perc_diff}}
+      {{start_brtns | int + (now_stamp - start_stamp) / t_diff * diff}}
     {% endif %}
 
 # We either start at the dim start time, or whenever the light is enabled
@@ -108,30 +114,41 @@ condition:
 - condition: or
   conditions:
     - condition: template
-      value_template: "{{trigger.platform == 'time'}}"
+      value_template: "{{now_stamp >= start_stamp}}"
     - condition: time
-      after: !input dim_start_time
-    - condition: time
-      before: "06:00"
+      before: "06:00:00"
 
 action:
-# We always set the light on the enable percentage
-# TODO: Is this what we want? this means we change the percentage at the start
+# We always set the light on the enable brightness
 - service: logbook.log
   data:
     name: "Dim Blueprint"
-    message: "Calling dim with start: {{enable_pct}}, end: {{end_pct}}, delta {{t_diff}}"
+    message: "Calling dim with end: {{end_brtns}}, delta {{t_diff}} {{trigger.platform}}"
+
 - service: light.turn_on
   entity_id: !input output_light
   data:
-    brightness_pct: '{{enable_pct}}'
-# Now we dim the lights over time, which should be done if we're before the
-# finish time, and after the start_time
+    brightness: "{{end_brtns}}"
+    transition: '{{transition_time}}'
+
 - condition: template
-  value_template: '{{now_stamp >= start_stamp}}'
+  value_template: '{{overwrite_brtns}}'
+  
+- service: logbook.log
+  data:
+    name: "Dim Blueprint"
+    message: "Calling dim with: {{overwrite_btns}} - start: {{enable_brtns}}"
+
+# First overwrite the light brightness, then restart the transition
+# This might not work without a delay?
+- service: light.turn_on
+  entity_id: !input output_light
+  data:
+    brightness: '{{enable_brtns}}'
+
 - delay: '00:00:02'
 - service: light.turn_on
   entity_id: !input output_light
   data:
-    brightness_pct: "{{end_pct}}"
-    transition: '{{t_diff | int}}'
+    brightness: "{{end_brtns}}"
+    transition: '{{transition_time | int}}'
