@@ -191,7 +191,7 @@
     entity_id: light.livingroom_lights
   mode: single
 - id: '1608806095722'
-  alias: 'Lights Livingroom:  dimming '
+  alias: 'Lights Livingroom:  dimming tv-light'
   description: ''
   use_blueprint:
     path: lights/light_dimming.yaml
@@ -200,8 +200,9 @@
       start_percentage: '100'
       dim_start_time: '20:30:00'
       dim_end_time: '22:00:00'
-      output_light: light.livingroom_lights
+      output_light: light.tv_light
       end_brightness: '38'
+      start_brightness: '255'
 - id: '1609102126486'
   alias: 'Lights hall: Sun under'
   description: ''

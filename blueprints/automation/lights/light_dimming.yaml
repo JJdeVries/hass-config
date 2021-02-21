@@ -74,7 +74,7 @@ variables:
 
   t_diff: '{{(end_stamp - start_stamp)}}'
   transition_time: >
-    {% if now_stamp > end_stamp %}
+    {% if now_stamp < end_stamp %}
       {{(end_stamp - now_stamp) | int}}
     {% else %}
       0
@@ -83,7 +83,7 @@ variables:
   output_light_str: !input output_light
   
   overwrite_brtns: "{{trigger is defined and trigger.platform == 'state'}}"
-  
+
   # Let's calculate the start brightness
   enable_brtns: >
     {% if not overwrite_brtns %}
@@ -123,13 +123,13 @@ action:
 - service: logbook.log
   data:
     name: "Dim Blueprint"
-    message: "Calling dim with end: {{end_brtns}}, delta {{t_diff}} {{trigger.platform}}"
+    message: "Calling dim with end: {{end_brtns}}, delta {{transition_time}}"
 
 - service: light.turn_on
   entity_id: !input output_light
   data:
     brightness: "{{end_brtns}}"
-    transition: '{{transition_time}}'
+    transition: '{{transition_time | int}}'
 
 - condition: template
   value_template: '{{overwrite_brtns}}'
