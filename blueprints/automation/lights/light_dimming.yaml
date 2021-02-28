@@ -126,11 +126,12 @@ action:
     message: "Calling dim with end: {{end_brtns}}, delta {{transition_time}}"
 
 - service: light.turn_on
-  entity_id: !input output_light
   data:
-    brightness: "{{end_brtns}}"
+    entity_id: "{{light_name}}"
+    brightness: "{{end_brtns | int}}"
     transition: '{{transition_time | int}}'
 
+- delay: "00:00:02"
 - condition: template
   value_template: '{{overwrite_brtns}}'
   
@@ -144,11 +145,11 @@ action:
 - service: light.turn_on
   entity_id: !input output_light
   data:
-    brightness: '{{enable_brtns}}'
+    brightness: '{{enable_brtns | int}}'
 
 - delay: '00:00:02'
 - service: light.turn_on
-  entity_id: !input output_light
   data:
-    brightness: "{{end_brtns}}"
+    entity_id: "{{light_name}}"
+    brightness: "{{end_brtns | int}}"
     transition: '{{transition_time | int}}'
