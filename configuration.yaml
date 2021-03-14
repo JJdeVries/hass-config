@@ -2,15 +2,6 @@
 # Configure a default setup of Home Assistant (frontend, api, etc)
 default_config:
 
-# Example configuration.yaml entry
-asuswrt:
-  host: 192.168.2.1
-  protocol: telnet
-  port: 23
-  interface: eth2
-  username: admin
-  password: !secret asus_router
-
     
 # Text to speech
 tts:
@@ -68,11 +59,5 @@ alert:
     notifiers:
       - persistent_notification
 
-# The vacuum
-vacuum:
-  - platform: xiaomi_miio
-    host: !secret vacuum_ip
-    token: !secret vacuum_token
-    
 shell_command:
     backup_git: cd /config && git add -u && git commit -m "New Backup" && git push https

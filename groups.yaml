@@ -3,6 +3,5 @@
 humans:
     name: "The family"
     entities:
-        - device_tracker.iphone
-        - device_tracker.iphonevannicole
-        - device_tracker.joriks_galaxy_a7_2018
+        - device_tracker.iphonevannicole_2
+        - device_tracker.joriks_galaxy_a7_2018_2
