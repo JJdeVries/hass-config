@@ -21,9 +21,22 @@ input_number:
         max: 100
         step: 1
 
+# Telegram notifications
+telegram_bot:
+  - platform: broadcast
+    api_key: !secret TELEGRAM_API
+    allowed_chat_ids:
+      - !secret TELEGRAM_CHAT_JORIK
+notify:
+  - platform: telegram
+    name: Notify_Jorik
+    chat_id: !secret TELEGRAM_CHAT_JORIK
+
 # Configure the TP Link Smart Plug 
 tplink:
+
 sensor:
+  # TP Link
   - platform: template
     sensors:
       cv_amps:
@@ -46,6 +59,17 @@ sensor:
         friendly_name_template: "{{states.switch.cv_verwarming.name}} Today's Consumption"
         value_template: '{{state_attr("switch.cv_verwarming", "today_energy_kwh") | float }}'
         unit_of_measurement: 'kWh'
+
+    # The plant sensor
+  - platform: miflora
+    name: "Ficux Lyrata"
+    mac: !secret miflora_mac
+    monitored_conditions:
+      - moisture
+      - light
+      - temperature
+      - conductivity
+      - battery
 
 # Enable an alert to show that vacation mode is ON
 alert:

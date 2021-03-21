@@ -346,6 +346,35 @@
                             ]
                         }
                     ]
+                },
+                {
+                    "title": "Plants",
+                    "path": "plants",
+                    "icon": "mdi:flower",
+                    "badges": [],
+                    "cards": [
+                        {
+                            "type": "entities",
+                            "entities": [
+                                {
+                                    "entity": "sensor.ficux_lyrata_light_intensity"
+                                },
+                                {
+                                    "entity": "sensor.ficux_lyrata_moisture"
+                                },
+                                {
+                                    "entity": "sensor.ficux_lyrata_temperature"
+                                },
+                                {
+                                    "entity": "sensor.ficux_lyrata_conductivity"
+                                },
+                                {
+                                    "entity": "sensor.ficux_lyrata_battery"
+                                }
+                            ],
+                            "show_header_toggle": true
+                        }
+                    ]
                 }
             ]
         }
