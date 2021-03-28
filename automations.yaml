@@ -133,6 +133,14 @@
     state: 'off'
   action:
   - scene: scene.day
+  - condition: numeric_state
+    entity_id: input_number.hall_brightness
+    below: '30.0'
+  - service: input_number.set_value
+    target:
+      entity_id: input_number.hall_brightness
+    data:
+      value: 30
   mode: single
 - id: '1608195471126'
   alias: 'Lights Hall: Brightness'
@@ -198,10 +206,10 @@
     input:
       end_percentage: '15'
       start_percentage: '100'
-      dim_start_time: '20:30:00'
+      dim_start_time: '21:00:00'
       dim_end_time: '22:00:00'
       output_light: light.livingroom_lights
-      end_brightness: '38'
+      end_brightness: 38
       start_brightness: '255'
 - id: '1609102126486'
   alias: 'Lights hall: Sun under'
