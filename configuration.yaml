@@ -16,9 +16,9 @@ scene: !include scenes.yaml
 input_number:
     hall_brightness:
         name: Brightness
-        initial: 30
+        initial: 77
         min: 0
-        max: 100
+        max: 255
         step: 1
 
 # Telegram notifications

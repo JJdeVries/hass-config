@@ -81,7 +81,7 @@
   action:
   - service: light.turn_on
     data:
-      brightness_pct: '{{ states("input_number.hall_brightness") | int }}'
+      brightness: '{{ states("input_number.hall_brightness") | int }}'
     entity_id: light.hall_light
   mode: single
 - id: '1605718602600'
@@ -161,18 +161,16 @@
     conditions:
     - condition: numeric_state
       entity_id: light.hall_light
-      value_template: '{{ (state_attr(''light.hall_light'', ''brightness'') / 255
-        * 100) | round(0) }}'
       above: input_number.hall_brightness
+      attribute: brightness
     - condition: numeric_state
       entity_id: light.hall_light
-      value_template: '{{ (state_attr(''light.hall_light'', ''brightness'') / 255
-        * 100) | round(0) }}'
       below: input_number.hall_brightness
+      attribute: brightness
   action:
   - service: light.turn_on
     data:
-      brightness_pct: '{{ states("input_number.hall_brightness") | int }}'
+      brightness: '{{states("input_number.hall_brightness") | int }}'
     entity_id: light.hall_light
   mode: single
 - id: '1608561879306'

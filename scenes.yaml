@@ -57,20 +57,20 @@
   name: Day
   entities:
     input_number.hall_brightness:
-      initial: 30
+      initial: 77
       editable: false
       min: 0
-      max: 100
+      max: 255
       step: 1
       mode: slider
       friendly_name: Brightness
-      state: '30.0'
+      state: '255.0'
     automation.lights_livingroom_turn_on_home_2:
-      last_triggered: '2020-12-23T00:06:43.032097+00:00'
+      last_triggered: '2021-03-24T16:54:03.277240+00:00'
       mode: single
       current: 0
       id: '1608561879306'
-      friendly_name: 'Lights Livingroom: Turn on (home) (blueprint)'
+      friendly_name: 'Lights Livingroom: Turn on (home)'
       state: 'on'
   icon: mdi:white-balance-sunny
 - id: '1608039175330'
