@@ -132,6 +132,17 @@ action:
     transition: '{{transition_time | int}}'
 
 - delay: "00:00:02"
+- service: light.turn_on
+  data:
+     entity_id: "{{light_name}}"
+     brightness: "{{end_brtns | int}}"
+     transition: "{{transition_time | int}}"
+- delay: "00:00:02"
+
+- service: logbook.log
+  data:
+    name: "Dim Bkueprint"
+    message: "fin"
 - condition: template
   value_template: '{{overwrite_brtns}}'
   
