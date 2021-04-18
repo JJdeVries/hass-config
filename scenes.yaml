@@ -30,32 +30,12 @@
       supported_features: 152461
       state: 'off'
     automation.keep_hall_light_on:
-      last_triggered: '2020-11-22T20:03:59.903686+00:00'
+      last_triggered: '2021-03-29T07:08:14.003260+00:00'
       mode: single
       current: 0
       id: '1603394623458'
       friendly_name: 'Lights Hall: Keep on'
       state: 'off'
-    input_number.hall_brightness:
-      initial: 30
-      editable: false
-      min: 0
-      max: 100
-      step: 1
-      mode: slider
-      friendly_name: Brightness
-      state: '3.0'
-    automation.lights_livingroom_turn_on_home_2:
-      last_triggered: '2020-12-23T00:06:43.032097+00:00'
-      mode: single
-      current: 0
-      id: '1608561879306'
-      friendly_name: 'Lights Livingroom: Turn on (home)'
-      state: 'off'
-  icon: mdi:moon-waning-crescent
-- id: '1608038469877'
-  name: Day
-  entities:
     input_number.hall_brightness:
       initial: 77
       editable: false
@@ -64,7 +44,30 @@
       step: 1
       mode: slider
       friendly_name: Brightness
-      state: '255.0'
+      state: '3.0'
+    automation.lights_livingroom_turn_on_home_2:
+      last_triggered: '2021-03-24T16:54:03.277240+00:00'
+      mode: single
+      current: 0
+      id: '1608561879306'
+      friendly_name: 'Lights Livingroom: Turn on (home)'
+      state: 'off'
+    light.livingroom_lights:
+      min_mireds: 250
+      max_mireds: 454
+      supported_color_modes:
+      - color_temp
+      entity_id:
+      - light.tv_light
+      - light.table_lights
+      friendly_name: Livingroom Lights
+      icon: mdi:lightbulb-group
+      supported_features: 35
+      state: 'off'
+  icon: mdi:moon-waning-crescent
+- id: '1608038469877'
+  name: Day
+  entities:
     automation.lights_livingroom_turn_on_home_2:
       last_triggered: '2021-03-24T16:54:03.277240+00:00'
       mode: single
@@ -72,6 +75,15 @@
       id: '1608561879306'
       friendly_name: 'Lights Livingroom: Turn on (home)'
       state: 'on'
+    input_number.hall_brightness:
+      initial: 77
+      editable: false
+      min: 0
+      max: 255
+      step: 1
+      mode: slider
+      friendly_name: Brightness
+      state: '77.0'
   icon: mdi:white-balance-sunny
 - id: '1608039175330'
   name: Vacation
