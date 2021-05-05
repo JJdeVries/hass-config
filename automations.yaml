@@ -68,6 +68,9 @@
     weekday:
     - sun
   action:
+  - service: shell_command.test_one
+  - service: shell_command.test_two
+  - service: shell_command.test_three
   - service: shell_command.backup_git
     data: {}
   mode: single
