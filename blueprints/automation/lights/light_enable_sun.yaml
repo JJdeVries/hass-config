@@ -1,0 +1,101 @@
+blueprint:
+  name: Lights turn on (sun)
+  description: Gradually brighten lights as sun comes up
+  domain: automation
+  
+  input:
+    # Brightness input
+    start_brightness:
+      name: Start Brightness.
+      description: The start brighness.
+      default: 38
+      selector:
+        number:
+          min: 1
+          max: 255
+    end_brightness:
+      name: End Brightness.
+      description: The end brightness.
+      default: 255
+      selector:
+        number:
+          min: 1
+          max: 255
+
+    # Dim timing inputs
+    elevation_offset:
+      name: Elevation Offset
+      description: The offset of the sun elevation on which to start
+      default: 0
+      selector:
+        number:
+          min: -20
+          max: 20
+    duration_min:
+      name: Duration [min]
+      description: How long transition to the end brightness [min]
+      default: 30
+      selector:
+        number:
+          min: 0
+          max: 180
+    
+    home_group:
+      name: Family
+      description: Which group should be home
+      selector:
+        entity:
+          domain: group
+
+    # Light to control
+    output_light:
+      name: Output Light
+      description: Light to turn on when coming home.
+      selector:
+        entity:
+          domain: light
+
+variables:
+  light_name: !input output_light
+  start_brtns: !input start_brightness
+  end_brtns: !input end_brightness
+  transition_min: !input duration_min
+  transition_secs: "{{ (transition_min | int) * 60 }}"
+
+  current: "{{ (state_attr(light_name, 'brightness') or 0) | round}}"
+
+  # Start at the current brightness if the light is on, otherwise use the
+  # configured brightness
+  enable_brtns: >
+    {% if current != 0 %}
+      {{current}}
+    {% else %}
+      {{start_brtns}}
+    {% endif %}
+
+trigger:
+  platform: numeric_state
+  entity_id: sun.sun
+  value_template: "{{ state_attr('sun.sun', 'elevation') }}"
+  below: !input elevation_offset
+
+condition:
+  - condition: state
+    entity_id: !input home_group
+    state: home
+
+action:    
+- service: logbook.log
+  data:
+    name: "Light on (sun)"
+    message: "Calling with start: {{enable_brtns}}"
+- service: light.turn_on
+  entity_id: !input output_light
+  data:
+    brightness: '{{enable_brtns}}'
+- delay: '00:00:02'
+- service: light.turn_on
+  entity_id: !input output_light
+  data:
+    brightness: "{{end_brtns}}"
+    transition: '{{transition_secs}}'
