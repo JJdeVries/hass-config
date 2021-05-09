@@ -2,7 +2,7 @@
 - platform: group
   name: Table Lights
   entities:
-    - light.table_light_1_2
+    - light.table_light_1
     - light.table_light_2
 
 # living room lights

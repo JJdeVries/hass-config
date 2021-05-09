@@ -72,7 +72,6 @@
   - service: shell_command.test_two
   - service: shell_command.test_three
   - service: shell_command.backup_git
-    data: {}
   mode: single
 - id: '1603394623458'
   alias: 'Lights Hall: Keep on'
