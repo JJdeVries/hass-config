@@ -60,7 +60,6 @@ alert:
       - persistent_notification
 
 shell_command:
-    test_one: cd /config
-    test_two: cd /config && git add -u
-    test_three: cd /config && git add -u && git commit -m "New Backup"
-    backup_git: cd /config && git add -u && git commit -m "New Backup" && git push https
+    git_commit: cd /config && git add -u && git commit --allow-empty -m "New Backup"
+    git_push: cd /config && git push https
+    git_pull: cd /config && git pull
