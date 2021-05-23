@@ -20,6 +20,9 @@
                         },
                         {
                             "entity": "sun.sun"
+                        },
+                        {
+                            "entity": "vacuum.xiaomi_vacuum_cleaner"
                         }
                     ],
                     "cards": [

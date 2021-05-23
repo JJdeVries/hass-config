@@ -149,7 +149,7 @@ action:
 - service: logbook.log
   data:
     name: "Dim Blueprint"
-    message: "Calling dim with: {{overwrite_btns}} - start: {{enable_brtns}}"
+    message: "Calling dim with: {{overwrite_brtns}} - start: {{enable_brtns}}"
 
 # First overwrite the light brightness, then restart the transition
 # This might not work without a delay?

@@ -90,11 +90,11 @@
     entity_id: light.hall_light
   mode: single
 - id: '1605718602600'
-  alias: Vacuuming
+  alias: 'Vacuum: Clean Schedule'
   description: Every night clean the living room, dining room and kitchen
   trigger:
   - platform: time
-    at: '3:00'
+    at: '3:30'
   condition:
   - condition: state
     entity_id: vacuum.xiaomi_vacuum_cleaner
@@ -211,10 +211,10 @@
       end_percentage: '15'
       start_percentage: '100'
       dim_start_time: '21:00:00'
-      dim_end_time: '22:00:00'
+      dim_end_time: '23:30:00'
       output_light: light.livingroom_lights
       end_brightness: 38
-      start_brightness: '255'
+      start_brightness: 255
 - id: '1609102126486'
   alias: 'Lights hall: Sun under'
   description: ''
