@@ -71,3 +71,9 @@ shell_command:
     git_pull: cd /config && git pull
     
     recrypt: cd /config/dehydrate/dehydrated && dehydrated -c
+
+logger:
+    default: info
+    
+    logs:
+       homeassistant.components.shell_command: debug
