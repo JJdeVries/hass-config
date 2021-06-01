@@ -14,9 +14,8 @@ script: !include scripts.yaml
 scene: !include scenes.yaml
 
 http:
-  # api_password: !secret html_pass
-  ssl_certificate: "/config/dehydrate/dehydrated/certs/jj-homeassistant.duckdns.org/fullchain.pem"
-  ssl_key: "/config/dehydrate/dehydrated/certs/jj-homeassistant.duckdns.org/privkey.pem"
+  ssl_certificate: !secret ssl_certificate_path
+  ssl_key: !secret ssl_key_path
 
 
 input_number:
@@ -73,7 +72,7 @@ shell_command:
     recrypt: cd /config/dehydrate/dehydrated && dehydrated -c
 
 logger:
-    default: info
+    default: warning
     
     logs:
        homeassistant.components.shell_command: debug

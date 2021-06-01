@@ -70,7 +70,6 @@
   action:
   - service: shell_command.git_commit
   - service: shell_command.git_push
-  - service: shell_command.git_pull
   mode: single
 - id: '1603394623458'
   alias: 'Lights Hall: Keep on'
@@ -261,3 +260,19 @@
       end_brightness: '255'
       start_brightness: '38'
       home_group: group.humans
+- id: '1622458308421'
+  alias: 'Https: Refresh'
+  description: ''
+  trigger:
+  - platform: time
+    at: '12:00'
+  condition:
+  - condition: template
+    value_template: '{{now().day == 1}}'
+  action:
+  - service: shell_command.recrypt
+  - service: notify.notify_jorik
+    data:
+      message: Restart HA within 30 days!
+      title: Encryption refresh
+  mode: single
