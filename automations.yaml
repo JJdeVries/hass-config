@@ -17,7 +17,7 @@
       hours: 0
       minutes: 0
       seconds: 3
-      milliseconds: 0
+      milliseconds: 500
   - service: media_player.volume_set
     entity_id: media_player.living_room_tv
     data:
