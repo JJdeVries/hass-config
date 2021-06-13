@@ -276,3 +276,18 @@
       message: Restart HA within 30 days!
       title: Encryption refresh
   mode: single
+- id: '1623509943578'
+  alias: 'Plant: Moisture'
+  description: Warn if the plant should be given water
+  trigger:
+  - platform: time
+    at: '12:00'
+  condition:
+  - condition: numeric_state
+    entity_id: sensor.ficux_lyrata_moisture
+    below: '20'
+  action:
+  - service: notify.notify_jorik
+    data:
+      message: 'The plant should be given water! Moisture: states("sensor.ficux_lyrata_moisture")'
+  mode: single

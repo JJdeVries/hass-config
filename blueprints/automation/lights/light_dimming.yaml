@@ -103,6 +103,10 @@ variables:
 trigger:
 - platform: time
   at: !input dim_start_time
+- platform: numeric_state
+  entity_id: sun.sun
+  value_template: "{{ state_attr('sun.sun', 'elevation') }}"
+  below: -10
 - platform: state
   entity_id: !input output_light
   to: 'on'  
