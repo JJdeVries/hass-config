@@ -289,5 +289,5 @@
   action:
   - service: notify.notify_jorik
     data:
-      message: 'The plant should be given water! Moisture: states("sensor.ficux_lyrata_moisture")'
+      message: 'The plant should be given water! Moisture: {{states("sensor.ficux_lyrata_moisture")}}'
   mode: single
