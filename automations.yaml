@@ -281,7 +281,7 @@
   description: Warn if the plant should be given water
   trigger:
   - platform: time
-    at: '12:00'
+    at: '17:00'
   condition:
   - condition: numeric_state
     entity_id: sensor.ficux_lyrata_moisture
@@ -290,4 +290,31 @@
   - service: notify.notify_jorik
     data:
       message: 'The plant should be given water! Moisture: {{states("sensor.ficux_lyrata_moisture")}}'
+  mode: single
+- id: '1624542421853'
+  alias: 'Vacuum: Ensure docked'
+  description: Ensure that the vacuum goes to the docking station
+  trigger:
+  - platform: time
+    at: '5:00'
+  condition:
+  - condition: state
+    entity_id: vacuum.xiaomi_vacuum_cleaner
+    state: error
+  action:
+  - service: vacuum.return_to_base
+    target:
+      entity_id: vacuum.xiaomi_vacuum_cleaner
+  - delay:
+      hours: 0
+      minutes: 10
+      seconds: 0
+      milliseconds: 0
+  - condition: state
+    entity_id: vacuum.xiaomi_vacuum_cleaner
+    state: error
+  - service: notify.notify_jorik
+    data:
+      title: Vacuum Not Docked
+      message: The vacuum is still in error state!
   mode: single
