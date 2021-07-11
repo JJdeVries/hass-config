@@ -76,6 +76,53 @@
                                     "hold_action": {
                                         "action": ""
                                     }
+                                },
+                                {
+                                    "type": "custom:button-card",
+                                    "entity": "remote.harmony_jorik",
+                                    "icon": "mdi:power",
+                                    "tap_action": {
+                                        "action": "call-service",
+                                        "service": "remote.turn_off",
+                                        "service_data": {
+                                            "entity_id": "remote.harmonyjorik"
+                                        }
+                                    },
+                                    "show_state": true,
+                                    "state": [
+                                        {
+                                            "operator": "template",
+                                            "value": "[[[\n  return (states['remote.harmonyjorik'].attributes.current_activity != \"PowerOff\")\n]]]\n",
+                                            "color": "var(--state-icon-active-color)"
+                                        },
+                                        {
+                                            "operator": "default",
+                                            "color": "var(--disabled-text-color)"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "custom:button-card",
+                                    "entity": "remote.harmonyjorik",
+                                    "icon": "mdi:nintendo-switch",
+                                    "tap_action": {
+                                        "action": "call-service",
+                                        "service": "script.play_switch_on_tv",
+                                        "service_data": {}
+                                    },
+                                    "show_state": false,
+                                    "show_name": false,
+                                    "state": [
+                                        {
+                                            "operator": "template",
+                                            "value": "[[[\n  return (states['remote.harmonyjorik'].attributes.current_activity != \"Nintendo\")\n]]]\n",
+                                            "color": "var(--state-icon-color)"
+                                        },
+                                        {
+                                            "operator": "default",
+                                            "color": "var(--disabled-text-color)"
+                                        }
+                                    ]
                                 }
                             ]
                         },

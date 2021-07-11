@@ -1,1 +1,25 @@
-{}
+play_switch_on_tv:
+  sequence:
+  - choose:
+    - alias: "IF casting, stop!"
+      conditions:
+       - condition: template
+         alias: "Currently casting"
+         value_template: "{{states('media_player.living_room_tv') != 'off'}}"
+      sequence:
+      - service: media_player.media_stop
+        target:
+          entity_id: media_player.living_room_tv
+      - delay:
+          hours: 0
+          minutes: 0
+          seconds: 0
+          milliseconds: 500
+  - service: remote.turn_on
+    target:
+      entity_id: remote.harmonyjorik
+    data:
+      activity: Nintendo
+  mode: single
+  alias: Play Switch on TV
+  icon: mdi:nintendo-switch
