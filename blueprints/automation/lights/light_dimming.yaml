@@ -127,7 +127,7 @@ action:
 - service: logbook.log
   data:
     name: "Dim Blueprint"
-    message: "Calling dim with end: {{end_brtns}}, delta {{transition_time}}"
+    message: "Calling dim {{light_name}} with end: {{end_brtns}}, delta {{transition_time}}"
 
 - service: light.turn_on
   data:
