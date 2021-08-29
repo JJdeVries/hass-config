@@ -146,6 +146,12 @@
                                 {
                                     "entity": "input_boolean.vacation_mode",
                                     "icon": "mdi:beach"
+                                },
+                                {
+                                    "type": "custom:slider-entity-row",
+                                    "toggle": true,
+                                    "entity": "light.hall_light",
+                                    "name": "Hall Light"
                                 }
                             ]
                         },
@@ -257,8 +263,8 @@
                                         "service_data": {
                                             "entity_id": "vacuum.xiaomi_vacuum_cleaner",
                                             "segments": [
-                                                19,
-                                                1
+                                                16,
+                                                17
                                             ]
                                         }
                                     }
@@ -291,7 +297,7 @@
                                         "service_data": {
                                             "entity_id": "vacuum.xiaomi_vacuum_cleaner",
                                             "segments": [
-                                                16
+                                                19
                                             ]
                                         }
                                     }
@@ -300,39 +306,6 @@
                                     "type": "custom:button-card",
                                     "color": "rgb(68, 115, 158)",
                                     "icon": "mdi:kettle",
-                                    "entity": "vacuum.xiaomi_vacuum_cleaner",
-                                    "show_state": false,
-                                    "show_name": false,
-                                    "state": [
-                                        {
-                                            "value": "docked",
-                                            "operator": "!=",
-                                            "color": "var(--disabled-text-color)"
-                                        },
-                                        {
-                                            "value": "docked",
-                                            "operator": "=="
-                                        },
-                                        {
-                                            "value": "returning",
-                                            "operator": "=="
-                                        }
-                                    ],
-                                    "tap_action": {
-                                        "action": "call-service",
-                                        "service": "xiaomi_miio.vacuum_clean_segment",
-                                        "service_data": {
-                                            "entity_id": "vacuum.xiaomi_vacuum_cleaner",
-                                            "segments": [
-                                                17
-                                            ]
-                                        }
-                                    }
-                                },
-                                {
-                                    "type": "custom:button-card",
-                                    "color": "rgb(68, 115, 158)",
-                                    "icon": "mdi:silverware",
                                     "entity": "vacuum.xiaomi_vacuum_cleaner",
                                     "show_state": false,
                                     "show_name": false,

@@ -104,10 +104,10 @@
   - service: xiaomi_miio.vacuum_clean_segment
     data:
       segments:
-      - 16
-      - 17
       - 18
-    entity_id: vacuum.xiaomi_vacuum_cleaner
+      - 19
+    target:
+      entity_id: vacuum.xiaomi_vacuum_cleaner
   mode: single
 - id: '1607868672746'
   alias: Goodnight
@@ -183,8 +183,10 @@
   description: ''
   trigger:
   - platform: state
-    entity_id: group.humans
-    to: home
+    entity_id: light.hall_light
+    from: 'off'
+    to: 'on'
+    id: HallLightOn
   condition:
   - condition: numeric_state
     entity_id: sun.sun
@@ -195,11 +197,17 @@
   - condition: state
     entity_id: light.livingroom_lights
     state: 'off'
+  - condition: state
+    entity_id: group.humans
+    state: not_home
   action:
   - service: light.turn_on
     data:
       brightness_pct: 100
     entity_id: light.livingroom_lights
+  - service: notify.notify_jorik
+    data:
+      message: Turned on the lights because you're now home!
   mode: single
 - id: '1608806095722'
   alias: 'Lights Livingroom:  dim light'
