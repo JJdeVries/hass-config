@@ -103,10 +103,6 @@ variables:
 trigger:
 - platform: time
   at: !input dim_start_time
-- platform: numeric_state
-  entity_id: sun.sun
-  value_template: "{{ state_attr('sun.sun', 'elevation') }}"
-  below: -10
 - platform: state
   entity_id: !input output_light
   to: 'on'  
@@ -123,48 +119,27 @@ condition:
       before: "06:00:00"
 
 action:
-# We always set the light on the enable brightness
-- service: logbook.log
-  data:
-    name: "Dim Blueprint"
-    message: "Calling dim {{light_name}} with end: {{end_brtns}}, delta {{transition_time}}"
+- choose:
+  - alias: "Turn on the light if necessary"
+    conditions: >
+      {{overwrite_brtns}}
+    sequence:
+    - service: light.turn_on
+      entity_id: !input output_light
+      data:
+        brightness: '{{enable_brtns | int}}'
+    - delay: "00:00:01"
 
 - service: light.turn_on
   data:
-    entity_id: "{{light_name}}"
     brightness: "{{end_brtns | int}}"
     transition: '{{transition_time | int}}'
-
-- delay: "00:00:02"
-- service: light.turn_on
-  data:
-     entity_id: "{{light_name}}"
-     brightness: "{{end_brtns | int}}"
-     transition: "{{transition_time | int}}"
-- delay: "00:00:02"
-
-- service: logbook.log
-  data:
-    name: "Dim Bkueprint"
-    message: "fin"
-- condition: template
-  value_template: '{{overwrite_brtns}}'
+  entity_id: !input "output_light"
   
-- service: logbook.log
-  data:
-    name: "Dim Blueprint"
-    message: "Calling dim with: {{overwrite_brtns}} - start: {{enable_brtns}}"
+- delay: "00:00:01"
 
-# First overwrite the light brightness, then restart the transition
-# This might not work without a delay?
-- service: light.turn_on
-  entity_id: !input output_light
-  data:
-    brightness: '{{enable_brtns | int}}'
-
-- delay: '00:00:02'
 - service: light.turn_on
   data:
-    entity_id: "{{light_name}}"
     brightness: "{{end_brtns | int}}"
     transition: '{{transition_time | int}}'
+  entity_id: !input "output_light"
