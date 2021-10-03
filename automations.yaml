@@ -93,7 +93,7 @@
   description: Every night clean the living room, dining room and kitchen
   trigger:
   - platform: time
-    at: '3:30'
+    at: 06:00
   condition:
   - condition: state
     entity_id: vacuum.xiaomi_vacuum_cleaner
@@ -104,8 +104,8 @@
   - service: xiaomi_miio.vacuum_clean_segment
     data:
       segments:
-      - 18
       - 19
+      - 18
     target:
       entity_id: vacuum.xiaomi_vacuum_cleaner
   mode: single
@@ -304,7 +304,7 @@
   description: Ensure that the vacuum goes to the docking station
   trigger:
   - platform: time
-    at: '5:00'
+    at: 06:30
   condition:
   - condition: state
     entity_id: vacuum.xiaomi_vacuum_cleaner
