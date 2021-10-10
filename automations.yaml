@@ -165,18 +165,18 @@
   - condition: or
     conditions:
     - condition: numeric_state
-      entity_id: light.hall_light
+      entity_id: light.tradfri_bulb_8
       above: input_number.hall_brightness
       attribute: brightness
     - condition: numeric_state
-      entity_id: light.hall_light
       below: input_number.hall_brightness
       attribute: brightness
+      entity_id: light.tradfri_bulb_8
   action:
   - service: light.turn_on
     data:
       brightness: '{{states("input_number.hall_brightness") | int }}'
-    entity_id: light.hall_light
+    entity_id: light.tradfri_bulb_8
   mode: single
 - id: '1608561879306'
   alias: 'Lights Livingroom: Turn on (home)'
