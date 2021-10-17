@@ -218,7 +218,7 @@
       end_percentage: '15'
       start_percentage: '100'
       dim_start_time: '20:30:00'
-      dim_end_time: '21:50:00'
+      dim_end_time: '21:29:00'
       output_light: light.livingroom_lights
       end_brightness: 38
       start_brightness: 255
