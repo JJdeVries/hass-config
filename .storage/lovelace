@@ -170,7 +170,7 @@
                                     "type": "custom:slider-entity-row",
                                     "attribute": "color_temp",
                                     "toggle": true,
-                                    "entity": "light.table_lights",
+                                    "entity": "light.livingroom_lights",
                                     "name": "color"
                                 },
                                 {

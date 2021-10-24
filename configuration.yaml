@@ -37,9 +37,6 @@ notify:
     name: Notify_Jorik
     chat_id: !secret TELEGRAM_CHAT_JORIK
 
-# Configure the TP Link Smart Plug 
-tplink:
-
 sensor:
     # The plant sensor
   - platform: miflora
