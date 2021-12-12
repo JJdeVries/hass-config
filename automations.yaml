@@ -326,3 +326,23 @@
       title: Vacuum Not Docked
       message: The vacuum is still in error state!
   mode: single
+- id: '1638808746106'
+  alias: 'Lights Livingroom: Morning'
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: light.livingroom_lights
+    from: 'off'
+    to: 'on'
+  condition:
+  - condition: time
+    after: 06:00
+    before: '11:00'
+  action:
+  - service: light.turn_on
+    target:
+      entity_id: light.livingroom_lights
+    data:
+      brightness: 255
+      transition: 15
+  mode: single
