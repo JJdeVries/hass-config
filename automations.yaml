@@ -346,3 +346,25 @@
       brightness: 255
       transition: 15
   mode: single
+- id: '1639509271355'
+  alias: 'CV: Temperature'
+  description: ''
+  trigger:
+  - platform: numeric_state
+    entity_id: sensor.cv_temperature
+    below: '5'
+    for:
+      hours: 0
+      minutes: 5
+      seconds: 0
+  condition: []
+  action:
+  - service: notify.notify_jorik
+    data:
+      message: The temperature at the CV is too low!
+  - service: automation.turn_off
+    data:
+      stop_actions: false
+    target:
+      entity_id: automation.cv_temperature
+  mode: single

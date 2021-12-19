@@ -1,5 +1,6 @@
 {
     "version": 1,
+    "minor_version": 1,
     "key": "lovelace",
     "data": {
         "config": {
@@ -192,7 +193,7 @@
                     "title": "Vacuum",
                     "path": "vacuum",
                     "icon": "mdi:robot-vacuum",
-                    "panel": false,
+                    "type": "sidebar",
                     "badges": [],
                     "cards": [
                         {
@@ -396,6 +397,42 @@
                                 }
                             ],
                             "show_header_toggle": true
+                        }
+                    ]
+                },
+                {
+                    "title": "CV",
+                    "path": "cv",
+                    "icon": "mdi:radiator",
+                    "type": "sidebar",
+                    "badges": [],
+                    "cards": [
+                        {
+                            "type": "history-graph",
+                            "entities": [
+                                {
+                                    "entity": "sensor.cv_temperature"
+                                },
+                                {
+                                    "entity": "sensor.outside_temperature"
+                                }
+                            ],
+                            "hours_to_show": 24,
+                            "refresh_interval": 0,
+                            "title": "CV Temperature"
+                        },
+                        {
+                            "type": "statistics-graph",
+                            "entities": [
+                                "sensor.cv_temperature"
+                            ],
+                            "days_to_show": 30,
+                            "title": "CV Temperature Statistics",
+                            "stat_types": [
+                                "mean",
+                                "min",
+                                "max"
+                            ]
                         }
                     ]
                 }

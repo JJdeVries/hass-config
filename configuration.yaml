@@ -61,6 +61,12 @@ alert:
     notifiers:
       - persistent_notification
 
+template:
+  - sensor:
+      - name: "Outside Temperature"
+        unit_of_measurement: "°C"
+        state: "{{state_attr('weather.home', 'temperature')}}"
+
 shell_command:
     git_commit: cd /config && git add -u && git commit --allow-empty -m "New Backup"
     git_push: cd /config && git push https
