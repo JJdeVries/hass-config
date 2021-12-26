@@ -69,7 +69,7 @@
   name: Day
   entities:
     automation.lights_livingroom_turn_on_home_2:
-      last_triggered: '2021-03-24T16:54:03.277240+00:00'
+      last_triggered: '2021-09-03T19:50:30.237061+00:00'
       mode: single
       current: 0
       id: '1608561879306'
@@ -84,6 +84,13 @@
       mode: slider
       friendly_name: Brightness
       state: '77.0'
+    automation.cv_temperature:
+      last_triggered: '2021-12-22T03:40:18.269767+00:00'
+      mode: single
+      current: 0
+      id: '1639509271355'
+      friendly_name: 'CV: Temperature'
+      state: 'on'
   icon: mdi:white-balance-sunny
 - id: '1608039175330'
   name: Vacation

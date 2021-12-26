@@ -36,7 +36,7 @@
         activity: Tv
       music:
         activity: Stereo
-        volume: 0.55
+        volume: 0.80
     state_map: '{{state_mapping[content_type] | default({})}}'
     harmony_activity: '{{state_map.activity | default(content_type)}}'
     player_volume: '{{state_map.volume | default(1.0)}}'
