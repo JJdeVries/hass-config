@@ -401,9 +401,9 @@
                     ]
                 },
                 {
-                    "title": "CV",
-                    "path": "cv",
-                    "icon": "mdi:radiator",
+                    "title": "Balkon",
+                    "path": "balkon",
+                    "icon": "mdi:gate",
                     "type": "sidebar",
                     "badges": [],
                     "cards": [
@@ -433,6 +433,34 @@
                                 "min",
                                 "max"
                             ]
+                        }
+                    ]
+                },
+                {
+                    "icon": "mdi:radiator",
+                    "title": "Heating",
+                    "badges": [],
+                    "cards": [
+                        {
+                            "type": "custom:simple-thermostat",
+                            "entity": "climate.cv_ketel",
+                            "layout": {
+                                "mode": {
+                                    "names": true,
+                                    "headings": true,
+                                    "icons": true
+                                }
+                            }
+                        },
+                        {
+                            "type": "history-graph",
+                            "entities": [
+                                {
+                                    "entity": "climate.cv_ketel"
+                                }
+                            ],
+                            "hours_to_show": 24,
+                            "refresh_interval": 0
                         }
                     ]
                 }

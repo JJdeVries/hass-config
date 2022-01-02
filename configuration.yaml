@@ -12,6 +12,7 @@ group: !include groups.yaml
 automation: !include automations.yaml
 script: !include scripts.yaml
 scene: !include scenes.yaml
+sensor: !include sensors.yaml
 
 http:
   ssl_certificate: !secret ssl_certificate_path
@@ -36,18 +37,6 @@ notify:
   - platform: telegram
     name: Notify_Jorik
     chat_id: !secret TELEGRAM_CHAT_JORIK
-
-sensor:
-    # The plant sensor
-  - platform: miflora
-    name: "Ficux Lyrata"
-    mac: !secret miflora_mac
-    monitored_conditions:
-      - moisture
-      - light
-      - temperature
-      - conductivity
-      - battery
 
 # Enable an alert to show that vacation mode is ON
 alert:
