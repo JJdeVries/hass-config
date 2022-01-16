@@ -461,6 +461,31 @@
                             ],
                             "hours_to_show": 24,
                             "refresh_interval": 0
+                        },
+                        {
+                            "type": "entities",
+                            "entities": [
+                                {
+                                    "entity": "input_number.cv_gone",
+                                    "name": "Nobody Home Temp",
+                                    "icon": "mdi:thermometer-low"
+                                },
+                                {
+                                    "type": "button",
+                                    "icon": "mdi:clock",
+                                    "name": "Time Schedule",
+                                    "action_name": "RESUME",
+                                    "tap_action": {
+                                        "action": "call-service",
+                                        "service": "climate.set_temperature",
+                                        "service_data": {
+                                            "entity_id": "climate.cv_ketel",
+                                            "temperature": 0
+                                        }
+                                    }
+                                }
+                            ],
+                            "title": "CV Configuration"
                         }
                     ]
                 }
