@@ -443,3 +443,18 @@
     data:
       message: Cleared the setpoint of the CV
   mode: single
+- id: '1642757590717'
+  alias: 'Media Center: Nobody Home'
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: group.humans
+    to: not_home
+  condition:
+  - condition: template
+    value_template: '{{not is_state(''media_player.living_room_tv'', ''off'')}}'
+  action:
+  - service: media_player.media_stop
+    target:
+      entity_id: media_player.living_room_tv
+  mode: single

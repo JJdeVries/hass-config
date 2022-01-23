@@ -24,11 +24,15 @@
                         },
                         {
                             "entity": "vacuum.xiaomi_vacuum_cleaner"
+                        },
+                        {
+                            "entity": "sensor.cv_time_schedule"
                         }
                     ],
                     "cards": [
                         {
                             "type": "horizontal-stack",
+                            "title": "Stereo controls",
                             "cards": [
                                 {
                                     "type": "button",
@@ -128,64 +132,158 @@
                             ]
                         },
                         {
-                            "title": "Hall Light",
-                            "type": "entities",
-                            "state_color": true,
-                            "show_header_toggle": false,
-                            "entities": [
+                            "type": "vertical-stack",
+                            "cards": [
                                 {
-                                    "type": "custom:slider-entity-row",
-                                    "toggle": true,
-                                    "entity": "input_number.hall_brightness",
-                                    "name": "Brightness"
+                                    "title": "Living room lights",
+                                    "type": "entities",
+                                    "show_header_toggle": true,
+                                    "entities": [
+                                        {
+                                            "type": "custom:slider-entity-row",
+                                            "toggle": true,
+                                            "entity": "light.livingroom_lights",
+                                            "name": "all"
+                                        },
+                                        {
+                                            "type": "custom:slider-entity-row",
+                                            "attribute": "color_temp",
+                                            "toggle": true,
+                                            "entity": "light.livingroom_lights",
+                                            "name": "color"
+                                        },
+                                        {
+                                            "type": "custom:slider-entity-row",
+                                            "toggle": true,
+                                            "entity": "light.tv_light"
+                                        },
+                                        {
+                                            "type": "custom:slider-entity-row",
+                                            "toggle": true,
+                                            "entity": "light.table_lights"
+                                        }
+                                    ],
+                                    "state_color": true
                                 },
                                 {
-                                    "entity": "automation.keep_hall_light_on",
-                                    "name": "Keep on",
-                                    "icon": "mdi:lightbulb"
-                                },
-                                {
-                                    "entity": "input_boolean.vacation_mode",
-                                    "icon": "mdi:beach"
-                                },
-                                {
-                                    "type": "custom:slider-entity-row",
-                                    "toggle": true,
-                                    "entity": "light.hall_light",
-                                    "name": "Hall Light"
+                                    "title": "Hall Light",
+                                    "type": "entities",
+                                    "state_color": true,
+                                    "show_header_toggle": false,
+                                    "entities": [
+                                        {
+                                            "type": "custom:slider-entity-row",
+                                            "toggle": true,
+                                            "entity": "input_number.hall_brightness",
+                                            "name": "Brightness"
+                                        },
+                                        {
+                                            "entity": "automation.keep_hall_light_on",
+                                            "name": "Keep on",
+                                            "icon": "mdi:lightbulb"
+                                        },
+                                        {
+                                            "entity": "input_boolean.vacation_mode",
+                                            "icon": "mdi:beach"
+                                        }
+                                    ]
                                 }
                             ]
-                        },
+                        }
+                    ]
+                },
+                {
+                    "icon": "mdi:radiator",
+                    "title": "Heating",
+                    "badges": [],
+                    "cards": [
                         {
-                            "title": "Living room lights",
-                            "type": "entities",
-                            "show_header_toggle": true,
+                            "type": "vertical-stack",
+                            "cards": [
+                                {
+                                    "type": "entities",
+                                    "entities": [
+                                        {
+                                            "entity": "sensor.cv_time_schedule",
+                                            "type": "custom:template-entity-row",
+                                            "secondary": "The schedule is currently: {{states('sensor.cv_time_schedule')}}",
+                                            "tap_action": {
+                                                "action": "call-service",
+                                                "service": "climate.set_temperature",
+                                                "service_data": {
+                                                    "entity_id": "climate.cv_ketel",
+                                                    "temperature": 0
+                                                }
+                                            },
+                                            "active": "{{is_state('sensor.cv_time_schedule', 'On')}}"
+                                        },
+                                        {
+                                            "entity": "input_number.cv_gone",
+                                            "name": "Nobody Home Temp",
+                                            "icon": "mdi:thermometer-low"
+                                        }
+                                    ],
+                                    "title": "CV Configuration"
+                                },
+                                {
+                                    "type": "custom:simple-thermostat",
+                                    "entity": "climate.cv_ketel",
+                                    "layout": {
+                                        "mode": {
+                                            "names": true,
+                                            "headings": true,
+                                            "icons": true
+                                        },
+                                        "step": "row"
+                                    }
+                                },
+                                {
+                                    "type": "history-graph",
+                                    "entities": [
+                                        {
+                                            "entity": "climate.cv_ketel",
+                                            "hours_to_show": 24,
+                                            "refresh_interval": 0
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "title": "Balkon",
+                    "path": "balkon",
+                    "icon": "mdi:gate",
+                    "type": "sidebar",
+                    "badges": [],
+                    "cards": [
+                        {
+                            "type": "history-graph",
                             "entities": [
                                 {
-                                    "type": "custom:slider-entity-row",
-                                    "toggle": true,
-                                    "entity": "light.livingroom_lights",
-                                    "name": "all"
+                                    "entity": "sensor.cv_temperature"
                                 },
                                 {
-                                    "type": "custom:slider-entity-row",
-                                    "attribute": "color_temp",
-                                    "toggle": true,
-                                    "entity": "light.livingroom_lights",
-                                    "name": "color"
-                                },
-                                {
-                                    "type": "custom:slider-entity-row",
-                                    "toggle": true,
-                                    "entity": "light.tv_light"
-                                },
-                                {
-                                    "type": "custom:slider-entity-row",
-                                    "toggle": true,
-                                    "entity": "light.table_lights"
+                                    "entity": "sensor.outside_temperature"
                                 }
                             ],
-                            "state_color": true
+                            "hours_to_show": 24,
+                            "refresh_interval": 0,
+                            "title": "CV Temperature"
+                        },
+                        {
+                            "type": "statistics-graph",
+                            "entities": [
+                                "sensor.cv_temperature"
+                            ],
+                            "days_to_show": 30,
+                            "title": "CV Temperature Statistics",
+                            "stat_types": [
+                                "mean",
+                                "min",
+                                "max"
+                            ]
                         }
                     ]
                 },
@@ -397,95 +495,6 @@
                                 }
                             ],
                             "show_header_toggle": true
-                        }
-                    ]
-                },
-                {
-                    "title": "Balkon",
-                    "path": "balkon",
-                    "icon": "mdi:gate",
-                    "type": "sidebar",
-                    "badges": [],
-                    "cards": [
-                        {
-                            "type": "history-graph",
-                            "entities": [
-                                {
-                                    "entity": "sensor.cv_temperature"
-                                },
-                                {
-                                    "entity": "sensor.outside_temperature"
-                                }
-                            ],
-                            "hours_to_show": 24,
-                            "refresh_interval": 0,
-                            "title": "CV Temperature"
-                        },
-                        {
-                            "type": "statistics-graph",
-                            "entities": [
-                                "sensor.cv_temperature"
-                            ],
-                            "days_to_show": 30,
-                            "title": "CV Temperature Statistics",
-                            "stat_types": [
-                                "mean",
-                                "min",
-                                "max"
-                            ]
-                        }
-                    ]
-                },
-                {
-                    "icon": "mdi:radiator",
-                    "title": "Heating",
-                    "badges": [],
-                    "cards": [
-                        {
-                            "type": "custom:simple-thermostat",
-                            "entity": "climate.cv_ketel",
-                            "layout": {
-                                "mode": {
-                                    "names": true,
-                                    "headings": true,
-                                    "icons": true
-                                }
-                            }
-                        },
-                        {
-                            "type": "history-graph",
-                            "entities": [
-                                {
-                                    "entity": "climate.cv_ketel"
-                                }
-                            ],
-                            "hours_to_show": 24,
-                            "refresh_interval": 0
-                        },
-                        {
-                            "type": "entities",
-                            "entities": [
-                                {
-                                    "entity": "input_number.cv_gone",
-                                    "name": "Nobody Home Temp",
-                                    "icon": "mdi:thermometer-low"
-                                },
-                                {
-                                    "type": "button",
-                                    "icon": "mdi:clock",
-                                    "name": "Time Schedule",
-                                    "action_name": "RESUME",
-                                    "tap_action": {
-                                        "action": "call-service",
-                                        "service": "climate.set_temperature",
-                                        "service_data": {
-                                            "entity_id": "climate.cv_ketel",
-                                            "temperature": 0
-                                        }
-                                    }
-                                }
-                            ],
-                            "title": "CV Configuration"
                         }
                     ]
                 }

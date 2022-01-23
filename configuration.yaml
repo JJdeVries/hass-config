@@ -63,6 +63,23 @@ template:
         unit_of_measurement: "°C"
         state: "{{state_attr('weather.home', 'temperature')}}"
 
+  - sensor:
+      name: CV Time Schedule
+      unique_id: sensor.cv_time_schedule
+      state: >
+        {% if is_state('sensor.otgw_setpoint_ovrd_mode_gateway_cv_ketel', 'N') %}
+        On
+        {% else %}
+        Off
+        {% endif %}
+      icon: >
+        {% if is_state('sensor.otgw_setpoint_ovrd_mode_gateway_cv_ketel', 'N') %}
+          mdi:clock
+        {% else %}
+          mdi:clock-outline
+        {% endif %}
+
+
 shell_command:
     git_commit: cd /config && git add -u && git commit --allow-empty -m "New Backup"
     git_push: cd /config && git push https
