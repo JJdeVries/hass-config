@@ -130,12 +130,6 @@ action:
         brightness: '{{enable_brtns | int}}'
     - delay: "00:00:01"
 
-- service: light.turn_on
-  data:
-    brightness: "{{end_brtns | int}}"
-    transition: '{{transition_time | int}}'
-  entity_id: !input "output_light"
-  
 - delay: "00:00:01"
 
 - service: light.turn_on

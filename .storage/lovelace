@@ -40,11 +40,13 @@
                                         "action": "call-service",
                                         "service": "remote.send_command",
                                         "service_data": {
-                                            "entity_id": "remote.harmonyjorik",
                                             "device": "Yamaha AV Receiver",
                                             "command": "VolumeDown",
                                             "num_repeats": 10,
-                                            "delay_secs": 0.25
+                                            "delay_secs": 0.2
+                                        },
+                                        "target": {
+                                            "entity_id": "remote.harmonyjorik"
                                         }
                                     },
                                     "entity": "remote.harmonyjorik",
@@ -79,7 +81,7 @@
                                     "icon": "mdi:volume-plus",
                                     "show_name": false,
                                     "hold_action": {
-                                        "action": ""
+                                        "action": "none"
                                     }
                                 },
                                 {
@@ -95,6 +97,11 @@
                                     },
                                     "show_state": true,
                                     "state": [
+                                        {
+                                            "operator": "template",
+                                            "value": "[[[\n  return (states['remote.harmonyjorik'].state == \"unavailable\")\n]]]\n",
+                                            "color": "rgb(255, 0, 0)"
+                                        },
                                         {
                                             "operator": "template",
                                             "value": "[[[\n  return (states['remote.harmonyjorik'].attributes.current_activity != \"PowerOff\")\n]]]\n",
@@ -234,7 +241,7 @@
                                             "headings": true,
                                             "icons": true
                                         },
-                                        "step": "row"
+                                        "step": "column"
                                     }
                                 },
                                 {
