@@ -20,19 +20,12 @@
                             "entity": "person.jorik_de_vries"
                         },
                         {
-                            "entity": "sun.sun"
-                        },
-                        {
-                            "entity": "vacuum.xiaomi_vacuum_cleaner"
-                        },
-                        {
                             "entity": "sensor.cv_time_schedule"
                         }
                     ],
                     "cards": [
                         {
                             "type": "horizontal-stack",
-                            "title": "Stereo controls",
                             "cards": [
                                 {
                                     "type": "button",
@@ -142,22 +135,14 @@
                             "type": "vertical-stack",
                             "cards": [
                                 {
-                                    "title": "Living room lights",
                                     "type": "entities",
-                                    "show_header_toggle": true,
+                                    "show_header_toggle": false,
                                     "entities": [
                                         {
                                             "type": "custom:slider-entity-row",
                                             "toggle": true,
                                             "entity": "light.livingroom_lights",
                                             "name": "all"
-                                        },
-                                        {
-                                            "type": "custom:slider-entity-row",
-                                            "attribute": "color_temp",
-                                            "toggle": true,
-                                            "entity": "light.livingroom_lights",
-                                            "name": "color"
                                         },
                                         {
                                             "type": "custom:slider-entity-row",
@@ -168,12 +153,18 @@
                                             "type": "custom:slider-entity-row",
                                             "toggle": true,
                                             "entity": "light.table_lights"
+                                        },
+                                        {
+                                            "type": "custom:slider-entity-row",
+                                            "attribute": "color_temp",
+                                            "toggle": true,
+                                            "entity": "light.livingroom_lights",
+                                            "name": "color"
                                         }
                                     ],
                                     "state_color": true
                                 },
                                 {
-                                    "title": "Hall Light",
                                     "type": "entities",
                                     "state_color": true,
                                     "show_header_toggle": false,
@@ -230,7 +221,7 @@
                                             "icon": "mdi:thermometer-low"
                                         }
                                     ],
-                                    "title": "CV Configuration"
+                                    "show_header_toggle": false
                                 },
                                 {
                                     "type": "custom:simple-thermostat",
@@ -238,7 +229,7 @@
                                     "layout": {
                                         "mode": {
                                             "names": true,
-                                            "headings": true,
+                                            "headings": false,
                                             "icons": true
                                         },
                                         "step": "column"
@@ -251,6 +242,20 @@
                                             "entity": "climate.cv_ketel",
                                             "hours_to_show": 24,
                                             "refresh_interval": 0
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "entities",
+                                    "entities": [
+                                        {
+                                            "entity": "sensor.ch_water_pressure_boiler_cv_ketel"
+                                        },
+                                        {
+                                            "entity": "sensor.relative_mod_level_thermostat_cv_ketel"
+                                        },
+                                        {
+                                            "entity": "sensor.relative_mod_level_boiler_cv_ketel"
                                         }
                                     ]
                                 }
