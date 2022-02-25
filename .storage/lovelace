@@ -274,7 +274,7 @@
                             "type": "history-graph",
                             "entities": [
                                 {
-                                    "entity": "sensor.cv_temperature"
+                                    "entity": "sensor.cv_temperature_2"
                                 },
                                 {
                                     "entity": "sensor.outside_temperature"
@@ -287,7 +287,7 @@
                         {
                             "type": "statistics-graph",
                             "entities": [
-                                "sensor.cv_temperature"
+                                "sensor.cv_temperature_2"
                             ],
                             "days_to_show": 30,
                             "title": "CV Temperature Statistics",
@@ -313,7 +313,21 @@
                                     "type": "custom:xiaomi-vacuum-card",
                                     "entity": "vacuum.xiaomi_vacuum_cleaner",
                                     "vendor": "xiaomi",
-                                    "buttons": false
+                                    "buttons": false,
+                                    "attributes": {
+                                        "main_brush": {
+                                            "key": "main_brush_left"
+                                        },
+                                        "side_brush": {
+                                            "key": "side_brush_left"
+                                        },
+                                        "filter": {
+                                            "key": "filter_left"
+                                        },
+                                        "sensor": {
+                                            "key": "sensor_dirty_left"
+                                        }
+                                    }
                                 }
                             ]
                         },

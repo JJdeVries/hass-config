@@ -1,0 +1,11 @@
+
+# The plant sensor
+#- platform: miflora
+#  name: "Ficux Lyrata"
+#  mac: !secret miflora_mac
+#  monitored_conditions:
+#  - moisture
+#  - light
+#  - temperature
+#  - conductivity
+#  - battery
