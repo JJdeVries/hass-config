@@ -82,7 +82,7 @@ template:
 
 shell_command:
     git_commit: cd /config && git add -u && { git commit -m "New Backup" || true; }
-    git_push: cd /config && git push https
+    git_push: cd /config && git push
     git_pull: cd /config && git pull
 
     recrypt: cd /config/dehydrate/dehydrated && ./dehydrated -c
