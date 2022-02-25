@@ -1,15 +1,15 @@
-secrets.yaml
+*secrets.yaml
 
 custom_components
 www
 blueprints/*/homeassistant
+dehydrate
 
 harmony_*
 known_devices.yaml
 
-
-*.db
-*.log
+home-assistant.log*
+home-assistant*.db*
 
 .storage
 !.storage/lovelace
