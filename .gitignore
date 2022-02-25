@@ -4,6 +4,7 @@ custom_components
 www
 blueprints/*/homeassistant
 dehydrate
+ssh
 
 harmony_*
 known_devices.yaml
