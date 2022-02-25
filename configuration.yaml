@@ -81,7 +81,7 @@ template:
 
 
 shell_command:
-    git_commit: cd /config && git add -u && git commit -m "New Backup" || true
+    git_commit: cd /config && git add -u && { git commit -m "New Backup" || true; }
     git_push: cd /config && git push https
     git_pull: cd /config && git pull
 
