@@ -376,7 +376,7 @@
     entity_id: group.humans
     for:
       hours: 0
-      minutes: 5
+      minutes: 10
       seconds: 0
     to: not_home
   condition:
