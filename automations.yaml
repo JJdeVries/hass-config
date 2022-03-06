@@ -292,12 +292,12 @@
     at: '17:00'
   condition:
   - condition: numeric_state
-    entity_id: sensor.ficux_lyrata_moisture
+    entity_id: sensor.miflora_moisture
     below: '20'
   action:
   - service: notify.notify_jorik
     data:
-      message: 'The plant should be given water! Moisture: {{states("sensor.ficux_lyrata_moisture")}}'
+      message: 'The plant should be given water! Moisture: {{states("sensor.miflora_moisture")}}'
   mode: single
 - id: '1624542421853'
   alias: 'Vacuum: Ensure docked'
@@ -381,7 +381,7 @@
     to: not_home
   condition:
   - condition: template
-    value_template: '{{state_attr(''climate.cv_ketel'', ''temperature'')|float > 18.0}}'
+    value_template: '{{state_attr(''climate.cv_ketel'', ''temperature'')|float > states(''input_number.cv_gone'')|float}}'
   action:
   - service: climate.set_temperature
     target:
@@ -390,7 +390,7 @@
       temperature: '{{states(''input_number.cv_gone'')|float}}'
   - service: notify.notify_jorik
     data:
-      message: Nobody home... set temperature to 18.0
+      message: Nobody home... set temperature to {{states('input_number.cv_gone')|float}}
   mode: single
 - id: '1640707052114'
   alias: 'CV: Nicole Away'

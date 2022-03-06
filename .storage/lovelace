@@ -252,9 +252,6 @@
                                             "entity": "sensor.ch_water_pressure_boiler_cv_ketel"
                                         },
                                         {
-                                            "entity": "sensor.relative_mod_level_thermostat_cv_ketel"
-                                        },
-                                        {
                                             "entity": "sensor.relative_mod_level_boiler_cv_ketel"
                                         }
                                     ]
@@ -505,19 +502,16 @@
                             "type": "entities",
                             "entities": [
                                 {
-                                    "entity": "sensor.ficux_lyrata_light_intensity"
+                                    "entity": "sensor.miflora_light_intensity"
                                 },
                                 {
-                                    "entity": "sensor.ficux_lyrata_moisture"
+                                    "entity": "sensor.miflora_conductivity"
                                 },
                                 {
-                                    "entity": "sensor.ficux_lyrata_temperature"
+                                    "entity": "sensor.miflora_battery"
                                 },
                                 {
-                                    "entity": "sensor.ficux_lyrata_conductivity"
-                                },
-                                {
-                                    "entity": "sensor.ficux_lyrata_battery"
+                                    "entity": "sensor.miflora_moisture"
                                 }
                             ],
                             "show_header_toggle": true
