@@ -46,6 +46,7 @@
                                     "name": "minus",
                                     "icon": "mdi:volume-minus",
                                     "show_name": false,
+                                    "show_state": false,
                                     "hold_action": {
                                         "action": "call-service",
                                         "service": "remote.send_command",
@@ -297,10 +298,10 @@
                     ]
                 },
                 {
+                    "theme": "Backend-selected",
                     "title": "Vacuum",
                     "path": "vacuum",
                     "icon": "mdi:robot-vacuum",
-                    "type": "sidebar",
                     "badges": [],
                     "cards": [
                         {
@@ -310,21 +311,7 @@
                                     "type": "custom:xiaomi-vacuum-card",
                                     "entity": "vacuum.xiaomi_vacuum_cleaner",
                                     "vendor": "xiaomi",
-                                    "buttons": false,
-                                    "attributes": {
-                                        "main_brush": {
-                                            "key": "main_brush_left"
-                                        },
-                                        "side_brush": {
-                                            "key": "side_brush_left"
-                                        },
-                                        "filter": {
-                                            "key": "filter_left"
-                                        },
-                                        "sensor": {
-                                            "key": "sensor_dirty_left"
-                                        }
-                                    }
+                                    "buttons": false
                                 }
                             ]
                         },
