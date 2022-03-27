@@ -79,7 +79,23 @@ template:
           mdi:clock-outline
         {% endif %}
 
-
+panel_custom:
+  - name: ha_auto
+    sidebar_title: Automations
+    sidebar_icon: mdi:cog-outline
+    js_url: /api/hassio/app/entrypoint.js
+    url_path: 'config/automation'
+    embed_iframe: true
+    require_admin: true
+  - name: ha_logs
+    sidebar_title: Logs
+    sidebar_icon: mdi:book-outline
+    js_url: /api/hassio/app/entrypoint.js
+    url_path: 'config/logs'
+    embed_iframe: true
+    require_admin: true
+    
+    
 shell_command:
     git_commit: cd /config && git add -u && { git commit -m "New Backup" || true; }
     git_push: cd /config && git push
