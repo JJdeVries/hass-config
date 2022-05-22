@@ -272,7 +272,7 @@
                             "type": "history-graph",
                             "entities": [
                                 {
-                                    "entity": "sensor.cv_temperature_2"
+                                    "entity": "sensor.cv_temperature"
                                 },
                                 {
                                     "entity": "sensor.outside_temperature"
@@ -283,11 +283,13 @@
                             "title": "CV Temperature"
                         },
                         {
+                            "chart_type": "line",
+                            "period": "day",
+                            "days_to_show": 5,
                             "type": "statistics-graph",
                             "entities": [
-                                "sensor.cv_temperature_2"
+                                "sensor.cv_temperature"
                             ],
-                            "days_to_show": 30,
                             "title": "CV Temperature Statistics",
                             "stat_types": [
                                 "mean",
