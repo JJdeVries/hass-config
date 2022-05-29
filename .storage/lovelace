@@ -285,7 +285,7 @@
                         {
                             "chart_type": "line",
                             "period": "day",
-                            "days_to_show": 5,
+                            "days_to_show": 11,
                             "type": "statistics-graph",
                             "entities": [
                                 "sensor.cv_temperature"
