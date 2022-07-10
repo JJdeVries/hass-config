@@ -1,11 +1,11 @@
 
 # The plant sensor
-- platform: miflora
-  name: "miflora"
-  mac: !secret miflora_mac
-  scan_interval: 3600
-  monitored_conditions:
-  - moisture
-  - light
-  - conductivity
-  - battery
+#- platform: miflora
+#  name: "miflora"
+#  mac: !secret miflora_mac
+#  scan_interval: 3600
+#  monitored_conditions:
+#  - moisture
+#  - light
+#  - conductivity
+#  - battery
