@@ -1,513 +1,513 @@
 {
-    "version": 1,
-    "minor_version": 1,
-    "key": "lovelace",
-    "data": {
-        "config": {
-            "title": "Home",
-            "views": [
+  "version": 1,
+  "minor_version": 1,
+  "key": "lovelace",
+  "data": {
+    "config": {
+      "title": "Home",
+      "views": [
+        {
+          "path": "default_view",
+          "title": "Home",
+          "badges": [
+            {
+              "entity": "group.humans"
+            },
+            {
+              "entity": "person.nicole_verbeek"
+            },
+            {
+              "entity": "person.jorik_de_vries"
+            },
+            {
+              "entity": "sensor.cv_time_schedule"
+            }
+          ],
+          "cards": [
+            {
+              "type": "horizontal-stack",
+              "cards": [
                 {
-                    "path": "default_view",
-                    "title": "Home",
-                    "badges": [
-                        {
-                            "entity": "group.humans"
-                        },
-                        {
-                            "entity": "person.nicole_verbeek"
-                        },
-                        {
-                            "entity": "person.jorik_de_vries"
-                        },
-                        {
-                            "entity": "sensor.cv_time_schedule"
-                        }
-                    ],
-                    "cards": [
-                        {
-                            "type": "horizontal-stack",
-                            "cards": [
-                                {
-                                    "type": "button",
-                                    "tap_action": {
-                                        "action": "call-service",
-                                        "service": "remote.send_command",
-                                        "service_data": {
-                                            "device": "Yamaha AV Receiver",
-                                            "command": "VolumeDown",
-                                            "num_repeats": 10,
-                                            "delay_secs": 0.2
-                                        },
-                                        "target": {
-                                            "entity_id": "remote.harmonyjorik"
-                                        }
-                                    },
-                                    "entity": "remote.harmonyjorik",
-                                    "name": "minus",
-                                    "icon": "mdi:volume-minus",
-                                    "show_name": false,
-                                    "show_state": false,
-                                    "hold_action": {
-                                        "action": "call-service",
-                                        "service": "remote.send_command",
-                                        "service_data": {
-                                            "entity_id": "remote.harmonyjorik",
-                                            "device": "Yamaha AV Receiver",
-                                            "command": "Mute"
-                                        }
-                                    }
-                                },
-                                {
-                                    "type": "button",
-                                    "tap_action": {
-                                        "action": "call-service",
-                                        "service": "remote.send_command",
-                                        "service_data": {
-                                            "entity_id": "remote.harmonyjorik",
-                                            "device": "Yamaha AV Receiver",
-                                            "command": "VolumeUp",
-                                            "num_repeats": 10,
-                                            "delay_secs": 0.25
-                                        }
-                                    },
-                                    "entity": "remote.harmonyjorik",
-                                    "name": "plus",
-                                    "icon": "mdi:volume-plus",
-                                    "show_name": false,
-                                    "hold_action": {
-                                        "action": "none"
-                                    }
-                                },
-                                {
-                                    "type": "custom:button-card",
-                                    "entity": "remote.harmony_jorik",
-                                    "icon": "mdi:power",
-                                    "tap_action": {
-                                        "action": "call-service",
-                                        "service": "remote.turn_off",
-                                        "service_data": {
-                                            "entity_id": "remote.harmonyjorik"
-                                        }
-                                    },
-                                    "show_state": true,
-                                    "state": [
-                                        {
-                                            "operator": "template",
-                                            "value": "[[[\n  return (states['remote.harmonyjorik'].state == \"unavailable\")\n]]]\n",
-                                            "color": "rgb(255, 0, 0)"
-                                        },
-                                        {
-                                            "operator": "template",
-                                            "value": "[[[\n  return (states['remote.harmonyjorik'].attributes.current_activity != \"PowerOff\")\n]]]\n",
-                                            "color": "var(--state-icon-active-color)"
-                                        },
-                                        {
-                                            "operator": "default",
-                                            "color": "var(--disabled-text-color)"
-                                        }
-                                    ]
-                                },
-                                {
-                                    "type": "custom:button-card",
-                                    "entity": "remote.harmonyjorik",
-                                    "icon": "mdi:nintendo-switch",
-                                    "tap_action": {
-                                        "action": "call-service",
-                                        "service": "script.play_switch_on_tv",
-                                        "service_data": {}
-                                    },
-                                    "show_state": false,
-                                    "show_name": false,
-                                    "state": [
-                                        {
-                                            "operator": "template",
-                                            "value": "[[[\n  return (states['remote.harmonyjorik'].attributes.current_activity != \"Nintendo\")\n]]]\n",
-                                            "color": "var(--state-icon-color)"
-                                        },
-                                        {
-                                            "operator": "default",
-                                            "color": "var(--disabled-text-color)"
-                                        }
-                                    ]
-                                }
-                            ]
-                        },
-                        {
-                            "type": "vertical-stack",
-                            "cards": [
-                                {
-                                    "type": "entities",
-                                    "show_header_toggle": false,
-                                    "entities": [
-                                        {
-                                            "type": "custom:slider-entity-row",
-                                            "toggle": true,
-                                            "entity": "light.livingroom_lights",
-                                            "name": "all"
-                                        },
-                                        {
-                                            "type": "custom:slider-entity-row",
-                                            "toggle": true,
-                                            "entity": "light.tv_light"
-                                        },
-                                        {
-                                            "type": "custom:slider-entity-row",
-                                            "toggle": true,
-                                            "entity": "light.table_lights"
-                                        },
-                                        {
-                                            "type": "custom:slider-entity-row",
-                                            "attribute": "color_temp",
-                                            "toggle": true,
-                                            "entity": "light.livingroom_lights",
-                                            "name": "color"
-                                        }
-                                    ],
-                                    "state_color": true
-                                },
-                                {
-                                    "type": "entities",
-                                    "state_color": true,
-                                    "show_header_toggle": false,
-                                    "entities": [
-                                        {
-                                            "type": "custom:slider-entity-row",
-                                            "toggle": true,
-                                            "entity": "input_number.hall_brightness",
-                                            "name": "Brightness"
-                                        },
-                                        {
-                                            "entity": "automation.keep_hall_light_on",
-                                            "name": "Keep on",
-                                            "icon": "mdi:lightbulb"
-                                        },
-                                        {
-                                            "entity": "input_boolean.vacation_mode",
-                                            "icon": "mdi:beach"
-                                        }
-                                    ]
-                                }
-                            ]
-                        }
-                    ]
+                  "type": "button",
+                  "tap_action": {
+                    "action": "call-service",
+                    "service": "remote.send_command",
+                    "service_data": {
+                      "device": "Yamaha AV Receiver",
+                      "command": "VolumeDown",
+                      "num_repeats": 10,
+                      "delay_secs": 0.2
+                    },
+                    "target": {
+                      "entity_id": "remote.harmonyjorik"
+                    }
+                  },
+                  "entity": "remote.harmonyjorik",
+                  "name": "minus",
+                  "icon": "mdi:volume-minus",
+                  "show_name": false,
+                  "show_state": false,
+                  "hold_action": {
+                    "action": "call-service",
+                    "service": "remote.send_command",
+                    "service_data": {
+                      "entity_id": "remote.harmonyjorik",
+                      "device": "Yamaha AV Receiver",
+                      "command": "Mute"
+                    }
+                  }
                 },
                 {
-                    "icon": "mdi:radiator",
-                    "title": "Heating",
-                    "badges": [],
-                    "cards": [
-                        {
-                            "type": "vertical-stack",
-                            "cards": [
-                                {
-                                    "type": "entities",
-                                    "entities": [
-                                        {
-                                            "entity": "sensor.cv_time_schedule",
-                                            "type": "custom:template-entity-row",
-                                            "secondary": "The schedule is currently: {{states('sensor.cv_time_schedule')}}",
-                                            "tap_action": {
-                                                "action": "call-service",
-                                                "service": "climate.set_temperature",
-                                                "service_data": {
-                                                    "entity_id": "climate.cv_ketel",
-                                                    "temperature": 0
-                                                }
-                                            },
-                                            "active": "{{is_state('sensor.cv_time_schedule', 'On')}}"
-                                        },
-                                        {
-                                            "entity": "input_number.cv_gone",
-                                            "name": "Nobody Home Temp",
-                                            "icon": "mdi:thermometer-low"
-                                        }
-                                    ],
-                                    "show_header_toggle": false
-                                },
-                                {
-                                    "type": "custom:simple-thermostat",
-                                    "entity": "climate.cv_ketel",
-                                    "layout": {
-                                        "mode": {
-                                            "names": true,
-                                            "headings": false,
-                                            "icons": true
-                                        },
-                                        "step": "column"
-                                    }
-                                },
-                                {
-                                    "type": "history-graph",
-                                    "entities": [
-                                        {
-                                            "entity": "climate.cv_ketel",
-                                            "hours_to_show": 24,
-                                            "refresh_interval": 0
-                                        }
-                                    ]
-                                },
-                                {
-                                    "type": "entities",
-                                    "entities": [
-                                        {
-                                            "entity": "sensor.ch_water_pressure_boiler_cv_ketel"
-                                        },
-                                        {
-                                            "entity": "sensor.relative_mod_level_boiler_cv_ketel"
-                                        }
-                                    ]
-                                }
-                            ]
-                        }
-                    ]
+                  "type": "button",
+                  "tap_action": {
+                    "action": "call-service",
+                    "service": "remote.send_command",
+                    "service_data": {
+                      "entity_id": "remote.harmonyjorik",
+                      "device": "Yamaha AV Receiver",
+                      "command": "VolumeUp",
+                      "num_repeats": 10,
+                      "delay_secs": 0.25
+                    }
+                  },
+                  "entity": "remote.harmonyjorik",
+                  "name": "plus",
+                  "icon": "mdi:volume-plus",
+                  "show_name": false,
+                  "hold_action": {
+                    "action": "none"
+                  }
                 },
                 {
-                    "title": "Balkon",
-                    "path": "balkon",
-                    "icon": "mdi:gate",
-                    "type": "sidebar",
-                    "badges": [],
-                    "cards": [
-                        {
-                            "type": "history-graph",
-                            "entities": [
-                                {
-                                    "entity": "sensor.cv_temperature"
-                                },
-                                {
-                                    "entity": "sensor.outside_temperature"
-                                }
-                            ],
-                            "hours_to_show": 24,
-                            "refresh_interval": 0,
-                            "title": "CV Temperature"
-                        },
-                        {
-                            "chart_type": "line",
-                            "period": "day",
-                            "days_to_show": 35,
-                            "type": "statistics-graph",
-                            "entities": [
-                                "sensor.cv_temperature"
-                            ],
-                            "title": "CV Temperature Statistics",
-                            "stat_types": [
-                                "mean",
-                                "min",
-                                "max"
-                            ]
-                        }
-                    ]
+                  "type": "custom:button-card",
+                  "entity": "remote.harmony_jorik",
+                  "icon": "mdi:power",
+                  "tap_action": {
+                    "action": "call-service",
+                    "service": "remote.turn_off",
+                    "service_data": {
+                      "entity_id": "remote.harmonyjorik"
+                    }
+                  },
+                  "show_state": true,
+                  "state": [
+                    {
+                      "operator": "template",
+                      "value": "[[[\n  return (states['remote.harmonyjorik'].state == \"unavailable\")\n]]]\n",
+                      "color": "rgb(255, 0, 0)"
+                    },
+                    {
+                      "operator": "template",
+                      "value": "[[[\n  return (states['remote.harmonyjorik'].attributes.current_activity != \"PowerOff\")\n]]]\n",
+                      "color": "var(--state-icon-active-color)"
+                    },
+                    {
+                      "operator": "default",
+                      "color": "var(--disabled-text-color)"
+                    }
+                  ]
                 },
                 {
-                    "theme": "Backend-selected",
-                    "title": "Vacuum",
-                    "path": "vacuum",
-                    "icon": "mdi:robot-vacuum",
-                    "badges": [],
-                    "cards": [
-                        {
-                            "type": "entities",
-                            "entities": [
-                                {
-                                    "type": "custom:xiaomi-vacuum-card",
-                                    "entity": "vacuum.xiaomi_vacuum_cleaner",
-                                    "vendor": "xiaomi",
-                                    "buttons": false
-                                }
-                            ]
-                        },
-                        {
-                            "type": "horizontal-stack",
-                            "cards": [
-                                {
-                                    "type": "custom:button-card",
-                                    "color": "rgb(68, 115, 158)",
-                                    "icon": "mdi:home",
-                                    "entity": "vacuum.xiaomi_vacuum_cleaner",
-                                    "show_state": false,
-                                    "show_name": false,
-                                    "state": [
-                                        {
-                                            "value": "docked",
-                                            "operator": "!=",
-                                            "color": "var(--disabled-text-color)"
-                                        },
-                                        {
-                                            "value": "docked",
-                                            "operator": "=="
-                                        }
-                                    ],
-                                    "tap_action": {
-                                        "action": "call-service",
-                                        "service": "vacuum.start",
-                                        "service_data": {
-                                            "entity_id": "vacuum.xiaomi_vacuum_cleaner"
-                                        }
-                                    }
-                                },
-                                {
-                                    "type": "custom:button-card",
-                                    "color": "rgb(68, 115, 158)",
-                                    "icon": "mdi:bed",
-                                    "entity": "vacuum.xiaomi_vacuum_cleaner",
-                                    "show_state": false,
-                                    "show_name": false,
-                                    "state": [
-                                        {
-                                            "value": "docked",
-                                            "operator": "!=",
-                                            "color": "var(--disabled-text-color)"
-                                        },
-                                        {
-                                            "value": "docked",
-                                            "operator": "=="
-                                        },
-                                        {
-                                            "value": "returning",
-                                            "operator": "=="
-                                        }
-                                    ],
-                                    "tap_action": {
-                                        "action": "call-service",
-                                        "service": "xiaomi_miio.vacuum_clean_segment",
-                                        "service_data": {
-                                            "entity_id": "vacuum.xiaomi_vacuum_cleaner",
-                                            "segments": [
-                                                16,
-                                                17
-                                            ]
-                                        }
-                                    }
-                                },
-                                {
-                                    "type": "custom:button-card",
-                                    "color": "rgb(68, 115, 158)",
-                                    "icon": "mdi:sofa",
-                                    "entity": "vacuum.xiaomi_vacuum_cleaner",
-                                    "show_state": false,
-                                    "show_name": false,
-                                    "state": [
-                                        {
-                                            "value": "docked",
-                                            "operator": "!=",
-                                            "color": "var(--disabled-text-color)"
-                                        },
-                                        {
-                                            "value": "docked",
-                                            "operator": "=="
-                                        },
-                                        {
-                                            "value": "returning",
-                                            "operator": "=="
-                                        }
-                                    ],
-                                    "tap_action": {
-                                        "action": "call-service",
-                                        "service": "xiaomi_miio.vacuum_clean_segment",
-                                        "service_data": {
-                                            "entity_id": "vacuum.xiaomi_vacuum_cleaner",
-                                            "segments": [
-                                                19
-                                            ]
-                                        }
-                                    }
-                                },
-                                {
-                                    "type": "custom:button-card",
-                                    "color": "rgb(68, 115, 158)",
-                                    "icon": "mdi:kettle",
-                                    "entity": "vacuum.xiaomi_vacuum_cleaner",
-                                    "show_state": false,
-                                    "show_name": false,
-                                    "state": [
-                                        {
-                                            "value": "docked",
-                                            "operator": "!=",
-                                            "color": "var(--disabled-text-color)"
-                                        },
-                                        {
-                                            "value": "docked",
-                                            "operator": "=="
-                                        },
-                                        {
-                                            "value": "returning",
-                                            "operator": "=="
-                                        }
-                                    ],
-                                    "tap_action": {
-                                        "action": "call-service",
-                                        "service": "xiaomi_miio.vacuum_clean_segment",
-                                        "service_data": {
-                                            "entity_id": "vacuum.xiaomi_vacuum_cleaner",
-                                            "segments": [
-                                                18
-                                            ]
-                                        }
-                                    }
-                                },
-                                {
-                                    "type": "custom:button-card",
-                                    "color": "rgb(68, 115, 158)",
-                                    "icon": "mdi:ev-station",
-                                    "entity": "vacuum.xiaomi_vacuum_cleaner",
-                                    "show_state": false,
-                                    "show_name": false,
-                                    "state": [
-                                        {
-                                            "value": "docked",
-                                            "operator": "==",
-                                            "color": "var(--disabled-text-color)"
-                                        },
-                                        {
-                                            "value": "returning",
-                                            "operator": "==",
-                                            "color": "var(--disabled-text-color)"
-                                        },
-                                        {
-                                            "value": "docked",
-                                            "operator": "!="
-                                        }
-                                    ],
-                                    "tap_action": {
-                                        "action": "call-service",
-                                        "service": "vacuum.return_to_base",
-                                        "service_data": {
-                                            "entity_id": "vacuum.xiaomi_vacuum_cleaner"
-                                        }
-                                    }
-                                }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    "title": "Plants",
-                    "path": "plants",
-                    "icon": "mdi:flower",
-                    "badges": [],
-                    "cards": [
-                        {
-                            "type": "entities",
-                            "entities": [
-                                {
-                                    "entity": "sensor.miflora_light_intensity"
-                                },
-                                {
-                                    "entity": "sensor.miflora_conductivity"
-                                },
-                                {
-                                    "entity": "sensor.miflora_battery"
-                                },
-                                {
-                                    "entity": "sensor.miflora_moisture"
-                                }
-                            ],
-                            "show_header_toggle": true
-                        }
-                    ]
+                  "type": "custom:button-card",
+                  "entity": "remote.harmonyjorik",
+                  "icon": "mdi:nintendo-switch",
+                  "tap_action": {
+                    "action": "call-service",
+                    "service": "script.play_switch_on_tv",
+                    "service_data": {}
+                  },
+                  "show_state": false,
+                  "show_name": false,
+                  "state": [
+                    {
+                      "operator": "template",
+                      "value": "[[[\n  return (states['remote.harmonyjorik'].attributes.current_activity != \"Nintendo\")\n]]]\n",
+                      "color": "var(--state-icon-color)"
+                    },
+                    {
+                      "operator": "default",
+                      "color": "var(--disabled-text-color)"
+                    }
+                  ]
                 }
-            ]
+              ]
+            },
+            {
+              "type": "vertical-stack",
+              "cards": [
+                {
+                  "type": "entities",
+                  "show_header_toggle": false,
+                  "entities": [
+                    {
+                      "type": "custom:slider-entity-row",
+                      "toggle": true,
+                      "entity": "light.livingroom_lights",
+                      "name": "all"
+                    },
+                    {
+                      "type": "custom:slider-entity-row",
+                      "toggle": true,
+                      "entity": "light.tv_light"
+                    },
+                    {
+                      "type": "custom:slider-entity-row",
+                      "toggle": true,
+                      "entity": "light.table_lights"
+                    },
+                    {
+                      "type": "custom:slider-entity-row",
+                      "attribute": "color_temp",
+                      "toggle": true,
+                      "entity": "light.livingroom_lights",
+                      "name": "color"
+                    }
+                  ],
+                  "state_color": true
+                },
+                {
+                  "type": "entities",
+                  "state_color": true,
+                  "show_header_toggle": false,
+                  "entities": [
+                    {
+                      "type": "custom:slider-entity-row",
+                      "toggle": true,
+                      "entity": "input_number.hall_brightness",
+                      "name": "Brightness"
+                    },
+                    {
+                      "entity": "automation.keep_hall_light_on",
+                      "name": "Keep on",
+                      "icon": "mdi:lightbulb"
+                    },
+                    {
+                      "entity": "input_boolean.vacation_mode",
+                      "icon": "mdi:beach"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "icon": "mdi:radiator",
+          "title": "Heating",
+          "badges": [],
+          "cards": [
+            {
+              "type": "vertical-stack",
+              "cards": [
+                {
+                  "type": "entities",
+                  "entities": [
+                    {
+                      "entity": "sensor.cv_time_schedule",
+                      "type": "custom:template-entity-row",
+                      "secondary": "The schedule is currently: {{states('sensor.cv_time_schedule')}}",
+                      "tap_action": {
+                        "action": "call-service",
+                        "service": "climate.set_temperature",
+                        "service_data": {
+                          "entity_id": "climate.cv_ketel",
+                          "temperature": 0
+                        }
+                      },
+                      "active": "{{is_state('sensor.cv_time_schedule', 'On')}}"
+                    },
+                    {
+                      "entity": "input_number.cv_gone",
+                      "name": "Nobody Home Temp",
+                      "icon": "mdi:thermometer-low"
+                    }
+                  ],
+                  "show_header_toggle": false
+                },
+                {
+                  "type": "custom:simple-thermostat",
+                  "entity": "climate.cv_ketel",
+                  "layout": {
+                    "mode": {
+                      "names": true,
+                      "headings": false,
+                      "icons": true
+                    },
+                    "step": "column"
+                  }
+                },
+                {
+                  "type": "history-graph",
+                  "entities": [
+                    {
+                      "entity": "climate.cv_ketel",
+                      "hours_to_show": 24,
+                      "refresh_interval": 0
+                    }
+                  ]
+                },
+                {
+                  "type": "entities",
+                  "entities": [
+                    {
+                      "entity": "sensor.ch_water_pressure_boiler_cv_ketel"
+                    },
+                    {
+                      "entity": "sensor.relative_mod_level_boiler_cv_ketel"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Balkon",
+          "path": "balkon",
+          "icon": "mdi:gate",
+          "type": "sidebar",
+          "badges": [],
+          "cards": [
+            {
+              "type": "history-graph",
+              "entities": [
+                {
+                  "entity": "sensor.cv_temperature"
+                },
+                {
+                  "entity": "sensor.outside_temperature"
+                }
+              ],
+              "hours_to_show": 24,
+              "refresh_interval": 0,
+              "title": "CV Temperature"
+            },
+            {
+              "chart_type": "line",
+              "period": "day",
+              "days_to_show": 35,
+              "type": "statistics-graph",
+              "entities": [
+                "sensor.cv_temperature"
+              ],
+              "title": "CV Temperature Statistics",
+              "stat_types": [
+                "mean",
+                "min",
+                "max"
+              ]
+            }
+          ]
+        },
+        {
+          "theme": "Backend-selected",
+          "title": "Vacuum",
+          "path": "vacuum",
+          "icon": "mdi:robot-vacuum",
+          "badges": [],
+          "cards": [
+            {
+              "type": "entities",
+              "entities": [
+                {
+                  "type": "custom:xiaomi-vacuum-card",
+                  "entity": "vacuum.xiaomi_vacuum_cleaner",
+                  "vendor": "xiaomi",
+                  "buttons": false
+                }
+              ]
+            },
+            {
+              "type": "horizontal-stack",
+              "cards": [
+                {
+                  "type": "custom:button-card",
+                  "color": "rgb(68, 115, 158)",
+                  "icon": "mdi:home",
+                  "entity": "vacuum.xiaomi_vacuum_cleaner",
+                  "show_state": false,
+                  "show_name": false,
+                  "state": [
+                    {
+                      "value": "docked",
+                      "operator": "!=",
+                      "color": "var(--disabled-text-color)"
+                    },
+                    {
+                      "value": "docked",
+                      "operator": "=="
+                    }
+                  ],
+                  "tap_action": {
+                    "action": "call-service",
+                    "service": "vacuum.start",
+                    "service_data": {
+                      "entity_id": "vacuum.xiaomi_vacuum_cleaner"
+                    }
+                  }
+                },
+                {
+                  "type": "custom:button-card",
+                  "color": "rgb(68, 115, 158)",
+                  "icon": "mdi:bed",
+                  "entity": "vacuum.xiaomi_vacuum_cleaner",
+                  "show_state": false,
+                  "show_name": false,
+                  "state": [
+                    {
+                      "value": "docked",
+                      "operator": "!=",
+                      "color": "var(--disabled-text-color)"
+                    },
+                    {
+                      "value": "docked",
+                      "operator": "=="
+                    },
+                    {
+                      "value": "returning",
+                      "operator": "=="
+                    }
+                  ],
+                  "tap_action": {
+                    "action": "call-service",
+                    "service": "xiaomi_miio.vacuum_clean_segment",
+                    "service_data": {
+                      "entity_id": "vacuum.xiaomi_vacuum_cleaner",
+                      "segments": [
+                        16,
+                        17
+                      ]
+                    }
+                  }
+                },
+                {
+                  "type": "custom:button-card",
+                  "color": "rgb(68, 115, 158)",
+                  "icon": "mdi:sofa",
+                  "entity": "vacuum.xiaomi_vacuum_cleaner",
+                  "show_state": false,
+                  "show_name": false,
+                  "state": [
+                    {
+                      "value": "docked",
+                      "operator": "!=",
+                      "color": "var(--disabled-text-color)"
+                    },
+                    {
+                      "value": "docked",
+                      "operator": "=="
+                    },
+                    {
+                      "value": "returning",
+                      "operator": "=="
+                    }
+                  ],
+                  "tap_action": {
+                    "action": "call-service",
+                    "service": "xiaomi_miio.vacuum_clean_segment",
+                    "service_data": {
+                      "entity_id": "vacuum.xiaomi_vacuum_cleaner",
+                      "segments": [
+                        19
+                      ]
+                    }
+                  }
+                },
+                {
+                  "type": "custom:button-card",
+                  "color": "rgb(68, 115, 158)",
+                  "icon": "mdi:kettle",
+                  "entity": "vacuum.xiaomi_vacuum_cleaner",
+                  "show_state": false,
+                  "show_name": false,
+                  "state": [
+                    {
+                      "value": "docked",
+                      "operator": "!=",
+                      "color": "var(--disabled-text-color)"
+                    },
+                    {
+                      "value": "docked",
+                      "operator": "=="
+                    },
+                    {
+                      "value": "returning",
+                      "operator": "=="
+                    }
+                  ],
+                  "tap_action": {
+                    "action": "call-service",
+                    "service": "xiaomi_miio.vacuum_clean_segment",
+                    "service_data": {
+                      "entity_id": "vacuum.xiaomi_vacuum_cleaner",
+                      "segments": [
+                        18
+                      ]
+                    }
+                  }
+                },
+                {
+                  "type": "custom:button-card",
+                  "color": "rgb(68, 115, 158)",
+                  "icon": "mdi:ev-station",
+                  "entity": "vacuum.xiaomi_vacuum_cleaner",
+                  "show_state": false,
+                  "show_name": false,
+                  "state": [
+                    {
+                      "value": "docked",
+                      "operator": "==",
+                      "color": "var(--disabled-text-color)"
+                    },
+                    {
+                      "value": "returning",
+                      "operator": "==",
+                      "color": "var(--disabled-text-color)"
+                    },
+                    {
+                      "value": "docked",
+                      "operator": "!="
+                    }
+                  ],
+                  "tap_action": {
+                    "action": "call-service",
+                    "service": "vacuum.return_to_base",
+                    "service_data": {
+                      "entity_id": "vacuum.xiaomi_vacuum_cleaner"
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Plants",
+          "path": "plants",
+          "icon": "mdi:flower",
+          "badges": [],
+          "cards": [
+            {
+              "type": "entities",
+              "entities": [
+                {
+                  "entity": "sensor.flower_care_moisture"
+                },
+                {
+                  "entity": "sensor.flower_care_conductivity"
+                },
+                {
+                  "entity": "sensor.flower_care_illuminance"
+                },
+                {
+                  "entity": "sensor.flower_care_temperature"
+                }
+              ],
+              "show_header_toggle": true
+            }
+          ]
         }
+      ]
     }
+  }
 }
