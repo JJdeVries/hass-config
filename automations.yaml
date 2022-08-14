@@ -292,7 +292,7 @@
     at: '17:00'
   condition:
   - condition: numeric_state
-    entity_id: sensor.miflora_moisture
+    entity_id: sensor.flower_care_moisture
     below: '20'
   action:
   - service: notify.notify_jorik

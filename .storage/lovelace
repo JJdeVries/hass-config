@@ -300,6 +300,128 @@
           ]
         },
         {
+          "title": "Plants",
+          "path": "plants",
+          "icon": "mdi:flower",
+          "badges": [],
+          "cards": [
+            {
+              "type": "entities",
+              "entities": [
+                {
+                  "entity": "sensor.flower_care_moisture"
+                },
+                {
+                  "entity": "sensor.flower_care_conductivity"
+                },
+                {
+                  "entity": "sensor.flower_care_illuminance"
+                },
+                {
+                  "entity": "sensor.flower_care_temperature"
+                }
+              ],
+              "show_header_toggle": true
+            }
+          ]
+        },
+        {
+          "theme": "Backend-selected",
+          "title": "CPU",
+          "path": "cpu",
+          "icon": "mdi:raspberry-pi",
+          "badges": [],
+          "cards": [
+            {
+              "type": "horizontal-stack",
+              "cards": [
+                {
+                  "type": "gauge",
+                  "entity": "sensor.cpu_temperature",
+                  "name": "CPU Temp",
+                  "max": 100,
+                  "needle": true,
+                  "severity": {
+                    "green": 0,
+                    "yellow": 75,
+                    "red": 85
+                  }
+                },
+                {
+                  "type": "gauge",
+                  "entity": "sensor.gpu_temp",
+                  "name": "GPU Temp",
+                  "max": 100,
+                  "needle": true,
+                  "severity": {
+                    "green": 0,
+                    "yellow": 75,
+                    "red": 85
+                  }
+                },
+                {
+                  "type": "gauge",
+                  "entity": "sensor.processor_use",
+                  "max": 100,
+                  "min": 0,
+                  "needle": true,
+                  "severity": {
+                    "green": 0,
+                    "yellow": 50,
+                    "red": 80
+                  }
+                },
+                {
+                  "type": "gauge",
+                  "entity": "sensor.memory_use_percent",
+                  "min": 0,
+                  "max": 100,
+                  "severity": {
+                    "green": 0,
+                    "yellow": 50,
+                    "red": 80
+                  },
+                  "needle": true,
+                  "name": "Memory use"
+                }
+              ]
+            },
+            {
+              "type": "custom:apexcharts-card",
+              "header": {
+                "show": true,
+                "title": "CPU Performance",
+                "show_states": true,
+                "colorize_states": true
+              },
+              "all_series_config": {
+                "stroke_width": 2
+              },
+              "apex_config": {
+                "yaxis": {
+                  "min": 0,
+                  "max": 100,
+                  "tickAmount": 5
+                }
+              },
+              "series": [
+                {
+                  "entity": "sensor.processor_use"
+                },
+                {
+                  "entity": "sensor.memory_use_percent"
+                },
+                {
+                  "entity": "sensor.gpu_temp"
+                },
+                {
+                  "entity": "sensor.cpu_temperature"
+                }
+              ]
+            }
+          ]
+        },
+        {
           "theme": "Backend-selected",
           "title": "Vacuum",
           "path": "vacuum",
@@ -478,32 +600,6 @@
                   }
                 }
               ]
-            }
-          ]
-        },
-        {
-          "title": "Plants",
-          "path": "plants",
-          "icon": "mdi:flower",
-          "badges": [],
-          "cards": [
-            {
-              "type": "entities",
-              "entities": [
-                {
-                  "entity": "sensor.flower_care_moisture"
-                },
-                {
-                  "entity": "sensor.flower_care_conductivity"
-                },
-                {
-                  "entity": "sensor.flower_care_illuminance"
-                },
-                {
-                  "entity": "sensor.flower_care_temperature"
-                }
-              ],
-              "show_header_toggle": true
             }
           ]
         }
