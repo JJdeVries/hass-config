@@ -108,4 +108,3 @@ logger:
     
     logs:
        homeassistant.components.shell_command: debug
-       homeassistant.components.opentherm_gw: info

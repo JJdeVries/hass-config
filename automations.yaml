@@ -217,8 +217,8 @@
     input:
       end_percentage: '15'
       start_percentage: '100'
-      dim_start_time: '22:00:00'
-      dim_end_time: '23:00:00'
+      dim_start_time: '21:00:00'
+      dim_end_time: '22:30:00'
       output_light: light.livingroom_lights
       start_brightness: 255
       end_brightness: 70
@@ -457,4 +457,27 @@
   - service: media_player.media_stop
     target:
       entity_id: media_player.living_room_tv
+  mode: single
+- id: '1661516278556'
+  alias: 'CO2: Monitor livingroom'
+  description: ''
+  trigger:
+  - platform: numeric_state
+    entity_id: sensor.mh_z19_co2_value
+    for:
+      hours: 0
+      minutes: 10
+      seconds: 0
+    above: '1000'
+  condition: []
+  action:
+  - service: notify.notify_jorik
+    data:
+      message: CO2 level too high!
+  - wait_template: '{{ int(states("sensor.mh_z19_co2_value")) < 800 }}'
+    continue_on_timeout: true
+  - service: notify.notify_jorik
+    data:
+      message: CO2 level now below 800 again
+  max_exceeded: silent
   mode: single

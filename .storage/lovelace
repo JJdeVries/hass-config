@@ -11,7 +11,7 @@
           "title": "Home",
           "badges": [
             {
-              "entity": "group.humans"
+              "entity": "sensor.mh_z19_co2_value"
             },
             {
               "entity": "person.nicole_verbeek"
@@ -258,6 +258,58 @@
                   ]
                 }
               ]
+            },
+            {
+              "type": "custom:apexcharts-card",
+              "header": {
+                "show": true,
+                "title": "Air quality monitor",
+                "show_states": true,
+                "colorize_states": true
+              },
+              "all_series_config": {
+                "stroke_width": 1
+              },
+              "yaxis": [
+                {
+                  "id": "co2_yaxis",
+                  "min": 500,
+                  "max": 1500,
+                  "decimals": 0,
+                  "apex_config": {
+                    "tickAmount": 8
+                  }
+                },
+                {
+                  "id": "temp_yaxis",
+                  "opposite": true,
+                  "min": 15,
+                  "max": 40,
+                  "decimals": 0,
+                  "apex_config": {
+                    "tickAmount": 8
+                  }
+                }
+              ],
+              "series": [
+                {
+                  "entity": "sensor.mh_z19_co2_value",
+                  "yaxis_id": "co2_yaxis"
+                },
+                {
+                  "entity": "sensor.mh_z19_temperature",
+                  "yaxis_id": "temp_yaxis"
+                }
+              ],
+              "apex_config": {
+                "grid": {
+                  "xaxis": {
+                    "lines": {
+                      "show": true
+                    }
+                  }
+                }
+              }
             }
           ]
         },
@@ -395,7 +447,7 @@
                 "colorize_states": true
               },
               "all_series_config": {
-                "stroke_width": 2
+                "stroke_width": 1
               },
               "apex_config": {
                 "yaxis": {
