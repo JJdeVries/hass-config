@@ -1,31 +1,27 @@
 {
-    "version": 2,
-    "key": "person",
-    "data": {
-        "items": [
-            {
-                "device_trackers": [
-                    "device_tracker.joriks_galaxy_a7_2018_2"
-                ],
-                "id": "jorik_de_vries",
-                "name": "Jorik de Vries",
-                "user_id": "9f03360d711f4db08a2d4b97a271f6e8",
-                "picture": null
-            },
-            {
-                "device_trackers": [
-                    "device_tracker.iphone",
-                    "device_tracker.iphone_2",
-                    "device_tracker.iphonevannicole",
-                    "device_tracker.iphone_van_nicole",
-                    "device_tracker.iphonevannicole_2",
-                    "device_tracker.iphonevannicole_3"
-                ],
-                "id": "nicole_verbeek",
-                "name": "Nicole Verbeek",
-                "user_id": "0034266ca30f4375a2704f087b5cb651",
-                "picture": null
-            }
-        ]
-    }
+  "version": 2,
+  "minor_version": 1,
+  "key": "person",
+  "data": {
+    "items": [
+      {
+        "device_trackers": [
+          "device_tracker.joriks_galaxy_a7_2018_2"
+        ],
+        "id": "jorik_de_vries",
+        "name": "Jorik de Vries",
+        "user_id": "9f03360d711f4db08a2d4b97a271f6e8",
+        "picture": null
+      },
+      {
+        "device_trackers": [
+          "device_tracker.iphonevannicole_4"
+        ],
+        "id": "nicole_verbeek",
+        "name": "Nicole Verbeek",
+        "user_id": "0034266ca30f4375a2704f087b5cb651",
+        "picture": null
+      }
+    ]
+  }
 }
