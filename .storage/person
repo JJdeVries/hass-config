@@ -6,7 +6,8 @@
     "items": [
       {
         "device_trackers": [
-          "device_tracker.joriks_galaxy_a7_2018_2"
+          "device_tracker.joriks_galaxy_a7_2018_2",
+          "device_tracker.cph2399"
         ],
         "id": "jorik_de_vries",
         "name": "Jorik de Vries",

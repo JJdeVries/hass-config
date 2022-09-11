@@ -61,15 +61,16 @@
   alias: 'Backup: HA config'
   description: Backup the home assistant config files on sundays
   trigger:
-  - platform: time
-    at: 04:00
-  condition:
-  - condition: time
-    weekday:
-    - sun
+  - platform: state
+    entity_id:
+    - schedule.backup_ha
+    to: 'on'
+  condition: []
   action:
   - service: shell_command.git_commit
+    data: {}
   - service: shell_command.git_push
+    data: {}
   mode: single
 - id: '1603394623458'
   alias: 'Lights Hall: Keep on'
@@ -273,16 +274,24 @@
   description: ''
   trigger:
   - platform: time
-    at: '12:00'
+    at: input_datetime.https_timer
   condition:
   - condition: template
     value_template: '{{now().day == 1}}'
   action:
   - service: shell_command.recrypt
+    data: {}
+    enabled: true
+  - service: input_datetime.set_datetime
+    data:
+      date: '{{ now().date() + timedelta(days=90) }}'
+    target:
+      entity_id: input_datetime.https_timer
   - service: notify.notify_jorik
     data:
-      message: Restart HA within 30 days!
+      message: 'Restart HA within 30 days! Next refresh will be done: {{states(''input_datetime.https_timer'')}}'
       title: Encryption refresh
+    enabled: true
   mode: single
 - id: '1623509943578'
   alias: 'Plant: Moisture'
@@ -373,7 +382,8 @@
   description: ''
   trigger:
   - platform: state
-    entity_id: group.humans
+    entity_id:
+    - group.humans
     for:
       hours: 0
       minutes: 10
@@ -382,6 +392,9 @@
   condition:
   - condition: template
     value_template: '{{state_attr(''climate.cv_ketel'', ''temperature'')|float > states(''input_number.cv_gone'')|float}}'
+  - condition: state
+    entity_id: sensor.cv_time_schedule
+    state: 'Off'
   action:
   - service: climate.set_temperature
     target:

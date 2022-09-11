@@ -72,10 +72,19 @@
                     ],
                     "tooltip": [
                       {
-                        "top": "150%"
+                        "top": "140%"
                       },
                       {
                         "width": "120%"
+                      },
+                      {
+                        "transition-delay": "0s"
+                      },
+                      {
+                        "border": "solid 2px var(--disabled-text-color)"
+                      },
+                      {
+                        "border-radius": "10px"
                       }
                     ]
                   }
@@ -135,10 +144,19 @@
                     ],
                     "tooltip": [
                       {
-                        "top": "150%"
+                        "top": "140%"
                       },
                       {
                         "width": "120%"
+                      },
+                      {
+                        "transition-delay": "0s"
+                      },
+                      {
+                        "border": "solid 2px var(--disabled-text-color)"
+                      },
+                      {
+                        "border-radius": "10px"
                       }
                     ]
                   }
@@ -201,10 +219,24 @@
                     ],
                     "tooltip": [
                       {
-                        "top": "150%"
+                        "top": "140%"
                       },
                       {
                         "width": "120%"
+                      },
+                      {
+                        "transition-delay": "0s"
+                      },
+                      {
+                        "border": "solid 2px var(--disabled-text-color)"
+                      },
+                      {
+                        "border-radius": "10px"
+                      }
+                    ],
+                    "lock": [
+                      {
+                        "opacity": 0
                       }
                     ]
                   }
@@ -266,10 +298,19 @@
                     ],
                     "tooltip": [
                       {
-                        "top": "150%"
+                        "top": "140%"
                       },
                       {
                         "width": "120%"
+                      },
+                      {
+                        "transition-delay": "0s"
+                      },
+                      {
+                        "border": "solid 2px var(--disabled-text-color)"
+                      },
+                      {
+                        "border-radius": "10px"
                       }
                     ]
                   }
@@ -333,10 +374,19 @@
                     ],
                     "tooltip": [
                       {
-                        "top": "150%"
+                        "top": "140%"
                       },
                       {
                         "width": "120%"
+                      },
+                      {
+                        "transition-delay": "0s"
+                      },
+                      {
+                        "border": "solid 2px var(--disabled-text-color)"
+                      },
+                      {
+                        "border-radius": "10px"
                       }
                     ]
                   }
@@ -404,10 +454,19 @@
                     ],
                     "tooltip": [
                       {
-                        "top": "150%"
+                        "top": "140%"
                       },
                       {
                         "width": "120%"
+                      },
+                      {
+                        "transition-delay": "0s"
+                      },
+                      {
+                        "border": "solid 2px var(--disabled-text-color)"
+                      },
+                      {
+                        "border-radius": "10px"
                       }
                     ]
                   }
@@ -471,10 +530,27 @@
                     ],
                     "tooltip": [
                       {
-                        "top": "150%"
+                        "top": "140%"
                       },
                       {
                         "width": "120%"
+                      },
+                      {
+                        "transition-delay": "0s"
+                      },
+                      {
+                        "border": "solid 2px var(--disabled-text-color)"
+                      },
+                      {
+                        "border-radius": "10px"
+                      },
+                      {
+                        "width": "120%"
+                      }
+                    ],
+                    "lock": [
+                      {
+                        "opacity": 0
                       }
                     ]
                   }
@@ -490,476 +566,97 @@
             },
             {
               "type": "entities",
-              "title": "| Livingroom lights",
               "entities": [
                 {
-                  "type": "custom:stack-in-card",
-                  "mode": "horizontal",
-                  "cards": [
+                  "type": "custom:fold-entity-row",
+                  "head": "light.livingroom_lights",
+                  "open": true,
+                  "entities": [
                     {
-                      "type": "custom:slider-button-card",
-                      "entity": "light.livingroom_lights",
-                      "name": "All",
-                      "slider": {
-                        "direction": "left-right",
-                        "background": "gradient",
-                        "use_state_color": true
-                      },
-                      "icon": {
-                        "tap_action": {
-                          "action": "more-info"
-                        },
-                        "use_state_color": true
-                      },
-                      "action_button": {
-                        "mode": "custom",
-                        "show": true,
-                        "tap_action": {
-                          "action": "toggle"
-                        },
-                        "show_spinner": true
-                      },
-                      "style": "ha-card {\n  border-right: solid 2.5px var(--background-color);\n} \n"
-                    },
-                    {
-                      "type": "custom:slider-button-card",
-                      "entity": "light.tv_light",
-                      "name": "TV",
-                      "slider": {
-                        "direction": "left-right",
-                        "background": "gradient",
-                        "use_state_color": true
-                      },
-                      "icon": {
-                        "icon": "mdi:ceiling-light",
-                        "tap_action": {
-                          "action": "more-info"
-                        },
-                        "use_state_color": true
-                      },
-                      "action_button": {
-                        "mode": "custom",
-                        "show": true,
-                        "tap_action": {
-                          "action": "toggle"
-                        },
-                        "show_spinner": true
-                      },
-                      "style": "ha-card {\n  border-right: solid 2.5px var(--background-color);\n  border-left: solid 2.5px var(--background-color);\n} \n"
-                    },
-                    {
-                      "type": "custom:slider-button-card",
-                      "entity": "light.table_lights",
-                      "name": "Table",
-                      "slider": {
-                        "direction": "left-right",
-                        "background": "gradient",
-                        "use_state_color": true
-                      },
-                      "icon": {
-                        "icon": "mdi:ceiling-light-multiple",
-                        "tap_action": {
-                          "action": "more-info"
-                        },
-                        "use_state_color": true
-                      },
-                      "action_button": {
-                        "mode": "custom",
-                        "show": true,
-                        "tap_action": {
-                          "action": "toggle"
-                        },
-                        "show_spinner": true
-                      },
-                      "style": "ha-card {\n  border-left: solid 2.5px var(--background-color);\n} \n"
-                    }
-                  ]
-                },
-                {
-                  "type": "custom:stack-in-card",
-                  "mode": "horizontal",
-                  "cards": [
-                    {
-                      "type": "markdown",
-                      "content": "Table"
-                    },
-                    {
-                      "type": "custom:button-card",
-                      "entity": "light.table_lights",
-                      "show_name": false,
-                      "icon": "mdi:circle",
-                      "color": "rgb(201, 226, 255)",
-                      "styles": {
-                        "card": [
-                          {
-                            "height": "46px"
-                          }
-                        ],
-                        "lock": [
-                          {
-                            "opacity": 0
-                          }
-                        ]
-                      },
-                      "lock": {
-                        "enabled": "[[[ return entity.state === 'off'; ]]]",
-                        "exemptions": []
-                      },
-                      "tap_action": {
-                        "action": "call-service",
-                        "service": "light.turn_on",
-                        "service_data": {
-                          "entity_id": "light.table_lights",
-                          "color_temp": 153
-                        }
-                      },
-                      "state": [
+                      "type": "custom:fold-entity-row",
+                      "head": "light.tv_light",
+                      "entities": [
                         {
-                          "operator": "template",
-                          "value": "[[[\n   return entity.attributes.color_temp === 153\n]]]\n",
-                          "color": "grey"
+                          "type": "custom:hui-element",
+                          "name": "Brightness",
+                          "card_type": "custom:mushroom-light-card",
+                          "entity": "light.tv_light",
+                          "show_brightness_control": true,
+                          "layout": "horizontal"
                         },
                         {
-                          "value": "off",
-                          "color": "grey"
+                          "type": "custom:hui-element",
+                          "name": "Color",
+                          "card_type": "custom:mushroom-light-card",
+                          "entity": "light.tv_light",
+                          "show_color_temp_control": true,
+                          "layout": "horizontal"
                         }
                       ]
                     },
                     {
-                      "type": "custom:button-card",
-                      "entity": "light.table_lights",
-                      "show_name": false,
-                      "icon": "mdi:circle",
-                      "color": "rgb(255, 241, 224)",
-                      "styles": {
-                        "card": [
-                          {
-                            "height": "46px"
-                          }
-                        ],
-                        "lock": [
-                          {
-                            "opacity": 0
-                          }
-                        ]
-                      },
-                      "lock": {
-                        "enabled": "[[[ return entity.state === 'off'; ]]]",
-                        "exemptions": []
-                      },
-                      "tap_action": {
-                        "action": "call-service",
-                        "service": "light.turn_on",
-                        "service_data": {
-                          "entity_id": "light.table_lights",
-                          "color_temp": 312
-                        }
-                      },
-                      "state": [
+                      "type": "custom:fold-entity-row",
+                      "head": "light.table_lights",
+                      "entities": [
                         {
-                          "operator": "template",
-                          "value": "[[[\n   return entity.attributes.color_temp === 312\n]]]\n",
-                          "color": "grey"
+                          "type": "custom:hui-element",
+                          "name": "Brightness",
+                          "card_type": "custom:mushroom-light-card",
+                          "entity": "light.table_lights",
+                          "show_brightness_control": true,
+                          "layout": "horizontal"
                         },
                         {
-                          "value": "off",
-                          "color": "grey"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "custom:button-card",
-                      "entity": "light.table_lights",
-                      "show_name": false,
-                      "icon": "mdi:circle",
-                      "color": "rgb(255, 197, 143)",
-                      "styles": {
-                        "card": [
-                          {
-                            "height": "46px"
-                          }
-                        ],
-                        "lock": [
-                          {
-                            "opacity": 0
-                          }
-                        ]
-                      },
-                      "lock": {
-                        "enabled": "[[[ return entity.state === 'off'; ]]]",
-                        "exemptions": []
-                      },
-                      "tap_action": {
-                        "action": "call-service",
-                        "service": "light.turn_on",
-                        "service_data": {
-                          "entity_id": "light.table_lights",
-                          "color_temp": 384
-                        }
-                      },
-                      "state": [
-                        {
-                          "operator": "template",
-                          "value": "[[[\n   return entity.attributes.color_temp === 384\n]]]\n",
-                          "color": "grey"
-                        },
-                        {
-                          "value": "off",
-                          "color": "grey"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "custom:button-card",
-                      "show_name": false,
-                      "entity": "light.table_lights",
-                      "icon": "mdi:circle",
-                      "color": "rgb(255, 147, 41)",
-                      "styles": {
-                        "card": [
-                          {
-                            "height": "46px"
-                          }
-                        ],
-                        "lock": [
-                          {
-                            "opacity": 0
-                          }
-                        ]
-                      },
-                      "lock": {
-                        "enabled": "[[[ return entity.state === 'off'; ]]]",
-                        "exemptions": []
-                      },
-                      "tap_action": {
-                        "action": "call-service",
-                        "service": "light.turn_on",
-                        "service_data": {
-                          "entity_id": "light.table_lights",
-                          "color_temp": 454
-                        }
-                      },
-                      "state": [
-                        {
-                          "operator": "template",
-                          "value": "[[[\n   return entity.attributes.color_temp === 454\n]]]\n",
-                          "color": "grey"
-                        },
-                        {
-                          "value": "off",
-                          "color": "grey"
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "type": "custom:stack-in-card",
-                  "mode": "horizontal",
-                  "cards": [
-                    {
-                      "type": "markdown",
-                      "content": "Tv"
-                    },
-                    {
-                      "type": "custom:button-card",
-                      "entity": "light.tv_light",
-                      "show_name": false,
-                      "icon": "mdi:circle",
-                      "color": "rgb(201, 226, 255)",
-                      "styles": {
-                        "card": [
-                          {
-                            "height": "46px"
-                          }
-                        ],
-                        "lock": [
-                          {
-                            "opacity": 0
-                          }
-                        ]
-                      },
-                      "lock": {
-                        "enabled": "[[[ return entity.state === 'off'; ]]]",
-                        "exemptions": []
-                      },
-                      "tap_action": {
-                        "action": "call-service",
-                        "service": "light.turn_on",
-                        "service_data": {
-                          "entity_id": "light.tv_light",
-                          "color_temp": 153
-                        }
-                      },
-                      "state": [
-                        {
-                          "operator": "template",
-                          "value": "[[[\n   return entity.attributes.color_temp === 153\n]]]\n",
-                          "color": "grey"
-                        },
-                        {
-                          "value": "off",
-                          "color": "grey"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "custom:button-card",
-                      "entity": "light.tv_light",
-                      "show_name": false,
-                      "icon": "mdi:circle",
-                      "color": "rgb(255, 241, 224)",
-                      "styles": {
-                        "card": [
-                          {
-                            "height": "46px"
-                          }
-                        ],
-                        "lock": [
-                          {
-                            "opacity": 0
-                          }
-                        ]
-                      },
-                      "lock": {
-                        "enabled": "[[[ return entity.state === 'off'; ]]]",
-                        "exemptions": []
-                      },
-                      "tap_action": {
-                        "action": "call-service",
-                        "service": "light.turn_on",
-                        "service_data": {
-                          "entity_id": "light.tv_light",
-                          "color_temp": 312
-                        }
-                      },
-                      "state": [
-                        {
-                          "operator": "template",
-                          "value": "[[[\n   return entity.attributes.color_temp === 312\n]]]\n",
-                          "color": "grey"
-                        },
-                        {
-                          "value": "off",
-                          "color": "grey"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "custom:button-card",
-                      "entity": "light.tv_light",
-                      "show_name": false,
-                      "icon": "mdi:circle",
-                      "color": "rgb(255, 197, 143)",
-                      "styles": {
-                        "card": [
-                          {
-                            "height": "46px"
-                          }
-                        ],
-                        "lock": [
-                          {
-                            "opacity": 0
-                          }
-                        ]
-                      },
-                      "lock": {
-                        "enabled": "[[[ return entity.state === 'off'; ]]]",
-                        "exemptions": []
-                      },
-                      "tap_action": {
-                        "action": "call-service",
-                        "service": "light.turn_on",
-                        "service_data": {
-                          "entity_id": "light.tv_light",
-                          "color_temp": 384
-                        }
-                      },
-                      "state": [
-                        {
-                          "operator": "template",
-                          "value": "[[[\n   return entity.attributes.color_temp === 384\n]]]\n",
-                          "color": "grey"
-                        },
-                        {
-                          "value": "off",
-                          "color": "grey"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "custom:button-card",
-                      "show_name": false,
-                      "entity": "light.tv_light",
-                      "icon": "mdi:circle",
-                      "color": "rgb(255, 147, 41)",
-                      "styles": {
-                        "card": [
-                          {
-                            "height": "46px"
-                          }
-                        ],
-                        "lock": [
-                          {
-                            "opacity": 0
-                          }
-                        ]
-                      },
-                      "lock": {
-                        "enabled": "[[[ return entity.state === 'off'; ]]]",
-                        "exemptions": []
-                      },
-                      "tap_action": {
-                        "action": "call-service",
-                        "service": "light.turn_on",
-                        "service_data": {
-                          "entity_id": "light.tv_light",
-                          "color_temp": 454
-                        }
-                      },
-                      "state": [
-                        {
-                          "operator": "template",
-                          "value": "[[[\n   return entity.attributes.color_temp === 454\n]]]\n",
-                          "color": "grey"
-                        },
-                        {
-                          "value": "off",
-                          "color": "grey"
+                          "type": "custom:hui-element",
+                          "name": "Color",
+                          "card_type": "custom:mushroom-light-card",
+                          "entity": "light.table_lights",
+                          "show_color_temp_control": true,
+                          "layout": "horizontal"
                         }
                       ]
                     }
                   ]
                 }
               ],
+              "title": "| Livingroom lights",
               "card_mod": {
                 "style": "ha-card {\n  border-radius: 25px;\n} \n"
               }
             },
             {
               "type": "entities",
-              "title": "| Climate",
+              "title": "| Temperature",
               "entities": [
                 {
-                  "type": "custom:hui-element",
-                  "card_type": "custom:simple-thermostat",
-                  "entity": "climate.cv_ketel",
-                  "header": false,
-                  "hide": {
-                    "state": true
+                  "type": "custom:hourly-weather",
+                  "name": "",
+                  "icons": true,
+                  "entity": "weather.home_hourly",
+                  "label_spacing": "2",
+                  "num_segments": "12"
+                },
+                {
+                  "type": "custom:stack-in-card",
+                  "mode": "horizontal",
+                  "keep": {
+                    "margin": true
                   },
-                  "layout": {
-                    "mode": {
-                      "names": true,
-                      "headings": true,
-                      "icons": true
-                    },
-                    "sensors": {
-                      "type": "list",
-                      "labels": true
-                    },
-                    "step": "row"
-                  }
+                  "cards": [
+                    {
+                      "type": "custom:hui-element",
+                      "icon": "mdi:fire",
+                      "name": "Livingroom",
+                      "card_type": "custom:mushroom-climate-card",
+                      "entity": "climate.cv_ketel",
+                      "fill_container": false,
+                      "show_temperature_control": true,
+                      "layout": "horizontal",
+                      "card_mod": {
+                        "style": ":host {\n  --mush-rgb-state-climate-heat: var(--rgb-accent-color);\n}\n"
+                      }
+                    }
+                  ]
                 }
               ],
               "card_mod": {
@@ -1111,7 +808,7 @@
                     {
                       "type": "custom:button-card",
                       "color": "rgb(68, 115, 158)",
-                      "icon": "mdi:kettle",
+                      "icon": "mdi:pot-steam",
                       "entity": "vacuum.xiaomi_vacuum_cleaner",
                       "show_state": false,
                       "show_name": false,
@@ -1227,7 +924,9 @@
                       "name": "CO2",
                       "entities": [
                         "sensor.mh_z19_co2_value"
-                      ]
+                      ],
+                      "points": 1,
+                      "hour24": true
                     },
                     {
                       "type": "custom:mini-graph-card",
@@ -1235,6 +934,7 @@
                       "entities": [
                         "sensor.cv_temperature"
                       ],
+                      "hour24": true,
                       "line_color": "var(--accent-color)"
                     }
                   ]
@@ -1243,6 +943,9 @@
               "card_mod": {
                 "style": "ha-card {\n  border-radius: 25px;\n} \n"
               }
+            },
+            {
+              "type": "custom:layout-break"
             }
           ]
         },
