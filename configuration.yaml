@@ -67,17 +67,12 @@ template:
         unit_of_measurement: "°C"
         state: "{{state_attr('weather.home', 'temperature')}}"
 
-  - sensor:
+  - binary_sensor:
       name: CV Time Schedule
       unique_id: sensor.cv_time_schedule
-      state: >
-        {% if is_state('sensor.otgw_setpoint_ovrd_mode_gateway_cv_ketel', 'N') %}
-        On
-        {% else %}
-        Off
-        {% endif %}
+      state: "{{is_state('sensor.otgw_setpoint_ovrd_mode_gateway_cv_ketel', 'N') }}"
       icon: >
-        {% if is_state('sensor.otgw_setpoint_ovrd_mode_gateway_cv_ketel', 'N') %}
+        {% if is_state('sensor.cv_time_schedule', 'on') %}
           mdi:clock
         {% else %}
           mdi:clock-outline

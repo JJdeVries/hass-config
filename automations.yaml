@@ -390,11 +390,13 @@
       seconds: 0
     to: not_home
   condition:
-  - condition: template
-    value_template: '{{state_attr(''climate.cv_ketel'', ''temperature'')|float > states(''input_number.cv_gone'')|float}}'
   - condition: state
-    entity_id: sensor.cv_time_schedule
-    state: 'Off'
+    entity_id: binary_sensor.cv_time_schedule
+    state: 'off'
+  - condition: numeric_state
+    entity_id: climate.cv_ketel
+    attribute: temperature
+    above: input_number.cv_gone
   action:
   - service: climate.set_temperature
     target:
@@ -439,13 +441,13 @@
   description: ''
   trigger:
   - platform: state
-    entity_id: group.humans
+    entity_id:
+    - group.humans
     to: home
   condition:
-  - condition: numeric_state
-    entity_id: climate.cv_ketel
-    attribute: temperature
-    below: '20.5'
+  - condition: state
+    entity_id: binary_sensor.cv_time_schedule
+    state: 'off'
   action:
   - service: climate.set_temperature
     target:
@@ -454,7 +456,7 @@
       temperature: 0
   - service: notify.notify_jorik
     data:
-      message: Cleared the setpoint of the CV
+      message: Reset the time schedule of the boiler
   mode: single
 - id: '1642757590717'
   alias: 'Media Center: Nobody Home'
