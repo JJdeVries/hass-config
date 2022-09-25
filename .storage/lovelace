@@ -197,7 +197,7 @@
                       }
                     }
                   ],
-                  "tooltip": "CV time schedule",
+                  "tooltip": "[[[ return \"Schedule: \" + entity.state ]]]",
                   "lock": {
                     "enabled": "[[[ return entity.state === 'on'; ]]]",
                     "exemptions": []
