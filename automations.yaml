@@ -406,6 +406,9 @@
   - service: notify.notify_jorik
     data:
       message: Nobody home... set temperature to {{states('input_number.cv_gone')|float}}
+  - service: notify.mobile_app_cph2399
+    data:
+      message: Temperature decrease
   mode: single
 - id: '1640707052114'
   alias: 'CV: Nicole Away'

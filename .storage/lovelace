@@ -1154,6 +1154,17 @@
               "type": "history-graph",
               "entities": [
                 {
+                  "entity": "climate.cv_ketel"
+                },
+                {
+                  "entity": "sensor.outside_temperature"
+                }
+              ]
+            },
+            {
+              "type": "history-graph",
+              "entities": [
+                {
                   "entity": "sensor.cv_temperature"
                 },
                 {
