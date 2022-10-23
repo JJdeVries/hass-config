@@ -206,9 +206,10 @@
     data:
       brightness_pct: 100
     entity_id: light.livingroom_lights
-  - service: notify.notify_jorik
+  - service: notify.mobile_app_cph2399
     data:
-      message: Turned on the lights because you're now home!
+      title: Lights are now on
+      message: Turned the lights on because someone arrived home.
   mode: single
 - id: '1608806095722'
   alias: 'Lights Livingroom:  dim light'
@@ -287,11 +288,10 @@
       date: '{{ now().date() + timedelta(days=90) }}'
     target:
       entity_id: input_datetime.https_timer
-  - service: notify.notify_jorik
+  - service: notify.mobile_app_cph2399
     data:
       message: 'Restart HA within 30 days! Next refresh will be done: {{states(''input_datetime.https_timer'')}}'
       title: Encryption refresh
-    enabled: true
   mode: single
 - id: '1623509943578'
   alias: 'Plant: Moisture'
@@ -304,7 +304,7 @@
     entity_id: sensor.flower_care_moisture
     below: '20'
   action:
-  - service: notify.notify_jorik
+  - service: notify.mobile_app_cph2399
     data:
       message: 'The plant should be given water! Moisture: {{states("sensor.miflora_moisture")}}'
   mode: single
@@ -322,6 +322,7 @@
   - service: vacuum.return_to_base
     target:
       entity_id: vacuum.xiaomi_vacuum_cleaner
+    data: {}
   - delay:
       hours: 0
       minutes: 10
@@ -330,10 +331,10 @@
   - condition: state
     entity_id: vacuum.xiaomi_vacuum_cleaner
     state: error
-  - service: notify.notify_jorik
+  - service: notify.mobile_app_cph2399
     data:
-      title: Vacuum Not Docked
-      message: The vacuum is still in error state!
+      message: Kevin has not reached the docking station
+      title: Kevin is lost :-(
   mode: single
 - id: '1638808746106'
   alias: 'Lights Livingroom: Morning'
@@ -368,9 +369,10 @@
       seconds: 0
   condition: []
   action:
-  - service: notify.notify_jorik
+  - service: notify.mobile_app_cph2399
     data:
-      message: The temperature at the CV is too low!
+      message: The outside CV temperature is too low!
+      title: CV temp error!
   - service: automation.turn_off
     data:
       stop_actions: false
@@ -403,41 +405,9 @@
       entity_id: climate.cv_ketel
     data:
       temperature: '{{states(''input_number.cv_gone'')|float}}'
-  - service: notify.notify_jorik
-    data:
-      message: Nobody home... set temperature to {{states('input_number.cv_gone')|float}}
   - service: notify.mobile_app_cph2399
     data:
-      message: Temperature decrease
-  mode: single
-- id: '1640707052114'
-  alias: 'CV: Nicole Away'
-  description: ''
-  trigger:
-  - platform: state
-    entity_id: person.nicole_verbeek
-    for:
-      hours: 0
-      minutes: 5
-      seconds: 0
-    to: not_home
-  condition:
-  - condition: state
-    entity_id: group.humans
-    state: home
-  - condition: numeric_state
-    entity_id: climate.cv_ketel
-    attribute: temperature
-    above: '20.0'
-  action:
-  - service: climate.set_temperature
-    target:
-      entity_id: climate.cv_ketel
-    data:
-      temperature: 20
-  - service: notify.notify_jorik
-    data:
-      message: Temperatuur naar 20 graden
+      message: Nobody home... set temperature to {{states('input_number.cv_gone')|float}}
   mode: single
 - id: '1641898202596'
   alias: 'CV: Family Home'
@@ -457,9 +427,9 @@
       entity_id: climate.cv_ketel
     data:
       temperature: 0
-  - service: notify.notify_jorik
+  - service: notify.mobile_app_cph2399
     data:
-      message: Reset the time schedule of the boiler
+      message: Reset the CV time schedule
   mode: single
 - id: '1642757590717'
   alias: 'Media Center: Nobody Home'
@@ -489,13 +459,90 @@
     above: '1000'
   condition: []
   action:
-  - service: notify.notify_jorik
+  - service: notify.mobile_app_cph2399
     data:
-      message: CO2 level too high!
+      title: CO2 level too high!
+      message: The CO2 level is above 1000!
   - wait_template: '{{ int(states("sensor.mh_z19_co2_value")) < 800 }}'
     continue_on_timeout: true
-  - service: notify.notify_jorik
+  - service: notify.mobile_app_cph2399
     data:
-      message: CO2 level now below 800 again
+      title: CO2 level is okay
+      message: The CO2 level is below 800 again.
   max_exceeded: silent
+  mode: single
+- id: '1666266988290'
+  alias: 'CV: Nicole gone'
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - person.nicole_verbeek
+    to: not_home
+    for:
+      hours: 0
+      minutes: 5
+      seconds: 0
+  condition:
+  - condition: state
+    entity_id: group.humans
+    state: home
+  - condition: numeric_state
+    entity_id: climate.cv_ketel
+    attribute: temperature
+    above: 20
+  action:
+  - service: climate.set_temperature
+    data:
+      temperature: 20
+    target:
+      entity_id: climate.cv_ketel
+  - service: notify.mobile_app_cph2399
+    data:
+      title: Setting lower temperature
+      message: Set the new livingroom temperature to 20.0
+  mode: single
+- id: '1666267273499'
+  alias: 'CV: Time triggered schedule reset'
+  description: ''
+  trigger:
+  - platform: time
+    at: '23:00:00'
+  condition:
+  - condition: state
+    entity_id: binary_sensor.cv_time_schedule
+    state: 'off'
+  action:
+  - service: climate.set_temperature
+    data:
+      temperature: 0
+    target:
+      entity_id: climate.cv_ketel
+  - service: notify.mobile_app_cph2399
+    data:
+      title: Reset time schedule
+      message: Reset the time schedule as it is 23.00
+  mode: single
+- id: '1666272604145'
+  alias: 'CV: Nicole home'
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - person.nicole_verbeek
+    to: home
+  condition:
+  - condition: state
+    entity_id: binary_sensor.cv_time_schedule
+    state: 'off'
+  action:
+  - service: climate.set_temperature
+    data:
+      temperature: 0
+    target:
+      entity_id: climate.cv_ketel
+  - service: notify.mobile_app_cph2399
+    data:
+      title: Reset time schedule CV
+      message: Reset the time schedule
   mode: single

@@ -634,7 +634,9 @@
                   "icons": true,
                   "entity": "weather.home_hourly",
                   "label_spacing": "2",
-                  "num_segments": "12"
+                  "num_segments": "12",
+                  "show_precipitation_amounts": true,
+                  "show_wind": true
                 },
                 {
                   "type": "custom:stack-in-card",
@@ -1010,7 +1012,7 @@
               },
               "graph_span": "24h",
               "all_series_config": {
-                "stroke_width": 1
+                "stroke_width": 2
               },
               "yaxis": [
                 {

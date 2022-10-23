@@ -37,18 +37,6 @@ input_number:
         max: 23
         step: 0.5
 
-
-# Telegram notifications
-telegram_bot:
-  - platform: broadcast
-    api_key: !secret TELEGRAM_API
-    allowed_chat_ids:
-      - !secret TELEGRAM_CHAT_JORIK
-notify:
-  - platform: telegram
-    name: Notify_Jorik
-    chat_id: !secret TELEGRAM_CHAT_JORIK
-
 # Enable an alert to show that vacation mode is ON
 alert:
   vacation_mode:
