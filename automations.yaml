@@ -395,6 +395,7 @@
   - condition: state
     entity_id: binary_sensor.cv_time_schedule
     state: 'on'
+    enabled: false
   - condition: numeric_state
     entity_id: climate.cv_ketel
     attribute: temperature
@@ -507,7 +508,7 @@
   description: ''
   trigger:
   - platform: time
-    at: '23:00:00'
+    at: '23:10:00'
   condition:
   - condition: state
     entity_id: binary_sensor.cv_time_schedule

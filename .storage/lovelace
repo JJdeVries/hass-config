@@ -193,7 +193,14 @@
                           {
                             "color": "var(--disabled-text-color)"
                           }
-                        ]
+                        ],
+                        "custom_fields": {
+                          "notification": [
+                            {
+                              "opacity": 0
+                            }
+                          ]
+                        }
                       }
                     }
                   ],
@@ -238,7 +245,41 @@
                       {
                         "opacity": 0
                       }
-                    ]
+                    ],
+                    "custom_fields": {
+                      "notification": [
+                        {
+                          "border-radius": "50%"
+                        },
+                        {
+                          "position": "absolute"
+                        },
+                        {
+                          "left": "65%"
+                        },
+                        {
+                          "top": "10%"
+                        },
+                        {
+                          "height": "20px"
+                        },
+                        {
+                          "width": "30px"
+                        },
+                        {
+                          "font-size": "11px"
+                        },
+                        {
+                          "line-height": "20px"
+                        },
+                        {
+                          "color": "var(--primary-color)"
+                        }
+                      ]
+                    }
+                  },
+                  "custom_fields": {
+                    "notification": "[[[ return states['climate.cv_ketel'].attributes.temperature ]]]\n"
                   }
                 },
                 {
@@ -970,6 +1011,7 @@
           "title": "CPU",
           "path": "cpu",
           "icon": "mdi:raspberry-pi",
+          "type": "custom:horizontal-layout",
           "badges": [],
           "cards": [
             {
@@ -1001,59 +1043,6 @@
                   "color_type": "blank-card"
                 }
               ]
-            },
-            {
-              "type": "custom:apexcharts-card",
-              "header": {
-                "show": true,
-                "title": "Air quality monitor",
-                "show_states": true,
-                "colorize_states": true
-              },
-              "graph_span": "24h",
-              "all_series_config": {
-                "stroke_width": 2
-              },
-              "yaxis": [
-                {
-                  "id": "co2_yaxis",
-                  "min": 400,
-                  "max": 1200,
-                  "decimals": 0,
-                  "apex_config": {
-                    "tickAmount": 8
-                  }
-                },
-                {
-                  "id": "temp_yaxis",
-                  "opposite": true,
-                  "min": 15,
-                  "max": 35,
-                  "decimals": 0,
-                  "apex_config": {
-                    "tickAmount": 8
-                  }
-                }
-              ],
-              "series": [
-                {
-                  "entity": "sensor.mh_z19_co2_value",
-                  "yaxis_id": "co2_yaxis"
-                },
-                {
-                  "entity": "sensor.mh_z19_temperature",
-                  "yaxis_id": "temp_yaxis"
-                }
-              ],
-              "apex_config": {
-                "grid": {
-                  "xaxis": {
-                    "lines": {
-                      "show": true
-                    }
-                  }
-                }
-              }
             },
             {
               "type": "horizontal-stack",
@@ -1111,6 +1100,62 @@
               ]
             },
             {
+              "type": "custom:layout-break"
+            },
+            {
+              "type": "custom:apexcharts-card",
+              "header": {
+                "show": true,
+                "title": "Air quality monitor",
+                "show_states": true,
+                "colorize_states": true
+              },
+              "graph_span": "24h",
+              "all_series_config": {
+                "stroke_width": 2
+              },
+              "yaxis": [
+                {
+                  "id": "co2_yaxis",
+                  "min": 400,
+                  "max": 1200,
+                  "decimals": 0,
+                  "apex_config": {
+                    "tickAmount": 8
+                  }
+                },
+                {
+                  "id": "temp_yaxis",
+                  "opposite": true,
+                  "min": 15,
+                  "max": 35,
+                  "decimals": 0,
+                  "apex_config": {
+                    "tickAmount": 8
+                  }
+                }
+              ],
+              "series": [
+                {
+                  "entity": "sensor.mh_z19_co2_value",
+                  "yaxis_id": "co2_yaxis"
+                },
+                {
+                  "entity": "sensor.mh_z19_temperature",
+                  "yaxis_id": "temp_yaxis"
+                }
+              ],
+              "apex_config": {
+                "grid": {
+                  "xaxis": {
+                    "lines": {
+                      "show": true
+                    }
+                  }
+                }
+              }
+            },
+            {
               "type": "custom:apexcharts-card",
               "header": {
                 "show": true,
@@ -1142,6 +1187,55 @@
                   "entity": "sensor.cpu_temperature"
                 }
               ]
+            },
+            {
+              "type": "custom:layout-break"
+            },
+            {
+              "type": "custom:mini-graph-card",
+              "name": "Download Speed",
+              "align_state": "left",
+              "hour24": true,
+              "points_per_hour": 2,
+              "line_width": 3,
+              "font_size": 75,
+              "font_size_header": 22,
+              "smoothing": false,
+              "show": {
+                "icon": false,
+                "extrema": true,
+                "labels": true,
+                "points": false
+              },
+              "entities": [
+                {
+                  "entity": "sensor.asuswrt_download_speed",
+                  "name": "Download Speed"
+                }
+              ]
+            },
+            {
+              "type": "custom:mini-graph-card",
+              "name": "Upload Speed",
+              "align_state": "left",
+              "hour24": true,
+              "points_per_hour": 2,
+              "line_width": 3,
+              "font_size": 75,
+              "font_size_header": 22,
+              "smoothing": false,
+              "show": {
+                "icon": false,
+                "extrema": true,
+                "labels": true,
+                "points": false
+              },
+              "entities": [
+                {
+                  "entity": "sensor.asuswrt_upload_speed",
+                  "name": "Upload Speed"
+                }
+              ]
             }
           ]
         },
@@ -1161,7 +1255,8 @@
                 {
                   "entity": "sensor.outside_temperature"
                 }
-              ]
+              ],
+              "hours_to_show": 24
             },
             {
               "type": "history-graph",
