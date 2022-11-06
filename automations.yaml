@@ -7,50 +7,64 @@
     to: playing
   condition:
   - condition: template
-    value_template: '{{current_activity != harmony_activity}}'
+    value_template: '{{state_attr(use_remote, ''current_activity'') != harmony_activity}}'
   action:
   - service: remote.turn_on
     data:
       entity_id: '{{use_remote}}'
       activity: '{{harmony_activity}}'
-  - delay:
-      hours: 0
-      minutes: 0
-      seconds: 3
-      milliseconds: 500
-  - service: media_player.volume_set
-    entity_id: media_player.living_room_tv
-    data:
-      entity_id: '{{player_id}}'
-      volume_level: '{{player_volume}}'
+  - if:
+    - condition: template
+      value_template: '"{{state_attr(player_id, ''volume_level'') > player_volume
+        + 0.1 or state_attr(player_id, ''volume_level'') < player_volume - 0.1}}"'
+    then:
+    - delay:
+        hours: 0
+        minutes: 0
+        seconds: 3
+        milliseconds: 0
+    - service: media_player.volume_set
+      data:
+        entity_id: '{{player_id}}'
+        volume_level: '{{player_volume}}'
   mode: single
   variables:
     use_remote: remote.harmonyjorik
     player_id: media_player.living_room_tv
-    current_activity: '{{state_attr(use_remote, ''current_activity'')}}'
-    content_type: '{{state_attr(player_id, "media_content_type") | default("music")}}'
-    state_mapping:
-      movie:
+    current_app: '{{state_attr(player_id, ''app_name'') | lower}}'
+    app_mapping:
+      f1tv:
         activity: Tv
-      tvshow:
+      netflix:
         activity: Tv
-      music:
+      npo start:
+        activity: Tv
+      spotify:
         activity: Stereo
         volume: 0.8
-    state_map: '{{state_mapping[content_type] | default({})}}'
-    harmony_activity: '{{state_map.activity | default(content_type)}}'
-    player_volume: '{{state_map.volume | default(1.0)}}'
+    app_map: '{{app_mapping[current_app] | default({})}}'
+    harmony_activity: '{{app_map.activity | default("Tv")}}'
+    player_volume: '{{app_map.volume | default(1.0)}}'
 - id: '1600780656956'
   alias: 'Media Center: turn off'
   description: ''
   trigger:
   - platform: state
-    entity_id: media_player.living_room_tv
+    entity_id:
+    - media_player.living_room_tv
     to: 'off'
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 10
   - platform: state
-    entity_id: media_player.living_room_tv
+    entity_id:
+    - media_player.living_room_tv
     to: idle
-    for: '30'
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 30
   condition: []
   action:
   - service: remote.turn_off

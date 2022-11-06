@@ -677,7 +677,10 @@
                   "label_spacing": "2",
                   "num_segments": "12",
                   "show_precipitation_amounts": true,
-                  "show_wind": true
+                  "show_wind": true,
+                  "card_mod": {
+                    "style": "ha-card {\n   border-width: 0px;\n} \n"
+                  }
                 },
                 {
                   "type": "custom:stack-in-card",
@@ -696,10 +699,13 @@
                       "show_temperature_control": true,
                       "layout": "horizontal",
                       "card_mod": {
-                        "style": ":host {\n  --mush-rgb-state-climate-heat: var(--rgb-accent-color);\n}\n"
+                        "style": ":host {\n  --mush-rgb-state-climate-heat: var(--rgb-accent-color);\n}\nha-card {\n   border-width: 0px;\n}\n"
                       }
                     }
-                  ]
+                  ],
+                  "card_mod": {
+                    "style": "ha-card {\n   border-width: 0px;\n} \n"
+                  }
                 }
               ],
               "card_mod": {
@@ -753,6 +759,9 @@
                             "width": "120%"
                           }
                         ]
+                      },
+                      "card_mod": {
+                        "style": "ha-card {\n  border-width: 0px;\n} \n"
                       }
                     },
                     {
@@ -800,6 +809,9 @@
                             "width": "120%"
                           }
                         ]
+                      },
+                      "card_mod": {
+                        "style": "ha-card {\n  border-width: 0px;\n} \n"
                       }
                     },
                     {
@@ -846,6 +858,9 @@
                             "width": "120%"
                           }
                         ]
+                      },
+                      "card_mod": {
+                        "style": "ha-card {\n  border-width: 0px;\n} \n"
                       }
                     },
                     {
@@ -892,6 +907,9 @@
                             "width": "120%"
                           }
                         ]
+                      },
+                      "card_mod": {
+                        "style": "ha-card {\n  border-width: 0px;\n} \n"
                       }
                     },
                     {
@@ -935,6 +953,9 @@
                             "width": "120%"
                           }
                         ]
+                      },
+                      "card_mod": {
+                        "style": "ha-card {\n  border-width: 0px;\n} \n"
                       }
                     }
                   ]
@@ -944,7 +965,10 @@
                   "entity": "vacuum.xiaomi_vacuum_cleaner",
                   "vendor": "xiaomi",
                   "buttons": false,
-                  "name": false
+                  "name": false,
+                  "card_mod": {
+                    "style": "ha-card {\n  border-width: 0px;\n} \n"
+                  }
                 }
               ],
               "card_mod": {
@@ -974,7 +998,10 @@
                         }
                       ],
                       "hour24": true,
-                      "line_color": "var(--accent-color)"
+                      "line_color": "var(--accent-color)",
+                      "card_mod": {
+                        "style": "ha-card {\n  border-width: 0px;\n} \n"
+                      }
                     },
                     {
                       "type": "custom:mini-graph-card",
@@ -983,7 +1010,10 @@
                         "sensor.mh_z19_co2_value"
                       ],
                       "points": 1,
-                      "hour24": true
+                      "hour24": true,
+                      "card_mod": {
+                        "style": "ha-card {\n  border-width: 0px;\n} \n"
+                      }
                     },
                     {
                       "type": "custom:mini-graph-card",
@@ -992,9 +1022,15 @@
                         "sensor.cv_temperature"
                       ],
                       "hour24": true,
-                      "line_color": "var(--accent-color)"
+                      "line_color": "var(--accent-color)",
+                      "card_mod": {
+                        "style": "ha-card {\n  border-width: 0px;\n} \n"
+                      }
                     }
-                  ]
+                  ],
+                  "card_mod": {
+                    "style": "ha-card {\n  border-width: 0px;\n} \n"
+                  }
                 }
               ],
               "card_mod": {
@@ -1192,50 +1228,64 @@
               "type": "custom:layout-break"
             },
             {
-              "type": "custom:mini-graph-card",
-              "name": "Download Speed",
-              "align_state": "left",
-              "hour24": true,
-              "points_per_hour": 2,
-              "line_width": 3,
-              "font_size": 75,
-              "font_size_header": 22,
-              "smoothing": false,
-              "show": {
-                "icon": false,
-                "extrema": true,
-                "labels": true,
-                "points": false
+              "type": "custom:apexcharts-card",
+              "header": {
+                "show": true,
+                "title": "Download Speed",
+                "show_states": true,
+                "colorize_states": true
               },
-              "entities": [
+              "graph_span": "24h",
+              "all_series_config": {
+                "stroke_width": 2
+              },
+              "series": [
                 {
                   "entity": "sensor.asuswrt_download_speed",
-                  "name": "Download Speed"
+                  "show": {
+                    "extremas": true
+                  }
                 }
-              ]
+              ],
+              "apex_config": {
+                "grid": {
+                  "xaxis": {
+                    "lines": {
+                      "show": true
+                    }
+                  }
+                }
+              }
             },
             {
-              "type": "custom:mini-graph-card",
-              "name": "Upload Speed",
-              "align_state": "left",
-              "hour24": true,
-              "points_per_hour": 2,
-              "line_width": 3,
-              "font_size": 75,
-              "font_size_header": 22,
-              "smoothing": false,
-              "show": {
-                "icon": false,
-                "extrema": true,
-                "labels": true,
-                "points": false
+              "type": "custom:apexcharts-card",
+              "header": {
+                "show": true,
+                "title": "Upload Speed",
+                "show_states": true,
+                "colorize_states": true
               },
-              "entities": [
+              "graph_span": "24h",
+              "all_series_config": {
+                "stroke_width": 2
+              },
+              "series": [
                 {
                   "entity": "sensor.asuswrt_upload_speed",
-                  "name": "Upload Speed"
+                  "show": {
+                    "extremas": true
+                  }
                 }
-              ]
+              ],
+              "apex_config": {
+                "grid": {
+                  "xaxis": {
+                    "lines": {
+                      "show": true
+                    }
+                  }
+                }
+              }
             }
           ]
         },
