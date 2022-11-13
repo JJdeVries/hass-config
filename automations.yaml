@@ -3,8 +3,13 @@
   description: Turn on the mediacenter to the correct activity
   trigger:
   - platform: state
-    entity_id: media_player.living_room_tv
+    entity_id:
+    - media_player.living_room_tv
     to: playing
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 1
   condition:
   - condition: template
     value_template: '{{state_attr(use_remote, ''current_activity'') != harmony_activity}}'
@@ -15,8 +20,8 @@
       activity: '{{harmony_activity}}'
   - if:
     - condition: template
-      value_template: '"{{state_attr(player_id, ''volume_level'') > player_volume
-        + 0.1 or state_attr(player_id, ''volume_level'') < player_volume - 0.1}}"'
+      value_template: '{{state_attr(player_id, ''volume_level'') > player_volume +
+        0.1 or state_attr(player_id, ''volume_level'') < player_volume - 0.1}}'
     then:
     - delay:
         hours: 0

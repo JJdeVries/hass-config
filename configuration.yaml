@@ -66,6 +66,7 @@ template:
           mdi:clock-outline
         {% endif %}
 
+
 panel_custom:
   - name: ha_auto
     sidebar_title: Automations

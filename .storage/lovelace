@@ -7,7 +7,6 @@
       "title": "Home",
       "views": [
         {
-          "theme": "dark_teal",
           "path": "default_view",
           "title": "Home",
           "type": "custom:horizontal-layout",
@@ -677,10 +676,8 @@
                   "label_spacing": "2",
                   "num_segments": "12",
                   "show_precipitation_amounts": true,
-                  "show_wind": true,
-                  "card_mod": {
-                    "style": "ha-card {\n   border-width: 0px;\n} \n"
-                  }
+                  "show_wind": "true",
+                  "card_mod": "ha-card {\n  border-width: 0px;\n}\n"
                 },
                 {
                   "type": "custom:stack-in-card",
@@ -703,13 +700,11 @@
                       }
                     }
                   ],
-                  "card_mod": {
-                    "style": "ha-card {\n   border-width: 0px;\n} \n"
-                  }
+                  "card_mod": "ha-card {\n  border-width: 0px;\n}\n"
                 }
               ],
               "card_mod": {
-                "style": "ha-card {\n  border-radius: 25px;\n} \n"
+                "style": "ha-card {\n  border-radius: 25px;\n  border-width: 0px;\n} \n"
               }
             },
             {

@@ -14,3 +14,9 @@
   resources:
     - type: processor_use
     - type: memory_use_percent
+    
+- platform: statistics
+  name: "download cummulative negative"
+  entity_id: sensor.asuswrt_download
+  state_characteristic: change
+  sampling_size: 5
