@@ -57,15 +57,6 @@
                         "height": "46px"
                       },
                       {
-                        "background-color": "var(--background-color)"
-                      },
-                      {
-                        "border": "solid 2px var(--disabled-text-color)"
-                      },
-                      {
-                        "border-radius": "10px"
-                      },
-                      {
                         "font-size": "8px"
                       }
                     ],
@@ -127,15 +118,6 @@
                     "card": [
                       {
                         "height": "46px"
-                      },
-                      {
-                        "background-color": "var(--background-color)"
-                      },
-                      {
-                        "border-radius": "10px"
-                      },
-                      {
-                        "border": "solid 2px var(--disabled-text-color)"
                       },
                       {
                         "font-size": "8px"
@@ -212,15 +194,6 @@
                     "card": [
                       {
                         "height": "46px"
-                      },
-                      {
-                        "background-color": "var(--background-color)"
-                      },
-                      {
-                        "border-radius": "10px"
-                      },
-                      {
-                        "border": "solid 2px var(--disabled-text-color)"
                       }
                     ],
                     "tooltip": [
@@ -324,15 +297,6 @@
                         "height": "46px"
                       },
                       {
-                        "background-color": "var(--background-color)"
-                      },
-                      {
-                        "border-radius": "10px"
-                      },
-                      {
-                        "border": "solid 2px var(--disabled-text-color)"
-                      },
-                      {
                         "font-size": "10px"
                       }
                     ],
@@ -401,15 +365,6 @@
                     "card": [
                       {
                         "height": "46px"
-                      },
-                      {
-                        "background-color": "var(--background-color)"
-                      },
-                      {
-                        "border-radius": "10px"
-                      },
-                      {
-                        "border": "solid 2px var(--disabled-text-color)"
                       }
                     ],
                     "tooltip": [
@@ -440,8 +395,12 @@
                   "show_label": false,
                   "show_units": false,
                   "tap_action": {
-                    "action": "more-info",
-                    "haptic": "light"
+                    "action": "call-service",
+                    "haptic": "light",
+                    "service": "automation.trigger",
+                    "service_data": {
+                      "entity_id": "automation.daily_vacuuming"
+                    }
                   },
                   "state": [
                     {
@@ -481,15 +440,6 @@
                     "card": [
                       {
                         "height": "46px"
-                      },
-                      {
-                        "background-color": "var(--background-color)"
-                      },
-                      {
-                        "border-radius": "10px"
-                      },
-                      {
-                        "border": "solid 2px var(--disabled-text-color)"
                       }
                     ],
                     "tooltip": [
@@ -557,15 +507,6 @@
                     "card": [
                       {
                         "height": "46px"
-                      },
-                      {
-                        "background-color": "var(--background-color)"
-                      },
-                      {
-                        "border-radius": "10px"
-                      },
-                      {
-                        "border": "solid 2px var(--disabled-text-color)"
                       }
                     ],
                     "tooltip": [
@@ -597,7 +538,14 @@
                 },
                 {
                   "type": "custom:button-card",
-                  "color_type": "blank-card"
+                  "color_type": "blank-card",
+                  "styles": {
+                    "card": [
+                      {
+                        "border": "0px"
+                      }
+                    ]
+                  }
                 }
               ]
             },
@@ -605,52 +553,58 @@
               "type": "custom:layout-break"
             },
             {
-              "type": "entities",
-              "entities": [
+              "type": "vertical-stack",
+              "title": "| Livingroom lights",
+              "cards": [
                 {
-                  "type": "custom:fold-entity-row",
-                  "head": "light.livingroom_lights",
-                  "open": true,
+                  "type": "entities",
                   "entities": [
                     {
                       "type": "custom:fold-entity-row",
-                      "head": "light.tv_light",
+                      "head": "light.livingroom_lights",
+                      "open": true,
                       "entities": [
                         {
-                          "type": "custom:hui-element",
-                          "name": "Brightness",
-                          "card_type": "custom:mushroom-light-card",
-                          "entity": "light.tv_light",
-                          "show_brightness_control": true,
-                          "layout": "horizontal"
+                          "type": "custom:fold-entity-row",
+                          "head": "light.tv_light",
+                          "entities": [
+                            {
+                              "type": "custom:hui-element",
+                              "name": "Brightness",
+                              "card_type": "custom:mushroom-light-card",
+                              "entity": "light.tv_light",
+                              "show_brightness_control": true,
+                              "layout": "horizontal"
+                            },
+                            {
+                              "type": "custom:hui-element",
+                              "name": "Color",
+                              "card_type": "custom:mushroom-light-card",
+                              "entity": "light.tv_light",
+                              "show_color_temp_control": true,
+                              "layout": "horizontal"
+                            }
+                          ]
                         },
                         {
-                          "type": "custom:hui-element",
-                          "name": "Color",
-                          "card_type": "custom:mushroom-light-card",
-                          "entity": "light.tv_light",
-                          "show_color_temp_control": true,
-                          "layout": "horizontal"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "custom:fold-entity-row",
-                      "head": "light.table_lights",
-                      "entities": [
-                        {
-                          "type": "custom:hui-element",
-                          "name": "Brightness",
-                          "card_type": "custom:mushroom-light-card",
-                          "entity": "light.table_lights",
-                          "show_brightness_control": true,
-                          "layout": "horizontal"
-                        },
-                        {
-                          "type": "custom:hui-element",
-                          "name": "Color",
-                          "card_type": "custom:mushroom-light-card",
-                          "entity": "light.table_lights",
+                          "type": "custom:fold-entity-row",
+                          "head": "light.table_lights",
+                          "entities": [
+                            {
+                              "type": "custom:hui-element",
+                              "name": "Brightness",
+                              "card_type": "custom:mushroom-light-card",
+                              "entity": "light.table_lights",
+                              "show_brightness_control": true,
+                              "layout": "horizontal"
+                            },
+                            {
+                              "type": "custom:hui-element",
+                              "name": "Color",
+                              "card_type": "custom:mushroom-light-card",
+                              "entity": "light.table_lights"
+                            }
+                          ],
                           "show_color_temp_control": true,
                           "layout": "horizontal"
                         }
@@ -658,16 +612,23 @@
                     }
                   ]
                 }
-              ],
-              "title": "| Livingroom lights",
-              "card_mod": {
-                "style": "ha-card {\n  border-radius: 25px;\n} \n"
-              }
+              ]
             },
             {
-              "type": "entities",
+              "type": "vertical-stack",
               "title": "| Temperature",
-              "entities": [
+              "cards": [
+                {
+                  "type": "custom:hui-element",
+                  "icon": "mdi:fire",
+                  "name": "Livingroom",
+                  "card_type": "custom:mushroom-climate-card",
+                  "entity": "climate.cv_ketel",
+                  "fill_container": false,
+                  "show_temperature_control": true,
+                  "layout": "horizontal",
+                  "card_mod": "ha-card {\n  border-width: 0px\n}\n"
+                },
                 {
                   "type": "custom:hourly-weather",
                   "name": "",
@@ -676,44 +637,17 @@
                   "label_spacing": "2",
                   "num_segments": "12",
                   "show_precipitation_amounts": true,
-                  "show_wind": "true",
-                  "card_mod": "ha-card {\n  border-width: 0px;\n}\n"
-                },
-                {
-                  "type": "custom:stack-in-card",
-                  "mode": "horizontal",
-                  "keep": {
-                    "margin": true
-                  },
-                  "cards": [
-                    {
-                      "type": "custom:hui-element",
-                      "icon": "mdi:fire",
-                      "name": "Livingroom",
-                      "card_type": "custom:mushroom-climate-card",
-                      "entity": "climate.cv_ketel",
-                      "fill_container": false,
-                      "show_temperature_control": true,
-                      "layout": "horizontal",
-                      "card_mod": {
-                        "style": ":host {\n  --mush-rgb-state-climate-heat: var(--rgb-accent-color);\n}\nha-card {\n   border-width: 0px;\n}\n"
-                      }
-                    }
-                  ],
-                  "card_mod": "ha-card {\n  border-width: 0px;\n}\n"
+                  "show_wind": "true"
                 }
-              ],
-              "card_mod": {
-                "style": "ha-card {\n  border-radius: 25px;\n  border-width: 0px;\n} \n"
-              }
+              ]
             },
             {
               "type": "custom:layout-break"
             },
             {
-              "type": "entities",
+              "type": "vertical-stack",
               "title": "| Kevin the Vacuum",
-              "entities": [
+              "cards": [
                 {
                   "type": "custom:hui-element",
                   "card_type": "horizontal-stack",
@@ -754,9 +688,6 @@
                             "width": "120%"
                           }
                         ]
-                      },
-                      "card_mod": {
-                        "style": "ha-card {\n  border-width: 0px;\n} \n"
                       }
                     },
                     {
@@ -804,9 +735,6 @@
                             "width": "120%"
                           }
                         ]
-                      },
-                      "card_mod": {
-                        "style": "ha-card {\n  border-width: 0px;\n} \n"
                       }
                     },
                     {
@@ -853,9 +781,6 @@
                             "width": "120%"
                           }
                         ]
-                      },
-                      "card_mod": {
-                        "style": "ha-card {\n  border-width: 0px;\n} \n"
                       }
                     },
                     {
@@ -902,9 +827,6 @@
                             "width": "120%"
                           }
                         ]
-                      },
-                      "card_mod": {
-                        "style": "ha-card {\n  border-width: 0px;\n} \n"
                       }
                     },
                     {
@@ -948,9 +870,6 @@
                             "width": "120%"
                           }
                         ]
-                      },
-                      "card_mod": {
-                        "style": "ha-card {\n  border-width: 0px;\n} \n"
                       }
                     }
                   ]
@@ -960,77 +879,47 @@
                   "entity": "vacuum.xiaomi_vacuum_cleaner",
                   "vendor": "xiaomi",
                   "buttons": false,
-                  "name": false,
-                  "card_mod": {
-                    "style": "ha-card {\n  border-width: 0px;\n} \n"
-                  }
+                  "name": false
                 }
-              ],
-              "card_mod": {
-                "style": "ha-card {\n  border-radius: 25px;\n} \n"
-              }
+              ]
             },
             {
-              "type": "entities",
+              "type": "horizontal-stack",
               "title": "| Monitoring",
-              "entities": [
+              "cards": [
                 {
-                  "type": "custom:stack-in-card",
-                  "mode": "horizontal",
-                  "keep": {
-                    "margin": true
-                  },
-                  "cards": [
+                  "type": "custom:mini-graph-card",
+                  "name": "Home",
+                  "unit": "°C",
+                  "icon": "mdi:sofa",
+                  "entities": [
                     {
-                      "type": "custom:mini-graph-card",
-                      "name": "Home",
-                      "unit": "°C",
-                      "icon": "mdi:sofa",
-                      "entities": [
-                        {
-                          "entity": "climate.cv_ketel",
-                          "attribute": "current_temperature"
-                        }
-                      ],
-                      "hour24": true,
-                      "line_color": "var(--accent-color)",
-                      "card_mod": {
-                        "style": "ha-card {\n  border-width: 0px;\n} \n"
-                      }
-                    },
-                    {
-                      "type": "custom:mini-graph-card",
-                      "name": "CO2",
-                      "entities": [
-                        "sensor.mh_z19_co2_value"
-                      ],
-                      "points": 1,
-                      "hour24": true,
-                      "card_mod": {
-                        "style": "ha-card {\n  border-width: 0px;\n} \n"
-                      }
-                    },
-                    {
-                      "type": "custom:mini-graph-card",
-                      "name": "CV",
-                      "entities": [
-                        "sensor.cv_temperature"
-                      ],
-                      "hour24": true,
-                      "line_color": "var(--accent-color)",
-                      "card_mod": {
-                        "style": "ha-card {\n  border-width: 0px;\n} \n"
-                      }
+                      "entity": "climate.cv_ketel",
+                      "attribute": "current_temperature"
                     }
                   ],
-                  "card_mod": {
-                    "style": "ha-card {\n  border-width: 0px;\n} \n"
-                  }
+                  "hour24": true,
+                  "line_color": "var(--accent-color)"
+                },
+                {
+                  "type": "custom:mini-graph-card",
+                  "name": "CO2",
+                  "entities": [
+                    "sensor.mh_z19_co2_value"
+                  ],
+                  "points": 1,
+                  "hour24": true
+                },
+                {
+                  "type": "custom:mini-graph-card",
+                  "name": "CV",
+                  "entities": [
+                    "sensor.cv_temperature"
+                  ],
+                  "hour24": true,
+                  "line_color": "var(--accent-color)"
                 }
-              ],
-              "card_mod": {
-                "style": "ha-card {\n  border-radius: 25px;\n} \n"
-              }
+              ]
             },
             {
               "type": "custom:layout-break"
