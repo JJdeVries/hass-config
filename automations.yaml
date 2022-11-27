@@ -124,6 +124,7 @@
   - service: xiaomi_miio.vacuum_clean_segment
     data:
       segments:
+      - 17
       - 19
       - 18
     target:
