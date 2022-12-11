@@ -296,13 +296,12 @@
   trigger:
   - platform: time
     at: input_datetime.https_timer
-  condition:
-  - condition: template
-    value_template: '{{now().day == 1}}'
+  condition: []
   action:
+  - service: shell_command.install_openssh
+    data: {}
   - service: shell_command.recrypt
     data: {}
-    enabled: true
   - service: input_datetime.set_datetime
     data:
       date: '{{ now().date() + timedelta(days=90) }}'
