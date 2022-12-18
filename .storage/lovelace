@@ -602,10 +602,11 @@
                               "type": "custom:hui-element",
                               "name": "Color",
                               "card_type": "custom:mushroom-light-card",
-                              "entity": "light.table_lights"
+                              "entity": "light.table_lights",
+                              "show_color_temp_control": true,
+                              "layout": "horizontal"
                             }
                           ],
-                          "show_color_temp_control": true,
                           "layout": "horizontal"
                         }
                       ]
@@ -1015,7 +1016,7 @@
                     "red": 80
                   },
                   "needle": true,
-                  "name": "Memory use"
+                  "name": "Mem use"
                 }
               ]
             },
