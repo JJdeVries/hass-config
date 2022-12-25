@@ -366,7 +366,7 @@
   condition:
   - condition: time
     after: 06:00
-    before: '11:00'
+    before: '14:00:00'
   action:
   - service: light.turn_on
     target:
@@ -374,6 +374,7 @@
     data:
       brightness: 255
       transition: 15
+      color_temp: 241
   mode: single
 - id: '1639509271355'
   alias: 'CV: Outside Temperature Check'
