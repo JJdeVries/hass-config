@@ -928,6 +928,56 @@
           ]
         },
         {
+          "title": "Balkon",
+          "path": "balkon",
+          "icon": "mdi:gate",
+          "type": "sidebar",
+          "badges": [],
+          "cards": [
+            {
+              "type": "history-graph",
+              "entities": [
+                {
+                  "entity": "climate.cv_ketel"
+                },
+                {
+                  "entity": "sensor.outside_temperature"
+                }
+              ],
+              "hours_to_show": 24
+            },
+            {
+              "type": "history-graph",
+              "entities": [
+                {
+                  "entity": "sensor.cv_temperature"
+                },
+                {
+                  "entity": "sensor.outside_temperature"
+                }
+              ],
+              "hours_to_show": 24,
+              "refresh_interval": 0,
+              "title": "CV Temperature"
+            },
+            {
+              "chart_type": "line",
+              "period": "day",
+              "days_to_show": 35,
+              "type": "statistics-graph",
+              "entities": [
+                "sensor.cv_temperature"
+              ],
+              "title": "CV Temperature Statistics",
+              "stat_types": [
+                "mean",
+                "min",
+                "max"
+              ]
+            }
+          ]
+        },
+        {
           "theme": "Backend-selected",
           "title": "CPU",
           "path": "cpu",
@@ -1171,56 +1221,6 @@
                   }
                 }
               }
-            }
-          ]
-        },
-        {
-          "title": "Balkon",
-          "path": "balkon",
-          "icon": "mdi:gate",
-          "type": "sidebar",
-          "badges": [],
-          "cards": [
-            {
-              "type": "history-graph",
-              "entities": [
-                {
-                  "entity": "climate.cv_ketel"
-                },
-                {
-                  "entity": "sensor.outside_temperature"
-                }
-              ],
-              "hours_to_show": 24
-            },
-            {
-              "type": "history-graph",
-              "entities": [
-                {
-                  "entity": "sensor.cv_temperature"
-                },
-                {
-                  "entity": "sensor.outside_temperature"
-                }
-              ],
-              "hours_to_show": 24,
-              "refresh_interval": 0,
-              "title": "CV Temperature"
-            },
-            {
-              "chart_type": "line",
-              "period": "day",
-              "days_to_show": 35,
-              "type": "statistics-graph",
-              "entities": [
-                "sensor.cv_temperature"
-              ],
-              "title": "CV Temperature Statistics",
-              "stat_types": [
-                "mean",
-                "min",
-                "max"
-              ]
             }
           ]
         },
