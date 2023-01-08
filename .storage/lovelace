@@ -16,6 +16,17 @@
               "type": "horizontal-stack",
               "cards": [
                 {
+                  "type": "custom:button-card",
+                  "color_type": "blank-card",
+                  "styles": {
+                    "card": [
+                      {
+                        "border": "0px"
+                      }
+                    ]
+                  }
+                },
+                {
                   "entity": "person.nicole_verbeek",
                   "type": "custom:button-card",
                   "icon": "mdi:face-woman",
@@ -252,71 +263,6 @@
                   },
                   "custom_fields": {
                     "notification": "[[[ return states['climate.cv_ketel'].attributes.temperature ]]]\n"
-                  }
-                },
-                {
-                  "entity": "sensor.mh_z19_co2_value",
-                  "type": "custom:button-card",
-                  "icon": "mdi:molecule-co2",
-                  "show_name": false,
-                  "show_state": false,
-                  "show_label": false,
-                  "show_units": false,
-                  "tap_action": {
-                    "action": "more-info",
-                    "haptic": "light"
-                  },
-                  "state": [
-                    {
-                      "value": 1000,
-                      "operator": "<=",
-                      "styles": {
-                        "icon": [
-                          {
-                            "color": "var(--disabled-text-color)"
-                          }
-                        ]
-                      }
-                    },
-                    {
-                      "value": 1000,
-                      "operator": ">",
-                      "styles": {
-                        "icon": [
-                          {
-                            "color": "red"
-                          }
-                        ]
-                      }
-                    }
-                  ],
-                  "tooltip": "[[[ return 'CO2 level: ' + entity.state ]]]",
-                  "styles": {
-                    "card": [
-                      {
-                        "height": "46px"
-                      },
-                      {
-                        "font-size": "10px"
-                      }
-                    ],
-                    "tooltip": [
-                      {
-                        "top": "140%"
-                      },
-                      {
-                        "width": "120%"
-                      },
-                      {
-                        "transition-delay": "0s"
-                      },
-                      {
-                        "border": "solid 2px var(--disabled-text-color)"
-                      },
-                      {
-                        "border-radius": "10px"
-                      }
-                    ]
                   }
                 }
               ]
@@ -559,6 +505,9 @@
                 {
                   "type": "entities",
                   "entities": [
+                    {
+                      "entity": "switch.circadian_lighting_circadian_living_room"
+                    },
                     {
                       "type": "custom:fold-entity-row",
                       "head": "light.livingroom_lights",
@@ -886,7 +835,7 @@
             },
             {
               "type": "horizontal-stack",
-              "title": "| Monitoring",
+              "title": "| Monitoring Temperatures",
               "cards": [
                 {
                   "type": "custom:mini-graph-card",
@@ -901,15 +850,6 @@
                   ],
                   "hour24": true,
                   "line_color": "var(--accent-color)"
-                },
-                {
-                  "type": "custom:mini-graph-card",
-                  "name": "CO2",
-                  "entities": [
-                    "sensor.mh_z19_co2_value"
-                  ],
-                  "points": 1,
-                  "hour24": true
                 },
                 {
                   "type": "custom:mini-graph-card",
@@ -989,19 +929,6 @@
               "type": "horizontal-stack",
               "cards": [
                 {
-                  "type": "gauge",
-                  "entity": "sensor.mh_z19_co2_value",
-                  "name": "CO2 level",
-                  "max": 1200,
-                  "needle": true,
-                  "severity": {
-                    "green": 0,
-                    "yellow": 800,
-                    "red": 1000
-                  },
-                  "min": 500
-                },
-                {
                   "type": "custom:button-card",
                   "color_type": "blank-card"
                 },
@@ -1072,59 +999,6 @@
             },
             {
               "type": "custom:layout-break"
-            },
-            {
-              "type": "custom:apexcharts-card",
-              "header": {
-                "show": true,
-                "title": "Air quality monitor",
-                "show_states": true,
-                "colorize_states": true
-              },
-              "graph_span": "24h",
-              "all_series_config": {
-                "stroke_width": 2
-              },
-              "yaxis": [
-                {
-                  "id": "co2_yaxis",
-                  "min": 400,
-                  "max": 1200,
-                  "decimals": 0,
-                  "apex_config": {
-                    "tickAmount": 8
-                  }
-                },
-                {
-                  "id": "temp_yaxis",
-                  "opposite": true,
-                  "min": 15,
-                  "max": 35,
-                  "decimals": 0,
-                  "apex_config": {
-                    "tickAmount": 8
-                  }
-                }
-              ],
-              "series": [
-                {
-                  "entity": "sensor.mh_z19_co2_value",
-                  "yaxis_id": "co2_yaxis"
-                },
-                {
-                  "entity": "sensor.mh_z19_temperature",
-                  "yaxis_id": "temp_yaxis"
-                }
-              ],
-              "apex_config": {
-                "grid": {
-                  "xaxis": {
-                    "lines": {
-                      "show": true
-                    }
-                  }
-                }
-              }
             },
             {
               "type": "custom:apexcharts-card",

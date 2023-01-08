@@ -145,6 +145,10 @@
     before: '6:00'
   action:
   - scene: scene.night
+  - service: switch.turn_on
+    data: {}
+    target:
+      entity_id: switch.circadian_lighting_circadian_living_room
   mode: single
 - id: '1608038614647'
   alias: Goodmorning
@@ -374,7 +378,6 @@
     data:
       brightness: 255
       transition: 15
-      color_temp: 241
   mode: single
 - id: '1639509271355'
   alias: 'CV: Outside Temperature Check'
@@ -426,9 +429,6 @@
       entity_id: climate.cv_ketel
     data:
       temperature: '{{states(''input_number.cv_gone'')|float}}'
-  - service: notify.mobile_app_cph2399
-    data:
-      message: Nobody home... set temperature to {{states('input_number.cv_gone')|float}}
   mode: single
 - id: '1641898202596'
   alias: 'CV: Family Home'
@@ -443,14 +443,22 @@
     entity_id: binary_sensor.cv_time_schedule
     state: 'off'
   action:
-  - service: climate.set_temperature
-    target:
-      entity_id: climate.cv_ketel
-    data:
-      temperature: 0
-  - service: notify.mobile_app_cph2399
-    data:
-      message: Reset the CV time schedule
+  - if:
+    - condition: state
+      entity_id: person.nicole_verbeek
+      state: home
+    then:
+    - service: climate.set_temperature
+      data:
+        temperature: 0
+      target:
+        entity_id: climate.cv_ketel
+    else:
+    - service: climate.set_temperature
+      data:
+        temperature: 19
+      target:
+        entity_id: climate.cv_ketel
   mode: single
 - id: '1642757590717'
   alias: 'Media Center: Nobody Home'
@@ -515,13 +523,9 @@
   action:
   - service: climate.set_temperature
     data:
-      temperature: 20
+      temperature: 19
     target:
       entity_id: climate.cv_ketel
-  - service: notify.mobile_app_cph2399
-    data:
-      title: Setting lower temperature
-      message: Set the new livingroom temperature to 20.0
   mode: single
 - id: '1666267273499'
   alias: 'CV: Time triggered schedule reset'
