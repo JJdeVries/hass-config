@@ -543,10 +543,6 @@
       temperature: 0
     target:
       entity_id: climate.cv_ketel
-  - service: notify.mobile_app_cph2399
-    data:
-      title: Reset time schedule
-      message: Reset the time schedule as it is 23.00
   mode: single
 - id: '1666272604145'
   alias: 'CV: Nicole home'
@@ -566,8 +562,4 @@
       temperature: 0
     target:
       entity_id: climate.cv_ketel
-  - service: notify.mobile_app_cph2399
-    data:
-      title: Reset time schedule CV
-      message: Reset the time schedule
   mode: single
