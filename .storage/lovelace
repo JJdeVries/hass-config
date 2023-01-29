@@ -506,9 +506,6 @@
                   "type": "entities",
                   "entities": [
                     {
-                      "entity": "switch.circadian_lighting_circadian_living_room"
-                    },
-                    {
                       "type": "custom:fold-entity-row",
                       "head": "light.livingroom_lights",
                       "open": true,
@@ -559,6 +556,9 @@
                           "layout": "horizontal"
                         }
                       ]
+                    },
+                    {
+                      "entity": "switch.circadian_lighting_circadian_living_room"
                     }
                   ]
                 }
