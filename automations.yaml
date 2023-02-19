@@ -113,7 +113,7 @@
   description: Every night clean the living room, dining room and kitchen
   trigger:
   - platform: time
-    at: 06:00
+    at: '20:00:00'
   condition:
   - condition: state
     entity_id: vacuum.xiaomi_vacuum_cleaner
@@ -519,7 +519,7 @@
   - condition: numeric_state
     entity_id: climate.cv_ketel
     attribute: temperature
-    above: 20
+    above: 19
   action:
   - service: climate.set_temperature
     data:
