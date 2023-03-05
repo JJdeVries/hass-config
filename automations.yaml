@@ -113,7 +113,7 @@
   description: Every night clean the living room, dining room and kitchen
   trigger:
   - platform: time
-    at: '20:00:00'
+    at: '10:00:00'
   condition:
   - condition: state
     entity_id: vacuum.xiaomi_vacuum_cleaner
