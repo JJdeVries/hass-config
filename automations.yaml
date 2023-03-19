@@ -313,8 +313,10 @@
       entity_id: input_datetime.https_timer
   - service: notify.mobile_app_cph2399
     data:
-      message: 'Restart HA within 30 days! Next refresh will be done: {{states(''input_datetime.https_timer'')}}'
+      message: Restarting HA after encryption refresh.
       title: Encryption refresh
+  - service: homeassistant.restart
+    data: {}
   mode: single
 - id: '1623509943578'
   alias: 'Plant: Moisture'
@@ -336,7 +338,7 @@
   description: Ensure that the vacuum goes to the docking station
   trigger:
   - platform: time
-    at: 06:30
+    at: '11:00:00'
   condition:
   - condition: state
     entity_id: vacuum.xiaomi_vacuum_cleaner

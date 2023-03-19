@@ -588,6 +588,12 @@
                   "num_segments": "12",
                   "show_precipitation_amounts": true,
                   "show_wind": "true"
+                },
+                {
+                  "show_current": false,
+                  "show_forecast": true,
+                  "type": "weather-forecast",
+                  "entity": "weather.home"
                 }
               ]
             },
