@@ -1,11 +1,11 @@
 play_switch_on_tv:
   sequence:
   - choose:
-    - alias: "IF casting, stop!"
+    - alias: IF casting, stop!
       conditions:
-       - condition: template
-         alias: "Currently casting"
-         value_template: "{{states('media_player.living_room_tv') != 'off'}}"
+      - condition: template
+        alias: Currently casting
+        value_template: '{{states(''media_player.living_room_tv'') != ''off''}}'
       sequence:
       - service: media_player.media_stop
         target:
@@ -23,3 +23,23 @@ play_switch_on_tv:
   mode: single
   alias: Play Switch on TV
   icon: mdi:nintendo-switch
+toggle_vacuum:
+  alias: Toggle Vacuum
+  sequence:
+  - if:
+    - condition: state
+      entity_id: vacuum.xiaomi_vacuum_cleaner
+      state: docked
+    then:
+    - service: automation.trigger
+      data:
+        skip_condition: true
+      target:
+        entity_id: automation.daily_vacuuming
+    else:
+    - service: vacuum.return_to_base
+      data: {}
+      target:
+        entity_id: vacuum.xiaomi_vacuum_cleaner
+  mode: single
+  icon: mdi:robot-vacuum

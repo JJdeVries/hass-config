@@ -343,10 +343,7 @@
                   "tap_action": {
                     "action": "call-service",
                     "haptic": "light",
-                    "service": "automation.trigger",
-                    "service_data": {
-                      "entity_id": "automation.daily_vacuuming"
-                    }
+                    "service": "script.toggle_vacuum"
                   },
                   "state": [
                     {
