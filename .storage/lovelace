@@ -871,6 +871,620 @@
           ]
         },
         {
+          "icon": "mdi:lightbulb-group",
+          "title": "lights",
+          "type": "custom:horizontal-layout",
+          "subview": false,
+          "layout": {},
+          "badges": [],
+          "cards": [
+            {
+              "type": "horizontal-stack",
+              "cards": [
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "switch.circadian_lighting_circadian_living_room",
+                  "name": "Auto Light Color",
+                  "tap_action": {
+                    "action": "toggle"
+                  },
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "double_tap_action": {
+                    "action": "none"
+                  }
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "light.livingroom_lights",
+                  "tap_action": {
+                    "action": "toggle"
+                  },
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "double_tap_action": {
+                    "action": "none"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "horizontal-stack",
+              "cards": [
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "light.table_lights",
+                  "icon": "mdi:silverware",
+                  "tap_action": {
+                    "action": "toggle"
+                  },
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "double_tap_action": {
+                    "action": "none"
+                  }
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "light.tv_light",
+                  "icon": "mdi:television",
+                  "tap_action": {
+                    "action": "toggle"
+                  },
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "double_tap_action": {
+                    "action": "none"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "custom:layout-break"
+            },
+            {
+              "type": "vertical-stack",
+              "title": "Brightness",
+              "cards": [
+                {
+                  "type": "custom:slider-button-card",
+                  "entity": "light.livingroom_lights",
+                  "slider": {
+                    "direction": "left-right",
+                    "background": "gradient",
+                    "use_state_color": true,
+                    "use_percentage_bg_opacity": true,
+                    "show_track": false,
+                    "toggle_on_click": false,
+                    "force_square": false
+                  },
+                  "show_name": true,
+                  "show_state": true,
+                  "compact": true,
+                  "icon": {
+                    "show": true,
+                    "use_state_color": true,
+                    "tap_action": {
+                      "action": "more-info"
+                    },
+                    "icon": ""
+                  },
+                  "action_button": {
+                    "mode": "toggle",
+                    "icon": "mdi:power",
+                    "show": false,
+                    "show_spinner": true,
+                    "tap_action": {
+                      "action": "toggle"
+                    }
+                  }
+                },
+                {
+                  "type": "custom:slider-button-card",
+                  "entity": "light.table_lights",
+                  "slider": {
+                    "direction": "left-right",
+                    "background": "gradient",
+                    "use_state_color": true,
+                    "use_percentage_bg_opacity": true,
+                    "show_track": false,
+                    "toggle_on_click": false,
+                    "force_square": false
+                  },
+                  "show_name": true,
+                  "show_state": true,
+                  "compact": true,
+                  "icon": {
+                    "show": true,
+                    "use_state_color": true,
+                    "tap_action": {
+                      "action": "more-info"
+                    },
+                    "icon": "mdi:silverware"
+                  },
+                  "action_button": {
+                    "mode": "toggle",
+                    "icon": "mdi:power",
+                    "show": false,
+                    "show_spinner": true,
+                    "tap_action": {
+                      "action": "toggle"
+                    }
+                  }
+                },
+                {
+                  "type": "custom:slider-button-card",
+                  "entity": "light.tv_light",
+                  "slider": {
+                    "direction": "left-right",
+                    "background": "gradient",
+                    "use_state_color": true,
+                    "use_percentage_bg_opacity": true,
+                    "show_track": false,
+                    "toggle_on_click": false,
+                    "force_square": false
+                  },
+                  "show_name": true,
+                  "show_state": true,
+                  "compact": true,
+                  "icon": {
+                    "show": true,
+                    "use_state_color": true,
+                    "tap_action": {
+                      "action": "more-info"
+                    },
+                    "icon": "mdi:television"
+                  },
+                  "action_button": {
+                    "mode": "toggle",
+                    "icon": "mdi:power",
+                    "show": false,
+                    "show_spinner": true,
+                    "tap_action": {
+                      "action": "toggle"
+                    }
+                  },
+                  "name": "TV Light"
+                },
+                {
+                  "type": "custom:slider-button-card",
+                  "entity": "light.hall_light",
+                  "slider": {
+                    "direction": "left-right",
+                    "background": "gradient",
+                    "use_state_color": true,
+                    "use_percentage_bg_opacity": true,
+                    "show_track": false,
+                    "toggle_on_click": false,
+                    "force_square": false
+                  },
+                  "show_name": true,
+                  "show_state": true,
+                  "compact": true,
+                  "icon": {
+                    "show": true,
+                    "use_state_color": true,
+                    "tap_action": {
+                      "action": "more-info"
+                    },
+                    "icon": "mdi:door"
+                  },
+                  "action_button": {
+                    "mode": "toggle",
+                    "icon": "mdi:power",
+                    "show": false,
+                    "show_spinner": true,
+                    "tap_action": {
+                      "action": "toggle"
+                    }
+                  },
+                  "name": "Hall Light"
+                }
+              ]
+            },
+            {
+              "type": "vertical-stack",
+              "title": "Color",
+              "cards": [
+                {
+                  "type": "custom:slider-button-card",
+                  "entity": "light.livingroom_lights",
+                  "slider": {
+                    "direction": "left-right",
+                    "background": "gradient",
+                    "use_state_color": true,
+                    "use_percentage_bg_opacity": false,
+                    "show_track": false,
+                    "toggle_on_click": false,
+                    "force_square": false,
+                    "attribute": "color_temp"
+                  },
+                  "show_name": true,
+                  "show_state": false,
+                  "compact": true,
+                  "icon": {
+                    "show": true,
+                    "use_state_color": true,
+                    "tap_action": {
+                      "action": "more-info"
+                    },
+                    "icon": ""
+                  },
+                  "action_button": {
+                    "mode": "toggle",
+                    "icon": "mdi:power",
+                    "show": false,
+                    "show_spinner": true,
+                    "tap_action": {
+                      "action": "toggle"
+                    }
+                  }
+                },
+                {
+                  "type": "custom:slider-button-card",
+                  "entity": "light.table_lights",
+                  "slider": {
+                    "direction": "left-right",
+                    "background": "gradient",
+                    "use_state_color": true,
+                    "use_percentage_bg_opacity": true,
+                    "show_track": false,
+                    "toggle_on_click": false,
+                    "force_square": false,
+                    "attribute": "color_temp"
+                  },
+                  "show_name": true,
+                  "show_state": false,
+                  "compact": true,
+                  "icon": {
+                    "show": true,
+                    "use_state_color": true,
+                    "tap_action": {
+                      "action": "more-info"
+                    },
+                    "icon": "mdi:silverware"
+                  },
+                  "action_button": {
+                    "mode": "toggle",
+                    "icon": "mdi:power",
+                    "show": false,
+                    "show_spinner": true,
+                    "tap_action": {
+                      "action": "toggle"
+                    }
+                  }
+                },
+                {
+                  "type": "custom:slider-button-card",
+                  "entity": "light.tv_light",
+                  "slider": {
+                    "direction": "left-right",
+                    "background": "gradient",
+                    "use_state_color": true,
+                    "use_percentage_bg_opacity": true,
+                    "show_track": false,
+                    "toggle_on_click": false,
+                    "force_square": false,
+                    "attribute": "color_temp"
+                  },
+                  "show_name": true,
+                  "show_state": false,
+                  "compact": true,
+                  "icon": {
+                    "show": true,
+                    "use_state_color": true,
+                    "tap_action": {
+                      "action": "more-info"
+                    },
+                    "icon": "mdi:television"
+                  },
+                  "action_button": {
+                    "mode": "toggle",
+                    "icon": "mdi:power",
+                    "show": false,
+                    "show_spinner": true,
+                    "tap_action": {
+                      "action": "toggle"
+                    }
+                  },
+                  "name": "TV Light"
+                },
+                {
+                  "type": "custom:slider-button-card",
+                  "entity": "light.hall_light",
+                  "slider": {
+                    "direction": "left-right",
+                    "background": "gradient",
+                    "use_state_color": true,
+                    "use_percentage_bg_opacity": true,
+                    "show_track": false,
+                    "toggle_on_click": false,
+                    "force_square": false,
+                    "attribute": "color_temp"
+                  },
+                  "show_name": true,
+                  "show_state": false,
+                  "compact": true,
+                  "icon": {
+                    "show": true,
+                    "use_state_color": true,
+                    "tap_action": {
+                      "action": "more-info"
+                    },
+                    "icon": "mdi:door"
+                  },
+                  "action_button": {
+                    "mode": "toggle",
+                    "icon": "mdi:power",
+                    "show": false,
+                    "show_spinner": true,
+                    "tap_action": {
+                      "action": "toggle"
+                    }
+                  },
+                  "name": "Hall Light"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "TV",
+          "path": "tv",
+          "icon": "mdi:television",
+          "type": "custom:horizontal-layout",
+          "badges": [],
+          "cards": [
+            {
+              "type": "entities",
+              "entities": [
+                {
+                  "type": "custom:paper-buttons-row",
+                  "buttons": [
+                    {
+                      "entity": "remote.harmonyjorik",
+                      "preset": "mushroom",
+                      "layout": "icon|name",
+                      "name": "Cast",
+                      "icon": "mdi:cast",
+                      "state": "{{ state_attr(config.entity, 'current_activity')}}",
+                      "active": [
+                        "tv"
+                      ]
+                    },
+                    {
+                      "entity": "remote.harmonyjorik",
+                      "preset": "mushroom",
+                      "layout": "icon|name",
+                      "name": "Music",
+                      "icon": "mdi:spotify",
+                      "state": "{{ state_attr(config.entity, 'current_activity')}}",
+                      "active": [
+                        "stereo"
+                      ]
+                    },
+                    {
+                      "entity": "remote.harmonyjorik",
+                      "preset": "mushroom",
+                      "layout": "icon|name",
+                      "name": "Switch",
+                      "icon": "mdi:nintendo-switch",
+                      "state": "{{ state_attr(config.entity, 'current_activity')}}",
+                      "active": [
+                        "nintendo"
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:paper-buttons-row",
+                  "buttons": [
+                    {
+                      "entity": "remote.harmonyjorik",
+                      "preset": "mushroom",
+                      "layout": "icon|name",
+                      "name": "PS4",
+                      "icon": "mdi:sony-playstation",
+                      "state": "{{ state_attr(config.entity, 'current_activity')}}",
+                      "active": [
+                        "play ps4"
+                      ]
+                    },
+                    {
+                      "entity": "remote.harmonyjorik",
+                      "preset": "mushroom",
+                      "layout": "icon|state",
+                      "name": "Toggle",
+                      "icon": "mdi:power",
+                      "tap_action": {
+                        "action": "none"
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "entity": "remote.harmonyjorik",
+                  "name": "TV",
+                  "icon": "mdi:television",
+                  "state_color": false,
+                  "tooltip": false,
+                  "tap_action": {
+                    "action": "none"
+                  },
+                  "extend_paper_buttons_row": {
+                    "hide_state": true,
+                    "buttons": [
+                      {
+                        "entity": "remote.harmonyjorik",
+                        "icon": "mdi:power",
+                        "layout": "icon",
+                        "preset": "mushroom",
+                        "active": "nonexisting",
+                        "tap_action": {
+                          "action": "call-service",
+                          "service": "remote.send_command",
+                          "service_data": {
+                            "device": "Philips TV",
+                            "command": "PowerToggle"
+                          },
+                          "target": {
+                            "entity_id": "remote.harmonyjorik"
+                          }
+                        },
+                        "hold_action": {
+                          "action": "none"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "entity": "remote.harmonyjorik",
+                  "name": "Media Center",
+                  "icon": "mdi:amplifier",
+                  "state_color": false,
+                  "tooltip": false,
+                  "tap_action": {
+                    "action": "none"
+                  },
+                  "extend_paper_buttons_row": {
+                    "hide_state": true,
+                    "buttons": [
+                      {
+                        "entity": "remote.harmonyjorik",
+                        "icon": "mdi:power",
+                        "layout": "icon",
+                        "preset": "mushroom",
+                        "active": "nonexisting",
+                        "tap_action": {
+                          "action": "call-service",
+                          "service": "remote.send_command",
+                          "service_data": {
+                            "device": "Yamaha AV Receiver",
+                            "command": "PowerToggle"
+                          },
+                          "target": {
+                            "entity_id": "remote.harmonyjorik"
+                          }
+                        },
+                        "hold_action": {
+                          "action": "none"
+                        }
+                      }
+                    ]
+                  }
+                }
+              ],
+              "title": "TV Controls",
+              "state_color": true
+            },
+            {
+              "type": "vertical-stack",
+              "title": "Media Control",
+              "cards": [
+                {
+                  "type": "media-control",
+                  "entity": "media_player.living_room_tv"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "icon": "mdi:cat",
+          "title": "Pet Feeder",
+          "badges": [],
+          "cards": [
+            {
+              "type": "entities",
+              "entities": [
+                {
+                  "type": "custom:paper-buttons-row",
+                  "preset": "mushroom",
+                  "buttons": [
+                    {
+                      "entity": "select.de_foodzi_unit_feed",
+                      "icon": "mdi:silverware",
+                      "type": "button",
+                      "name": false,
+                      "action_name": "Feed",
+                      "styles": {
+                        "button": {
+                          "width": "100px"
+                        }
+                      },
+                      "tap_action": {
+                        "action": "call-service",
+                        "service": "select.select_option",
+                        "target": {
+                          "entity_id": "select.de_foodzi_unit_feed"
+                        },
+                        "service_data": {
+                          "option": "START"
+                        }
+                      },
+                      "tooltip": "Give one portion"
+                    },
+                    {
+                      "entity": "select.de_foodzi_unit_mode",
+                      "state_icons": {
+                        "manual": "mdi:hand-back-right",
+                        "schedule": "mdi:calendar"
+                      },
+                      "name": "{{states('select.de_foodzi_unit_mode')}}",
+                      "styles": {
+                        "button": {
+                          "width": "100px"
+                        }
+                      },
+                      "tooltip": "Change mode to schedule/manual",
+                      "tap_action": {
+                        "action": "call-service",
+                        "service": "select.select_previous",
+                        "service_data": {
+                          "cycle": true
+                        },
+                        "target": {
+                          "entity_id": "select.de_foodzi_unit_mode"
+                        }
+                      }
+                    },
+                    {
+                      "entity": "lock.de_foodzi_unit_child_lock",
+                      "name": false,
+                      "tooltip": "(Un)lock the buttons",
+                      "active": "locked",
+                      "styles": {
+                        "button": {
+                          "width": "100px"
+                        }
+                      }
+                    }
+                  ]
+                },
+                {
+                  "entity": "sensor.de_foodzi_unit_weight_per_day",
+                  "name": "Amount Today",
+                  "icon": "mdi:food",
+                  "secondary_info": "last-changed"
+                },
+                {
+                  "entity": "sensor.de_foodzi_unit_feeding_source",
+                  "name": "Last Source"
+                }
+              ],
+              "title": "Cake Feeder"
+            }
+          ]
+        },
+        {
           "title": "Balkon",
           "path": "balkon",
           "icon": "mdi:gate",

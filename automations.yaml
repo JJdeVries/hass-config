@@ -243,8 +243,8 @@
     input:
       end_percentage: '15'
       start_percentage: '100'
-      dim_start_time: '21:00:00'
-      dim_end_time: '22:30:00'
+      dim_start_time: '22:00:00'
+      dim_end_time: '23:00:00'
       output_light: light.livingroom_lights
       start_brightness: 255
       end_brightness: 70
@@ -373,6 +373,11 @@
   - condition: time
     after: 06:00
     before: '14:00:00'
+  - condition: numeric_state
+    entity_id: light.livingroom_lights
+    attribute: brightness
+    above: 0
+    below: 125
   action:
   - service: light.turn_on
     target:
