@@ -43,3 +43,33 @@ toggle_vacuum:
         entity_id: vacuum.xiaomi_vacuum_cleaner
   mode: single
   icon: mdi:robot-vacuum
+feed_portion:
+  alias: Feed portion
+  sequence:
+  - service: select.select_option
+    data:
+      option: START
+    target:
+      entity_id: select.de_foodzi_unit_feed
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 1
+      milliseconds: 0
+  - service: select.select_option
+    data:
+      option: START
+    target:
+      entity_id: select.de_foodzi_unit_feed
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 1
+      milliseconds: 0
+  - service: select.select_option
+    data:
+      option: START
+    target:
+      entity_id: select.de_foodzi_unit_feed
+  mode: single
+  icon: mdi:cat

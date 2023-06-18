@@ -1411,7 +1411,7 @@
                   "buttons": [
                     {
                       "entity": "select.de_foodzi_unit_feed",
-                      "icon": "mdi:silverware",
+                      "icon": "mdi:silverware-spoon",
                       "type": "button",
                       "name": false,
                       "action_name": "Feed",
@@ -1431,6 +1431,23 @@
                         }
                       },
                       "tooltip": "Give one portion"
+                    },
+                    {
+                      "entity": "select.de_foodzi_unit_feed",
+                      "icon": "mdi:silverware",
+                      "type": "button",
+                      "name": false,
+                      "action_name": "Feed",
+                      "styles": {
+                        "button": {
+                          "width": "100px"
+                        }
+                      },
+                      "tap_action": {
+                        "action": "call-service",
+                        "service": "script.feed_portion"
+                      },
+                      "tooltip": "Give three portions"
                     },
                     {
                       "entity": "select.de_foodzi_unit_mode",
