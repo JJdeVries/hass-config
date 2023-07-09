@@ -570,3 +570,128 @@
     target:
       entity_id: climate.cv_ketel
   mode: single
+- id: '1688547349397'
+  alias: 'Vacuum: Start Smart'
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - group.humans
+    to: not_home
+  - platform: time
+    at: '10:00:00'
+  condition:
+  - condition: template
+    value_template: '{{ now() > ((states(''input_datetime.vacuum_last_run'') | as_datetime
+      | as_local) + timedelta(days=1)) }}
+
+      '
+  - condition: time
+    after: 07:00:00
+    before: '21:30:00'
+  - condition: or
+    conditions:
+    - condition: state
+      entity_id: group.humans
+      state: not_home
+    - condition: template
+      value_template: '{{ now() > ((states(''input_datetime.vacuum_last_run'') | as_datetime
+        | as_local) + timedelta(days=2)) }}
+
+        '
+  action:
+  - service: xiaomi_miio.vacuum_clean_segment
+    data:
+      segments:
+      - 17
+      - 19
+      - 18
+    enabled: true
+    target:
+      entity_id: vacuum.xiaomi_vacuum_cleaner
+  - service: input_datetime.set_datetime
+    data:
+      datetime: '{{now()}}'
+    target:
+      entity_id: input_datetime.vacuum_last_run
+  - service: notify.mobile_app_cph2399
+    data:
+      message: Started the Vacuum!
+      title: Vacuum
+  mode: single
+- id: '1688713069146'
+  alias: 'Vacuum: Count cleans'
+  description: Count nr. of cleans since last empty
+  trigger:
+  - platform: state
+    entity_id:
+    - vacuum.xiaomi_vacuum_cleaner
+    to: docked
+    from: cleaning
+  condition: []
+  action:
+  - service: counter.increment
+    data: {}
+    target:
+      entity_id: counter.vacuum_cleans
+  mode: single
+- id: '1688713787013'
+  alias: 'Vacuum: Notify Vacuum Full'
+  description: Notify when the vacuum needs to be emptied
+  trigger:
+  - platform: numeric_state
+    entity_id: counter.vacuum_cleans
+    above: 5
+  condition: []
+  action:
+  - alias: Create event variables
+    variables:
+      action_empty: '{{ ''EMPTY_'' ~ context.id }}'
+      action_ignore: '{{ ''IGNORE_'' ~ context.id }}'
+  - service: notify.mobile_app_cph2399
+    alias: Ask Jorik to empty the vacuum
+    data:
+      data:
+        actions:
+        - action:
+            '[object Object]':
+          title: Emptied
+        - action:
+            '[object Object]':
+          title: Cancel
+      message: The vacuum has now run {{states('counter.vacuum_cleans')}} times since
+        last clean!
+  - wait_for_trigger:
+    - platform: event
+      event_type: mobile_app_notification_action
+      context:
+        user_id:
+        - 9f03360d711f4db08a2d4b97a271f6e8
+      event_data:
+        action:
+          '[object Object]':
+    - platform: event
+      event_type: mobile_app_notification_action
+      event_data:
+        action:
+          '[object Object]':
+      context:
+        user_id:
+        - 9f03360d711f4db08a2d4b97a271f6e8
+    - platform: event
+      event_type: mobile_app_notification_cleared
+      context:
+        user_id:
+        - 9f03360d711f4db08a2d4b97a271f6e8
+    alias: Wait for response
+  - choose:
+    - conditions:
+      - condition: template
+        value_template: '"{{ wait.trigger.event.data.action == action_empty }}"'
+      sequence:
+      - service: counter.reset
+        data: {}
+        target:
+          entity_id: counter.vacuum_cleans
+    alias: Clear counter if emptied
+  mode: single
