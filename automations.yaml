@@ -627,7 +627,7 @@
     entity_id:
     - vacuum.xiaomi_vacuum_cleaner
     to: docked
-    from: cleaning
+    from: returning
   condition: []
   action:
   - service: counter.increment
