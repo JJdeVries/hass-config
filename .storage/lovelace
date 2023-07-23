@@ -1163,122 +1163,6 @@
           ]
         },
         {
-          "icon": "mdi:cat",
-          "title": "Pet Feeder",
-          "badges": [],
-          "cards": [
-            {
-              "type": "entities",
-              "entities": [
-                {
-                  "type": "custom:paper-buttons-row",
-                  "preset": "mushroom",
-                  "buttons": [
-                    {
-                      "entity": "select.de_foodzi_unit_feed",
-                      "icon": "mdi:silverware",
-                      "type": "button",
-                      "name": false,
-                      "action_name": "Feed",
-                      "ripple": "fill",
-                      "styles": {
-                        "button": {
-                          "width": "100px",
-                          "box-sizing": "border-box",
-                          "border-radius": "12px",
-                          "--pbs-button-rgb-bg-opacity": 0.2
-                        }
-                      },
-                      "tap_action": {
-                        "action": "call-service",
-                        "service": "select.select_option",
-                        "target": {
-                          "entity_id": "select.de_foodzi_unit_feed"
-                        },
-                        "service_data": {
-                          "option": "START"
-                        }
-                      },
-                      "tooltip": "Give one portion"
-                    },
-                    {
-                      "entity": "select.de_foodzi_unit_mode",
-                      "ripple": "fill",
-                      "state_icons": {
-                        "manual": "mdi:hand-back-right",
-                        "schedule": "mdi:calendar"
-                      },
-                      "name": "{{states('select.de_foodzi_unit_mode')}}",
-                      "state_styles": {
-                        "schedule": {
-                          "button": {
-                            "--pbs-button-rgb-color": "255,0,0"
-                          }
-                        }
-                      },
-                      "styles": {
-                        "button": {
-                          "width": "100px",
-                          "box-sizing": "border-box",
-                          "border-radius": "12px",
-                          "--pbs-button-rgb-bg-opacity": 0.2
-                        }
-                      },
-                      "tooltip": "Change mode to schedule/manual",
-                      "tap_action": {
-                        "confirmation": {
-                          "text": "You will be changing the feeding source (to either schedule or manual)\n"
-                        },
-                        "action": "call-service",
-                        "service": "select.select_previous",
-                        "service_data": {
-                          "cycle": true
-                        },
-                        "target": {
-                          "entity_id": "select.de_foodzi_unit_mode"
-                        }
-                      }
-                    },
-                    {
-                      "entity": "lock.de_foodzi_unit_child_lock",
-                      "name": false,
-                      "tooltip": "(Un)lock the buttons",
-                      "active": "locked",
-                      "ripple": "fill",
-                      "state_styles": {
-                        "unlocked": {
-                          "button": {
-                            "--pbs-button-rgb-color": "255,0,0"
-                          }
-                        }
-                      },
-                      "styles": {
-                        "button": {
-                          "width": "100px",
-                          "box-sizing": "border-box",
-                          "border-radius": "12px",
-                          "--pbs-button-rgb-bg-opacity": 0.2
-                        }
-                      }
-                    }
-                  ]
-                },
-                {
-                  "entity": "sensor.de_foodzi_unit_weight_per_day",
-                  "name": "Amount Today",
-                  "icon": "mdi:food",
-                  "secondary_info": "last-changed"
-                },
-                {
-                  "entity": "sensor.de_foodzi_unit_feeding_source",
-                  "name": "Last Source"
-                }
-              ],
-              "title": "Cake Feeder"
-            }
-          ]
-        },
-        {
           "title": "Kevin the Vacuum",
           "path": "v",
           "icon": "mdi:robot-vacuum",
@@ -1459,6 +1343,204 @@
                   "name": false
                 }
               ]
+            }
+          ]
+        },
+        {
+          "icon": "mdi:cat",
+          "title": "Pet Feeder",
+          "badges": [],
+          "cards": [
+            {
+              "type": "entities",
+              "entities": [
+                {
+                  "type": "custom:paper-buttons-row",
+                  "preset": "mushroom",
+                  "buttons": [
+                    {
+                      "entity": "script.feed_portions",
+                      "icon": "mdi:silverware",
+                      "type": "button",
+                      "name": false,
+                      "action_name": "Feed",
+                      "ripple": "fill",
+                      "state_styles": {
+                        "on": {
+                          "button": {
+                            "animation": "blink 1s ease infinite",
+                            "pointer-events": "none"
+                          }
+                        }
+                      },
+                      "styles": {
+                        "button": {
+                          "border-radius": "12px",
+                          "--pbs-button-rgb-bg-opacity": 0.2
+                        }
+                      },
+                      "tap_action": {
+                        "action": "call-service",
+                        "service": "script.feed_portion",
+                        "service_data": {
+                          "nr": 3,
+                          "delay": {
+                            "hours": 0,
+                            "minutes": 5,
+                            "seconds": 0,
+                            "milliseconds": 0
+                          }
+                        },
+                        "confirmation": {
+                          "text": "Are you sure you want to give 3 portions of 7 gram (21 in total) with 5 minutes inbetween?"
+                        }
+                      },
+                      "tooltip": "Give three portions"
+                    },
+                    {
+                      "entity": "select.de_foodzi_unit_mode",
+                      "ripple": "fill",
+                      "state_icons": {
+                        "manual": "mdi:hand-back-right",
+                        "schedule": "mdi:calendar"
+                      },
+                      "name": false,
+                      "state_styles": {
+                        "schedule": {
+                          "button": {
+                            "--pbs-button-rgb-color": "255,0,0"
+                          }
+                        }
+                      },
+                      "styles": {
+                        "button": {
+                          "border-radius": "12px",
+                          "--pbs-button-rgb-bg-opacity": 0.2
+                        }
+                      },
+                      "tooltip": "Change mode to schedule/manual",
+                      "tap_action": {
+                        "confirmation": {
+                          "text": "You will be changing the feeding source (to either schedule or manual)\n"
+                        },
+                        "action": "call-service",
+                        "service": "select.select_previous",
+                        "service_data": {
+                          "cycle": true
+                        },
+                        "target": {
+                          "entity_id": "select.de_foodzi_unit_mode"
+                        }
+                      }
+                    },
+                    {
+                      "entity": "lock.de_foodzi_unit_child_lock",
+                      "name": false,
+                      "tooltip": "(Un)lock the buttons",
+                      "active": "locked",
+                      "ripple": "fill",
+                      "state_styles": {
+                        "unlocked": {
+                          "button": {
+                            "--pbs-button-rgb-color": "255,0,0"
+                          }
+                        }
+                      },
+                      "styles": {
+                        "button": {
+                          "border-radius": "12px",
+                          "--pbs-button-rgb-bg-opacity": 0.2
+                        }
+                      }
+                    },
+                    {
+                      "entity": "script.feed_portions",
+                      "icon": "mdi:silverware-spoon",
+                      "type": "button",
+                      "name": false,
+                      "action_name": "Feed",
+                      "ripple": "fill",
+                      "state_styles": {
+                        "on": {
+                          "button": {
+                            "animation": "blink 1s ease infinite",
+                            "pointer-events": "none"
+                          }
+                        }
+                      },
+                      "styles": {
+                        "button": {
+                          "border-radius": "12px",
+                          "--pbs-button-rgb-bg-opacity": 0.2
+                        }
+                      },
+                      "tap_action": {
+                        "action": "call-service",
+                        "service": "script.feed_portion",
+                        "service_data": {
+                          "nr": 1,
+                          "delay": {
+                            "hours": 0,
+                            "minutes": 0,
+                            "seconds": 0,
+                            "milliseconds": 0
+                          }
+                        }
+                      },
+                      "tooltip": "Give one portion"
+                    },
+                    {
+                      "entity": "script.feed_portions",
+                      "icon": "mdi:close-box",
+                      "type": "button",
+                      "name": false,
+                      "action_name": "Feed",
+                      "ripple": "fill",
+                      "state_styles": {
+                        "on": {
+                          "button": {
+                            "--pbs-button-rgb-active-color": "255,0,0"
+                          }
+                        },
+                        "off": {
+                          "button": {
+                            "pointer-events": "none",
+                            "--pbs-button-rgb-color": "125,125,125"
+                          }
+                        }
+                      },
+                      "styles": {
+                        "button": {
+                          "border-radius": "12px",
+                          "--pbs-button-rgb-bg-opacity": 0.2
+                        }
+                      },
+                      "tap_action": {
+                        "action": "call-service",
+                        "service": "script.turn_off",
+                        "service_data": {
+                          "entity_id": "script.feed_portions"
+                        },
+                        "confirmation": {
+                          "text": "Do you want to cancel the food"
+                        }
+                      },
+                      "tooltip": "Cancel the running food schedule"
+                    }
+                  ]
+                },
+                {
+                  "entity": "sensor.de_foodzi_unit_weight_per_day",
+                  "name": "Amount Today",
+                  "icon": "mdi:food",
+                  "secondary_info": "last-changed"
+                },
+                {
+                  "entity": "sensor.de_foodzi_unit_feeding_source",
+                  "name": "Last Source"
+                }
+              ],
+              "title": "Cake Feeder"
             }
           ]
         },
