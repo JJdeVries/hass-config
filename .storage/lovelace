@@ -1015,7 +1015,18 @@
                       "state": "{{ state_attr(config.entity, 'current_activity')}}",
                       "active": [
                         "tv"
-                      ]
+                      ],
+                      "tap_action": {
+                        "action": "call-service",
+                        "service": "remote.turn_on",
+                        "service_data": {
+                          "entity_id": "remote.harmonyjorik",
+                          "activity": "Tv"
+                        }
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      }
                     },
                     {
                       "entity": "remote.harmonyjorik",
@@ -1026,7 +1037,18 @@
                       "state": "{{ state_attr(config.entity, 'current_activity')}}",
                       "active": [
                         "stereo"
-                      ]
+                      ],
+                      "tap_action": {
+                        "action": "call-service",
+                        "service": "remote.turn_on",
+                        "service_data": {
+                          "entity_id": "remote.harmonyjorik",
+                          "activity": "Stereo"
+                        }
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      }
                     },
                     {
                       "entity": "remote.harmonyjorik",
@@ -1037,7 +1059,18 @@
                       "state": "{{ state_attr(config.entity, 'current_activity')}}",
                       "active": [
                         "nintendo"
-                      ]
+                      ],
+                      "tap_action": {
+                        "action": "call-service",
+                        "service": "remote.turn_on",
+                        "service_data": {
+                          "entity_id": "remote.harmonyjorik",
+                          "activity": "Nintendo"
+                        }
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      }
                     }
                   ]
                 },
@@ -1053,7 +1086,18 @@
                       "state": "{{ state_attr(config.entity, 'current_activity')}}",
                       "active": [
                         "play ps4"
-                      ]
+                      ],
+                      "tap_action": {
+                        "action": "call-service",
+                        "service": "remote.turn_on",
+                        "service_data": {
+                          "entity_id": "remote.harmonyjorik",
+                          "activity": "Play PS4"
+                        }
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      }
                     },
                     {
                       "entity": "remote.harmonyjorik",
