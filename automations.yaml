@@ -108,28 +108,6 @@
       brightness: '{{ states("input_number.hall_brightness") | int }}'
     entity_id: light.hall_light
   mode: single
-- id: '1605718602600'
-  alias: 'Vacuum: Clean Schedule'
-  description: Every night clean the living room, dining room and kitchen
-  trigger:
-  - platform: time
-    at: '10:00:00'
-  condition:
-  - condition: state
-    entity_id: vacuum.xiaomi_vacuum_cleaner
-    state: docked
-  - condition: template
-    value_template: '{{not state_attr(''vacuum.xiaomi_vacuum_cleaner'', ''mop_attached'')}}'
-  action:
-  - service: xiaomi_miio.vacuum_clean_segment
-    data:
-      segments:
-      - 17
-      - 19
-      - 18
-    target:
-      entity_id: vacuum.xiaomi_vacuum_cleaner
-  mode: single
 - id: '1607868672746'
   alias: Goodnight
   description: Let's shutdown everything
@@ -603,9 +581,9 @@
   - service: xiaomi_miio.vacuum_clean_segment
     data:
       segments:
+      - 18
       - 17
       - 19
-      - 18
     enabled: true
     target:
       entity_id: vacuum.xiaomi_vacuum_cleaner
@@ -639,10 +617,14 @@
   alias: 'Vacuum: Notify Vacuum Full'
   description: Notify when the vacuum needs to be emptied
   trigger:
-  - platform: numeric_state
+  - platform: state
+    entity_id:
+    - counter.vacuum_cleans
+    to:
+  condition:
+  - condition: numeric_state
     entity_id: counter.vacuum_cleans
     above: 5
-  condition: []
   action:
   - alias: Create event variables
     variables:
