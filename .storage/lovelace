@@ -1443,6 +1443,7 @@
                     },
                     {
                       "entity": "select.de_foodzi_unit_mode",
+                      "icon": "mdi:close-thick",
                       "ripple": "fill",
                       "state_icons": {
                         "manual": "mdi:hand-back-right",

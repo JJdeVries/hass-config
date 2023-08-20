@@ -626,23 +626,18 @@
     entity_id: counter.vacuum_cleans
     above: 5
   action:
-  - alias: Create event variables
-    variables:
-      action_empty: '{{ ''EMPTY_'' ~ context.id }}'
-      action_ignore: '{{ ''IGNORE_'' ~ context.id }}'
   - service: notify.mobile_app_cph2399
     alias: Ask Jorik to empty the vacuum
     data:
       data:
         actions:
-        - action:
-            '[object Object]':
+        - action: VACUUM_EMPTIED
           title: Emptied
-        - action:
-            '[object Object]':
+        - action: VACUUM_IGNORED
           title: Cancel
       message: The vacuum has now run {{states('counter.vacuum_cleans')}} times since
         last clean!
+    enabled: true
   - wait_for_trigger:
     - platform: event
       event_type: mobile_app_notification_action
@@ -650,13 +645,11 @@
         user_id:
         - 9f03360d711f4db08a2d4b97a271f6e8
       event_data:
-        action:
-          '[object Object]':
+        action: VACUUM_EMPTIED
     - platform: event
       event_type: mobile_app_notification_action
       event_data:
-        action:
-          '[object Object]':
+        action: VACUUM_IGNORED
       context:
         user_id:
         - 9f03360d711f4db08a2d4b97a271f6e8
@@ -666,14 +659,18 @@
         user_id:
         - 9f03360d711f4db08a2d4b97a271f6e8
     alias: Wait for response
+    enabled: true
   - choose:
     - conditions:
       - condition: template
-        value_template: '"{{ wait.trigger.event.data.action == action_empty }}"'
+        value_template: '{{ wait.trigger.event.data.action == ''VACUUM_EMPTIED'' }}'
       sequence:
       - service: counter.reset
         data: {}
         target:
           entity_id: counter.vacuum_cleans
+        enabled: true
     alias: Clear counter if emptied
-  mode: single
+    enabled: true
+  mode: parallel
+  max: 10
