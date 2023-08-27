@@ -1376,6 +1376,11 @@
                           }
                         ]
                       }
+                    },
+                    {
+                      "entity": "counter.vacuum_cleans",
+                      "name": "Nr. cleans since empty",
+                      "icon": "mdi:trash-can"
                     }
                   ]
                 },
@@ -1681,18 +1686,6 @@
                 },
                 {
                   "type": "gauge",
-                  "entity": "sensor.gpu_temp",
-                  "name": "GPU Temp",
-                  "max": 100,
-                  "needle": true,
-                  "severity": {
-                    "green": 0,
-                    "yellow": 75,
-                    "red": 85
-                  }
-                },
-                {
-                  "type": "gauge",
                   "entity": "sensor.processor_use",
                   "max": 100,
                   "min": 0,
@@ -1721,39 +1714,6 @@
             },
             {
               "type": "custom:layout-break"
-            },
-            {
-              "type": "custom:apexcharts-card",
-              "header": {
-                "show": true,
-                "title": "CPU Performance",
-                "show_states": true,
-                "colorize_states": true
-              },
-              "all_series_config": {
-                "stroke_width": 1
-              },
-              "apex_config": {
-                "yaxis": {
-                  "min": 0,
-                  "max": 100,
-                  "tickAmount": 5
-                }
-              },
-              "series": [
-                {
-                  "entity": "sensor.processor_use"
-                },
-                {
-                  "entity": "sensor.memory_use_percent"
-                },
-                {
-                  "entity": "sensor.gpu_temp"
-                },
-                {
-                  "entity": "sensor.cpu_temperature"
-                }
-              ]
             },
             {
               "type": "custom:layout-break"
