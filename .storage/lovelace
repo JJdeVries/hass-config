@@ -1674,18 +1674,6 @@
               "cards": [
                 {
                   "type": "gauge",
-                  "entity": "sensor.cpu_temperature",
-                  "name": "CPU Temp",
-                  "max": 100,
-                  "needle": true,
-                  "severity": {
-                    "green": 0,
-                    "yellow": 75,
-                    "red": 85
-                  }
-                },
-                {
-                  "type": "gauge",
                   "entity": "sensor.processor_use",
                   "max": 100,
                   "min": 0,

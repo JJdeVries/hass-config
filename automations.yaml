@@ -549,53 +549,25 @@
       entity_id: climate.cv_ketel
   mode: single
 - id: '1688547349397'
-  alias: 'Vacuum: Start Smart'
+  alias: 'Vacuum: Start Nobody Home'
   description: ''
   trigger:
   - platform: state
     entity_id:
     - group.humans
     to: not_home
-  - platform: time
-    at: '10:00:00'
   condition:
   - condition: template
     value_template: '{{ now() > ((states(''input_datetime.vacuum_last_run'') | as_datetime
-      | as_local) + timedelta(days=1)) }}
+      | as_local) + timedelta(hours=12)) }}
 
       '
   - condition: time
     after: 07:00:00
     before: '21:30:00'
-  - condition: or
-    conditions:
-    - condition: state
-      entity_id: group.humans
-      state: not_home
-    - condition: template
-      value_template: '{{ now() > ((states(''input_datetime.vacuum_last_run'') | as_datetime
-        | as_local) + timedelta(days=2)) }}
-
-        '
   action:
-  - service: xiaomi_miio.vacuum_clean_segment
-    data:
-      segments:
-      - 18
-      - 17
-      - 19
-    enabled: true
-    target:
-      entity_id: vacuum.xiaomi_vacuum_cleaner
-  - service: input_datetime.set_datetime
-    data:
-      datetime: '{{now()}}'
-    target:
-      entity_id: input_datetime.vacuum_last_run
-  - service: notify.mobile_app_cph2399
-    data:
-      message: Started the Vacuum!
-      title: Vacuum
+  - service: script.start_vacuum
+    data: {}
   mode: single
 - id: '1688713069146'
   alias: 'Vacuum: Count cleans'
@@ -624,7 +596,7 @@
   condition:
   - condition: numeric_state
     entity_id: counter.vacuum_cleans
-    above: 5
+    above: 4
   action:
   - service: notify.mobile_app_cph2399
     alias: Ask Jorik to empty the vacuum
@@ -674,3 +646,20 @@
     enabled: true
   mode: parallel
   max: 10
+- id: '1693671628676'
+  alias: 'Vacuum: Start Enforce'
+  description: ''
+  trigger:
+  - platform: time
+    at: '10:00:00'
+  condition:
+  - condition: template
+    value_template: '{{ now() > ((states(''input_datetime.vacuum_last_run'') | as_datetime
+      | as_local) + timedelta(days=2)) }}
+
+      '
+    alias: Check last clean is 2 days ago
+  action:
+  - service: script.start_vacuum
+    data: {}
+  mode: single
