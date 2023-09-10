@@ -113,3 +113,20 @@ start_vacuum:
       title: Vacuum
   mode: single
   icon: mdi:robot-vacuum
+empty_kevin:
+  alias: Empty Kevin
+  use_blueprint:
+    path: homeassistant/confirmable_notification.yaml
+    input:
+      notify_device: d5ba21a97c160a3f6bd86a06d9a51a0e
+      title: Kevin is full!
+      message: You should empty Kevin! It has run {{ states("counter.vacuum_cleans")
+        }} times since last empty
+      confirm_text: Emptied
+      confirm_action:
+      - service: counter.reset
+        data: {}
+        target:
+          entity_id: counter.vacuum_cleans
+      dismiss_text: Nope...
+  icon: mdi:trash-can

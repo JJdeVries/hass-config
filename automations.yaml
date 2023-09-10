@@ -609,7 +609,7 @@
           title: Cancel
       message: The vacuum has now run {{states('counter.vacuum_cleans')}} times since
         last clean!
-    enabled: true
+    enabled: false
   - wait_for_trigger:
     - platform: event
       event_type: mobile_app_notification_action
@@ -631,7 +631,7 @@
         user_id:
         - 9f03360d711f4db08a2d4b97a271f6e8
     alias: Wait for response
-    enabled: true
+    enabled: false
   - choose:
     - conditions:
       - condition: template
@@ -643,7 +643,9 @@
           entity_id: counter.vacuum_cleans
         enabled: true
     alias: Clear counter if emptied
-    enabled: true
+    enabled: false
+  - service: script.empty_kevin
+    data: {}
   mode: parallel
   max: 10
 - id: '1693671628676'
