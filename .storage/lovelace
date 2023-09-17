@@ -1381,6 +1381,11 @@
                       "entity": "counter.vacuum_cleans",
                       "name": "Nr. cleans since empty",
                       "icon": "mdi:trash-can"
+                    },
+                    {
+                      "entity": "input_datetime.vacuum_last_run",
+                      "name": "Last clean",
+                      "icon": "mdi:calendar"
                     }
                   ]
                 },

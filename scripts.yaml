@@ -111,6 +111,7 @@ start_vacuum:
     data:
       message: Started the Vacuum!
       title: Vacuum
+    enabled: false
   mode: single
   icon: mdi:robot-vacuum
 empty_kevin:
