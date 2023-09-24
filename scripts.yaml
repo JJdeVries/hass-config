@@ -104,7 +104,7 @@ start_vacuum:
       entity_id: vacuum.xiaomi_vacuum_cleaner
   - service: input_datetime.set_datetime
     data:
-      datetime: '{{now()}}'
+      datetime: '{{as_timestamp(now()) | timestamp_custom(''%Y-%m-%d %H:%M:00'')}}'
     target:
       entity_id: input_datetime.vacuum_last_run
   - service: notify.mobile_app_cph2399

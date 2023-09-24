@@ -1383,8 +1383,8 @@
                       "icon": "mdi:trash-can"
                     },
                     {
-                      "entity": "input_datetime.vacuum_last_run",
-                      "name": "Last clean",
+                      "entity": "sensor.last_clean_time_ago",
+                      "name": "Time since last clean",
                       "icon": "mdi:calendar"
                     }
                   ]
