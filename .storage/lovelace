@@ -1373,6 +1373,29 @@
                               "docked",
                               "charging"
                             ]
+                          },
+                          {
+                            "entity": "vacuum.xiaomi_vacuum_cleaner",
+                            "icon": "mdi:play-pause",
+                            "type": "button",
+                            "name": false,
+                            "ripple": "fill",
+                            "tap_action": {
+                              "action": "call-service",
+                              "service": "script.start_pause_vacuum"
+                            },
+                            "tooltip": "Start/pause the vacuum",
+                            "styles": {
+                              "button": {
+                                "--pbs-button-rgb-active-color": "var(--rgb-disabled-text-color)",
+                                "--pbs-button-rgb-color": "var(--rgb-primary-color)"
+                              }
+                            },
+                            "active": [
+                              "docked",
+                              "paused",
+                              "charging"
+                            ]
                           }
                         ]
                       }

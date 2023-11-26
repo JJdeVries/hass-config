@@ -131,3 +131,27 @@ empty_kevin:
           entity_id: counter.vacuum_cleans
       dismiss_text: Nope...
   icon: mdi:trash-can
+start_pause_vacuum:
+  alias: Start/Pause vacuum
+  sequence:
+  - choose:
+    - conditions:
+      - condition: state
+        entity_id: vacuum.xiaomi_vacuum_cleaner
+        state: cleaning
+      sequence:
+      - service: vacuum.pause
+        data: {}
+        target:
+          entity_id: vacuum.xiaomi_vacuum_cleaner
+    - conditions:
+      - condition: state
+        entity_id: vacuum.xiaomi_vacuum_cleaner
+        state: paused
+      sequence:
+      - service: vacuum.start
+        data: {}
+        target:
+          entity_id: vacuum.xiaomi_vacuum_cleaner
+  mode: single
+  icon: mdi:play-pause
