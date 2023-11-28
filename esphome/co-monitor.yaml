@@ -1,0 +1,43 @@
+esphome:
+  name: co-monitor
+
+esp8266:
+  board: esp01_1m
+
+# Enable Home Assistant API
+api:
+  encryption:
+    key: "CLjY2jdQNB2JRPu1sgRnBfIwnWEfKSj14xduxxNbAIk="
+
+ota:
+  password: "541e395d8f916c84380da2b1d0f9f5b0"
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "Co-Monitor Fallback Hotspot"
+    password: "0lgaOEolYEU7"
+
+# Disable logging
+logger:
+  baud_rate: 0
+  
+uart:
+  rx_pin: GPIO3
+  tx_pin: GPIO1
+  baud_rate: 9600
+
+sensor:
+  - platform: mhz19
+    co2:
+      name: "MH-Z19 CO2 Value"
+    temperature:
+      name: "MH-Z19 Temperature"
+    update_interval: 60s
+    automatic_baseline_calibration: false
+
+captive_portal:
+    
