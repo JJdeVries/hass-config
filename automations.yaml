@@ -108,26 +108,6 @@
       brightness: '{{ states("input_number.hall_brightness") | int }}'
     entity_id: light.hall_light
   mode: single
-- id: '1607868672746'
-  alias: Goodnight
-  description: Let's shutdown everything
-  trigger:
-  - platform: device
-    type: turned_off
-    device_id: 370a6454000711eb9cde01ebd6642b5a
-    entity_id: light.tv_light
-    domain: light
-  condition:
-  - condition: time
-    after: '22:30'
-    before: '6:00'
-  action:
-  - scene: scene.night
-  - service: switch.turn_on
-    data: {}
-    target:
-      entity_id: switch.circadian_lighting_circadian_living_room
-  mode: single
 - id: '1608038614647'
   alias: Goodmorning
   description: Switch on relevant stuff
@@ -161,9 +141,9 @@
     entity_id: input_number.hall_brightness
   condition:
   - condition: device
-    type: is_on
-    device_id: 3709d680000711ebbaace9167b0f017d
-    entity_id: light.hall_light
+    type: is_off
+    device_id: d1614fa94e3a02b3ec4a6f35fbb5666e
+    entity_id: 92cd757ab27f1cebe9cb034529a34dd2
     domain: light
   - condition: or
     conditions:
