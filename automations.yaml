@@ -201,8 +201,8 @@
     input:
       end_percentage: '15'
       start_percentage: '100'
-      dim_start_time: '21:15:00'
-      dim_end_time: '23:00:00'
+      dim_start_time: '21:00:00'
+      dim_end_time: '22:30:00'
       output_light: light.livingroom_lights
       start_brightness: 255
       end_brightness: 70
@@ -633,7 +633,7 @@
   description: ''
   trigger:
   - platform: time
-    at: '10:00:00'
+    at: '10:30:00'
   condition:
   - condition: template
     value_template: '{{ now() > ((states(''input_datetime.vacuum_last_run'') | as_datetime

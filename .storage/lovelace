@@ -1409,6 +1409,42 @@
                       "entity": "sensor.last_clean_time_ago",
                       "name": "Time since last clean",
                       "icon": "mdi:calendar"
+                    },
+                    {
+                      "entity": "counter.vacuum_cleans",
+                      "name": "Emptied Kevin",
+                      "extend_paper_buttons_row": {
+                        "position": "right",
+                        "hide_state": true,
+                        "preset": "mushroom",
+                        "base_config": {
+                          "styles": {
+                            "button": {
+                              "margin-left": "2px",
+                              "margin-right": "2px"
+                            }
+                          }
+                        },
+                        "buttons": [
+                          {
+                            "entity": "counter.vacuum_cleans",
+                            "name": false,
+                            "icon": "mdi:trash-can",
+                            "tap_action": {
+                              "action": "call-service",
+                              "service": "counter.reset",
+                              "service_data": {
+                                "entity_id": "counter.vacuum_cleans"
+                              }
+                            },
+                            "styles": {
+                              "button": {
+                                "--pbs-button-rgb-color": "var(--rgb-primary-color)"
+                              }
+                            }
+                          }
+                        ]
+                      }
                     }
                   ]
                 },
