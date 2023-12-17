@@ -1005,6 +1005,7 @@
               "entities": [
                 {
                   "type": "custom:paper-buttons-row",
+                  "preset": "mushroom",
                   "buttons": [
                     {
                       "entity": "remote.harmonyjorik",
@@ -1076,6 +1077,7 @@
                 },
                 {
                   "type": "custom:paper-buttons-row",
+                  "preset": "mushroom",
                   "buttons": [
                     {
                       "entity": "remote.harmonyjorik",
@@ -1114,6 +1116,110 @@
                       },
                       "hold_action": {
                         "action": "none"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:paper-buttons-row",
+                  "preset": "mushroom",
+                  "styles": {
+                    "button": {
+                      "--pbs-button-rgb-color": "var(--rgb-disabled-text-color)"
+                    }
+                  },
+                  "buttons": [
+                    {
+                      "entity": "remote.harmonyjorik",
+                      "layout": "icon",
+                      "icon": "mdi:volume-minus",
+                      "tap_action": {
+                        "action": "call-service",
+                        "service": "remote.send_command",
+                        "service_data": {
+                          "entity_id": "remote.harmonyjorik",
+                          "command": "VolumeDown",
+                          "device": "Yamaha AV Receiver",
+                          "num_repeats": 5,
+                          "delay_secs": 0.4,
+                          "hold_secs": 0
+                        }
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      },
+                      "styles": {
+                        "button": {
+                          "--pbs-button-rgb-color": "var(--rgb-disabled-text-color)"
+                        }
+                      },
+                      "state_styles": {
+                        "off": {
+                          "button": {
+                            "pointer-events": "none"
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "entity": "remote.harmonyjorik",
+                      "layout": "icon",
+                      "icon": "mdi:volume-mute",
+                      "tap_action": {
+                        "action": "call-service",
+                        "service": "remote.send_command",
+                        "service_data": {
+                          "entity_id": "remote.harmonyjorik",
+                          "command": "Mute",
+                          "device": "Yamaha AV Receiver"
+                        }
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      },
+                      "styles": {
+                        "button": {
+                          "--pbs-button-rgb-color": "var(--rgb-disabled-text-color)"
+                        }
+                      },
+                      "state_styles": {
+                        "off": {
+                          "button": {
+                            "pointer-events": "none"
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "entity": "remote.harmonyjorik",
+                      "layout": "icon",
+                      "icon": "mdi:volume-plus",
+                      "tap_action": {
+                        "action": "call-service",
+                        "service": "remote.send_command",
+                        "service_data": {
+                          "entity_id": "remote.harmonyjorik",
+                          "command": "VolumeUp",
+                          "device": "Yamaha AV Receiver",
+                          "num_repeats": 5,
+                          "delay_secs": 0.4,
+                          "hold_secs": 0
+                        }
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      },
+                      "styles": {
+                        "button": {
+                          "--pbs-button-rgb-color": "var(--rgb-disabled-text-color)"
+                        }
+                      },
+                      "state_styles": {
+                        "off": {
+                          "button": {
+                            "pointer-events": "none"
+                          }
+                        }
                       }
                     }
                   ]

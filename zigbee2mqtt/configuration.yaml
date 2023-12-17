@@ -12,14 +12,14 @@ devices:
     friendly_name: table_light_1
   '0x001788010baa7861':
     friendly_name: table_light_2
-  '0x001788010b59fe29':
-    friendly_name: hue light switch
   '0x90fd9ffffedfad32':
     friendly_name: hall_light
   '0x001788010ba49b00':
     friendly_name: tv_light
   '0x54ef441000714653':
     friendly_name: de_foodzi_unit
+  '0x001788010b59fe29':
+    friendly_name: hue_light_switch
 groups:
   '0':
     friendly_name: livingroom lights
