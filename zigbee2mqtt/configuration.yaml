@@ -28,7 +28,7 @@ groups:
       - 0x001788010baa70fc/11
       - 0x001788010ba49b00/11
 advanced:
-  log_level: info
+  log_level: warn
   log_syslog:
     app_name: Zigbee2MQTT
     eol: /n

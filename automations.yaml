@@ -47,6 +47,8 @@
       spotify:
         activity: Stereo
         volume: 0.8
+      npoplayer:
+        activity: Stereo
     app_map: '{{app_mapping[current_app] | default({})}}'
     harmony_activity: '{{app_map.activity | default("Tv")}}'
     player_volume: '{{app_map.volume | default(1.0)}}'
