@@ -587,9 +587,7 @@
                   "show_wind": "true"
                 },
                 {
-                  "show_current": false,
-                  "show_forecast": true,
-                  "type": "weather-forecast",
+                  "type": "custom:clock-weather-card",
                   "entity": "weather.home"
                 }
               ]
