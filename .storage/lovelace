@@ -505,7 +505,7 @@
                     {
                       "type": "custom:fold-entity-row",
                       "head": "light.livingroom_lights",
-                      "open": true,
+                      "open": false,
                       "entities": [
                         {
                           "type": "custom:fold-entity-row",

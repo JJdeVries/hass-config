@@ -555,11 +555,15 @@
   alias: 'Vacuum: Count cleans'
   description: Count nr. of cleans since last empty
   trigger:
-  - platform: state
-    entity_id:
-    - vacuum.xiaomi_vacuum_cleaner
-    to: docked
-    from: returning
+  - platform: device
+    device_id: c2393df80bea252caaa6c0b24fef5e75
+    domain: vacuum
+    entity_id: aa1b199edd1f40e097d8eb5c23a6d611
+    type: cleaning
+    for:
+      hours: 0
+      minutes: 5
+      seconds: 0
   condition: []
   action:
   - service: counter.increment
