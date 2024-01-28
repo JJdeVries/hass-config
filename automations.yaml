@@ -562,7 +562,7 @@
     type: cleaning
     for:
       hours: 0
-      minutes: 5
+      minutes: 15
       seconds: 0
   condition: []
   action:
@@ -650,4 +650,37 @@
   action:
   - service: script.start_vacuum
     data: {}
+  mode: single
+- id: '1706179107566'
+  alias: 'Vacuum: Clean grit'
+  description: Cleaning the area before the kattenbak
+  trigger:
+  - platform: time
+    at: '12:50:00'
+  - platform: time
+    at: 07:30:00
+  - platform: time
+    at: '22:00:00'
+  condition:
+  - condition: state
+    entity_id: group.humans
+    state: home
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 0
+  - condition: state
+    entity_id: vacuum.xiaomi_vacuum_cleaner
+    state: docked
+  action:
+  - service: xiaomi_miio.vacuum_clean_zone
+    data:
+      repeats: 1
+      zone:
+      - - 25000
+        - 28800
+        - 26500
+        - 27500
+    target:
+      entity_id: vacuum.xiaomi_vacuum_cleaner
   mode: single
