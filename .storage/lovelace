@@ -1324,185 +1324,230 @@
                   "type": "entities",
                   "entities": [
                     {
-                      "entity": "vacuum.xiaomi_vacuum_cleaner",
-                      "name": "Clean",
-                      "tap_action": {
-                        "action": "none"
-                      },
-                      "extend_paper_buttons_row": {
-                        "position": "right",
-                        "hide_state": true,
-                        "preset": "mushroom",
-                        "base_config": {
+                      "type": "custom:paper-buttons-row",
+                      "preset": "mushroom",
+                      "buttons": [
+                        {
+                          "entity": "vacuum.xiaomi_vacuum_cleaner",
+                          "icon": "mdi:cat",
+                          "type": "button",
+                          "name": false,
+                          "ripple": "fill",
+                          "tap_action": {
+                            "action": "call-service",
+                            "service": "automation.trigger",
+                            "service_data": {
+                              "entity_id": "automation.vacuum_clean_grit"
+                            }
+                          },
+                          "tooltip": "Clean the area before the litter box",
                           "styles": {
                             "button": {
-                              "margin-left": "2px",
-                              "margin-right": "2px"
+                              "--pbs-button-rgb-color": "var(--rgb-disabled-text-color)",
+                              "--pbs-button-rgb-active-color": "var(--rgb-primary-color)",
+                              "margin-left": "0px"
                             }
-                          }
+                          },
+                          "state_styles": {
+                            "cleaning": {
+                              "button": {
+                                "pointer-events": "none"
+                              }
+                            }
+                          },
+                          "active": [
+                            "docked",
+                            "charging"
+                          ]
                         },
-                        "buttons": [
-                          {
-                            "entity": "vacuum.xiaomi_vacuum_cleaner",
-                            "icon": "mdi:home",
-                            "type": "button",
-                            "name": false,
-                            "ripple": "fill",
-                            "tap_action": {
-                              "action": "call-service",
-                              "service": "vacuum.start",
-                              "service_data": {
-                                "entity_id": "vacuum.xiaomi_vacuum_cleaner"
-                              }
-                            },
-                            "tooltip": "Clean the whole house",
-                            "styles": {
-                              "button": {
-                                "--pbs-button-rgb-color": "var(--rgb-disabled-text-color)",
-                                "--pbs-button-rgb-active-color": "var(--rgb-primary-color)",
-                                "margin-left": "0px"
-                              }
-                            },
-                            "active": [
-                              "docked",
-                              "charging"
-                            ]
+                        {
+                          "entity": "vacuum.xiaomi_vacuum_cleaner",
+                          "icon": "mdi:home",
+                          "type": "button",
+                          "name": false,
+                          "ripple": "fill",
+                          "tap_action": {
+                            "action": "call-service",
+                            "service": "vacuum.start",
+                            "service_data": {
+                              "entity_id": "vacuum.xiaomi_vacuum_cleaner"
+                            }
                           },
-                          {
-                            "entity": "vacuum.xiaomi_vacuum_cleaner",
-                            "icon": "mdi:sofa",
-                            "type": "button",
-                            "name": false,
-                            "ripple": "fill",
-                            "tap_action": {
-                              "action": "call-service",
-                              "service": "xiaomi_miio.vacuum_clean_segment",
-                              "service_data": {
-                                "entity_id": "vacuum.xiaomi_vacuum_cleaner",
-                                "segments": [
-                                  19
-                                ]
-                              }
-                            },
-                            "tooltip": "Clean the livingroom",
-                            "styles": {
-                              "button": {
-                                "--pbs-button-rgb-color": "var(--rgb-disabled-text-color)",
-                                "--pbs-button-rgb-active-color": "var(--rgb-primary-color)"
-                              }
-                            },
-                            "active": [
-                              "docked",
-                              "charging"
-                            ]
+                          "tooltip": "Clean the whole house",
+                          "styles": {
+                            "button": {
+                              "--pbs-button-rgb-color": "var(--rgb-disabled-text-color)",
+                              "--pbs-button-rgb-active-color": "var(--rgb-primary-color)",
+                              "margin-left": "0px"
+                            }
                           },
-                          {
-                            "entity": "vacuum.xiaomi_vacuum_cleaner",
-                            "icon": "mdi:bed",
-                            "type": "button",
-                            "name": false,
-                            "ripple": "fill",
-                            "tap_action": {
-                              "action": "call-service",
-                              "service": "xiaomi_miio.vacuum_clean_segment",
-                              "service_data": {
-                                "entity_id": "vacuum.xiaomi_vacuum_cleaner",
-                                "segments": [
-                                  16,
-                                  17
-                                ]
-                              }
-                            },
-                            "tooltip": "Clean the bedroom",
-                            "styles": {
+                          "state_styles": {
+                            "cleaning": {
                               "button": {
-                                "--pbs-button-rgb-color": "var(--rgb-disabled-text-color)",
-                                "--pbs-button-rgb-active-color": "var(--rgb-primary-color)"
+                                "pointer-events": "none"
                               }
-                            },
-                            "active": [
-                              "docked",
-                              "charging"
-                            ]
+                            }
                           },
-                          {
-                            "entity": "vacuum.xiaomi_vacuum_cleaner",
-                            "icon": "mdi:pot-steam",
-                            "type": "button",
-                            "name": false,
-                            "ripple": "fill",
-                            "tap_action": {
-                              "action": "call-service",
-                              "service": "xiaomi_miio.vacuum_clean_segment",
-                              "service_data": {
-                                "entity_id": "vacuum.xiaomi_vacuum_cleaner",
-                                "segments": [
-                                  18
-                                ]
-                              }
-                            },
-                            "tooltip": "Clean the kitchen",
-                            "styles": {
-                              "button": {
-                                "--pbs-button-rgb-color": "var(--rgb-disabled-text-color)",
-                                "--pbs-button-rgb-active-color": "var(--rgb-primary-color)"
-                              }
-                            },
-                            "active": [
-                              "docked",
-                              "charging"
-                            ]
+                          "active": [
+                            "docked",
+                            "charging"
+                          ]
+                        },
+                        {
+                          "entity": "vacuum.xiaomi_vacuum_cleaner",
+                          "icon": "mdi:sofa",
+                          "type": "button",
+                          "name": false,
+                          "ripple": "fill",
+                          "tap_action": {
+                            "action": "call-service",
+                            "service": "xiaomi_miio.vacuum_clean_segment",
+                            "service_data": {
+                              "entity_id": "vacuum.xiaomi_vacuum_cleaner",
+                              "segments": [
+                                19
+                              ]
+                            }
                           },
-                          {
-                            "entity": "vacuum.xiaomi_vacuum_cleaner",
-                            "icon": "mdi:ev-station",
-                            "type": "button",
-                            "name": false,
-                            "ripple": "fill",
-                            "tap_action": {
-                              "action": "call-service",
-                              "service": "vacuum.return_to_base",
-                              "service_data": {
-                                "entity_id": "vacuum.xiaomi_vacuum_cleaner"
-                              }
-                            },
-                            "tooltip": "Back to the docking station",
-                            "styles": {
-                              "button": {
-                                "--pbs-button-rgb-active-color": "var(--rgb-disabled-text-color)",
-                                "--pbs-button-rgb-color": "var(--rgb-primary-color)"
-                              }
-                            },
-                            "active": [
-                              "docked",
-                              "charging"
-                            ]
+                          "tooltip": "Clean the livingroom",
+                          "styles": {
+                            "button": {
+                              "--pbs-button-rgb-color": "var(--rgb-disabled-text-color)",
+                              "--pbs-button-rgb-active-color": "var(--rgb-primary-color)"
+                            }
                           },
-                          {
-                            "entity": "vacuum.xiaomi_vacuum_cleaner",
-                            "icon": "mdi:play-pause",
-                            "type": "button",
-                            "name": false,
-                            "ripple": "fill",
-                            "tap_action": {
-                              "action": "call-service",
-                              "service": "script.start_pause_vacuum"
-                            },
-                            "tooltip": "Start/pause the vacuum",
-                            "styles": {
+                          "state_styles": {
+                            "cleaning": {
                               "button": {
-                                "--pbs-button-rgb-active-color": "var(--rgb-disabled-text-color)",
-                                "--pbs-button-rgb-color": "var(--rgb-primary-color)"
+                                "pointer-events": "none"
                               }
-                            },
-                            "active": [
-                              "docked",
-                              "paused",
-                              "charging"
-                            ]
-                          }
-                        ]
-                      }
+                            }
+                          },
+                          "active": [
+                            "docked",
+                            "charging"
+                          ]
+                        },
+                        {
+                          "entity": "vacuum.xiaomi_vacuum_cleaner",
+                          "icon": "mdi:bed",
+                          "type": "button",
+                          "name": false,
+                          "ripple": "fill",
+                          "tap_action": {
+                            "action": "call-service",
+                            "service": "xiaomi_miio.vacuum_clean_segment",
+                            "service_data": {
+                              "entity_id": "vacuum.xiaomi_vacuum_cleaner",
+                              "segments": [
+                                16,
+                                17
+                              ]
+                            }
+                          },
+                          "tooltip": "Clean the bedroom",
+                          "styles": {
+                            "button": {
+                              "--pbs-button-rgb-color": "var(--rgb-disabled-text-color)",
+                              "--pbs-button-rgb-active-color": "var(--rgb-primary-color)"
+                            }
+                          },
+                          "state_styles": {
+                            "cleaning": {
+                              "button": {
+                                "pointer-events": "none"
+                              }
+                            }
+                          },
+                          "active": [
+                            "docked",
+                            "charging"
+                          ]
+                        },
+                        {
+                          "entity": "vacuum.xiaomi_vacuum_cleaner",
+                          "icon": "mdi:pot-steam",
+                          "type": "button",
+                          "name": false,
+                          "ripple": "fill",
+                          "tap_action": {
+                            "action": "call-service",
+                            "service": "xiaomi_miio.vacuum_clean_segment",
+                            "service_data": {
+                              "entity_id": "vacuum.xiaomi_vacuum_cleaner",
+                              "segments": [
+                                18
+                              ]
+                            }
+                          },
+                          "tooltip": "Clean the kitchen",
+                          "styles": {
+                            "button": {
+                              "--pbs-button-rgb-color": "var(--rgb-disabled-text-color)",
+                              "--pbs-button-rgb-active-color": "var(--rgb-primary-color)"
+                            }
+                          },
+                          "state_styles": {
+                            "cleaning": {
+                              "button": {
+                                "pointer-events": "none"
+                              }
+                            }
+                          },
+                          "active": [
+                            "docked",
+                            "charging"
+                          ]
+                        },
+                        {
+                          "entity": "vacuum.xiaomi_vacuum_cleaner",
+                          "icon": "mdi:ev-station",
+                          "type": "button",
+                          "name": false,
+                          "ripple": "fill",
+                          "tap_action": {
+                            "action": "call-service",
+                            "service": "vacuum.return_to_base",
+                            "service_data": {
+                              "entity_id": "vacuum.xiaomi_vacuum_cleaner"
+                            }
+                          },
+                          "tooltip": "Back to the docking station",
+                          "styles": {
+                            "button": {
+                              "--pbs-button-rgb-active-color": "var(--rgb-disabled-text-color)",
+                              "--pbs-button-rgb-color": "var(--rgb-primary-color)"
+                            }
+                          },
+                          "active": [
+                            "docked",
+                            "charging"
+                          ]
+                        },
+                        {
+                          "entity": "vacuum.xiaomi_vacuum_cleaner",
+                          "icon": "mdi:play-pause",
+                          "type": "button",
+                          "name": false,
+                          "ripple": "fill",
+                          "tap_action": {
+                            "action": "call-service",
+                            "service": "script.start_pause_vacuum"
+                          },
+                          "tooltip": "Start/pause the vacuum",
+                          "styles": {
+                            "button": {
+                              "--pbs-button-rgb-active-color": "var(--rgb-disabled-text-color)",
+                              "--pbs-button-rgb-color": "var(--rgb-primary-color)"
+                            }
+                          },
+                          "active": [
+                            "docked",
+                            "paused",
+                            "charging"
+                          ]
+                        }
+                      ]
                     },
                     {
                       "entity": "counter.vacuum_cleans",
