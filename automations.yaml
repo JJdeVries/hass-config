@@ -275,7 +275,7 @@
     data:
       message: Restarting HA after encryption refresh.
       title: Encryption refresh
-  - service: homeassistant.restart
+  - service: hassio.host_reboot
     data: {}
   mode: single
 - id: '1623509943578'
