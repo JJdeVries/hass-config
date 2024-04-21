@@ -541,7 +541,7 @@
   condition:
   - condition: template
     value_template: '{{ now() > ((states(''input_datetime.vacuum_last_run'') | as_datetime
-      | as_local) + timedelta(hours=12)) }}
+      | as_local) + timedelta(hours=24)) }}
 
       '
   - condition: time
