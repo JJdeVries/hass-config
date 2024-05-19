@@ -677,9 +677,9 @@
     data:
       repeats: 1
       zone:
-      - - 25000
-        - 28800
-        - 26500
+      - - 29500
+        - 28600
+        - 30300
         - 27500
     target:
       entity_id: vacuum.xiaomi_vacuum_cleaner
