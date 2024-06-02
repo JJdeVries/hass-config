@@ -12,14 +12,18 @@ devices:
     friendly_name: table_light_1
   '0x001788010baa7861':
     friendly_name: table_light_2
-  '0x90fd9ffffedfad32':
-    friendly_name: hall_light
   '0x001788010ba49b00':
     friendly_name: tv_light
   '0x54ef441000714653':
     friendly_name: de_foodzi_unit
   '0x001788010b59fe29':
     friendly_name: hue_light_switch
+  '0x000d6ffffea7e84e':
+    friendly_name: Hall light 1
+  '0x000d6ffffee84752':
+    friendly_name: Hall Light 2
+  '0x000d6ffffed9d771':
+    friendly_name: Hall Light 3
 groups:
   '0':
     friendly_name: livingroom lights
@@ -27,6 +31,12 @@ groups:
       - 0x001788010baa7861/11
       - 0x001788010baa70fc/11
       - 0x001788010ba49b00/11
+  '1':
+    friendly_name: Hall Light
+    devices:
+      - 0x000d6ffffea7e84e/1
+      - 0x000d6ffffee84752/1
+      - 0x000d6ffffed9d771/1
 advanced:
   log_level: warn
   log_syslog:

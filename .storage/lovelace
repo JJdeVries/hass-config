@@ -1550,14 +1550,21 @@
                       ]
                     },
                     {
+                      "type": "custom:template-entity-row",
+                      "icon": "mdi:calendar",
+                      "name": "Will the vacuum start",
+                      "entity": "binary_sensor.allow_vacuum_to_run",
+                      "state": "{% if is_state('binary_sensor.allow_vacuum_to_run', 'on')%} yes {% else %} no {% endif %}",
+                      "secondary": "Last clean at {{ as_timestamp(states(\"input_datetime.vacuum_last_run\")) | timestamp_custom('%a %d %b %H:%M') }}"
+                    },
+                    {
+                      "entity": "automation.vacuum_start_smart",
+                      "name": "Allow the vacuum to start"
+                    },
+                    {
                       "entity": "counter.vacuum_cleans",
                       "name": "Nr. cleans since empty",
                       "icon": "mdi:trash-can"
-                    },
-                    {
-                      "entity": "sensor.last_clean_time_ago",
-                      "name": "Time since last clean",
-                      "icon": "mdi:calendar"
                     },
                     {
                       "entity": "counter.vacuum_cleans",

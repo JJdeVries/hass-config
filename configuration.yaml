@@ -24,8 +24,9 @@ switch:
   - platform: circadian_lighting
     name: Circadian Hall
     disable_brightness_adjust: False
-    lights_ct:
+    lights_brightness:
       - light.hall_light
+    max_brightness: 75
 
 frontend:
   themes: !include_dir_merge_named themes

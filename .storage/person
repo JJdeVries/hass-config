@@ -18,7 +18,8 @@
       },
       {
         "device_trackers": [
-          "device_tracker.iphonevannicole_4"
+          "device_tracker.iphonevannicole_4",
+          "device_tracker.iphone_van_nicole"
         ],
         "id": "nicole_verbeek",
         "name": "Nicole Verbeek",

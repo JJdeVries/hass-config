@@ -260,23 +260,44 @@
   trigger:
   - platform: time
     at: input_datetime.https_timer
-  condition: []
+    enabled: false
+  - platform: time
+    at: 03:00:00
+  condition:
+  - condition: time
+    weekday:
+    - sun
   action:
   - service: shell_command.install_openssh
     data: {}
+    enabled: false
   - service: shell_command.recrypt
     data: {}
+    enabled: false
   - service: input_datetime.set_datetime
     data:
       date: '{{ now().date() + timedelta(days=90) }}'
     target:
       entity_id: input_datetime.https_timer
+    enabled: false
+  - service: hassio.addon_restart
+    metadata: {}
+    data:
+      addon: core_letsencrypt
+    alias: Request New Certificate
   - service: notify.mobile_app_cph2399
     data:
       message: Restarting HA after encryption refresh.
       title: Encryption refresh
+    alias: Notify certificate renewal
+  - delay:
+      hours: 0
+      minutes: 15
+      seconds: 0
+      milliseconds: 0
   - service: hassio.host_reboot
     data: {}
+    alias: Restart the system
   mode: single
 - id: '1623509943578'
   alias: 'Plant: Moisture'
