@@ -132,37 +132,6 @@
     data:
       value: 255
   mode: single
-- id: '1608195471126'
-  alias: 'Lights Hall: Brightness'
-  description: Set the hall light brightness
-  trigger:
-  - platform: state
-    entity_id: light.hall_light
-    to: 'on'
-  - platform: state
-    entity_id: input_number.hall_brightness
-  condition:
-  - condition: device
-    type: is_off
-    device_id: d1614fa94e3a02b3ec4a6f35fbb5666e
-    entity_id: 92cd757ab27f1cebe9cb034529a34dd2
-    domain: light
-  - condition: or
-    conditions:
-    - condition: numeric_state
-      entity_id: light.tradfri_bulb_8
-      above: input_number.hall_brightness
-      attribute: brightness
-    - condition: numeric_state
-      below: input_number.hall_brightness
-      attribute: brightness
-      entity_id: light.tradfri_bulb_8
-  action:
-  - service: light.turn_on
-    data:
-      brightness: '{{states("input_number.hall_brightness") | int }}'
-    entity_id: light.tradfri_bulb_8
-  mode: single
 - id: '1608561879306'
   alias: 'Lights Livingroom: Turn on (home)'
   description: ''
@@ -207,41 +176,7 @@
       dim_end_time: '22:30:00'
       output_light: light.livingroom_lights
       start_brightness: 255
-      end_brightness: 70
-- id: '1609102126486'
-  alias: 'Lights hall: Sun under'
-  description: ''
-  trigger:
-  - platform: sun
-    event: sunset
-  condition:
-  - condition: numeric_state
-    entity_id: input_number.hall_brightness
-    above: '77'
-  action:
-  - service: input_number.set_value
-    data:
-      value: 77
-    target:
-      entity_id: input_number.hall_brightness
-  mode: single
-- id: '1609102178138'
-  alias: 'Lights hall: Sun up'
-  description: ''
-  trigger:
-  - platform: sun
-    event: sunrise
-  condition:
-  - condition: numeric_state
-    entity_id: input_number.hall_brightness
-    below: '255'
-  action:
-  - service: input_number.set_value
-    data:
-      value: 255
-    target:
-      entity_id: input_number.hall_brightness
-  mode: single
+      end_brightness: 38
 - id: '1612192541242'
   alias: 'Lights Livingroom: Turn on (sun)'
   description: Turn on the livingroom lights if the sun goes under
@@ -562,7 +497,7 @@
   condition:
   - condition: template
     value_template: '{{ now() > ((states(''input_datetime.vacuum_last_run'') | as_datetime
-      | as_local) + timedelta(hours=24)) }}
+      | as_local) + timedelta(hours=36)) }}
 
       '
   - condition: time
@@ -704,4 +639,82 @@
         - 27500
     target:
       entity_id: vacuum.xiaomi_vacuum_cleaner
+  mode: single
+- id: '1717400577617'
+  alias: 'Lights hall: dim lights'
+  description: Dim the lights of the hall
+  use_blueprint:
+    path: lights/light_dimming.yaml
+    input:
+      dim_start_time: '21:00:00'
+      dim_end_time: '22:30:00'
+      output_light: light.hall_light
+      start_brightness: 180
+      end_brightness: 1
+- id: '1717401197704'
+  alias: 'Lights hall: turn on (sun)'
+  description: Turn on the hall lights when the sun goes down
+  use_blueprint:
+    path: lights/light_enable_sun.yaml
+    input:
+      elevation_offset: 10
+      duration_min: 50
+      home_group: group.humans
+      output_light: light.hall_light
+      end_brightness: 180
+- id: '1717401408625'
+  alias: 'Goodnight: Lights hall'
+  description: Turn off the lights when going to bed
+  trigger:
+  - platform: state
+    entity_id:
+    - light.livingroom_lights
+    to: 'off'
+  condition:
+  - condition: time
+    after: '22:00:00'
+  - condition: state
+    entity_id: light.hall_light
+    state: 'on'
+  action:
+  - alias: Flash the hall light
+    service: light.turn_on
+    target:
+      entity_id: light.hall_light
+    data:
+      flash: short
+  - delay:
+      hours: 0
+      minutes: 10
+      seconds: 0
+      milliseconds: 0
+  - service: light.turn_off
+    metadata: {}
+    data: {}
+    target:
+      entity_id: light.hall_light
+    alias: Turn off the hall light
+  mode: single
+- id: '1717505260925'
+  alias: 'Lights: away - Turn off'
+  description: Turn off all lights when nobody is home
+  trigger:
+  - platform: state
+    entity_id:
+    - group.humans
+    to: not_home
+    for:
+      hours: 0
+      minutes: 5
+      seconds: 0
+  condition: []
+  action:
+  - service: light.turn_off
+    metadata: {}
+    data: {}
+    target:
+      entity_id:
+      - light.hall_light
+      - light.livingroom_lights
+    alias: Turn off all lights
   mode: single

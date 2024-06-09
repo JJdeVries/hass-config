@@ -21,12 +21,6 @@ switch:
       - light.table_light_1
       - light.table_light_2
       - light.tv_light
-  - platform: circadian_lighting
-    name: Circadian Hall
-    disable_brightness_adjust: False
-    lights_brightness:
-      - light.hall_light
-    max_brightness: 75
 
 frontend:
   themes: !include_dir_merge_named themes
