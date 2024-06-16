@@ -333,7 +333,7 @@
                   }
                 },
                 {
-                  "entity": "vacuum.xiaomi_vacuum_cleaner",
+                  "entity": "vacuum.kevin",
                   "type": "custom:button-card",
                   "icon": "mdi:robot-vacuum",
                   "show_name": false,
@@ -1328,7 +1328,7 @@
                       "preset": "mushroom",
                       "buttons": [
                         {
-                          "entity": "vacuum.xiaomi_vacuum_cleaner",
+                          "entity": "vacuum.kevin",
                           "icon": "mdi:cat",
                           "type": "button",
                           "name": false,
@@ -1361,7 +1361,7 @@
                           ]
                         },
                         {
-                          "entity": "vacuum.xiaomi_vacuum_cleaner",
+                          "entity": "vacuum.kevin",
                           "icon": "mdi:home",
                           "type": "button",
                           "name": false,
@@ -1370,7 +1370,7 @@
                             "action": "call-service",
                             "service": "vacuum.start",
                             "service_data": {
-                              "entity_id": "vacuum.xiaomi_vacuum_cleaner"
+                              "entity_id": "vacuum.kevin"
                             }
                           },
                           "tooltip": "Clean the whole house",
@@ -1394,7 +1394,7 @@
                           ]
                         },
                         {
-                          "entity": "vacuum.xiaomi_vacuum_cleaner",
+                          "entity": "vacuum.kevin",
                           "icon": "mdi:sofa",
                           "type": "button",
                           "name": false,
@@ -1403,7 +1403,7 @@
                             "action": "call-service",
                             "service": "xiaomi_miio.vacuum_clean_segment",
                             "service_data": {
-                              "entity_id": "vacuum.xiaomi_vacuum_cleaner",
+                              "entity_id": "vacuum.kevin",
                               "segments": [
                                 19
                               ]
@@ -1429,7 +1429,7 @@
                           ]
                         },
                         {
-                          "entity": "vacuum.xiaomi_vacuum_cleaner",
+                          "entity": "vacuum.kevin",
                           "icon": "mdi:bed",
                           "type": "button",
                           "name": false,
@@ -1438,7 +1438,7 @@
                             "action": "call-service",
                             "service": "xiaomi_miio.vacuum_clean_segment",
                             "service_data": {
-                              "entity_id": "vacuum.xiaomi_vacuum_cleaner",
+                              "entity_id": "vacuum.kevin",
                               "segments": [
                                 16,
                                 17
@@ -1465,7 +1465,7 @@
                           ]
                         },
                         {
-                          "entity": "vacuum.xiaomi_vacuum_cleaner",
+                          "entity": "vacuum.kevin",
                           "icon": "mdi:pot-steam",
                           "type": "button",
                           "name": false,
@@ -1474,7 +1474,7 @@
                             "action": "call-service",
                             "service": "xiaomi_miio.vacuum_clean_segment",
                             "service_data": {
-                              "entity_id": "vacuum.xiaomi_vacuum_cleaner",
+                              "entity_id": "vacuum.kevin",
                               "segments": [
                                 18
                               ]
@@ -1500,7 +1500,7 @@
                           ]
                         },
                         {
-                          "entity": "vacuum.xiaomi_vacuum_cleaner",
+                          "entity": "vacuum.kevin",
                           "icon": "mdi:ev-station",
                           "type": "button",
                           "name": false,
@@ -1509,7 +1509,7 @@
                             "action": "call-service",
                             "service": "vacuum.return_to_base",
                             "service_data": {
-                              "entity_id": "vacuum.xiaomi_vacuum_cleaner"
+                              "entity_id": "vacuum.kevin"
                             }
                           },
                           "tooltip": "Back to the docking station",
@@ -1525,7 +1525,7 @@
                           ]
                         },
                         {
-                          "entity": "vacuum.xiaomi_vacuum_cleaner",
+                          "entity": "vacuum.kevin",
                           "icon": "mdi:play-pause",
                           "type": "button",
                           "name": false,
@@ -1606,7 +1606,7 @@
                 },
                 {
                   "type": "custom:xiaomi-vacuum-card",
-                  "entity": "vacuum.xiaomi_vacuum_cleaner",
+                  "entity": "vacuum.kevin",
                   "vendor": "xiaomi",
                   "buttons": false,
                   "name": false
@@ -1861,130 +1861,6 @@
                 "min",
                 "max"
               ]
-            }
-          ]
-        },
-        {
-          "theme": "Backend-selected",
-          "title": "CPU",
-          "path": "cpu",
-          "icon": "mdi:raspberry-pi",
-          "type": "custom:horizontal-layout",
-          "badges": [],
-          "cards": [
-            {
-              "type": "horizontal-stack",
-              "cards": [
-                {
-                  "type": "custom:button-card",
-                  "color_type": "blank-card"
-                },
-                {
-                  "type": "custom:button-card",
-                  "color_type": "blank-card"
-                },
-                {
-                  "type": "custom:button-card",
-                  "color_type": "blank-card"
-                }
-              ]
-            },
-            {
-              "type": "horizontal-stack",
-              "cards": [
-                {
-                  "type": "gauge",
-                  "entity": "sensor.processor_use",
-                  "max": 100,
-                  "min": 0,
-                  "needle": true,
-                  "severity": {
-                    "green": 0,
-                    "yellow": 50,
-                    "red": 80
-                  },
-                  "name": "Proc use"
-                },
-                {
-                  "type": "gauge",
-                  "entity": "sensor.memory_use_percent",
-                  "min": 0,
-                  "max": 100,
-                  "severity": {
-                    "green": 0,
-                    "yellow": 50,
-                    "red": 80
-                  },
-                  "needle": true,
-                  "name": "Mem use"
-                }
-              ]
-            },
-            {
-              "type": "custom:layout-break"
-            },
-            {
-              "type": "custom:layout-break"
-            },
-            {
-              "type": "custom:apexcharts-card",
-              "header": {
-                "show": true,
-                "title": "Download Speed",
-                "show_states": true,
-                "colorize_states": true
-              },
-              "graph_span": "24h",
-              "all_series_config": {
-                "stroke_width": 2
-              },
-              "series": [
-                {
-                  "entity": "sensor.asuswrt_download_speed",
-                  "show": {
-                    "extremas": true
-                  }
-                }
-              ],
-              "apex_config": {
-                "grid": {
-                  "xaxis": {
-                    "lines": {
-                      "show": true
-                    }
-                  }
-                }
-              }
-            },
-            {
-              "type": "custom:apexcharts-card",
-              "header": {
-                "show": true,
-                "title": "Upload Speed",
-                "show_states": true,
-                "colorize_states": true
-              },
-              "graph_span": "24h",
-              "all_series_config": {
-                "stroke_width": 2
-              },
-              "series": [
-                {
-                  "entity": "sensor.asuswrt_upload_speed",
-                  "show": {
-                    "extremas": true
-                  }
-                }
-              ],
-              "apex_config": {
-                "grid": {
-                  "xaxis": {
-                    "lines": {
-                      "show": true
-                    }
-                  }
-                }
-              }
             }
           ]
         },

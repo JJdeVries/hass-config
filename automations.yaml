@@ -257,20 +257,20 @@
     at: '11:00:00'
   condition:
   - condition: state
-    entity_id: vacuum.xiaomi_vacuum_cleaner
+    entity_id: vacuum.kevin
     state: error
   action:
   - service: vacuum.return_to_base
-    target:
-      entity_id: vacuum.xiaomi_vacuum_cleaner
     data: {}
+    target:
+      entity_id: vacuum.kevin
   - delay:
       hours: 0
       minutes: 10
       seconds: 0
       milliseconds: 0
   - condition: state
-    entity_id: vacuum.xiaomi_vacuum_cleaner
+    entity_id: vacuum.kevin
     state: error
   - service: notify.mobile_app_cph2399
     data:
@@ -495,14 +495,12 @@
     - group.humans
     to: not_home
   condition:
-  - condition: template
-    value_template: '{{ now() > ((states(''input_datetime.vacuum_last_run'') | as_datetime
-      | as_local) + timedelta(hours=36)) }}
-
-      '
   - condition: time
     after: 09:00:00
     before: '21:30:00'
+  - condition: state
+    entity_id: binary_sensor.allow_vacuum_to_run
+    state: 'on'
   action:
   - service: script.start_vacuum
     data: {}
@@ -626,7 +624,7 @@
       minutes: 0
       seconds: 0
   - condition: state
-    entity_id: vacuum.xiaomi_vacuum_cleaner
+    entity_id: vacuum.kevin
     state: docked
   action:
   - service: xiaomi_miio.vacuum_clean_zone
@@ -634,11 +632,11 @@
       repeats: 1
       zone:
       - - 29500
-        - 28600
-        - 30300
         - 27500
+        - 30350
+        - 28600
     target:
-      entity_id: vacuum.xiaomi_vacuum_cleaner
+      entity_id: vacuum.kevin
   mode: single
 - id: '1717400577617'
   alias: 'Lights hall: dim lights'
@@ -650,7 +648,7 @@
       dim_end_time: '22:30:00'
       output_light: light.hall_light
       start_brightness: 180
-      end_brightness: 1
+      end_brightness: 3
 - id: '1717401197704'
   alias: 'Lights hall: turn on (sun)'
   description: Turn on the hall lights when the sun goes down
