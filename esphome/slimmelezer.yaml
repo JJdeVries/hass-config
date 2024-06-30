@@ -62,6 +62,7 @@ api:
           id(dsmr_instance).set_decryption_key(private_key);
  
 ota:
+  platform: esphome
  
 web_server:
   port: 80
