@@ -123,7 +123,7 @@ empty_kevin:
   use_blueprint:
     path: homeassistant/confirmable_notification.yaml
     input:
-      notify_device: d5ba21a97c160a3f6bd86a06d9a51a0e
+      notify_device: 157805a5c418c23bf4f5148d69c893e4
       title: Kevin is full!
       message: You should empty Kevin! It has run {{ states("counter.vacuum_cleans")
         }} times since last empty
