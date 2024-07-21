@@ -595,12 +595,12 @@
   - platform: time
     at: '10:30:00'
   condition:
-  - condition: template
+  - alias: Check last clean is 2 days ago
+    condition: template
     value_template: '{{ now() > ((states(''input_datetime.vacuum_last_run'') | as_datetime
-      | as_local) + timedelta(days=2)) }}
+      | as_local) + timedelta(days=4)) }}
 
       '
-    alias: Check last clean is 2 days ago
   action:
   - service: script.start_vacuum
     data: {}
