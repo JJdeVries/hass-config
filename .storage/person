@@ -12,16 +12,6 @@
         "name": "Jorik de Vries",
         "user_id": "9f03360d711f4db08a2d4b97a271f6e8",
         "picture": null
-      },
-      {
-        "device_trackers": [
-          "device_tracker.iphonevannicole_4",
-          "device_tracker.iphone_van_nicole"
-        ],
-        "id": "nicole_verbeek",
-        "name": "Nicole Verbeek",
-        "user_id": "0034266ca30f4375a2704f087b5cb651",
-        "picture": null
       }
     ]
   }

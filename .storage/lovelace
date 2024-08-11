@@ -7,987 +7,577 @@
       "title": "Home",
       "views": [
         {
-          "path": "default_view",
-          "title": "Home",
-          "type": "custom:horizontal-layout",
-          "badges": [],
-          "cards": [
+          "title": "Home 2",
+          "path": "home-2",
+          "icon": "mdi:home",
+          "type": "sections",
+          "sections": [
             {
-              "type": "horizontal-stack",
+              "type": "grid",
               "cards": [
                 {
-                  "type": "custom:button-card",
-                  "color_type": "blank-card",
-                  "styles": {
-                    "card": [
-                      {
-                        "border": "0px"
-                      }
-                    ]
-                  }
-                },
-                {
-                  "entity": "person.nicole_verbeek",
-                  "type": "custom:button-card",
-                  "icon": "mdi:face-woman",
-                  "show_label": false,
-                  "show_name": false,
-                  "show_state": false,
-                  "label": "Nicole",
-                  "tap_action": {
-                    "action": "more-info",
-                    "haptic": "light"
-                  },
-                  "haptic": "light",
-                  "state": [
+                  "features": [
                     {
-                      "value": "not_home",
-                      "styles": {
-                        "icon": [
-                          {
-                            "color": "var(--disabled-text-color)"
-                          }
-                        ]
-                      }
-                    },
-                    {
-                      "value": "home",
-                      "styles": {
-                        "icon": [
-                          {
-                            "color": "var(--primary-color)"
-                          }
-                        ]
-                      }
+                      "type": "light-brightness"
                     }
                   ],
-                  "tooltip": "[[[ return entity.attributes.friendly_name ]]]",
-                  "styles": {
-                    "card": [
-                      {
-                        "height": "46px"
-                      },
-                      {
-                        "font-size": "8px"
-                      }
-                    ],
-                    "tooltip": [
-                      {
-                        "top": "140%"
-                      },
-                      {
-                        "width": "120%"
-                      },
-                      {
-                        "transition-delay": "0s"
-                      },
-                      {
-                        "border": "solid 2px var(--disabled-text-color)"
-                      },
-                      {
-                        "border-radius": "10px"
-                      }
-                    ]
-                  }
+                  "type": "tile",
+                  "entity": "light.livingroom_lights",
+                  "vertical": false
                 },
                 {
-                  "entity": "person.jorik_de_vries",
-                  "type": "custom:button-card",
-                  "icon": "mdi:face-man",
-                  "show_label": false,
-                  "show_name": false,
-                  "show_state": false,
-                  "label": "Jorik",
-                  "tap_action": {
-                    "action": "more-info",
-                    "haptic": "light"
-                  },
-                  "state": [
+                  "features": [
                     {
-                      "value": "not_home",
-                      "styles": {
-                        "icon": [
-                          {
-                            "color": "var(--disabled-text-color)"
-                          }
-                        ]
-                      }
-                    },
-                    {
-                      "value": "home",
-                      "styles": {
-                        "icon": [
-                          {
-                            "color": "var(--primary-color)"
-                          }
-                        ]
-                      }
+                      "type": "light-brightness"
                     }
                   ],
-                  "tooltip": "[[[ return entity.attributes.friendly_name ]]]",
-                  "styles": {
-                    "card": [
-                      {
-                        "height": "46px"
-                      },
-                      {
-                        "font-size": "8px"
-                      }
-                    ],
-                    "tooltip": [
-                      {
-                        "top": "140%"
-                      },
-                      {
-                        "width": "120%"
-                      },
-                      {
-                        "transition-delay": "0s"
-                      },
-                      {
-                        "border": "solid 2px var(--disabled-text-color)"
-                      },
-                      {
-                        "border-radius": "10px"
-                      }
-                    ]
-                  }
-                },
-                {
-                  "entity": "binary_sensor.cv_time_schedule",
-                  "type": "custom:button-card",
-                  "icon": "mdi:radiator",
-                  "show_name": false,
-                  "tap_action": {
-                    "action": "call-service",
-                    "service": "climate.set_temperature",
-                    "service_data": {
-                      "entity_id": "climate.cv_ketel",
-                      "temperature": 0
-                    },
-                    "haptic": "light"
-                  },
-                  "state": [
-                    {
-                      "value": "off",
-                      "styles": {
-                        "icon": [
-                          {
-                            "color": "var(--primary-color)"
-                          }
-                        ]
-                      }
-                    },
-                    {
-                      "value": "on",
-                      "styles": {
-                        "icon": [
-                          {
-                            "color": "var(--disabled-text-color)"
-                          }
-                        ],
-                        "custom_fields": {
-                          "notification": [
-                            {
-                              "opacity": 0
-                            }
-                          ]
-                        }
-                      }
-                    }
-                  ],
-                  "tooltip": "[[[ return \"Schedule: \" + entity.state ]]]",
-                  "lock": {
-                    "enabled": "[[[ return entity.state === 'on'; ]]]",
-                    "exemptions": []
-                  },
-                  "styles": {
-                    "card": [
-                      {
-                        "height": "46px"
-                      }
-                    ],
-                    "tooltip": [
-                      {
-                        "top": "140%"
-                      },
-                      {
-                        "width": "120%"
-                      },
-                      {
-                        "transition-delay": "0s"
-                      },
-                      {
-                        "border": "solid 2px var(--disabled-text-color)"
-                      },
-                      {
-                        "border-radius": "10px"
-                      }
-                    ],
-                    "lock": [
-                      {
-                        "opacity": 0
-                      }
-                    ],
-                    "custom_fields": {
-                      "notification": [
-                        {
-                          "border-radius": "50%"
-                        },
-                        {
-                          "position": "absolute"
-                        },
-                        {
-                          "left": "65%"
-                        },
-                        {
-                          "top": "10%"
-                        },
-                        {
-                          "height": "20px"
-                        },
-                        {
-                          "width": "30px"
-                        },
-                        {
-                          "font-size": "11px"
-                        },
-                        {
-                          "line-height": "20px"
-                        },
-                        {
-                          "color": "var(--primary-color)"
-                        }
-                      ]
-                    }
-                  },
-                  "custom_fields": {
-                    "notification": "[[[ return states['climate.cv_ketel'].attributes.temperature ]]]\n"
-                  }
+                  "type": "tile",
+                  "entity": "light.hall_light"
                 }
-              ]
+              ],
+              "title": "Lights"
             },
             {
-              "type": "horizontal-stack",
+              "type": "grid",
               "cards": [
                 {
+                  "type": "custom:mushroom-climate-card",
+                  "entity": "climate.cv_ketel",
+                  "fill_container": false,
+                  "secondary_info": "state",
+                  "show_temperature_control": true,
+                  "collapsible_controls": false,
+                  "layout_options": {
+                    "grid_columns": 4,
+                    "grid_rows": 1
+                  },
+                  "layout": "horizontal"
+                },
+                {
+                  "graph": "line",
+                  "type": "sensor",
                   "entity": "sensor.cv_temperature",
-                  "type": "custom:button-card",
-                  "icon": "mdi:thermometer",
-                  "show_name": false,
-                  "show_state": false,
-                  "show_label": false,
-                  "show_units": false,
-                  "tap_action": {
-                    "action": "more-info",
-                    "haptic": "light"
-                  },
-                  "state": [
-                    {
-                      "value": 5,
-                      "operator": ">",
-                      "styles": {
-                        "icon": [
-                          {
-                            "color": "var(--disabled-text-color)"
-                          }
-                        ]
-                      }
-                    },
-                    {
-                      "value": 5,
-                      "operator": "<",
-                      "styles": {
-                        "icon": [
-                          {
-                            "color": "red"
-                          }
-                        ]
-                      }
-                    }
-                  ],
-                  "tooltip": "[[[ return 'CV temp: ' + entity.state]]]",
-                  "styles": {
-                    "card": [
-                      {
-                        "height": "46px"
-                      }
-                    ],
-                    "tooltip": [
-                      {
-                        "top": "140%"
-                      },
-                      {
-                        "width": "120%"
-                      },
-                      {
-                        "transition-delay": "0s"
-                      },
-                      {
-                        "border": "solid 2px var(--disabled-text-color)"
-                      },
-                      {
-                        "border-radius": "10px"
-                      }
-                    ]
-                  }
+                  "detail": 1,
+                  "name": "CV  Balkon",
+                  "icon": "mdi:balcony"
                 },
                 {
-                  "entity": "vacuum.kevin",
-                  "type": "custom:button-card",
-                  "icon": "mdi:robot-vacuum",
-                  "show_name": false,
-                  "show_state": false,
-                  "show_label": false,
-                  "show_units": false,
-                  "tap_action": {
-                    "action": "call-service",
-                    "haptic": "light",
-                    "service": "script.toggle_vacuum"
-                  },
-                  "state": [
-                    {
-                      "value": "docked",
-                      "styles": {
-                        "icon": [
-                          {
-                            "color": "var(--disabled-text-color)"
-                          }
-                        ]
-                      }
-                    },
-                    {
-                      "value": "cleaning",
-                      "styles": {
-                        "icon": [
-                          {
-                            "color": "var(--accent-color)"
-                          }
-                        ]
-                      }
-                    },
-                    {
-                      "value": "docked",
-                      "operator": "!=",
-                      "styles": {
-                        "icon": [
-                          {
-                            "color": "red"
-                          }
-                        ]
-                      }
-                    }
-                  ],
-                  "tooltip": "[[[ return 'Vacuum: ' + entity.state ]]]",
-                  "styles": {
-                    "card": [
-                      {
-                        "height": "46px"
-                      }
-                    ],
-                    "tooltip": [
-                      {
-                        "top": "140%"
-                      },
-                      {
-                        "width": "120%"
-                      },
-                      {
-                        "transition-delay": "0s"
-                      },
-                      {
-                        "border": "solid 2px var(--disabled-text-color)"
-                      },
-                      {
-                        "border-radius": "10px"
-                      }
-                    ]
-                  }
-                },
-                {
-                  "type": "custom:button-card",
-                  "entity": "media_player.living_room_tv",
-                  "show_name": false,
-                  "show_state": false,
-                  "show_label": false,
-                  "show_units": false,
-                  "state": [
-                    {
-                      "value": "off",
-                      "operator": "!=",
-                      "styles": {
-                        "icon": [
-                          {
-                            "color": "var(--accent-color)"
-                          }
-                        ]
-                      }
-                    },
-                    {
-                      "value": "off",
-                      "styles": {
-                        "icon": [
-                          {
-                            "color": "var(--disabled-text-color)"
-                          }
-                        ]
-                      }
-                    }
-                  ],
-                  "tap_action": {
-                    "action": "call-service",
-                    "service": "media_player.media_stop",
-                    "service_data": {
-                      "entity_id": "media_player.living_room_tv"
-                    }
-                  },
-                  "lock": {
-                    "enabled": "[[[ return entity.state === 'off'; ]]]",
-                    "exemptions": []
-                  },
-                  "tooltip": "[[[ return 'Cast state: ' + entity.state ]]]",
-                  "styles": {
-                    "card": [
-                      {
-                        "height": "46px"
-                      }
-                    ],
-                    "tooltip": [
-                      {
-                        "top": "140%"
-                      },
-                      {
-                        "width": "120%"
-                      },
-                      {
-                        "transition-delay": "0s"
-                      },
-                      {
-                        "border": "solid 2px var(--disabled-text-color)"
-                      },
-                      {
-                        "border-radius": "10px"
-                      },
-                      {
-                        "width": "120%"
-                      }
-                    ],
-                    "lock": [
-                      {
-                        "opacity": 0
-                      }
-                    ]
-                  }
-                },
-                {
-                  "type": "custom:button-card",
-                  "color_type": "blank-card",
-                  "styles": {
-                    "card": [
-                      {
-                        "border": "0px"
-                      }
-                    ]
-                  }
+                  "graph": "line",
+                  "type": "sensor",
+                  "detail": 1,
+                  "entity": "sensor.livingroom_temperature",
+                  "name": "Livingroom",
+                  "icon": "mdi:sofa"
                 }
-              ]
+              ],
+              "title": "Temperatures"
             },
             {
-              "type": "custom:layout-break"
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "custom:clock-weather-card",
+                  "entity": "weather.home",
+                  "hide_today_section": true
+                }
+              ],
+              "title": "Weather"
             },
             {
-              "type": "vertical-stack",
-              "title": "| Livingroom lights",
+              "type": "grid",
               "cards": [
                 {
                   "type": "entities",
                   "entities": [
                     {
-                      "type": "custom:fold-entity-row",
-                      "head": "light.livingroom_lights",
-                      "open": false,
-                      "entities": [
+                      "type": "custom:paper-buttons-row",
+                      "preset": "mushroom",
+                      "buttons": [
                         {
-                          "type": "custom:fold-entity-row",
-                          "head": "light.tv_light",
-                          "entities": [
-                            {
-                              "type": "custom:hui-element",
-                              "name": "Brightness",
-                              "card_type": "custom:mushroom-light-card",
-                              "entity": "light.tv_light",
-                              "show_brightness_control": true,
-                              "layout": "horizontal"
-                            },
-                            {
-                              "type": "custom:hui-element",
-                              "name": "Color",
-                              "card_type": "custom:mushroom-light-card",
-                              "entity": "light.tv_light",
-                              "show_color_temp_control": true,
-                              "layout": "horizontal"
+                          "entity": "vacuum.kevin",
+                          "icon": "mdi:cat",
+                          "type": "button",
+                          "name": false,
+                          "ripple": "fill",
+                          "tap_action": {
+                            "action": "call-service",
+                            "service": "automation.trigger",
+                            "service_data": {
+                              "entity_id": "automation.vacuum_clean_grit"
                             }
+                          },
+                          "tooltip": "Clean the area before the litter box",
+                          "styles": {
+                            "button": {
+                              "--pbs-button-rgb-color": "var(--rgb-disabled-text-color)",
+                              "--pbs-button-rgb-active-color": "var(--rgb-primary-color)",
+                              "margin-left": "0px"
+                            }
+                          },
+                          "state_styles": {
+                            "cleaning": {
+                              "button": {
+                                "pointer-events": "none"
+                              }
+                            }
+                          },
+                          "active": [
+                            "docked",
+                            "charging"
                           ]
                         },
                         {
-                          "type": "custom:fold-entity-row",
-                          "head": "light.table_lights",
-                          "entities": [
-                            {
-                              "type": "custom:hui-element",
-                              "name": "Brightness",
-                              "card_type": "custom:mushroom-light-card",
-                              "entity": "light.table_lights",
-                              "show_brightness_control": true,
-                              "layout": "horizontal"
-                            },
-                            {
-                              "type": "custom:hui-element",
-                              "name": "Color",
-                              "card_type": "custom:mushroom-light-card",
-                              "entity": "light.table_lights",
-                              "show_color_temp_control": true,
-                              "layout": "horizontal"
+                          "entity": "vacuum.kevin",
+                          "icon": "mdi:home",
+                          "type": "button",
+                          "name": false,
+                          "ripple": "fill",
+                          "tap_action": {
+                            "action": "call-service",
+                            "service": "vacuum.start",
+                            "service_data": {
+                              "entity_id": "vacuum.kevin"
                             }
-                          ],
-                          "layout": "horizontal"
+                          },
+                          "tooltip": "Clean the whole house",
+                          "styles": {
+                            "button": {
+                              "--pbs-button-rgb-color": "var(--rgb-disabled-text-color)",
+                              "--pbs-button-rgb-active-color": "var(--rgb-primary-color)",
+                              "margin-left": "0px"
+                            }
+                          },
+                          "state_styles": {
+                            "cleaning": {
+                              "button": {
+                                "pointer-events": "none"
+                              }
+                            }
+                          },
+                          "active": [
+                            "docked",
+                            "charging"
+                          ]
+                        },
+                        {
+                          "entity": "vacuum.kevin",
+                          "icon": "mdi:sofa",
+                          "type": "button",
+                          "name": false,
+                          "ripple": "fill",
+                          "tap_action": {
+                            "action": "call-service",
+                            "service": "xiaomi_miio.vacuum_clean_segment",
+                            "service_data": {
+                              "entity_id": "vacuum.kevin",
+                              "segments": [
+                                19
+                              ]
+                            }
+                          },
+                          "tooltip": "Clean the livingroom",
+                          "styles": {
+                            "button": {
+                              "--pbs-button-rgb-color": "var(--rgb-disabled-text-color)",
+                              "--pbs-button-rgb-active-color": "var(--rgb-primary-color)"
+                            }
+                          },
+                          "state_styles": {
+                            "cleaning": {
+                              "button": {
+                                "pointer-events": "none"
+                              }
+                            }
+                          },
+                          "active": [
+                            "docked",
+                            "charging"
+                          ]
+                        },
+                        {
+                          "entity": "vacuum.kevin",
+                          "icon": "mdi:bed",
+                          "type": "button",
+                          "name": false,
+                          "ripple": "fill",
+                          "tap_action": {
+                            "action": "call-service",
+                            "service": "xiaomi_miio.vacuum_clean_segment",
+                            "service_data": {
+                              "entity_id": "vacuum.kevin",
+                              "segments": [
+                                16,
+                                17
+                              ]
+                            }
+                          },
+                          "tooltip": "Clean the bedroom",
+                          "styles": {
+                            "button": {
+                              "--pbs-button-rgb-color": "var(--rgb-disabled-text-color)",
+                              "--pbs-button-rgb-active-color": "var(--rgb-primary-color)"
+                            }
+                          },
+                          "state_styles": {
+                            "cleaning": {
+                              "button": {
+                                "pointer-events": "none"
+                              }
+                            }
+                          },
+                          "active": [
+                            "docked",
+                            "charging"
+                          ]
+                        },
+                        {
+                          "entity": "vacuum.kevin",
+                          "icon": "mdi:pot-steam",
+                          "type": "button",
+                          "name": false,
+                          "ripple": "fill",
+                          "tap_action": {
+                            "action": "call-service",
+                            "service": "xiaomi_miio.vacuum_clean_segment",
+                            "service_data": {
+                              "entity_id": "vacuum.kevin",
+                              "segments": [
+                                18
+                              ]
+                            }
+                          },
+                          "tooltip": "Clean the kitchen",
+                          "styles": {
+                            "button": {
+                              "--pbs-button-rgb-color": "var(--rgb-disabled-text-color)",
+                              "--pbs-button-rgb-active-color": "var(--rgb-primary-color)"
+                            }
+                          },
+                          "state_styles": {
+                            "cleaning": {
+                              "button": {
+                                "pointer-events": "none"
+                              }
+                            }
+                          },
+                          "active": [
+                            "docked",
+                            "charging"
+                          ]
+                        },
+                        {
+                          "entity": "vacuum.kevin",
+                          "icon": "mdi:ev-station",
+                          "type": "button",
+                          "name": false,
+                          "ripple": "fill",
+                          "tap_action": {
+                            "action": "call-service",
+                            "service": "vacuum.return_to_base",
+                            "service_data": {
+                              "entity_id": "vacuum.kevin"
+                            }
+                          },
+                          "tooltip": "Back to the docking station",
+                          "styles": {
+                            "button": {
+                              "--pbs-button-rgb-active-color": "var(--rgb-disabled-text-color)",
+                              "--pbs-button-rgb-color": "var(--rgb-primary-color)"
+                            }
+                          },
+                          "active": [
+                            "docked",
+                            "charging"
+                          ]
+                        },
+                        {
+                          "entity": "vacuum.kevin",
+                          "icon": "mdi:play-pause",
+                          "type": "button",
+                          "name": false,
+                          "ripple": "fill",
+                          "tap_action": {
+                            "action": "call-service",
+                            "service": "script.start_pause_vacuum"
+                          },
+                          "tooltip": "Start/pause the vacuum",
+                          "styles": {
+                            "button": {
+                              "--pbs-button-rgb-active-color": "var(--rgb-disabled-text-color)",
+                              "--pbs-button-rgb-color": "var(--rgb-primary-color)"
+                            }
+                          },
+                          "active": [
+                            "docked",
+                            "paused",
+                            "charging"
+                          ]
                         }
                       ]
-                    },
+                    }
+                  ]
+                },
+                {
+                  "type": "tile",
+                  "entity": "script.empty_kevin",
+                  "hide_state": true,
+                  "tap_action": {
+                    "action": "perform-action",
+                    "perform_action": "counter.reset",
+                    "target": {
+                      "entity_id": "counter.vacuum_cleans"
+                    }
+                  }
+                },
+                {
+                  "type": "tile",
+                  "entity": "automation.vacuum_start_smart",
+                  "name": "Allow Start"
+                },
+                {
+                  "type": "tile",
+                  "entity": "binary_sensor.allow_vacuum_to_run",
+                  "name": "Will kevin run",
+                  "hide_state": false,
+                  "layout_options": {
+                    "grid_columns": 4,
+                    "grid_rows": 1
+                  },
+                  "card_mod": {
+                    "style": {
+                      "ha-tile-info$": ".secondary {\n   visibility: hidden;\n }\n .secondary:before {\n   visibility: visible;\n   content: \"Last clean at {{ as_timestamp(states(\"input_datetime.vacuum_last_run\")) |\ntimestamp_custom('%a %d %b %H:%M') }}\";\n }\n"
+                    }
+                  }
+                },
+                {
+                  "type": "tile",
+                  "entity": "counter.vacuum_cleans",
+                  "name": "Nr. Cleans"
+                }
+              ],
+              "title": "Vacuum"
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "entities",
+                  "entities": [
                     {
-                      "entity": "switch.circadian_lighting_circadian_living_room"
+                      "type": "custom:paper-buttons-row",
+                      "preset": "mushroom",
+                      "buttons": [
+                        {
+                          "entity": "script.feed_portions",
+                          "icon": "mdi:silverware",
+                          "type": "button",
+                          "name": false,
+                          "action_name": "Feed",
+                          "ripple": "fill",
+                          "state_styles": {
+                            "on": {
+                              "button": {
+                                "animation": "blink 1s ease infinite",
+                                "pointer-events": "none"
+                              }
+                            }
+                          },
+                          "styles": {
+                            "button": {
+                              "border-radius": "12px",
+                              "--pbs-button-rgb-bg-opacity": 0.2
+                            }
+                          },
+                          "tap_action": {
+                            "action": "call-service",
+                            "service": "script.feed_portion",
+                            "service_data": {
+                              "nr": 3,
+                              "delay": {
+                                "hours": 0,
+                                "minutes": 5,
+                                "seconds": 0,
+                                "milliseconds": 0
+                              }
+                            },
+                            "confirmation": {
+                              "text": "Are you sure you want to give 3 portions of 7 gram (21 in total) with 5 minutes inbetween?"
+                            }
+                          },
+                          "tooltip": "Give three portions"
+                        },
+                        {
+                          "entity": "select.de_foodzi_unit_mode",
+                          "icon": "mdi:close-thick",
+                          "ripple": "fill",
+                          "state_icons": {
+                            "manual": "mdi:hand-back-right",
+                            "schedule": "mdi:calendar"
+                          },
+                          "name": false,
+                          "state_styles": {
+                            "schedule": {
+                              "button": {
+                                "--pbs-button-rgb-color": "255,0,0"
+                              }
+                            }
+                          },
+                          "styles": {
+                            "button": {
+                              "border-radius": "12px",
+                              "--pbs-button-rgb-bg-opacity": 0.2
+                            }
+                          },
+                          "tooltip": "Change mode to schedule/manual",
+                          "tap_action": {
+                            "confirmation": {
+                              "text": "You will be changing the feeding source (to either schedule or manual)\n"
+                            },
+                            "action": "call-service",
+                            "service": "select.select_previous",
+                            "service_data": {
+                              "cycle": true
+                            },
+                            "target": {
+                              "entity_id": "select.de_foodzi_unit_mode"
+                            }
+                          }
+                        },
+                        {
+                          "entity": "lock.de_foodzi_unit_child_lock",
+                          "name": false,
+                          "tooltip": "(Un)lock the buttons",
+                          "active": "locked",
+                          "ripple": "fill",
+                          "state_styles": {
+                            "unlocked": {
+                              "button": {
+                                "--pbs-button-rgb-color": "255,0,0"
+                              }
+                            }
+                          },
+                          "styles": {
+                            "button": {
+                              "border-radius": "12px",
+                              "--pbs-button-rgb-bg-opacity": 0.2
+                            }
+                          }
+                        },
+                        {
+                          "entity": "script.feed_portions",
+                          "icon": "mdi:silverware-spoon",
+                          "type": "button",
+                          "name": false,
+                          "action_name": "Feed",
+                          "ripple": "fill",
+                          "state_styles": {
+                            "on": {
+                              "button": {
+                                "animation": "blink 1s ease infinite",
+                                "pointer-events": "none"
+                              }
+                            }
+                          },
+                          "styles": {
+                            "button": {
+                              "border-radius": "12px",
+                              "--pbs-button-rgb-bg-opacity": 0.2
+                            }
+                          },
+                          "tap_action": {
+                            "action": "call-service",
+                            "service": "script.feed_portion",
+                            "service_data": {
+                              "nr": 1,
+                              "delay": {
+                                "hours": 0,
+                                "minutes": 0,
+                                "seconds": 0,
+                                "milliseconds": 0
+                              }
+                            }
+                          },
+                          "tooltip": "Give one portion"
+                        },
+                        {
+                          "entity": "script.feed_portions",
+                          "icon": "mdi:close-box",
+                          "type": "button",
+                          "name": false,
+                          "action_name": "Feed",
+                          "ripple": "fill",
+                          "state_styles": {
+                            "on": {
+                              "button": {
+                                "--pbs-button-rgb-active-color": "255,0,0"
+                              }
+                            },
+                            "off": {
+                              "button": {
+                                "pointer-events": "none",
+                                "--pbs-button-rgb-color": "125,125,125"
+                              }
+                            }
+                          },
+                          "styles": {
+                            "button": {
+                              "border-radius": "12px",
+                              "--pbs-button-rgb-bg-opacity": 0.2
+                            }
+                          },
+                          "tap_action": {
+                            "action": "call-service",
+                            "service": "script.turn_off",
+                            "service_data": {
+                              "entity_id": "script.feed_portions"
+                            },
+                            "confirmation": {
+                              "text": "Do you want to cancel the food"
+                            }
+                          },
+                          "tooltip": "Cancel the running food schedule"
+                        }
+                      ]
                     }
                   ]
                 }
-              ]
-            },
-            {
-              "type": "vertical-stack",
-              "title": "| Temperature",
-              "cards": [
-                {
-                  "type": "custom:hui-element",
-                  "icon": "mdi:fire",
-                  "name": "Livingroom",
-                  "card_type": "custom:mushroom-climate-card",
-                  "entity": "climate.cv_ketel",
-                  "fill_container": false,
-                  "show_temperature_control": true,
-                  "layout": "horizontal",
-                  "card_mod": "ha-card {\n  border-width: 0px\n}\n"
-                },
-                {
-                  "type": "custom:hourly-weather",
-                  "name": "",
-                  "icons": true,
-                  "entity": "weather.home_hourly",
-                  "label_spacing": "2",
-                  "num_segments": "12",
-                  "show_precipitation_amounts": true,
-                  "show_wind": "true"
-                },
-                {
-                  "type": "custom:clock-weather-card",
-                  "entity": "weather.home"
-                }
-              ]
-            },
-            {
-              "type": "custom:layout-break"
-            },
-            {
-              "type": "horizontal-stack",
-              "title": "| Monitoring Temperatures",
-              "cards": [
-                {
-                  "type": "custom:mini-graph-card",
-                  "name": "Home",
-                  "unit": "°C",
-                  "icon": "mdi:sofa",
-                  "entities": [
-                    {
-                      "entity": "climate.cv_ketel",
-                      "attribute": "current_temperature"
-                    }
-                  ],
-                  "hour24": true,
-                  "line_color": "var(--accent-color)"
-                },
-                {
-                  "type": "custom:mini-graph-card",
-                  "name": "CV",
-                  "entities": [
-                    "sensor.cv_temperature"
-                  ],
-                  "hour24": true,
-                  "line_color": "var(--accent-color)"
-                }
-              ]
-            },
-            {
-              "type": "custom:layout-break"
+              ],
+              "title": "Cake feeder"
             }
-          ]
-        },
-        {
-          "icon": "mdi:lightbulb-group",
-          "title": "lights",
-          "type": "custom:horizontal-layout",
-          "subview": false,
-          "layout": {},
-          "badges": [],
-          "cards": [
+          ],
+          "badges": [
             {
-              "type": "horizontal-stack",
-              "cards": [
-                {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "switch.circadian_lighting_circadian_living_room",
-                  "name": "Auto Light Color",
-                  "tap_action": {
-                    "action": "toggle"
-                  },
-                  "hold_action": {
-                    "action": "none"
-                  },
-                  "double_tap_action": {
-                    "action": "none"
-                  }
-                },
-                {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "light.livingroom_lights",
-                  "tap_action": {
-                    "action": "toggle"
-                  },
-                  "hold_action": {
-                    "action": "none"
-                  },
-                  "double_tap_action": {
-                    "action": "none"
-                  }
-                }
-              ]
+              "type": "entity",
+              "entity": "person.jorik_de_vries"
             },
             {
-              "type": "horizontal-stack",
-              "cards": [
-                {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "light.table_lights",
-                  "icon": "mdi:silverware",
-                  "tap_action": {
-                    "action": "toggle"
-                  },
-                  "hold_action": {
-                    "action": "none"
-                  },
-                  "double_tap_action": {
-                    "action": "none"
-                  }
-                },
-                {
-                  "type": "custom:mushroom-entity-card",
-                  "entity": "light.tv_light",
-                  "icon": "mdi:television",
-                  "tap_action": {
-                    "action": "toggle"
-                  },
-                  "hold_action": {
-                    "action": "none"
-                  },
-                  "double_tap_action": {
-                    "action": "none"
-                  }
+              "type": "entity",
+              "entity": "media_player.living_room_tv",
+              "tap_action": {
+                "action": "perform-action",
+                "perform_action": "media_player.media_stop",
+                "target": {
+                  "entity_id": "media_player.living_room_tv"
                 }
-              ]
+              }
             },
             {
-              "type": "custom:layout-break"
+              "type": "entity",
+              "entity": "vacuum.kevin",
+              "tap_action": {
+                "action": "perform-action",
+                "perform_action": "script.toggle_vacuum",
+                "target": {}
+              }
             },
             {
-              "type": "vertical-stack",
-              "title": "Brightness",
-              "cards": [
-                {
-                  "type": "custom:slider-button-card",
-                  "entity": "light.livingroom_lights",
-                  "slider": {
-                    "direction": "left-right",
-                    "background": "gradient",
-                    "use_state_color": true,
-                    "use_percentage_bg_opacity": true,
-                    "show_track": false,
-                    "toggle_on_click": false,
-                    "force_square": false
-                  },
-                  "show_name": true,
-                  "show_state": true,
-                  "compact": true,
-                  "icon": {
-                    "show": true,
-                    "use_state_color": true,
-                    "tap_action": {
-                      "action": "more-info"
-                    },
-                    "icon": ""
-                  },
-                  "action_button": {
-                    "mode": "toggle",
-                    "icon": "mdi:power",
-                    "show": false,
-                    "show_spinner": true,
-                    "tap_action": {
-                      "action": "toggle"
-                    }
-                  }
-                },
-                {
-                  "type": "custom:slider-button-card",
-                  "entity": "light.table_lights",
-                  "slider": {
-                    "direction": "left-right",
-                    "background": "gradient",
-                    "use_state_color": true,
-                    "use_percentage_bg_opacity": true,
-                    "show_track": false,
-                    "toggle_on_click": false,
-                    "force_square": false
-                  },
-                  "show_name": true,
-                  "show_state": true,
-                  "compact": true,
-                  "icon": {
-                    "show": true,
-                    "use_state_color": true,
-                    "tap_action": {
-                      "action": "more-info"
-                    },
-                    "icon": "mdi:silverware"
-                  },
-                  "action_button": {
-                    "mode": "toggle",
-                    "icon": "mdi:power",
-                    "show": false,
-                    "show_spinner": true,
-                    "tap_action": {
-                      "action": "toggle"
-                    }
-                  }
-                },
-                {
-                  "type": "custom:slider-button-card",
-                  "entity": "light.tv_light",
-                  "slider": {
-                    "direction": "left-right",
-                    "background": "gradient",
-                    "use_state_color": true,
-                    "use_percentage_bg_opacity": true,
-                    "show_track": false,
-                    "toggle_on_click": false,
-                    "force_square": false
-                  },
-                  "show_name": true,
-                  "show_state": true,
-                  "compact": true,
-                  "icon": {
-                    "show": true,
-                    "use_state_color": true,
-                    "tap_action": {
-                      "action": "more-info"
-                    },
-                    "icon": "mdi:television"
-                  },
-                  "action_button": {
-                    "mode": "toggle",
-                    "icon": "mdi:power",
-                    "show": false,
-                    "show_spinner": true,
-                    "tap_action": {
-                      "action": "toggle"
-                    }
-                  },
-                  "name": "TV Light"
-                },
-                {
-                  "type": "custom:slider-button-card",
-                  "entity": "light.hall_light",
-                  "slider": {
-                    "direction": "left-right",
-                    "background": "gradient",
-                    "use_state_color": true,
-                    "use_percentage_bg_opacity": true,
-                    "show_track": false,
-                    "toggle_on_click": false,
-                    "force_square": false
-                  },
-                  "show_name": true,
-                  "show_state": true,
-                  "compact": true,
-                  "icon": {
-                    "show": true,
-                    "use_state_color": true,
-                    "tap_action": {
-                      "action": "more-info"
-                    },
-                    "icon": "mdi:door"
-                  },
-                  "action_button": {
-                    "mode": "toggle",
-                    "icon": "mdi:power",
-                    "show": false,
-                    "show_spinner": true,
-                    "tap_action": {
-                      "action": "toggle"
-                    }
-                  },
-                  "name": "Hall Light"
-                }
-              ]
+              "type": "entity",
+              "entity": "switch.circadian_lighting_circadian_living_room"
             },
             {
-              "type": "vertical-stack",
-              "title": "Color",
-              "cards": [
-                {
-                  "type": "custom:slider-button-card",
-                  "entity": "light.livingroom_lights",
-                  "slider": {
-                    "direction": "left-right",
-                    "background": "gradient",
-                    "use_state_color": true,
-                    "use_percentage_bg_opacity": false,
-                    "show_track": false,
-                    "toggle_on_click": false,
-                    "force_square": false,
-                    "attribute": "color_temp"
-                  },
-                  "show_name": true,
-                  "show_state": false,
-                  "compact": true,
-                  "icon": {
-                    "show": true,
-                    "use_state_color": true,
-                    "tap_action": {
-                      "action": "more-info"
-                    },
-                    "icon": ""
-                  },
-                  "action_button": {
-                    "mode": "toggle",
-                    "icon": "mdi:power",
-                    "show": false,
-                    "show_spinner": true,
-                    "tap_action": {
-                      "action": "toggle"
-                    }
-                  }
-                },
-                {
-                  "type": "custom:slider-button-card",
-                  "entity": "light.table_lights",
-                  "slider": {
-                    "direction": "left-right",
-                    "background": "gradient",
-                    "use_state_color": true,
-                    "use_percentage_bg_opacity": true,
-                    "show_track": false,
-                    "toggle_on_click": false,
-                    "force_square": false,
-                    "attribute": "color_temp"
-                  },
-                  "show_name": true,
-                  "show_state": false,
-                  "compact": true,
-                  "icon": {
-                    "show": true,
-                    "use_state_color": true,
-                    "tap_action": {
-                      "action": "more-info"
-                    },
-                    "icon": "mdi:silverware"
-                  },
-                  "action_button": {
-                    "mode": "toggle",
-                    "icon": "mdi:power",
-                    "show": false,
-                    "show_spinner": true,
-                    "tap_action": {
-                      "action": "toggle"
-                    }
-                  }
-                },
-                {
-                  "type": "custom:slider-button-card",
-                  "entity": "light.tv_light",
-                  "slider": {
-                    "direction": "left-right",
-                    "background": "gradient",
-                    "use_state_color": true,
-                    "use_percentage_bg_opacity": true,
-                    "show_track": false,
-                    "toggle_on_click": false,
-                    "force_square": false,
-                    "attribute": "color_temp"
-                  },
-                  "show_name": true,
-                  "show_state": false,
-                  "compact": true,
-                  "icon": {
-                    "show": true,
-                    "use_state_color": true,
-                    "tap_action": {
-                      "action": "more-info"
-                    },
-                    "icon": "mdi:television"
-                  },
-                  "action_button": {
-                    "mode": "toggle",
-                    "icon": "mdi:power",
-                    "show": false,
-                    "show_spinner": true,
-                    "tap_action": {
-                      "action": "toggle"
-                    }
-                  },
-                  "name": "TV Light"
-                },
-                {
-                  "type": "custom:slider-button-card",
-                  "entity": "light.hall_light",
-                  "slider": {
-                    "direction": "left-right",
-                    "background": "gradient",
-                    "use_state_color": true,
-                    "use_percentage_bg_opacity": true,
-                    "show_track": false,
-                    "toggle_on_click": false,
-                    "force_square": false,
-                    "attribute": "color_temp"
-                  },
-                  "show_name": true,
-                  "show_state": false,
-                  "compact": true,
-                  "icon": {
-                    "show": true,
-                    "use_state_color": true,
-                    "tap_action": {
-                      "action": "more-info"
-                    },
-                    "icon": "mdi:door"
-                  },
-                  "action_button": {
-                    "mode": "toggle",
-                    "icon": "mdi:power",
-                    "show": false,
-                    "show_spinner": true,
-                    "tap_action": {
-                      "action": "toggle"
-                    }
-                  },
-                  "name": "Hall Light"
-                }
-              ]
+              "type": "entity",
+              "entity": "weather.home",
+              "state_content": "temperature"
             }
           ]
         },
@@ -1887,6 +1477,634 @@
                 }
               ],
               "show_header_toggle": true
+            }
+          ]
+        },
+        {
+          "path": "default_view",
+          "title": "Home",
+          "type": "custom:horizontal-layout",
+          "badges": [],
+          "cards": [
+            {
+              "type": "horizontal-stack",
+              "cards": [
+                {
+                  "type": "custom:button-card",
+                  "color_type": "blank-card",
+                  "styles": {
+                    "card": [
+                      {
+                        "border": "0px"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "entity": "person.nicole_verbeek",
+                  "type": "custom:button-card",
+                  "icon": "mdi:face-woman",
+                  "show_label": false,
+                  "show_name": false,
+                  "show_state": false,
+                  "label": "Nicole",
+                  "tap_action": {
+                    "action": "more-info",
+                    "haptic": "light"
+                  },
+                  "haptic": "light",
+                  "state": [
+                    {
+                      "value": "not_home",
+                      "styles": {
+                        "icon": [
+                          {
+                            "color": "var(--disabled-text-color)"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "value": "home",
+                      "styles": {
+                        "icon": [
+                          {
+                            "color": "var(--primary-color)"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "tooltip": "[[[ return entity.attributes.friendly_name ]]]",
+                  "styles": {
+                    "card": [
+                      {
+                        "height": "46px"
+                      },
+                      {
+                        "font-size": "8px"
+                      }
+                    ],
+                    "tooltip": [
+                      {
+                        "top": "140%"
+                      },
+                      {
+                        "width": "120%"
+                      },
+                      {
+                        "transition-delay": "0s"
+                      },
+                      {
+                        "border": "solid 2px var(--disabled-text-color)"
+                      },
+                      {
+                        "border-radius": "10px"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "entity": "person.jorik_de_vries",
+                  "type": "custom:button-card",
+                  "icon": "mdi:face-man",
+                  "show_label": false,
+                  "show_name": false,
+                  "show_state": false,
+                  "label": "Jorik",
+                  "tap_action": {
+                    "action": "more-info",
+                    "haptic": "light"
+                  },
+                  "state": [
+                    {
+                      "value": "not_home",
+                      "styles": {
+                        "icon": [
+                          {
+                            "color": "var(--disabled-text-color)"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "value": "home",
+                      "styles": {
+                        "icon": [
+                          {
+                            "color": "var(--primary-color)"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "tooltip": "[[[ return entity.attributes.friendly_name ]]]",
+                  "styles": {
+                    "card": [
+                      {
+                        "height": "46px"
+                      },
+                      {
+                        "font-size": "8px"
+                      }
+                    ],
+                    "tooltip": [
+                      {
+                        "top": "140%"
+                      },
+                      {
+                        "width": "120%"
+                      },
+                      {
+                        "transition-delay": "0s"
+                      },
+                      {
+                        "border": "solid 2px var(--disabled-text-color)"
+                      },
+                      {
+                        "border-radius": "10px"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "entity": "binary_sensor.cv_time_schedule",
+                  "type": "custom:button-card",
+                  "icon": "mdi:radiator",
+                  "show_name": false,
+                  "tap_action": {
+                    "action": "call-service",
+                    "service": "climate.set_temperature",
+                    "service_data": {
+                      "entity_id": "climate.cv_ketel",
+                      "temperature": 0
+                    },
+                    "haptic": "light"
+                  },
+                  "state": [
+                    {
+                      "value": "off",
+                      "styles": {
+                        "icon": [
+                          {
+                            "color": "var(--primary-color)"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "value": "on",
+                      "styles": {
+                        "icon": [
+                          {
+                            "color": "var(--disabled-text-color)"
+                          }
+                        ],
+                        "custom_fields": {
+                          "notification": [
+                            {
+                              "opacity": 0
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  ],
+                  "tooltip": "[[[ return \"Schedule: \" + entity.state ]]]",
+                  "lock": {
+                    "enabled": "[[[ return entity.state === 'on'; ]]]",
+                    "exemptions": []
+                  },
+                  "styles": {
+                    "card": [
+                      {
+                        "height": "46px"
+                      }
+                    ],
+                    "tooltip": [
+                      {
+                        "top": "140%"
+                      },
+                      {
+                        "width": "120%"
+                      },
+                      {
+                        "transition-delay": "0s"
+                      },
+                      {
+                        "border": "solid 2px var(--disabled-text-color)"
+                      },
+                      {
+                        "border-radius": "10px"
+                      }
+                    ],
+                    "lock": [
+                      {
+                        "opacity": 0
+                      }
+                    ],
+                    "custom_fields": {
+                      "notification": [
+                        {
+                          "border-radius": "50%"
+                        },
+                        {
+                          "position": "absolute"
+                        },
+                        {
+                          "left": "65%"
+                        },
+                        {
+                          "top": "10%"
+                        },
+                        {
+                          "height": "20px"
+                        },
+                        {
+                          "width": "30px"
+                        },
+                        {
+                          "font-size": "11px"
+                        },
+                        {
+                          "line-height": "20px"
+                        },
+                        {
+                          "color": "var(--primary-color)"
+                        }
+                      ]
+                    }
+                  },
+                  "custom_fields": {
+                    "notification": "[[[ return states['climate.cv_ketel'].attributes.temperature ]]]\n"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "horizontal-stack",
+              "cards": [
+                {
+                  "entity": "sensor.cv_temperature",
+                  "type": "custom:button-card",
+                  "icon": "mdi:thermometer",
+                  "show_name": false,
+                  "show_state": false,
+                  "show_label": false,
+                  "show_units": false,
+                  "tap_action": {
+                    "action": "more-info",
+                    "haptic": "light"
+                  },
+                  "state": [
+                    {
+                      "value": 5,
+                      "operator": ">",
+                      "styles": {
+                        "icon": [
+                          {
+                            "color": "var(--disabled-text-color)"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "value": 5,
+                      "operator": "<",
+                      "styles": {
+                        "icon": [
+                          {
+                            "color": "red"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "tooltip": "[[[ return 'CV temp: ' + entity.state]]]",
+                  "styles": {
+                    "card": [
+                      {
+                        "height": "46px"
+                      }
+                    ],
+                    "tooltip": [
+                      {
+                        "top": "140%"
+                      },
+                      {
+                        "width": "120%"
+                      },
+                      {
+                        "transition-delay": "0s"
+                      },
+                      {
+                        "border": "solid 2px var(--disabled-text-color)"
+                      },
+                      {
+                        "border-radius": "10px"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "entity": "vacuum.kevin",
+                  "type": "custom:button-card",
+                  "icon": "mdi:robot-vacuum",
+                  "show_name": false,
+                  "show_state": false,
+                  "show_label": false,
+                  "show_units": false,
+                  "tap_action": {
+                    "action": "call-service",
+                    "haptic": "light",
+                    "service": "script.toggle_vacuum"
+                  },
+                  "state": [
+                    {
+                      "value": "docked",
+                      "styles": {
+                        "icon": [
+                          {
+                            "color": "var(--disabled-text-color)"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "value": "cleaning",
+                      "styles": {
+                        "icon": [
+                          {
+                            "color": "var(--accent-color)"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "value": "docked",
+                      "operator": "!=",
+                      "styles": {
+                        "icon": [
+                          {
+                            "color": "red"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "tooltip": "[[[ return 'Vacuum: ' + entity.state ]]]",
+                  "styles": {
+                    "card": [
+                      {
+                        "height": "46px"
+                      }
+                    ],
+                    "tooltip": [
+                      {
+                        "top": "140%"
+                      },
+                      {
+                        "width": "120%"
+                      },
+                      {
+                        "transition-delay": "0s"
+                      },
+                      {
+                        "border": "solid 2px var(--disabled-text-color)"
+                      },
+                      {
+                        "border-radius": "10px"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "custom:button-card",
+                  "entity": "media_player.living_room_tv",
+                  "show_name": false,
+                  "show_state": false,
+                  "show_label": false,
+                  "show_units": false,
+                  "state": [
+                    {
+                      "value": "off",
+                      "operator": "!=",
+                      "styles": {
+                        "icon": [
+                          {
+                            "color": "var(--accent-color)"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "value": "off",
+                      "styles": {
+                        "icon": [
+                          {
+                            "color": "var(--disabled-text-color)"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "tap_action": {
+                    "action": "call-service",
+                    "service": "media_player.media_stop",
+                    "service_data": {
+                      "entity_id": "media_player.living_room_tv"
+                    }
+                  },
+                  "lock": {
+                    "enabled": "[[[ return entity.state === 'off'; ]]]",
+                    "exemptions": []
+                  },
+                  "tooltip": "[[[ return 'Cast state: ' + entity.state ]]]",
+                  "styles": {
+                    "card": [
+                      {
+                        "height": "46px"
+                      }
+                    ],
+                    "tooltip": [
+                      {
+                        "top": "140%"
+                      },
+                      {
+                        "width": "120%"
+                      },
+                      {
+                        "transition-delay": "0s"
+                      },
+                      {
+                        "border": "solid 2px var(--disabled-text-color)"
+                      },
+                      {
+                        "border-radius": "10px"
+                      },
+                      {
+                        "width": "120%"
+                      }
+                    ],
+                    "lock": [
+                      {
+                        "opacity": 0
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "custom:button-card",
+                  "color_type": "blank-card",
+                  "styles": {
+                    "card": [
+                      {
+                        "border": "0px"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "type": "custom:layout-break"
+            },
+            {
+              "type": "vertical-stack",
+              "title": "| Livingroom lights",
+              "cards": [
+                {
+                  "type": "entities",
+                  "entities": [
+                    {
+                      "type": "custom:fold-entity-row",
+                      "head": "light.livingroom_lights",
+                      "open": false,
+                      "entities": [
+                        {
+                          "type": "custom:fold-entity-row",
+                          "head": "light.tv_light",
+                          "entities": [
+                            {
+                              "type": "custom:hui-element",
+                              "name": "Brightness",
+                              "card_type": "custom:mushroom-light-card",
+                              "entity": "light.tv_light",
+                              "show_brightness_control": true,
+                              "layout": "horizontal"
+                            },
+                            {
+                              "type": "custom:hui-element",
+                              "name": "Color",
+                              "card_type": "custom:mushroom-light-card",
+                              "entity": "light.tv_light",
+                              "show_color_temp_control": true,
+                              "layout": "horizontal"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "custom:fold-entity-row",
+                          "head": "light.table_lights",
+                          "entities": [
+                            {
+                              "type": "custom:hui-element",
+                              "name": "Brightness",
+                              "card_type": "custom:mushroom-light-card",
+                              "entity": "light.table_lights",
+                              "show_brightness_control": true,
+                              "layout": "horizontal"
+                            },
+                            {
+                              "type": "custom:hui-element",
+                              "name": "Color",
+                              "card_type": "custom:mushroom-light-card",
+                              "entity": "light.table_lights",
+                              "show_color_temp_control": true,
+                              "layout": "horizontal"
+                            }
+                          ],
+                          "layout": "horizontal"
+                        }
+                      ]
+                    },
+                    {
+                      "entity": "switch.circadian_lighting_circadian_living_room"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "vertical-stack",
+              "title": "| Temperature",
+              "cards": [
+                {
+                  "type": "custom:hui-element",
+                  "icon": "mdi:fire",
+                  "name": "Livingroom",
+                  "card_type": "custom:mushroom-climate-card",
+                  "entity": "climate.cv_ketel",
+                  "fill_container": false,
+                  "show_temperature_control": true,
+                  "layout": "horizontal",
+                  "card_mod": "ha-card {\n  border-width: 0px\n}\n"
+                },
+                {
+                  "type": "custom:hourly-weather",
+                  "name": "",
+                  "icons": true,
+                  "entity": "weather.home_hourly",
+                  "label_spacing": "2",
+                  "num_segments": "12",
+                  "show_precipitation_amounts": true,
+                  "show_wind": "true"
+                },
+                {
+                  "type": "custom:clock-weather-card",
+                  "entity": "weather.home"
+                }
+              ]
+            },
+            {
+              "type": "custom:layout-break"
+            },
+            {
+              "type": "horizontal-stack",
+              "title": "| Monitoring Temperatures",
+              "cards": [
+                {
+                  "type": "custom:mini-graph-card",
+                  "name": "Home",
+                  "unit": "°C",
+                  "icon": "mdi:sofa",
+                  "entities": [
+                    {
+                      "entity": "climate.cv_ketel",
+                      "attribute": "current_temperature"
+                    }
+                  ],
+                  "hour24": true,
+                  "line_color": "var(--accent-color)"
+                },
+                {
+                  "type": "custom:mini-graph-card",
+                  "name": "CV",
+                  "entities": [
+                    "sensor.cv_temperature"
+                  ],
+                  "hour24": true,
+                  "line_color": "var(--accent-color)"
+                }
+              ]
+            },
+            {
+              "type": "custom:layout-break"
+            }
+          ],
+          "visible": [
+            {
+              "user": "9f03360d711f4db08a2d4b97a271f6e8"
             }
           ]
         }
