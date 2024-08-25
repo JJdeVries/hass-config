@@ -33,9 +33,190 @@
                   ],
                   "type": "tile",
                   "entity": "light.hall_light"
+                },
+                {
+                  "type": "entities",
+                  "entities": [
+                    {
+                      "type": "custom:paper-buttons-row",
+                      "preset": "mushroom",
+                      "buttons": [
+                        {
+                          "entity": "script.feed_portions",
+                          "icon": "mdi:silverware",
+                          "type": "button",
+                          "name": false,
+                          "action_name": "Feed",
+                          "ripple": "fill",
+                          "state_styles": {
+                            "on": {
+                              "button": {
+                                "animation": "blink 1s ease infinite",
+                                "pointer-events": "none"
+                              }
+                            }
+                          },
+                          "styles": {
+                            "button": {
+                              "border-radius": "12px",
+                              "--pbs-button-rgb-bg-opacity": 0.2
+                            }
+                          },
+                          "tap_action": {
+                            "action": "call-service",
+                            "service": "script.feed_portion",
+                            "service_data": {
+                              "nr": 3,
+                              "delay": {
+                                "hours": 0,
+                                "minutes": 5,
+                                "seconds": 0,
+                                "milliseconds": 0
+                              }
+                            },
+                            "confirmation": {
+                              "text": "Are you sure you want to give 3 portions of 7 gram (21 in total) with 5 minutes inbetween?"
+                            }
+                          },
+                          "tooltip": "Give three portions"
+                        },
+                        {
+                          "entity": "select.de_foodzi_unit_mode",
+                          "icon": "mdi:close-thick",
+                          "ripple": "fill",
+                          "state_icons": {
+                            "manual": "mdi:hand-back-right",
+                            "schedule": "mdi:calendar"
+                          },
+                          "name": false,
+                          "state_styles": {
+                            "schedule": {
+                              "button": {
+                                "--pbs-button-rgb-color": "255,0,0"
+                              }
+                            }
+                          },
+                          "styles": {
+                            "button": {
+                              "border-radius": "12px",
+                              "--pbs-button-rgb-bg-opacity": 0.2
+                            }
+                          },
+                          "tooltip": "Change mode to schedule/manual",
+                          "tap_action": {
+                            "confirmation": {
+                              "text": "You will be changing the feeding source (to either schedule or manual)\n"
+                            },
+                            "action": "call-service",
+                            "service": "select.select_previous",
+                            "service_data": {
+                              "cycle": true
+                            },
+                            "target": {
+                              "entity_id": "select.de_foodzi_unit_mode"
+                            }
+                          }
+                        },
+                        {
+                          "entity": "lock.de_foodzi_unit_child_lock",
+                          "name": false,
+                          "tooltip": "(Un)lock the buttons",
+                          "active": "locked",
+                          "ripple": "fill",
+                          "state_styles": {
+                            "unlocked": {
+                              "button": {
+                                "--pbs-button-rgb-color": "255,0,0"
+                              }
+                            }
+                          },
+                          "styles": {
+                            "button": {
+                              "border-radius": "12px",
+                              "--pbs-button-rgb-bg-opacity": 0.2
+                            }
+                          }
+                        },
+                        {
+                          "entity": "script.feed_portions",
+                          "icon": "mdi:silverware-spoon",
+                          "type": "button",
+                          "name": false,
+                          "action_name": "Feed",
+                          "ripple": "fill",
+                          "state_styles": {
+                            "on": {
+                              "button": {
+                                "animation": "blink 1s ease infinite",
+                                "pointer-events": "none"
+                              }
+                            }
+                          },
+                          "styles": {
+                            "button": {
+                              "border-radius": "12px",
+                              "--pbs-button-rgb-bg-opacity": 0.2
+                            }
+                          },
+                          "tap_action": {
+                            "action": "call-service",
+                            "service": "script.feed_portion",
+                            "service_data": {
+                              "nr": 1,
+                              "delay": {
+                                "hours": 0,
+                                "minutes": 0,
+                                "seconds": 0,
+                                "milliseconds": 0
+                              }
+                            }
+                          },
+                          "tooltip": "Give one portion"
+                        },
+                        {
+                          "entity": "script.feed_portions",
+                          "icon": "mdi:close-box",
+                          "type": "button",
+                          "name": false,
+                          "action_name": "Feed",
+                          "ripple": "fill",
+                          "state_styles": {
+                            "on": {
+                              "button": {
+                                "--pbs-button-rgb-active-color": "255,0,0"
+                              }
+                            },
+                            "off": {
+                              "button": {
+                                "pointer-events": "none",
+                                "--pbs-button-rgb-color": "125,125,125"
+                              }
+                            }
+                          },
+                          "styles": {
+                            "button": {
+                              "border-radius": "12px",
+                              "--pbs-button-rgb-bg-opacity": 0.2
+                            }
+                          },
+                          "tap_action": {
+                            "action": "call-service",
+                            "service": "script.turn_off",
+                            "service_data": {
+                              "entity_id": "script.feed_portions"
+                            },
+                            "confirmation": {
+                              "text": "Do you want to cancel the food"
+                            }
+                          },
+                          "tooltip": "Cancel the running food schedule"
+                        }
+                      ]
+                    }
+                  ]
                 }
               ],
-              "title": "Lights"
+              "title": "Lights and feeder"
             },
             {
               "type": "grid",
@@ -70,7 +251,7 @@
                   "icon": " "
                 }
               ],
-              "title": "Temperatures"
+              "title": "Climate"
             },
             {
               "type": "grid",
@@ -354,196 +535,20 @@
                   "type": "tile",
                   "entity": "counter.vacuum_cleans",
                   "name": "Nr. Cleans"
+                },
+                {
+                  "type": "tile",
+                  "entity": "script.start_vacuum",
+                  "tap_action": {
+                    "action": "perform-action",
+                    "perform_action": "script.start_vacuum",
+                    "target": {}
+                  },
+                  "hide_state": true,
+                  "name": "Start Cleaning"
                 }
               ],
               "title": "Vacuum"
-            },
-            {
-              "type": "grid",
-              "cards": [
-                {
-                  "type": "entities",
-                  "entities": [
-                    {
-                      "type": "custom:paper-buttons-row",
-                      "preset": "mushroom",
-                      "buttons": [
-                        {
-                          "entity": "script.feed_portions",
-                          "icon": "mdi:silverware",
-                          "type": "button",
-                          "name": false,
-                          "action_name": "Feed",
-                          "ripple": "fill",
-                          "state_styles": {
-                            "on": {
-                              "button": {
-                                "animation": "blink 1s ease infinite",
-                                "pointer-events": "none"
-                              }
-                            }
-                          },
-                          "styles": {
-                            "button": {
-                              "border-radius": "12px",
-                              "--pbs-button-rgb-bg-opacity": 0.2
-                            }
-                          },
-                          "tap_action": {
-                            "action": "call-service",
-                            "service": "script.feed_portion",
-                            "service_data": {
-                              "nr": 3,
-                              "delay": {
-                                "hours": 0,
-                                "minutes": 5,
-                                "seconds": 0,
-                                "milliseconds": 0
-                              }
-                            },
-                            "confirmation": {
-                              "text": "Are you sure you want to give 3 portions of 7 gram (21 in total) with 5 minutes inbetween?"
-                            }
-                          },
-                          "tooltip": "Give three portions"
-                        },
-                        {
-                          "entity": "select.de_foodzi_unit_mode",
-                          "icon": "mdi:close-thick",
-                          "ripple": "fill",
-                          "state_icons": {
-                            "manual": "mdi:hand-back-right",
-                            "schedule": "mdi:calendar"
-                          },
-                          "name": false,
-                          "state_styles": {
-                            "schedule": {
-                              "button": {
-                                "--pbs-button-rgb-color": "255,0,0"
-                              }
-                            }
-                          },
-                          "styles": {
-                            "button": {
-                              "border-radius": "12px",
-                              "--pbs-button-rgb-bg-opacity": 0.2
-                            }
-                          },
-                          "tooltip": "Change mode to schedule/manual",
-                          "tap_action": {
-                            "confirmation": {
-                              "text": "You will be changing the feeding source (to either schedule or manual)\n"
-                            },
-                            "action": "call-service",
-                            "service": "select.select_previous",
-                            "service_data": {
-                              "cycle": true
-                            },
-                            "target": {
-                              "entity_id": "select.de_foodzi_unit_mode"
-                            }
-                          }
-                        },
-                        {
-                          "entity": "lock.de_foodzi_unit_child_lock",
-                          "name": false,
-                          "tooltip": "(Un)lock the buttons",
-                          "active": "locked",
-                          "ripple": "fill",
-                          "state_styles": {
-                            "unlocked": {
-                              "button": {
-                                "--pbs-button-rgb-color": "255,0,0"
-                              }
-                            }
-                          },
-                          "styles": {
-                            "button": {
-                              "border-radius": "12px",
-                              "--pbs-button-rgb-bg-opacity": 0.2
-                            }
-                          }
-                        },
-                        {
-                          "entity": "script.feed_portions",
-                          "icon": "mdi:silverware-spoon",
-                          "type": "button",
-                          "name": false,
-                          "action_name": "Feed",
-                          "ripple": "fill",
-                          "state_styles": {
-                            "on": {
-                              "button": {
-                                "animation": "blink 1s ease infinite",
-                                "pointer-events": "none"
-                              }
-                            }
-                          },
-                          "styles": {
-                            "button": {
-                              "border-radius": "12px",
-                              "--pbs-button-rgb-bg-opacity": 0.2
-                            }
-                          },
-                          "tap_action": {
-                            "action": "call-service",
-                            "service": "script.feed_portion",
-                            "service_data": {
-                              "nr": 1,
-                              "delay": {
-                                "hours": 0,
-                                "minutes": 0,
-                                "seconds": 0,
-                                "milliseconds": 0
-                              }
-                            }
-                          },
-                          "tooltip": "Give one portion"
-                        },
-                        {
-                          "entity": "script.feed_portions",
-                          "icon": "mdi:close-box",
-                          "type": "button",
-                          "name": false,
-                          "action_name": "Feed",
-                          "ripple": "fill",
-                          "state_styles": {
-                            "on": {
-                              "button": {
-                                "--pbs-button-rgb-active-color": "255,0,0"
-                              }
-                            },
-                            "off": {
-                              "button": {
-                                "pointer-events": "none",
-                                "--pbs-button-rgb-color": "125,125,125"
-                              }
-                            }
-                          },
-                          "styles": {
-                            "button": {
-                              "border-radius": "12px",
-                              "--pbs-button-rgb-bg-opacity": 0.2
-                            }
-                          },
-                          "tap_action": {
-                            "action": "call-service",
-                            "service": "script.turn_off",
-                            "service_data": {
-                              "entity_id": "script.feed_portions"
-                            },
-                            "confirmation": {
-                              "text": "Do you want to cancel the food"
-                            }
-                          },
-                          "tooltip": "Cancel the running food schedule"
-                        }
-                      ]
-                    }
-                  ]
-                }
-              ],
-              "title": "Cake feeder"
             }
           ],
           "badges": [
