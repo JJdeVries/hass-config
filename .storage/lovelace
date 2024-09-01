@@ -16,253 +16,313 @@
               "type": "grid",
               "cards": [
                 {
-                  "features": [
-                    {
-                      "type": "light-brightness"
-                    }
-                  ],
-                  "type": "tile",
+                  "type": "custom:bubble-card",
+                  "card_type": "button",
                   "entity": "light.livingroom_lights",
-                  "vertical": false
-                },
-                {
-                  "features": [
+                  "layout_options": {
+                    "grid_columns": 2,
+                    "grid_rows": 1
+                  },
+                  "name": "Living",
+                  "button_type": "slider",
+                  "sub_button": [
                     {
-                      "type": "light-brightness"
+                      "entity": "light.livingroom_lights",
+                      "show_last_changed": false,
+                      "show_state": false,
+                      "show_attribute": true,
+                      "show_icon": false,
+                      "show_background": false,
+                      "attribute": "brightness"
                     }
                   ],
-                  "type": "tile",
-                  "entity": "light.hall_light"
+                  "tap_action": {
+                    "action": "toggle"
+                  },
+                  "double_tap_action": {
+                    "action": "more-info"
+                  }
                 },
                 {
-                  "type": "entities",
-                  "entities": [
+                  "type": "custom:bubble-card",
+                  "card_type": "button",
+                  "entity": "light.hall_light",
+                  "layout_options": {
+                    "grid_columns": 2,
+                    "grid_rows": 1
+                  },
+                  "name": "Hall",
+                  "button_type": "slider",
+                  "sub_button": [
                     {
-                      "type": "custom:paper-buttons-row",
-                      "preset": "mushroom",
-                      "buttons": [
-                        {
-                          "entity": "script.feed_portions",
-                          "icon": "mdi:silverware",
-                          "type": "button",
-                          "name": false,
-                          "action_name": "Feed",
-                          "ripple": "fill",
-                          "state_styles": {
-                            "on": {
-                              "button": {
-                                "animation": "blink 1s ease infinite",
-                                "pointer-events": "none"
-                              }
-                            }
-                          },
-                          "styles": {
-                            "button": {
-                              "border-radius": "12px",
-                              "--pbs-button-rgb-bg-opacity": 0.2
-                            }
-                          },
-                          "tap_action": {
-                            "action": "call-service",
-                            "service": "script.feed_portion",
-                            "service_data": {
-                              "nr": 3,
-                              "delay": {
-                                "hours": 0,
-                                "minutes": 5,
-                                "seconds": 0,
-                                "milliseconds": 0
-                              }
-                            },
-                            "confirmation": {
-                              "text": "Are you sure you want to give 3 portions of 7 gram (21 in total) with 5 minutes inbetween?"
-                            }
-                          },
-                          "tooltip": "Give three portions"
-                        },
-                        {
-                          "entity": "select.de_foodzi_unit_mode",
-                          "icon": "mdi:close-thick",
-                          "ripple": "fill",
-                          "state_icons": {
-                            "manual": "mdi:hand-back-right",
-                            "schedule": "mdi:calendar"
-                          },
-                          "name": false,
-                          "state_styles": {
-                            "schedule": {
-                              "button": {
-                                "--pbs-button-rgb-color": "255,0,0"
-                              }
-                            }
-                          },
-                          "styles": {
-                            "button": {
-                              "border-radius": "12px",
-                              "--pbs-button-rgb-bg-opacity": 0.2
-                            }
-                          },
-                          "tooltip": "Change mode to schedule/manual",
-                          "tap_action": {
-                            "confirmation": {
-                              "text": "You will be changing the feeding source (to either schedule or manual)\n"
-                            },
-                            "action": "call-service",
-                            "service": "select.select_previous",
-                            "service_data": {
-                              "cycle": true
-                            },
-                            "target": {
-                              "entity_id": "select.de_foodzi_unit_mode"
-                            }
-                          }
-                        },
-                        {
-                          "entity": "lock.de_foodzi_unit_child_lock",
-                          "name": false,
-                          "tooltip": "(Un)lock the buttons",
-                          "active": "locked",
-                          "ripple": "fill",
-                          "state_styles": {
-                            "unlocked": {
-                              "button": {
-                                "--pbs-button-rgb-color": "255,0,0"
-                              }
-                            }
-                          },
-                          "styles": {
-                            "button": {
-                              "border-radius": "12px",
-                              "--pbs-button-rgb-bg-opacity": 0.2
-                            }
-                          }
-                        },
-                        {
-                          "entity": "script.feed_portions",
-                          "icon": "mdi:silverware-spoon",
-                          "type": "button",
-                          "name": false,
-                          "action_name": "Feed",
-                          "ripple": "fill",
-                          "state_styles": {
-                            "on": {
-                              "button": {
-                                "animation": "blink 1s ease infinite",
-                                "pointer-events": "none"
-                              }
-                            }
-                          },
-                          "styles": {
-                            "button": {
-                              "border-radius": "12px",
-                              "--pbs-button-rgb-bg-opacity": 0.2
-                            }
-                          },
-                          "tap_action": {
-                            "action": "call-service",
-                            "service": "script.feed_portion",
-                            "service_data": {
-                              "nr": 1,
-                              "delay": {
-                                "hours": 0,
-                                "minutes": 0,
-                                "seconds": 0,
-                                "milliseconds": 0
-                              }
-                            }
-                          },
-                          "tooltip": "Give one portion"
-                        },
-                        {
-                          "entity": "script.feed_portions",
-                          "icon": "mdi:close-box",
-                          "type": "button",
-                          "name": false,
-                          "action_name": "Feed",
-                          "ripple": "fill",
-                          "state_styles": {
-                            "on": {
-                              "button": {
-                                "--pbs-button-rgb-active-color": "255,0,0"
-                              }
-                            },
-                            "off": {
-                              "button": {
-                                "pointer-events": "none",
-                                "--pbs-button-rgb-color": "125,125,125"
-                              }
-                            }
-                          },
-                          "styles": {
-                            "button": {
-                              "border-radius": "12px",
-                              "--pbs-button-rgb-bg-opacity": 0.2
-                            }
-                          },
-                          "tap_action": {
-                            "action": "call-service",
-                            "service": "script.turn_off",
-                            "service_data": {
-                              "entity_id": "script.feed_portions"
-                            },
-                            "confirmation": {
-                              "text": "Do you want to cancel the food"
-                            }
-                          },
-                          "tooltip": "Cancel the running food schedule"
-                        }
-                      ]
+                      "entity": "light.table_lights",
+                      "show_last_changed": false,
+                      "show_state": false,
+                      "show_attribute": true,
+                      "show_icon": false,
+                      "show_background": false,
+                      "attribute": "brightness"
                     }
-                  ]
-                }
-              ],
-              "title": "Lights and feeder"
-            },
-            {
-              "type": "grid",
-              "cards": [
+                  ],
+                  "tap_action": {
+                    "action": "toggle"
+                  },
+                  "double_tap_action": {
+                    "action": "more-info"
+                  }
+                },
                 {
-                  "type": "custom:mushroom-climate-card",
-                  "entity": "climate.cv_ketel",
-                  "fill_container": false,
-                  "secondary_info": "state",
-                  "show_temperature_control": true,
-                  "collapsible_controls": false,
+                  "type": "custom:bubble-card",
+                  "card_type": "button",
+                  "entity": "light.tv_light",
+                  "layout_options": {
+                    "grid_columns": 2,
+                    "grid_rows": 1
+                  },
+                  "name": "TV",
+                  "button_type": "slider",
+                  "sub_button": [
+                    {
+                      "entity": "light.tv_light",
+                      "show_last_changed": false,
+                      "show_state": false,
+                      "show_attribute": true,
+                      "show_icon": false,
+                      "show_background": false,
+                      "attribute": "brightness"
+                    }
+                  ],
+                  "tap_action": {
+                    "action": "toggle"
+                  },
+                  "double_tap_action": {
+                    "action": "more-info"
+                  }
+                },
+                {
+                  "type": "custom:bubble-card",
+                  "card_type": "button",
+                  "entity": "light.table_lights",
+                  "layout_options": {
+                    "grid_columns": 2,
+                    "grid_rows": 1
+                  },
+                  "name": "Table",
+                  "button_type": "slider",
+                  "sub_button": [
+                    {
+                      "entity": "light.table_lights",
+                      "show_last_changed": false,
+                      "show_state": false,
+                      "show_attribute": true,
+                      "show_icon": false,
+                      "show_background": false,
+                      "attribute": "brightness"
+                    }
+                  ],
+                  "tap_action": {
+                    "action": "toggle"
+                  },
+                  "double_tap_action": {
+                    "action": "more-info"
+                  }
+                },
+                {
+                  "type": "custom:bubble-card",
+                  "card_type": "media-player",
+                  "entity": "media_player.living_room_tv",
+                  "hide": {
+                    "volume_button": true
+                  }
+                },
+                {
+                  "type": "custom:bubble-card",
+                  "card_type": "button",
+                  "card_layout": "large",
+                  "button_type": "name",
+                  "show_icon": false,
+                  "show_name": false,
+                  "sub_button": [
+                    {
+                      "entity": "remote.harmonyjorik",
+                      "icon": "mdi:power",
+                      "tap_action": {
+                        "action": "call-service",
+                        "service": "remote.turn_off",
+                        "target": {
+                          "entity_id": "remote.harmonyjorik"
+                        }
+                      },
+                      "show_background": true,
+                      "show_state": false,
+                      "show_last_changed": false
+                    },
+                    {
+                      "entity": "remote.harmonyjorik",
+                      "icon": "mdi:spotify",
+                      "tap_action": {
+                        "action": "call-service",
+                        "service": "remote.turn_on",
+                        "service_data": {
+                          "entity_id": "remote.harmonyjorik",
+                          "activity": "Stereo"
+                        },
+                        "target": {}
+                      },
+                      "show_background": true,
+                      "show_state": false,
+                      "show_last_changed": false
+                    },
+                    {
+                      "entity": "remote.harmonyjorik",
+                      "icon": "mdi:cast",
+                      "tap_action": {
+                        "action": "call-service",
+                        "service": "remote.turn_on",
+                        "service_data": {
+                          "entity_id": "remote.harmonyjorik",
+                          "activity": "Tv"
+                        },
+                        "target": {}
+                      },
+                      "show_background": true,
+                      "show_state": false,
+                      "show_last_changed": false
+                    },
+                    {
+                      "entity": "remote.harmonyjorik",
+                      "icon": "mdi:volume-minus",
+                      "tap_action": {
+                        "action": "call-service",
+                        "service": "remote.send_command",
+                        "service_data": {
+                          "entity_id": "remote.harmonyjorik",
+                          "command": "VolumeDown",
+                          "device": "Yamaha AV Receiver",
+                          "num_repeats": 5,
+                          "delay_secs": 0.4,
+                          "hold_secs": 0
+                        },
+                        "target": {}
+                      },
+                      "show_background": true,
+                      "show_state": false,
+                      "show_last_changed": false
+                    },
+                    {
+                      "entity": "remote.harmonyjorik",
+                      "icon": "mdi:volume-mute",
+                      "tap_action": {
+                        "action": "call-service",
+                        "service": "remote.send_command",
+                        "service_data": {
+                          "entity_id": "remote.harmonyjorik",
+                          "command": "Mute",
+                          "device": "Yamaha AV Receiver"
+                        },
+                        "target": {}
+                      },
+                      "show_background": true,
+                      "show_state": false,
+                      "show_last_changed": false
+                    },
+                    {
+                      "entity": "remote.harmonyjorik",
+                      "icon": "mdi:volume-plus",
+                      "tap_action": {
+                        "action": "call-service",
+                        "service": "remote.send_command",
+                        "service_data": {
+                          "entity_id": "remote.harmonyjorik",
+                          "command": "VolumeUp",
+                          "device": "Yamaha AV Receiver",
+                          "num_repeats": 5,
+                          "delay_secs": 0.4,
+                          "hold_secs": 0
+                        },
+                        "target": {}
+                      },
+                      "show_background": true,
+                      "show_state": false,
+                      "show_last_changed": false
+                    }
+                  ],
+                  "styles": ".card-content {\n  width: 100%;\n  margin: 0 !important;\n}\n.bubble-sub-button-container {\n  width: 100%;\n  justify-content: space-between !important;\n}\n.bubble-button-background {\n  background-color: var(--background-color,var(--secondary-background-color)) !important;\n}\n.bubble-sub-button-icon {\n    --mdc-icon-size: inherit !important;\n}\n.bubble-name-container {\n    margin-right: 0px !important;\n}\n.bubble-sub-button {\n  color: ${hass.states['remote.harmonyjorik'].attributes.current_activity === 'PowerOff' ? 'var(--disabled-text-color)' : 'var(--enabled-text-color)'} !important;\n  background-color: var(--secondary-background-color) !important;\n}\n.bubble-sub-button-1 {\n  color: ${hass.states['remote.harmonyjorik'].attributes.current_activity === 'PowerOff' ? 'var(--disabled-text-color)' : 'var(--accent-color)'} !important;\n}\n.bubble-sub-button-2 {\n  color: ${hass.states['remote.harmonyjorik'].attributes.current_activity === 'Stereo' ? 'var(--accent-color)' : 'var(--enabled-text-color)'} !important;\n}\n.bubble-sub-button-3 {\n  color: ${hass.states['remote.harmonyjorik'].attributes.current_activity === 'Tv' ? 'var(--accent-color)' : 'var(--enabled-text-color)'} !important;\n}"
+                },
+                {
+                  "type": "custom:bubble-card",
+                  "card_type": "button",
+                  "entity": "select.de_foodzi_unit_feed",
+                  "name": "Cat Feeder",
+                  "icon": "mdi:cat",
+                  "sub_button": [
+                    {
+                      "icon": "mdi:silverware",
+                      "entity": "script.feed_portions",
+                      "tap_action": {
+                        "action": "call-service",
+                        "service": "script.feed_portion",
+                        "service_data": {
+                          "nr": 3,
+                          "delay": {
+                            "hours": 0,
+                            "minutes": 5,
+                            "seconds": 0,
+                            "milliseconds": 0
+                          }
+                        },
+                        "target": {},
+                        "confirmation": {
+                          "text": "Are you sure you want to give 3 portions of 7 gram (21 in total) with 5 minutes inbetween?"
+                        }
+                      }
+                    },
+                    {
+                      "icon": "mdi:silverware-spoon",
+                      "entity": "script.feed_portions",
+                      "tap_action": {
+                        "action": "call-service",
+                        "service": "script.feed_portion",
+                        "service_data": {
+                          "nr": 1,
+                          "delay": {
+                            "hours": 0,
+                            "minutes": 5,
+                            "seconds": 0,
+                            "milliseconds": 0
+                          }
+                        },
+                        "target": {}
+                      }
+                    }
+                  ],
                   "layout_options": {
                     "grid_columns": 4,
                     "grid_rows": 1
                   },
-                  "layout": "horizontal"
-                },
-                {
-                  "graph": "line",
-                  "type": "sensor",
-                  "entity": "sensor.cv_temperature",
-                  "detail": 1,
-                  "name": "CV  Balkon",
-                  "icon": " "
-                },
-                {
-                  "graph": "line",
-                  "type": "sensor",
-                  "detail": 1,
-                  "entity": "sensor.livingroom_temperature",
-                  "name": "Livingroom",
-                  "icon": " "
+                  "tap_action": {
+                    "action": "none"
+                  },
+                  "double_tap_action": {
+                    "action": "none"
+                  },
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "button_action": {
+                    "tap_action": {
+                      "action": "none"
+                    },
+                    "double_tap_action": {
+                      "action": "none"
+                    },
+                    "hold_action": {
+                      "action": "none"
+                    }
+                  }
                 }
               ],
-              "title": "Climate"
-            },
-            {
-              "type": "grid",
-              "cards": [
-                {
-                  "type": "custom:clock-weather-card",
-                  "entity": "weather.home",
-                  "hide_today_section": true
-                }
-              ],
-              "title": "Weather"
+              "title": "Controls"
             },
             {
               "type": "grid",
@@ -512,18 +572,30 @@
                 },
                 {
                   "type": "tile",
-                  "entity": "automation.vacuum_start_smart",
-                  "name": "Allow Start",
-                  "hide_state": true
+                  "entity": "script.start_vacuum",
+                  "tap_action": {
+                    "action": "perform-action",
+                    "perform_action": "script.start_vacuum",
+                    "target": {}
+                  },
+                  "hide_state": true,
+                  "name": "Start Cleaning"
                 },
                 {
                   "type": "tile",
                   "entity": "binary_sensor.allow_vacuum_to_run",
                   "name": "Will kevin run",
                   "hide_state": false,
+                  "color": "var(--accent-color)",
                   "layout_options": {
                     "grid_columns": 4,
                     "grid_rows": 1
+                  },
+                  "tap_action": {
+                    "action": "none"
+                  },
+                  "icon_tap_action": {
+                    "action": "none"
                   },
                   "card_mod": {
                     "style": {
@@ -534,21 +606,257 @@
                 {
                   "type": "tile",
                   "entity": "counter.vacuum_cleans",
-                  "name": "Nr. Cleans"
+                  "name": "Nr. Cleans",
+                  "icon_tap_action": {
+                    "action": "none"
+                  },
+                  "tap_action": {
+                    "action": "none"
+                  },
+                  "color": "grey"
                 },
                 {
                   "type": "tile",
-                  "entity": "script.start_vacuum",
-                  "tap_action": {
-                    "action": "perform-action",
-                    "perform_action": "script.start_vacuum",
-                    "target": {}
-                  },
+                  "entity": "automation.vacuum_start_smart",
+                  "name": "Allow Start",
                   "hide_state": true,
-                  "name": "Start Cleaning"
+                  "color": "var(--accent-color)",
+                  "tap_action": {
+                    "action": "none"
+                  },
+                  "icon_tap_action": {
+                    "action": "none"
+                  }
                 }
               ],
               "title": "Vacuum"
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "custom:mushroom-climate-card",
+                  "entity": "climate.cv_ketel",
+                  "fill_container": false,
+                  "secondary_info": "state",
+                  "show_temperature_control": true,
+                  "collapsible_controls": false,
+                  "layout_options": {
+                    "grid_columns": 4,
+                    "grid_rows": 1
+                  },
+                  "layout": "horizontal"
+                },
+                {
+                  "graph": "line",
+                  "type": "sensor",
+                  "entity": "sensor.cv_temperature",
+                  "detail": 1,
+                  "name": "CV  Balkon",
+                  "icon": " "
+                },
+                {
+                  "graph": "line",
+                  "type": "sensor",
+                  "detail": 1,
+                  "entity": "sensor.livingroom_temperature",
+                  "name": "Livingroom",
+                  "icon": " "
+                }
+              ],
+              "title": "Climate"
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "custom:clock-weather-card",
+                  "entity": "weather.home",
+                  "hide_today_section": true
+                },
+                {
+                  "type": "entities",
+                  "entities": [
+                    {
+                      "type": "custom:paper-buttons-row",
+                      "preset": "mushroom",
+                      "buttons": [
+                        {
+                          "entity": "script.feed_portions",
+                          "icon": "mdi:silverware",
+                          "type": "button",
+                          "name": false,
+                          "action_name": "Feed",
+                          "ripple": "fill",
+                          "state_styles": {
+                            "on": {
+                              "button": {
+                                "animation": "blink 1s ease infinite",
+                                "pointer-events": "none"
+                              }
+                            }
+                          },
+                          "styles": {
+                            "button": {
+                              "border-radius": "12px",
+                              "--pbs-button-rgb-bg-opacity": 0.2
+                            }
+                          },
+                          "tap_action": {
+                            "action": "call-service",
+                            "service": "script.feed_portion",
+                            "service_data": {
+                              "nr": 3,
+                              "delay": {
+                                "hours": 0,
+                                "minutes": 5,
+                                "seconds": 0,
+                                "milliseconds": 0
+                              }
+                            },
+                            "confirmation": {
+                              "text": "Are you sure you want to give 3 portions of 7 gram (21 in total) with 5 minutes inbetween?"
+                            }
+                          },
+                          "tooltip": "Give three portions"
+                        },
+                        {
+                          "entity": "select.de_foodzi_unit_mode",
+                          "icon": "mdi:close-thick",
+                          "ripple": "fill",
+                          "state_icons": {
+                            "manual": "mdi:hand-back-right",
+                            "schedule": "mdi:calendar"
+                          },
+                          "name": false,
+                          "state_styles": {
+                            "schedule": {
+                              "button": {
+                                "--pbs-button-rgb-color": "255,0,0"
+                              }
+                            }
+                          },
+                          "styles": {
+                            "button": {
+                              "border-radius": "12px",
+                              "--pbs-button-rgb-bg-opacity": 0.2
+                            }
+                          },
+                          "tooltip": "Change mode to schedule/manual",
+                          "tap_action": {
+                            "confirmation": {
+                              "text": "You will be changing the feeding source (to either schedule or manual)\n"
+                            },
+                            "action": "call-service",
+                            "service": "select.select_previous",
+                            "service_data": {
+                              "cycle": true
+                            },
+                            "target": {
+                              "entity_id": "select.de_foodzi_unit_mode"
+                            }
+                          }
+                        },
+                        {
+                          "entity": "lock.de_foodzi_unit_child_lock",
+                          "name": false,
+                          "tooltip": "(Un)lock the buttons",
+                          "active": "locked",
+                          "ripple": "fill",
+                          "state_styles": {
+                            "unlocked": {
+                              "button": {
+                                "--pbs-button-rgb-color": "255,0,0"
+                              }
+                            }
+                          },
+                          "styles": {
+                            "button": {
+                              "border-radius": "12px",
+                              "--pbs-button-rgb-bg-opacity": 0.2
+                            }
+                          }
+                        },
+                        {
+                          "entity": "script.feed_portions",
+                          "icon": "mdi:silverware-spoon",
+                          "type": "button",
+                          "name": false,
+                          "action_name": "Feed",
+                          "ripple": "fill",
+                          "state_styles": {
+                            "on": {
+                              "button": {
+                                "animation": "blink 1s ease infinite",
+                                "pointer-events": "none"
+                              }
+                            }
+                          },
+                          "styles": {
+                            "button": {
+                              "border-radius": "12px",
+                              "--pbs-button-rgb-bg-opacity": 0.2
+                            }
+                          },
+                          "tap_action": {
+                            "action": "call-service",
+                            "service": "script.feed_portion",
+                            "service_data": {
+                              "nr": 1,
+                              "delay": {
+                                "hours": 0,
+                                "minutes": 0,
+                                "seconds": 0,
+                                "milliseconds": 0
+                              }
+                            }
+                          },
+                          "tooltip": "Give one portion"
+                        },
+                        {
+                          "entity": "script.feed_portions",
+                          "icon": "mdi:close-box",
+                          "type": "button",
+                          "name": false,
+                          "action_name": "Feed",
+                          "ripple": "fill",
+                          "state_styles": {
+                            "on": {
+                              "button": {
+                                "--pbs-button-rgb-active-color": "255,0,0"
+                              }
+                            },
+                            "off": {
+                              "button": {
+                                "pointer-events": "none",
+                                "--pbs-button-rgb-color": "125,125,125"
+                              }
+                            }
+                          },
+                          "styles": {
+                            "button": {
+                              "border-radius": "12px",
+                              "--pbs-button-rgb-bg-opacity": 0.2
+                            }
+                          },
+                          "tap_action": {
+                            "action": "call-service",
+                            "service": "script.turn_off",
+                            "service_data": {
+                              "entity_id": "script.feed_portions"
+                            },
+                            "confirmation": {
+                              "text": "Do you want to cancel the food"
+                            }
+                          },
+                          "tooltip": "Cancel the running food schedule"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "title": "Weather"
             }
           ],
           "badges": [
@@ -583,7 +891,8 @@
             {
               "type": "entity",
               "entity": "weather.home",
-              "state_content": "temperature"
+              "state_content": "temperature",
+              "color": "light-grey"
             },
             {
               "type": "entity",
@@ -598,829 +907,13 @@
               "tap_action": {
                 "action": "toggle"
               }
-            }
-          ]
-        },
-        {
-          "title": "TV",
-          "path": "tv",
-          "icon": "mdi:television",
-          "type": "custom:horizontal-layout",
-          "badges": [],
-          "cards": [
-            {
-              "type": "entities",
-              "entities": [
-                {
-                  "type": "custom:paper-buttons-row",
-                  "preset": "mushroom",
-                  "buttons": [
-                    {
-                      "entity": "remote.harmonyjorik",
-                      "preset": "mushroom",
-                      "layout": "icon|name",
-                      "name": "Cast",
-                      "icon": "mdi:cast",
-                      "state": "{{ state_attr(config.entity, 'current_activity')}}",
-                      "active": [
-                        "tv"
-                      ],
-                      "tap_action": {
-                        "action": "call-service",
-                        "service": "remote.turn_on",
-                        "service_data": {
-                          "entity_id": "remote.harmonyjorik",
-                          "activity": "Tv"
-                        }
-                      },
-                      "hold_action": {
-                        "action": "none"
-                      }
-                    },
-                    {
-                      "entity": "remote.harmonyjorik",
-                      "preset": "mushroom",
-                      "layout": "icon|name",
-                      "name": "Music",
-                      "icon": "mdi:spotify",
-                      "state": "{{ state_attr(config.entity, 'current_activity')}}",
-                      "active": [
-                        "stereo"
-                      ],
-                      "tap_action": {
-                        "action": "call-service",
-                        "service": "remote.turn_on",
-                        "service_data": {
-                          "entity_id": "remote.harmonyjorik",
-                          "activity": "Stereo"
-                        }
-                      },
-                      "hold_action": {
-                        "action": "none"
-                      }
-                    },
-                    {
-                      "entity": "remote.harmonyjorik",
-                      "preset": "mushroom",
-                      "layout": "icon|name",
-                      "name": "Switch",
-                      "icon": "mdi:nintendo-switch",
-                      "state": "{{ state_attr(config.entity, 'current_activity')}}",
-                      "active": [
-                        "nintendo"
-                      ],
-                      "tap_action": {
-                        "action": "call-service",
-                        "service": "remote.turn_on",
-                        "service_data": {
-                          "entity_id": "remote.harmonyjorik",
-                          "activity": "Nintendo"
-                        }
-                      },
-                      "hold_action": {
-                        "action": "none"
-                      }
-                    }
-                  ]
-                },
-                {
-                  "type": "custom:paper-buttons-row",
-                  "preset": "mushroom",
-                  "buttons": [
-                    {
-                      "entity": "remote.harmonyjorik",
-                      "preset": "mushroom",
-                      "layout": "icon|name",
-                      "name": "PS4",
-                      "icon": "mdi:sony-playstation",
-                      "state": "{{ state_attr(config.entity, 'current_activity')}}",
-                      "active": [
-                        "play ps4"
-                      ],
-                      "tap_action": {
-                        "action": "call-service",
-                        "service": "remote.turn_on",
-                        "service_data": {
-                          "entity_id": "remote.harmonyjorik",
-                          "activity": "Play PS4"
-                        }
-                      },
-                      "hold_action": {
-                        "action": "none"
-                      }
-                    },
-                    {
-                      "entity": "remote.harmonyjorik",
-                      "preset": "mushroom",
-                      "layout": "icon|state",
-                      "name": "Toggle",
-                      "icon": "mdi:power",
-                      "tap_action": {
-                        "action": "call-service",
-                        "service": "remote.turn_off",
-                        "target": {
-                          "entity_id": "remote.harmonyjorik"
-                        }
-                      },
-                      "hold_action": {
-                        "action": "none"
-                      }
-                    }
-                  ]
-                },
-                {
-                  "type": "custom:paper-buttons-row",
-                  "preset": "mushroom",
-                  "styles": {
-                    "button": {
-                      "--pbs-button-rgb-color": "var(--rgb-disabled-text-color)"
-                    }
-                  },
-                  "buttons": [
-                    {
-                      "entity": "remote.harmonyjorik",
-                      "layout": "icon",
-                      "icon": "mdi:volume-minus",
-                      "tap_action": {
-                        "action": "call-service",
-                        "service": "remote.send_command",
-                        "service_data": {
-                          "entity_id": "remote.harmonyjorik",
-                          "command": "VolumeDown",
-                          "device": "Yamaha AV Receiver",
-                          "num_repeats": 5,
-                          "delay_secs": 0.4,
-                          "hold_secs": 0
-                        }
-                      },
-                      "hold_action": {
-                        "action": "none"
-                      },
-                      "styles": {
-                        "button": {
-                          "--pbs-button-rgb-color": "var(--rgb-disabled-text-color)"
-                        }
-                      },
-                      "state_styles": {
-                        "off": {
-                          "button": {
-                            "pointer-events": "none"
-                          }
-                        }
-                      }
-                    },
-                    {
-                      "entity": "remote.harmonyjorik",
-                      "layout": "icon",
-                      "icon": "mdi:volume-mute",
-                      "tap_action": {
-                        "action": "call-service",
-                        "service": "remote.send_command",
-                        "service_data": {
-                          "entity_id": "remote.harmonyjorik",
-                          "command": "Mute",
-                          "device": "Yamaha AV Receiver"
-                        }
-                      },
-                      "hold_action": {
-                        "action": "none"
-                      },
-                      "styles": {
-                        "button": {
-                          "--pbs-button-rgb-color": "var(--rgb-disabled-text-color)"
-                        }
-                      },
-                      "state_styles": {
-                        "off": {
-                          "button": {
-                            "pointer-events": "none"
-                          }
-                        }
-                      }
-                    },
-                    {
-                      "entity": "remote.harmonyjorik",
-                      "layout": "icon",
-                      "icon": "mdi:volume-plus",
-                      "tap_action": {
-                        "action": "call-service",
-                        "service": "remote.send_command",
-                        "service_data": {
-                          "entity_id": "remote.harmonyjorik",
-                          "command": "VolumeUp",
-                          "device": "Yamaha AV Receiver",
-                          "num_repeats": 5,
-                          "delay_secs": 0.4,
-                          "hold_secs": 0
-                        }
-                      },
-                      "hold_action": {
-                        "action": "none"
-                      },
-                      "styles": {
-                        "button": {
-                          "--pbs-button-rgb-color": "var(--rgb-disabled-text-color)"
-                        }
-                      },
-                      "state_styles": {
-                        "off": {
-                          "button": {
-                            "pointer-events": "none"
-                          }
-                        }
-                      }
-                    }
-                  ]
-                },
-                {
-                  "entity": "remote.harmonyjorik",
-                  "name": "TV",
-                  "icon": "mdi:television",
-                  "state_color": false,
-                  "tooltip": false,
-                  "tap_action": {
-                    "action": "none"
-                  },
-                  "extend_paper_buttons_row": {
-                    "hide_state": true,
-                    "buttons": [
-                      {
-                        "entity": "remote.harmonyjorik",
-                        "icon": "mdi:power",
-                        "layout": "icon",
-                        "preset": "mushroom",
-                        "active": "nonexisting",
-                        "tap_action": {
-                          "action": "call-service",
-                          "service": "remote.send_command",
-                          "service_data": {
-                            "device": "Philips TV",
-                            "command": "PowerToggle"
-                          },
-                          "target": {
-                            "entity_id": "remote.harmonyjorik"
-                          }
-                        },
-                        "hold_action": {
-                          "action": "none"
-                        }
-                      }
-                    ]
-                  }
-                },
-                {
-                  "entity": "remote.harmonyjorik",
-                  "name": "Media Center",
-                  "icon": "mdi:amplifier",
-                  "state_color": false,
-                  "tooltip": false,
-                  "tap_action": {
-                    "action": "none"
-                  },
-                  "extend_paper_buttons_row": {
-                    "hide_state": true,
-                    "buttons": [
-                      {
-                        "entity": "remote.harmonyjorik",
-                        "icon": "mdi:power",
-                        "layout": "icon",
-                        "preset": "mushroom",
-                        "active": "nonexisting",
-                        "tap_action": {
-                          "action": "call-service",
-                          "service": "remote.send_command",
-                          "service_data": {
-                            "device": "Yamaha AV Receiver",
-                            "command": "PowerToggle"
-                          },
-                          "target": {
-                            "entity_id": "remote.harmonyjorik"
-                          }
-                        },
-                        "hold_action": {
-                          "action": "none"
-                        }
-                      }
-                    ]
-                  }
-                }
-              ],
-              "title": "TV Controls",
-              "state_color": true
             },
             {
-              "type": "vertical-stack",
-              "title": "Media Control",
-              "cards": [
-                {
-                  "type": "media-control",
-                  "entity": "media_player.living_room_tv"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "title": "Kevin the Vacuum",
-          "path": "v",
-          "icon": "mdi:robot-vacuum",
-          "badges": [],
-          "cards": [
-            {
-              "type": "vertical-stack",
-              "title": "| Kevin the Vacuum",
-              "cards": [
-                {
-                  "type": "entities",
-                  "entities": [
-                    {
-                      "type": "custom:paper-buttons-row",
-                      "preset": "mushroom",
-                      "buttons": [
-                        {
-                          "entity": "vacuum.kevin",
-                          "icon": "mdi:cat",
-                          "type": "button",
-                          "name": false,
-                          "ripple": "fill",
-                          "tap_action": {
-                            "action": "call-service",
-                            "service": "automation.trigger",
-                            "service_data": {
-                              "entity_id": "automation.vacuum_clean_grit"
-                            }
-                          },
-                          "tooltip": "Clean the area before the litter box",
-                          "styles": {
-                            "button": {
-                              "--pbs-button-rgb-color": "var(--rgb-disabled-text-color)",
-                              "--pbs-button-rgb-active-color": "var(--rgb-primary-color)",
-                              "margin-left": "0px"
-                            }
-                          },
-                          "state_styles": {
-                            "cleaning": {
-                              "button": {
-                                "pointer-events": "none"
-                              }
-                            }
-                          },
-                          "active": [
-                            "docked",
-                            "charging"
-                          ]
-                        },
-                        {
-                          "entity": "vacuum.kevin",
-                          "icon": "mdi:home",
-                          "type": "button",
-                          "name": false,
-                          "ripple": "fill",
-                          "tap_action": {
-                            "action": "call-service",
-                            "service": "vacuum.start",
-                            "service_data": {
-                              "entity_id": "vacuum.kevin"
-                            }
-                          },
-                          "tooltip": "Clean the whole house",
-                          "styles": {
-                            "button": {
-                              "--pbs-button-rgb-color": "var(--rgb-disabled-text-color)",
-                              "--pbs-button-rgb-active-color": "var(--rgb-primary-color)",
-                              "margin-left": "0px"
-                            }
-                          },
-                          "state_styles": {
-                            "cleaning": {
-                              "button": {
-                                "pointer-events": "none"
-                              }
-                            }
-                          },
-                          "active": [
-                            "docked",
-                            "charging"
-                          ]
-                        },
-                        {
-                          "entity": "vacuum.kevin",
-                          "icon": "mdi:sofa",
-                          "type": "button",
-                          "name": false,
-                          "ripple": "fill",
-                          "tap_action": {
-                            "action": "call-service",
-                            "service": "xiaomi_miio.vacuum_clean_segment",
-                            "service_data": {
-                              "entity_id": "vacuum.kevin",
-                              "segments": [
-                                19
-                              ]
-                            }
-                          },
-                          "tooltip": "Clean the livingroom",
-                          "styles": {
-                            "button": {
-                              "--pbs-button-rgb-color": "var(--rgb-disabled-text-color)",
-                              "--pbs-button-rgb-active-color": "var(--rgb-primary-color)"
-                            }
-                          },
-                          "state_styles": {
-                            "cleaning": {
-                              "button": {
-                                "pointer-events": "none"
-                              }
-                            }
-                          },
-                          "active": [
-                            "docked",
-                            "charging"
-                          ]
-                        },
-                        {
-                          "entity": "vacuum.kevin",
-                          "icon": "mdi:bed",
-                          "type": "button",
-                          "name": false,
-                          "ripple": "fill",
-                          "tap_action": {
-                            "action": "call-service",
-                            "service": "xiaomi_miio.vacuum_clean_segment",
-                            "service_data": {
-                              "entity_id": "vacuum.kevin",
-                              "segments": [
-                                16,
-                                17
-                              ]
-                            }
-                          },
-                          "tooltip": "Clean the bedroom",
-                          "styles": {
-                            "button": {
-                              "--pbs-button-rgb-color": "var(--rgb-disabled-text-color)",
-                              "--pbs-button-rgb-active-color": "var(--rgb-primary-color)"
-                            }
-                          },
-                          "state_styles": {
-                            "cleaning": {
-                              "button": {
-                                "pointer-events": "none"
-                              }
-                            }
-                          },
-                          "active": [
-                            "docked",
-                            "charging"
-                          ]
-                        },
-                        {
-                          "entity": "vacuum.kevin",
-                          "icon": "mdi:pot-steam",
-                          "type": "button",
-                          "name": false,
-                          "ripple": "fill",
-                          "tap_action": {
-                            "action": "call-service",
-                            "service": "xiaomi_miio.vacuum_clean_segment",
-                            "service_data": {
-                              "entity_id": "vacuum.kevin",
-                              "segments": [
-                                18
-                              ]
-                            }
-                          },
-                          "tooltip": "Clean the kitchen",
-                          "styles": {
-                            "button": {
-                              "--pbs-button-rgb-color": "var(--rgb-disabled-text-color)",
-                              "--pbs-button-rgb-active-color": "var(--rgb-primary-color)"
-                            }
-                          },
-                          "state_styles": {
-                            "cleaning": {
-                              "button": {
-                                "pointer-events": "none"
-                              }
-                            }
-                          },
-                          "active": [
-                            "docked",
-                            "charging"
-                          ]
-                        },
-                        {
-                          "entity": "vacuum.kevin",
-                          "icon": "mdi:ev-station",
-                          "type": "button",
-                          "name": false,
-                          "ripple": "fill",
-                          "tap_action": {
-                            "action": "call-service",
-                            "service": "vacuum.return_to_base",
-                            "service_data": {
-                              "entity_id": "vacuum.kevin"
-                            }
-                          },
-                          "tooltip": "Back to the docking station",
-                          "styles": {
-                            "button": {
-                              "--pbs-button-rgb-active-color": "var(--rgb-disabled-text-color)",
-                              "--pbs-button-rgb-color": "var(--rgb-primary-color)"
-                            }
-                          },
-                          "active": [
-                            "docked",
-                            "charging"
-                          ]
-                        },
-                        {
-                          "entity": "vacuum.kevin",
-                          "icon": "mdi:play-pause",
-                          "type": "button",
-                          "name": false,
-                          "ripple": "fill",
-                          "tap_action": {
-                            "action": "call-service",
-                            "service": "script.start_pause_vacuum"
-                          },
-                          "tooltip": "Start/pause the vacuum",
-                          "styles": {
-                            "button": {
-                              "--pbs-button-rgb-active-color": "var(--rgb-disabled-text-color)",
-                              "--pbs-button-rgb-color": "var(--rgb-primary-color)"
-                            }
-                          },
-                          "active": [
-                            "docked",
-                            "paused",
-                            "charging"
-                          ]
-                        }
-                      ]
-                    },
-                    {
-                      "type": "custom:template-entity-row",
-                      "icon": "mdi:calendar",
-                      "name": "Will the vacuum start",
-                      "entity": "binary_sensor.allow_vacuum_to_run",
-                      "state": "{% if is_state('binary_sensor.allow_vacuum_to_run', 'on')%} yes {% else %} no {% endif %}",
-                      "secondary": "Last clean at {{ as_timestamp(states(\"input_datetime.vacuum_last_run\")) | timestamp_custom('%a %d %b %H:%M') }}"
-                    },
-                    {
-                      "entity": "automation.vacuum_start_smart",
-                      "name": "Allow the vacuum to start"
-                    },
-                    {
-                      "entity": "counter.vacuum_cleans",
-                      "name": "Nr. cleans since empty",
-                      "icon": "mdi:trash-can"
-                    },
-                    {
-                      "entity": "counter.vacuum_cleans",
-                      "name": "Emptied Kevin",
-                      "extend_paper_buttons_row": {
-                        "position": "right",
-                        "hide_state": true,
-                        "preset": "mushroom",
-                        "base_config": {
-                          "styles": {
-                            "button": {
-                              "margin-left": "2px",
-                              "margin-right": "2px"
-                            }
-                          }
-                        },
-                        "buttons": [
-                          {
-                            "entity": "counter.vacuum_cleans",
-                            "name": false,
-                            "icon": "mdi:trash-can",
-                            "tap_action": {
-                              "action": "call-service",
-                              "service": "counter.reset",
-                              "service_data": {
-                                "entity_id": "counter.vacuum_cleans"
-                              }
-                            },
-                            "styles": {
-                              "button": {
-                                "--pbs-button-rgb-color": "var(--rgb-primary-color)"
-                              }
-                            }
-                          }
-                        ]
-                      }
-                    }
-                  ]
-                },
-                {
-                  "type": "custom:xiaomi-vacuum-card",
-                  "entity": "vacuum.kevin",
-                  "vendor": "xiaomi",
-                  "buttons": false,
-                  "name": false
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "icon": "mdi:cat",
-          "title": "Pet Feeder",
-          "badges": [],
-          "cards": [
-            {
-              "type": "entities",
-              "entities": [
-                {
-                  "type": "custom:paper-buttons-row",
-                  "preset": "mushroom",
-                  "buttons": [
-                    {
-                      "entity": "script.feed_portions",
-                      "icon": "mdi:silverware",
-                      "type": "button",
-                      "name": false,
-                      "action_name": "Feed",
-                      "ripple": "fill",
-                      "state_styles": {
-                        "on": {
-                          "button": {
-                            "animation": "blink 1s ease infinite",
-                            "pointer-events": "none"
-                          }
-                        }
-                      },
-                      "styles": {
-                        "button": {
-                          "border-radius": "12px",
-                          "--pbs-button-rgb-bg-opacity": 0.2
-                        }
-                      },
-                      "tap_action": {
-                        "action": "call-service",
-                        "service": "script.feed_portion",
-                        "service_data": {
-                          "nr": 3,
-                          "delay": {
-                            "hours": 0,
-                            "minutes": 5,
-                            "seconds": 0,
-                            "milliseconds": 0
-                          }
-                        },
-                        "confirmation": {
-                          "text": "Are you sure you want to give 3 portions of 7 gram (21 in total) with 5 minutes inbetween?"
-                        }
-                      },
-                      "tooltip": "Give three portions"
-                    },
-                    {
-                      "entity": "select.de_foodzi_unit_mode",
-                      "icon": "mdi:close-thick",
-                      "ripple": "fill",
-                      "state_icons": {
-                        "manual": "mdi:hand-back-right",
-                        "schedule": "mdi:calendar"
-                      },
-                      "name": false,
-                      "state_styles": {
-                        "schedule": {
-                          "button": {
-                            "--pbs-button-rgb-color": "255,0,0"
-                          }
-                        }
-                      },
-                      "styles": {
-                        "button": {
-                          "border-radius": "12px",
-                          "--pbs-button-rgb-bg-opacity": 0.2
-                        }
-                      },
-                      "tooltip": "Change mode to schedule/manual",
-                      "tap_action": {
-                        "confirmation": {
-                          "text": "You will be changing the feeding source (to either schedule or manual)\n"
-                        },
-                        "action": "call-service",
-                        "service": "select.select_previous",
-                        "service_data": {
-                          "cycle": true
-                        },
-                        "target": {
-                          "entity_id": "select.de_foodzi_unit_mode"
-                        }
-                      }
-                    },
-                    {
-                      "entity": "lock.de_foodzi_unit_child_lock",
-                      "name": false,
-                      "tooltip": "(Un)lock the buttons",
-                      "active": "locked",
-                      "ripple": "fill",
-                      "state_styles": {
-                        "unlocked": {
-                          "button": {
-                            "--pbs-button-rgb-color": "255,0,0"
-                          }
-                        }
-                      },
-                      "styles": {
-                        "button": {
-                          "border-radius": "12px",
-                          "--pbs-button-rgb-bg-opacity": 0.2
-                        }
-                      }
-                    },
-                    {
-                      "entity": "script.feed_portions",
-                      "icon": "mdi:silverware-spoon",
-                      "type": "button",
-                      "name": false,
-                      "action_name": "Feed",
-                      "ripple": "fill",
-                      "state_styles": {
-                        "on": {
-                          "button": {
-                            "animation": "blink 1s ease infinite",
-                            "pointer-events": "none"
-                          }
-                        }
-                      },
-                      "styles": {
-                        "button": {
-                          "border-radius": "12px",
-                          "--pbs-button-rgb-bg-opacity": 0.2
-                        }
-                      },
-                      "tap_action": {
-                        "action": "call-service",
-                        "service": "script.feed_portion",
-                        "service_data": {
-                          "nr": 1,
-                          "delay": {
-                            "hours": 0,
-                            "minutes": 0,
-                            "seconds": 0,
-                            "milliseconds": 0
-                          }
-                        }
-                      },
-                      "tooltip": "Give one portion"
-                    },
-                    {
-                      "entity": "script.feed_portions",
-                      "icon": "mdi:close-box",
-                      "type": "button",
-                      "name": false,
-                      "action_name": "Feed",
-                      "ripple": "fill",
-                      "state_styles": {
-                        "on": {
-                          "button": {
-                            "--pbs-button-rgb-active-color": "255,0,0"
-                          }
-                        },
-                        "off": {
-                          "button": {
-                            "pointer-events": "none",
-                            "--pbs-button-rgb-color": "125,125,125"
-                          }
-                        }
-                      },
-                      "styles": {
-                        "button": {
-                          "border-radius": "12px",
-                          "--pbs-button-rgb-bg-opacity": 0.2
-                        }
-                      },
-                      "tap_action": {
-                        "action": "call-service",
-                        "service": "script.turn_off",
-                        "service_data": {
-                          "entity_id": "script.feed_portions"
-                        },
-                        "confirmation": {
-                          "text": "Do you want to cancel the food"
-                        }
-                      },
-                      "tooltip": "Cancel the running food schedule"
-                    }
-                  ]
-                },
-                {
-                  "entity": "sensor.de_foodzi_unit_weight_per_day",
-                  "name": "Amount Today",
-                  "icon": "mdi:food",
-                  "secondary_info": "last-changed"
-                },
-                {
-                  "entity": "sensor.de_foodzi_unit_feeding_source",
-                  "name": "Last Source"
-                }
-              ],
-              "title": "Cake Feeder"
+              "type": "entity",
+              "entity": "sensor.de_foodzi_unit_weight_per_day",
+              "icon": "mdi:cat",
+              "show_entity_picture": false,
+              "color": "light-grey"
             }
           ]
         },
@@ -1471,32 +964,6 @@
                 "min",
                 "max"
               ]
-            }
-          ]
-        },
-        {
-          "title": "Plants",
-          "path": "plants",
-          "icon": "mdi:flower",
-          "badges": [],
-          "cards": [
-            {
-              "type": "entities",
-              "entities": [
-                {
-                  "entity": "sensor.flower_care_moisture"
-                },
-                {
-                  "entity": "sensor.flower_care_conductivity"
-                },
-                {
-                  "entity": "sensor.flower_care_illuminance"
-                },
-                {
-                  "entity": "sensor.flower_care_temperature"
-                }
-              ],
-              "show_header_toggle": true
             }
           ]
         }
