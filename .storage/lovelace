@@ -559,74 +559,115 @@
                   ]
                 },
                 {
-                  "type": "tile",
-                  "entity": "script.empty_kevin",
-                  "hide_state": true,
+                  "type": "custom:bubble-card",
+                  "card_type": "button",
+                  "entity": "binary_sensor.allow_vacuum_to_run",
+                  "name": "Will Kevin run",
+                  "show_last_changed": false,
+                  "show_state": false,
+                  "show_attribute": true,
+                  "styles": ".bubble-button-background {\n  background-color: var(--background-color,var(--secondary-background-color)) !important;\n}\n${card.querySelector('.bubble-state').innerText = \"Last clean at \" + (new Date(hass.states['input_datetime.vacuum_last_run'].state)).toLocaleString()}\n",
                   "tap_action": {
-                    "action": "perform-action",
-                    "perform_action": "counter.reset",
-                    "target": {
-                      "entity_id": "counter.vacuum_cleans"
+                    "action": "none"
+                  },
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "double_tap_action": {
+                    "action": "none"
+                  },
+                  "button_action": {
+                    "hold_action": {
+                      "action": "none"
+                    },
+                    "double_tap_action": {
+                      "action": "none"
+                    },
+                    "tap_action": {
+                      "action": "none"
                     }
                   }
                 },
                 {
-                  "type": "tile",
-                  "entity": "script.start_vacuum",
-                  "tap_action": {
-                    "action": "perform-action",
-                    "perform_action": "script.start_vacuum",
-                    "target": {}
-                  },
-                  "hide_state": true,
-                  "name": "Start Cleaning"
+                  "type": "custom:bubble-card",
+                  "card_type": "button",
+                  "entity": "script.empty_kevin",
+                  "layout_options": {
+                    "grid_columns": 2,
+                    "grid_rows": 1
+                  }
                 },
                 {
-                  "type": "tile",
-                  "entity": "binary_sensor.allow_vacuum_to_run",
-                  "name": "Will kevin run",
-                  "hide_state": false,
-                  "color": "var(--accent-color)",
+                  "type": "custom:bubble-card",
+                  "card_type": "button",
+                  "entity": "script.start_vacuum",
                   "layout_options": {
-                    "grid_columns": 4,
+                    "grid_columns": 2,
                     "grid_rows": 1
                   },
+                  "name": "Start cleaning"
+                },
+                {
+                  "type": "custom:bubble-card",
+                  "card_type": "button",
+                  "entity": "counter.vacuum_cleans",
+                  "layout_options": {
+                    "grid_columns": 2,
+                    "grid_rows": 1
+                  },
+                  "show_attribute": false,
+                  "show_state": true,
+                  "name": "Nr. Cleans",
+                  "styles": "  .bubble-button-background {\n    background-color: var(--background-color,var(--secondary-background-color)) !important;\n  }\n  .bubble-icon {\n    color: var(--disabled-text-color) !important;\n  }",
                   "tap_action": {
                     "action": "none"
                   },
-                  "icon_tap_action": {
+                  "double_tap_action": {
                     "action": "none"
                   },
-                  "card_mod": {
-                    "style": {
-                      "ha-tile-info$": ".secondary {\n   visibility: hidden;\n }\n .secondary:before {\n   visibility: visible;\n   content: \"Last clean at {{ as_timestamp(states(\"input_datetime.vacuum_last_run\")) |\ntimestamp_custom('%a %d %b %H:%M') }}\";\n }\n"
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "button_action": {
+                    "hold_action": {
+                      "action": "none"
+                    },
+                    "double_tap_action": {
+                      "action": "none"
+                    },
+                    "tap_action": {
+                      "action": "none"
                     }
                   }
                 },
                 {
-                  "type": "tile",
-                  "entity": "counter.vacuum_cleans",
-                  "name": "Nr. Cleans",
-                  "icon_tap_action": {
-                    "action": "none"
-                  },
-                  "tap_action": {
-                    "action": "none"
-                  },
-                  "color": "grey"
-                },
-                {
-                  "type": "tile",
+                  "type": "custom:bubble-card",
+                  "card_type": "button",
                   "entity": "automation.vacuum_start_smart",
+                  "layout_options": {
+                    "grid_columns": 2,
+                    "grid_rows": 1
+                  },
                   "name": "Allow Start",
-                  "hide_state": true,
-                  "color": "var(--accent-color)",
+                  "icon": "mdi:robot-vacuum",
                   "tap_action": {
+                    "action": "toggle"
+                  },
+                  "double_tap_action": {
                     "action": "none"
                   },
-                  "icon_tap_action": {
+                  "hold_action": {
                     "action": "none"
-                  }
+                  },
+                  "button_action": {
+                    "double_tap_action": {
+                      "action": "none"
+                    },
+                    "hold_action": {
+                      "action": "none"
+                    }
+                  },
+                  "styles": "  .bubble-button-background {\n    background-color: var(--background-color,var(--secondary-background-color)) !important;\n  }"
                 }
               ],
               "title": "Vacuum"
@@ -854,6 +895,76 @@
                       ]
                     }
                   ]
+                },
+                {
+                  "type": "tile",
+                  "entity": "script.empty_kevin",
+                  "hide_state": true,
+                  "tap_action": {
+                    "action": "perform-action",
+                    "perform_action": "counter.reset",
+                    "target": {
+                      "entity_id": "counter.vacuum_cleans"
+                    }
+                  }
+                },
+                {
+                  "type": "tile",
+                  "entity": "script.start_vacuum",
+                  "tap_action": {
+                    "action": "perform-action",
+                    "perform_action": "script.start_vacuum",
+                    "target": {}
+                  },
+                  "hide_state": true,
+                  "name": "Start Cleaning"
+                },
+                {
+                  "type": "tile",
+                  "entity": "binary_sensor.allow_vacuum_to_run",
+                  "name": "Will kevin run",
+                  "hide_state": false,
+                  "color": "var(--accent-color)",
+                  "layout_options": {
+                    "grid_columns": 4,
+                    "grid_rows": 1
+                  },
+                  "tap_action": {
+                    "action": "none"
+                  },
+                  "icon_tap_action": {
+                    "action": "none"
+                  },
+                  "card_mod": {
+                    "style": {
+                      "ha-tile-info$": ".secondary {\n   visibility: hidden;\n }\n .secondary:before {\n   visibility: visible;\n   content: \"Last clean at {{ as_timestamp(states(\"input_datetime.vacuum_last_run\")) |\ntimestamp_custom('%a %d %b %H:%M') }}\";\n }\n"
+                    }
+                  }
+                },
+                {
+                  "type": "tile",
+                  "entity": "counter.vacuum_cleans",
+                  "name": "Nr. Cleans",
+                  "icon_tap_action": {
+                    "action": "none"
+                  },
+                  "tap_action": {
+                    "action": "none"
+                  },
+                  "color": "grey"
+                },
+                {
+                  "type": "tile",
+                  "entity": "automation.vacuum_start_smart",
+                  "name": "Allow Start",
+                  "hide_state": true,
+                  "color": "var(--accent-color)",
+                  "tap_action": {
+                    "action": "none"
+                  },
+                  "icon_tap_action": {
+                    "action": "none"
+                  }
                 }
               ],
               "title": "Weather"
