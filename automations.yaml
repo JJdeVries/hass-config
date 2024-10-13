@@ -328,25 +328,26 @@
 - id: '1640700149575'
   alias: 'CV: Nobody Home'
   description: ''
-  trigger:
-  - platform: state
-    entity_id:
+  triggers:
+  - entity_id:
     - group.humans
     for:
       hours: 0
       minutes: 0
       seconds: 0
     to: not_home
-  condition:
-  - condition: state
-    entity_id: binary_sensor.cv_time_schedule
-    state: 'on'
-    enabled: false
+    trigger: state
+  - trigger: time
+    at: 06:00:00
+  conditions:
   - condition: numeric_state
     entity_id: climate.cv_ketel
     attribute: temperature
     above: input_number.cv_gone
-  action:
+  - condition: state
+    entity_id: group.humans
+    state: not_home
+  actions:
   - target:
       entity_id: climate.cv_ketel
     data:
