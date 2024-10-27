@@ -16,6 +16,10 @@
               "type": "grid",
               "cards": [
                 {
+                  "type": "heading",
+                  "heading": "Controls"
+                },
+                {
                   "type": "custom:bubble-card",
                   "card_type": "button",
                   "entity": "light.livingroom_lights",
@@ -321,12 +325,15 @@
                     }
                   }
                 }
-              ],
-              "title": "Controls"
+              ]
             },
             {
               "type": "grid",
               "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Vacuum"
+                },
                 {
                   "type": "entities",
                   "entities": [
@@ -595,6 +602,33 @@
                   "layout_options": {
                     "grid_columns": 2,
                     "grid_rows": 1
+                  },
+                  "tap_action": {
+                    "action": "perform-action",
+                    "perform_action": "counter.reset",
+                    "target": {
+                      "entity_id": "counter.vacuum_cleans"
+                    }
+                  },
+                  "double_tap_action": {
+                    "action": "none"
+                  },
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "button_action": {
+                    "tap_action": {
+                      "perform_action": "counter.reset",
+                      "target": {
+                        "entity_id": "counter.vacuum_cleans"
+                      }
+                    },
+                    "double_tap_action": {
+                      "action": "none"
+                    },
+                    "hold_action": {
+                      "action": "none"
+                    }
                   }
                 },
                 {
@@ -669,12 +703,15 @@
                   },
                   "styles": "  .bubble-button-background {\n    background-color: var(--background-color,var(--secondary-background-color)) !important;\n  }"
                 }
-              ],
-              "title": "Vacuum"
+              ]
             },
             {
               "type": "grid",
               "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Climate"
+                },
                 {
                   "type": "custom:mushroom-climate-card",
                   "entity": "climate.cv_ketel",
@@ -704,12 +741,15 @@
                   "name": "Livingroom",
                   "icon": " "
                 }
-              ],
-              "title": "Climate"
+              ]
             },
             {
               "type": "grid",
               "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Weather"
+                },
                 {
                   "type": "custom:clock-weather-card",
                   "entity": "weather.home",
@@ -966,8 +1006,7 @@
                     "action": "none"
                   }
                 }
-              ],
-              "title": "Weather"
+              ]
             }
           ],
           "badges": [
