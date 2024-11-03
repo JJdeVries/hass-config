@@ -338,7 +338,7 @@
     to: not_home
     trigger: state
   - trigger: time
-    at: 06:00:00
+    at: 06:15:00
   conditions:
   - condition: numeric_state
     entity_id: climate.cv_ketel
@@ -434,21 +434,21 @@
 - id: '1688547349397'
   alias: 'Vacuum: Start Nobody Home'
   description: ''
-  trigger:
-  - platform: state
-    entity_id:
+  triggers:
+  - entity_id:
     - group.humans
     to: not_home
-  condition:
+    trigger: state
+  conditions:
   - condition: time
-    after: 09:00:00
+    after: 08:00:00
     before: '21:30:00'
   - condition: state
     entity_id: binary_sensor.allow_vacuum_to_run
     state: 'on'
-  action:
-  - service: script.start_vacuum
-    data: {}
+  actions:
+  - data: {}
+    action: script.start_vacuum
   mode: single
 - id: '1688713069146'
   alias: 'Vacuum: Count cleans'
