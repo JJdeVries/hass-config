@@ -135,13 +135,12 @@
 - id: '1608561879306'
   alias: 'Lights Livingroom: Turn on (home)'
   description: ''
-  trigger:
-  - platform: state
-    entity_id: light.hall_light
-    from: 'off'
-    to: 'on'
-    id: HallLightOn
-  condition:
+  triggers:
+  - trigger: state
+    entity_id:
+    - group.humans
+    to: home
+  conditions:
   - condition: numeric_state
     entity_id: sun.sun
     attribute: elevation
@@ -151,18 +150,19 @@
   - condition: state
     entity_id: light.livingroom_lights
     state: 'off'
-  - condition: state
-    entity_id: group.humans
-    state: not_home
-  action:
-  - service: light.turn_on
-    data:
+  actions:
+  - data:
       brightness_pct: 100
-    entity_id: light.livingroom_lights
-  - service: notify.mobile_app_cph2399
-    data:
+    action: light.turn_on
+    target:
+      entity_id:
+      - light.livingroom_lights
+      - light.hall_light
+  - data:
       title: Lights are now on
       message: Turned the lights on because someone arrived home.
+    action: notify.mobile_app_cph2399
+    enabled: false
   mode: single
 - id: '1608806095722'
   alias: 'Lights Livingroom:  dim light'
