@@ -604,11 +604,12 @@
                     "grid_rows": 1
                   },
                   "tap_action": {
-                    "action": "perform-action",
+                    "action": "call-service",
                     "perform_action": "counter.reset",
                     "target": {
                       "entity_id": "counter.vacuum_cleans"
-                    }
+                    },
+                    "service": "counter.reset"
                   },
                   "double_tap_action": {
                     "action": "none"
