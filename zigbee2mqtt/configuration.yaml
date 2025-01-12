@@ -1,4 +1,5 @@
-homeassistant: true
+homeassistant:
+  enabled: true
 mqtt:
   server: mqtt://core-mosquitto:1883
   user: addons
@@ -6,6 +7,7 @@ mqtt:
 serial:
   port: /dev/ttyACM0
 frontend:
+  enabled: true
   port: 8099
 devices:
   '0x001788010baa70fc':
@@ -27,18 +29,10 @@ devices:
 groups:
   '0':
     friendly_name: livingroom lights
-    devices:
-      - 0x001788010baa7861/11
-      - 0x001788010baa70fc/11
-      - 0x001788010ba49b00/11
   '1':
     friendly_name: Hall Light
-    devices:
-      - 0x000d6ffffea7e84e/1
-      - 0x000d6ffffee84752/1
-      - 0x000d6ffffed9d771/1
 advanced:
-  log_level: warn
+  log_level: warning
   log_syslog:
     app_name: Zigbee2MQTT
     eol: /n
@@ -50,4 +44,6 @@ advanced:
     protocol: udp4
     type: '5424'
   channel: 11
-availability: false
+availability:
+  enabled: false
+version: 4
