@@ -48,8 +48,7 @@
         activity: Stereo
         volume: 0.8
       npoplayer:
-        activity: Stereo
-        volume: 0.8
+        activity: Tv
       music assistant:
         activity: Stereo
         volume: 0.8
