@@ -12,6 +12,15 @@
         "name": "Jorik de Vries",
         "user_id": "9f03360d711f4db08a2d4b97a271f6e8",
         "picture": null
+      },
+      {
+        "id": "michelle",
+        "name": "Michelle",
+        "device_trackers": [
+          "device_tracker.iphone_van_michelle_2"
+        ],
+        "user_id": "0c7fbabf25f04ffeb7f315b2571e884e",
+        "picture": null
       }
     ]
   }

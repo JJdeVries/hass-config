@@ -767,7 +767,11 @@
           "badges": [
             {
               "type": "entity",
-              "entity": "person.jorik_de_vries"
+              "show_name": false,
+              "show_state": true,
+              "show_icon": true,
+              "entity": "group.humans",
+              "color": ""
             },
             {
               "type": "entity",

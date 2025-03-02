@@ -6,9 +6,6 @@ substitutions:
 esphome:
   name: ${device_name}
   comment: "${device_description}"
-  platform: ESP8266
-  esp8266_restore_from_flash: true
-  board: d1_mini
   name_add_mac_suffix: false
   project:
     name: zuidwijk.slimmelezer
@@ -26,6 +23,10 @@ esphome:
             - logger.log:
                 level: info
                 format: "Not using decryption key. If you need to set a key use Home Assistant service 'ESPHome:  ${device_name}_set_dsmr_key'"
+
+esp8266:
+  restore_from_flash: true
+  board: d1_mini
 
 wifi:
   networks:
