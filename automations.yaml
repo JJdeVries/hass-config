@@ -542,15 +542,15 @@
 - id: '1706179107566'
   alias: 'Vacuum: Clean grit'
   description: Cleaning the area before the kattenbak
-  trigger:
-  - platform: time
-    at: '12:50:00'
-  - platform: time
-    at: 07:30:00
+  triggers:
+  - at: '12:50:00'
+    trigger: time
+  - at: 07:30:00
     enabled: false
-  - platform: time
-    at: '22:00:00'
-  condition:
+    trigger: time
+  - at: '17:30:00'
+    trigger: time
+  conditions:
   - condition: state
     entity_id: group.humans
     state: home
@@ -561,7 +561,7 @@
   - condition: state
     entity_id: vacuum.kevin
     state: docked
-  action:
+  actions:
   - data:
       repeats: 1
       zone:

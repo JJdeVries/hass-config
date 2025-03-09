@@ -20,115 +20,48 @@
                   "heading": "Controls"
                 },
                 {
-                  "type": "custom:bubble-card",
-                  "card_type": "button",
-                  "entity": "light.livingroom_lights",
-                  "layout_options": {
-                    "grid_columns": 2,
-                    "grid_rows": 1
+                  "type": "tile",
+                  "entity": "light.livingroom_lights_2",
+                  "features_position": "inline",
+                  "vertical": false,
+                  "grid_options": {
+                    "rows": 1,
+                    "columns": 12
                   },
-                  "name": "Living",
-                  "button_type": "slider",
-                  "sub_button": [
+                  "features": [
                     {
-                      "entity": "light.livingroom_lights",
-                      "show_last_changed": false,
-                      "show_state": false,
-                      "show_attribute": true,
-                      "show_icon": false,
-                      "show_background": false,
-                      "attribute": "brightness"
+                      "type": "light-brightness"
                     }
-                  ],
-                  "tap_action": {
-                    "action": "toggle"
-                  },
-                  "double_tap_action": {
-                    "action": "more-info"
-                  }
+                  ]
                 },
                 {
-                  "type": "custom:bubble-card",
-                  "card_type": "button",
-                  "entity": "light.hall_light",
-                  "layout_options": {
-                    "grid_columns": 2,
-                    "grid_rows": 1
-                  },
-                  "name": "Hall",
-                  "button_type": "slider",
-                  "sub_button": [
+                  "features": [
                     {
-                      "entity": "light.hall_light",
-                      "show_last_changed": false,
-                      "show_state": false,
-                      "show_attribute": true,
-                      "show_icon": false,
-                      "show_background": false,
-                      "attribute": "brightness"
+                      "type": "light-brightness"
                     }
                   ],
-                  "tap_action": {
-                    "action": "toggle"
-                  },
-                  "double_tap_action": {
-                    "action": "more-info"
-                  }
-                },
-                {
-                  "type": "custom:bubble-card",
-                  "card_type": "button",
+                  "type": "tile",
                   "entity": "light.tv_light",
-                  "layout_options": {
-                    "grid_columns": 2,
-                    "grid_rows": 1
-                  },
-                  "name": "TV",
-                  "button_type": "slider",
-                  "sub_button": [
-                    {
-                      "entity": "light.tv_light",
-                      "show_last_changed": false,
-                      "show_state": false,
-                      "show_attribute": true,
-                      "show_icon": false,
-                      "show_background": false,
-                      "attribute": "brightness"
-                    }
-                  ],
-                  "tap_action": {
-                    "action": "toggle"
-                  },
-                  "double_tap_action": {
-                    "action": "more-info"
+                  "features_position": "inline",
+                  "vertical": false,
+                  "grid_options": {
+                    "rows": 1,
+                    "columns": 12
                   }
                 },
                 {
-                  "type": "custom:bubble-card",
-                  "card_type": "button",
-                  "entity": "light.table_lights",
-                  "layout_options": {
-                    "grid_columns": 2,
-                    "grid_rows": 1
-                  },
-                  "name": "Table",
-                  "button_type": "slider",
-                  "sub_button": [
+                  "features": [
                     {
-                      "entity": "light.table_lights",
-                      "show_last_changed": false,
-                      "show_state": false,
-                      "show_attribute": true,
-                      "show_icon": false,
-                      "show_background": false,
-                      "attribute": "brightness"
+                      "type": "light-brightness"
                     }
                   ],
-                  "tap_action": {
-                    "action": "toggle"
-                  },
-                  "double_tap_action": {
-                    "action": "more-info"
+                  "type": "tile",
+                  "entity": "light.table_lights",
+                  "features_position": "inline",
+                  "vertical": false,
+                  "grid_options": {
+                    "rows": 1,
+                    "columns": 12
                   }
                 },
                 {
@@ -598,82 +531,12 @@
                 {
                   "type": "custom:bubble-card",
                   "card_type": "button",
-                  "entity": "script.empty_kevin",
-                  "layout_options": {
-                    "grid_columns": 2,
-                    "grid_rows": 1
-                  },
-                  "tap_action": {
-                    "action": "call-service",
-                    "perform_action": "counter.reset",
-                    "target": {
-                      "entity_id": "counter.vacuum_cleans"
-                    },
-                    "service": "counter.reset"
-                  },
-                  "double_tap_action": {
-                    "action": "none"
-                  },
-                  "hold_action": {
-                    "action": "none"
-                  },
-                  "button_action": {
-                    "tap_action": {
-                      "perform_action": "counter.reset",
-                      "target": {
-                        "entity_id": "counter.vacuum_cleans"
-                      }
-                    },
-                    "double_tap_action": {
-                      "action": "none"
-                    },
-                    "hold_action": {
-                      "action": "none"
-                    }
-                  }
-                },
-                {
-                  "type": "custom:bubble-card",
-                  "card_type": "button",
                   "entity": "script.start_vacuum",
                   "layout_options": {
                     "grid_columns": 2,
                     "grid_rows": 1
                   },
                   "name": "Start cleaning"
-                },
-                {
-                  "type": "custom:bubble-card",
-                  "card_type": "button",
-                  "entity": "counter.vacuum_cleans",
-                  "layout_options": {
-                    "grid_columns": 2,
-                    "grid_rows": 1
-                  },
-                  "show_attribute": false,
-                  "show_state": true,
-                  "name": "Nr. Cleans",
-                  "styles": "  .bubble-button-background {\n    background-color: var(--background-color,var(--secondary-background-color)) !important;\n  }\n  .bubble-icon {\n    color: var(--disabled-text-color) !important;\n  }",
-                  "tap_action": {
-                    "action": "none"
-                  },
-                  "double_tap_action": {
-                    "action": "none"
-                  },
-                  "hold_action": {
-                    "action": "none"
-                  },
-                  "button_action": {
-                    "hold_action": {
-                      "action": "none"
-                    },
-                    "double_tap_action": {
-                      "action": "none"
-                    },
-                    "tap_action": {
-                      "action": "none"
-                    }
-                  }
                 },
                 {
                   "type": "custom:bubble-card",
@@ -703,6 +566,74 @@
                     }
                   },
                   "styles": "  .bubble-button-background {\n    background-color: var(--background-color,var(--secondary-background-color)) !important;\n  }"
+                },
+                {
+                  "type": "custom:bubble-card",
+                  "card_type": "button",
+                  "entity": "counter.vacuum_cleans",
+                  "layout_options": {
+                    "grid_columns": 2,
+                    "grid_rows": 1
+                  },
+                  "show_attribute": false,
+                  "show_state": true,
+                  "name": "Nr. Cleans",
+                  "styles": "  #.bubble-button-background {\n  #  background-color: var(--background-color,var(--secondary-background-color)) !important;\n  #}\n  .bubble-icon {\n    color: var(--disabled-text-color) !important;\n  }\n  .bubble-sub-button {\n    color: ${state >= 5 ? 'var(--accent-color)' : 'var(--disabled-text-color)'} !important;\n    background-color: var(--background-color);\n  }",
+                  "tap_action": {
+                    "action": "none"
+                  },
+                  "double_tap_action": {
+                    "action": "none"
+                  },
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "button_action": {
+                    "hold_action": {
+                      "action": "none"
+                    },
+                    "double_tap_action": {
+                      "action": "none"
+                    },
+                    "tap_action": {
+                      "action": "none"
+                    }
+                  },
+                  "sub_button": [
+                    {
+                      "entity": "remote.harmonyjorik",
+                      "icon": "mdi:trash-can",
+                      "tap_action": {
+                        "action": "call-service",
+                        "service": "counter.reset",
+                        "target": {
+                          "entity_id": "counter.vacuum_cleans"
+                        }
+                      },
+                      "show_background": true,
+                      "show_state": false,
+                      "show_last_changed": false
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Weather"
+                },
+                {
+                  "type": "custom:clock-weather-card",
+                  "entity": "weather.home",
+                  "hide_today_section": true
+                },
+                {
+                  "type": "custom:neerslag-card",
+                  "entity": "sensor.neerslag_buienalarm_regen_data",
+                  "title": "Neerslag"
                 }
               ]
             },
@@ -741,25 +672,6 @@
                   "entity": "sensor.livingroom_temperature",
                   "name": "Livingroom",
                   "icon": " "
-                }
-              ]
-            },
-            {
-              "type": "grid",
-              "cards": [
-                {
-                  "type": "heading",
-                  "heading": "Weather"
-                },
-                {
-                  "type": "custom:clock-weather-card",
-                  "entity": "weather.home",
-                  "hide_today_section": true
-                },
-                {
-                  "type": "custom:neerslag-card",
-                  "entity": "sensor.neerslag_buienalarm_regen_data",
-                  "title": "Neerslag"
                 }
               ]
             }
