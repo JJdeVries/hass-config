@@ -20,6 +20,22 @@
                   "heading": "Controls"
                 },
                 {
+                  "features": [
+                    {
+                      "type": "light-brightness"
+                    }
+                  ],
+                  "type": "tile",
+                  "features_position": "inline",
+                  "vertical": false,
+                  "grid_options": {
+                    "rows": 1,
+                    "columns": 12
+                  },
+                  "entity": "light.hall_light_1",
+                  "name": "Hall light"
+                },
+                {
                   "type": "tile",
                   "entity": "light.livingroom_lights_2",
                   "features_position": "inline",
@@ -578,7 +594,7 @@
                   "show_attribute": false,
                   "show_state": true,
                   "name": "Nr. Cleans",
-                  "styles": "  #.bubble-button-background {\n  #  background-color: var(--background-color,var(--secondary-background-color)) !important;\n  #}\n  .bubble-icon {\n    color: var(--disabled-text-color) !important;\n  }\n  .bubble-sub-button {\n    color: ${state >= 5 ? 'var(--accent-color)' : 'var(--disabled-text-color)'} !important;\n    background-color: var(--background-color);\n  }",
+                  "styles": "  .bubble-button-background {\n    background-color: var(--background-color,var(--secondary-background-color)) !important;\n  }\n  .bubble-icon {\n    color: var(--disabled-text-color) !important;\n  }\n  .bubble-sub-button {\n    color: ${state >= 5 ? 'var(--accent-color)' : 'var(--disabled-text-color)'} !important;\n    background-color: var(--background-color);\n  }",
                   "tap_action": {
                     "action": "none"
                   },
