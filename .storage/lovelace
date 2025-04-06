@@ -713,6 +713,23 @@
               }
             },
             {
+              "type": "custom:mushroom-template-badge",
+              "content": "{% if is_state('automation.media_center_handling', 'on') %}\n    Auto\n{% else %}\n    Manual\n{% endif %}",
+              "icon": "{% if is_state('automation.media_center_handling', 'on') %}\n    mdi:television-classic\n{% else %}\n    mdi:television-classic-off\n{% endif %}",
+              "color": "{% if is_state('automation.media_center_handling', 'on') %}\n    var(--mdc-theme-secondary)\n{% else %}\n    var(--disabled-color)\n{% endif %}",
+              "hold_action": {
+                "action": "none"
+              },
+              "double_tap_action": {
+                "action": "none"
+              },
+              "entity": "automation.media_center_handling",
+              "tap_action": {
+                "action": "toggle"
+              },
+              "label": ""
+            },
+            {
               "type": "entity",
               "entity": "vacuum.kevin",
               "tap_action": {
@@ -748,6 +765,13 @@
             },
             {
               "type": "entity",
+              "entity": "sensor.de_foodzi_unit_weight_per_day",
+              "icon": "mdi:cat",
+              "show_entity_picture": false,
+              "color": "light-grey"
+            },
+            {
+              "type": "entity",
               "entity": "light.hall_light",
               "tap_action": {
                 "action": "toggle"
@@ -759,13 +783,6 @@
               "tap_action": {
                 "action": "toggle"
               }
-            },
-            {
-              "type": "entity",
-              "entity": "sensor.de_foodzi_unit_weight_per_day",
-              "icon": "mdi:cat",
-              "show_entity_picture": false,
-              "color": "light-grey"
             }
           ]
         },

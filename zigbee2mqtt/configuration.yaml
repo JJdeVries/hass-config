@@ -6,6 +6,7 @@ mqtt:
   password: aede9Saix6bu2Joh5eeph0aighoongaaNg6jeboo9AhxooW0ohtomie7ueGeeshe
 serial:
   port: /dev/ttyACM0
+  adapter: zstack
 frontend:
   enabled: true
   port: 8099
