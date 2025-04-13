@@ -660,13 +660,13 @@
   conditions:
   - condition: numeric_state
     entity_id: sensor.de_foodzi_unit_portions_per_day
-    below: 20
+    below: 3
   actions:
-  - action: notify.mobile_app_cph2399
+  - action: notify.mobile_app_sm_a346b
     metadata: {}
     data:
-      title: Feed Mooncake
-      message: Should mooncake still eat?
+      message: Should mooncake still eat??
+      title: Whoops??
   mode: single
 - id: '1740760650072'
   alias: Mooncake Dinner
@@ -677,11 +677,11 @@
   conditions:
   - condition: numeric_state
     entity_id: sensor.de_foodzi_unit_portions_per_day
-    below: 40
+    below: 6
   actions:
-  - action: notify.mobile_app_cph2399
+  - action: notify.mobile_app_sm_a346b
     metadata: {}
     data:
-      title: Feed Mooncake
       message: Should mooncake still eat?
+      title: Whoops??
   mode: single
