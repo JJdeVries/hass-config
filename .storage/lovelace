@@ -32,7 +32,7 @@
                     "rows": 1,
                     "columns": 12
                   },
-                  "entity": "light.hall_light_1",
+                  "entity": "light.hall_light",
                   "name": "Hall light"
                 },
                 {
@@ -772,14 +772,11 @@
             },
             {
               "type": "entity",
-              "entity": "light.hall_light",
-              "tap_action": {
-                "action": "toggle"
-              }
-            },
-            {
-              "type": "entity",
-              "entity": "light.livingroom_lights",
+              "show_name": false,
+              "show_state": true,
+              "show_icon": true,
+              "entity": "light.all_lights",
+              "icon": "mdi:lightbulb-group",
               "tap_action": {
                 "action": "toggle"
               }

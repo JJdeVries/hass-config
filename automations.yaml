@@ -159,8 +159,7 @@
     action: light.turn_on
     target:
       entity_id:
-      - light.livingroom_lights
-      - light.hall_light
+      - light.all_lights
   - data:
       title: Lights are now on
       message: Turned the lights on because someone arrived home.
@@ -177,7 +176,7 @@
       start_percentage: '100'
       dim_start_time: '21:00:00'
       dim_end_time: '23:30:00'
-      output_light: light.livingroom_lights
+      output_light: light.livingroom_lights_2
       start_brightness: 255
       end_brightness: 38
 - id: '1612192541242'
@@ -188,7 +187,7 @@
     input:
       duration_min: 50
       elevation_offset: '10'
-      output_light: light.livingroom_lights
+      output_light: light.livingroom_lights_2
       end_brightness: '255'
       start_brightness: '38'
       home_group: group.humans
@@ -298,14 +297,12 @@
     above: 0
     below: 125
   actions:
-  - target:
-      entity_id:
-      - light.livingroom_lights
-      - light.hall_light
-    data:
+  - data:
       brightness: 255
       transition: 15
     action: light.turn_on
+    target:
+      entity_id: light.all_lights
   mode: single
 - id: '1639509271355'
   alias: 'CV: Outside Temperature Check'
