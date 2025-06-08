@@ -37,7 +37,7 @@ groups:
   '3':
     friendly_name: Table Lights
 advanced:
-  log_level: warning
+  log_level: debug
   log_syslog:
     app_name: Zigbee2MQTT
     eol: /n
