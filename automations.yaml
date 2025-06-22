@@ -151,7 +151,7 @@
   - condition: time
     after: '12:00'
   - condition: state
-    entity_id: light.livingroom_lights
+    entity_id: light.livingroom_lights_2
     state: 'off'
   actions:
   - data:
@@ -628,25 +628,23 @@
 - id: '1717505260925'
   alias: 'Lights: away - Turn off'
   description: Turn off all lights when nobody is home
-  trigger:
-  - platform: state
-    entity_id:
+  triggers:
+  - entity_id:
     - group.humans
     to: not_home
     for:
       hours: 0
       minutes: 5
       seconds: 0
-  condition: []
-  action:
-  - service: light.turn_off
+    trigger: state
+  conditions: []
+  actions:
+  - alias: Turn off all lights
     metadata: {}
     data: {}
+    action: light.turn_off
     target:
-      entity_id:
-      - light.hall_light
-      - light.livingroom_lights
-    alias: Turn off all lights
+      entity_id: light.all_lights
   mode: single
 - id: '1740760580241'
   alias: Mooncake Breakfast
