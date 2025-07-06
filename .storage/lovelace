@@ -645,11 +645,6 @@
                   "type": "custom:clock-weather-card",
                   "entity": "weather.home",
                   "hide_today_section": true
-                },
-                {
-                  "type": "custom:neerslag-card",
-                  "entity": "sensor.neerslag_buienalarm_regen_data",
-                  "title": "Neerslag"
                 }
               ]
             },

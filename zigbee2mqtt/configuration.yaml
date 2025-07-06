@@ -10,6 +10,7 @@ serial:
 frontend:
   enabled: true
   port: 8099
+  package: zigbee2mqtt-windfront
 devices:
   '0x001788010baa70fc':
     friendly_name: Table Light 1
