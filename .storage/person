@@ -21,6 +21,15 @@
         ],
         "user_id": "0c7fbabf25f04ffeb7f315b2571e884e",
         "picture": null
+      },
+      {
+        "id": "rick",
+        "name": "Rick",
+        "device_trackers": [
+          "device_tracker.sm_a536b"
+        ],
+        "user_id": "e6de3fc760834fb59828f156c849b046",
+        "picture": null
       }
     ]
   }
