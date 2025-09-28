@@ -283,7 +283,8 @@
   alias: 'Lights Livingroom: Morning'
   description: ''
   triggers:
-  - entity_id: light.livingroom_lights
+  - entity_id:
+    - light.livingroom_lights_2
     from: 'off'
     to: 'on'
     trigger: state
