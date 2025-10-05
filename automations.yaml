@@ -293,7 +293,7 @@
     after: 06:00
     before: '14:00:00'
   - condition: numeric_state
-    entity_id: light.livingroom_lights
+    entity_id: light.livingroom_lights_2
     attribute: brightness
     above: 0
     below: 125
@@ -303,7 +303,7 @@
       transition: 15
     action: light.turn_on
     target:
-      entity_id: light.all_lights
+      entity_id: light.livingroom_lights_2
   mode: single
 - id: '1639509271355'
   alias: 'CV: Outside Temperature Check'
