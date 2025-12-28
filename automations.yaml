@@ -344,6 +344,11 @@
     at: 06:15:00
   - trigger: time
     at: 07:45:00
+  - trigger: numeric_state
+    entity_id:
+    - climate.cv_ketel
+    attribute: temperature
+    above: input_number.cv_gone
   conditions:
   - condition: numeric_state
     entity_id: climate.cv_ketel
@@ -680,4 +685,27 @@
     data:
       message: Should mooncake still eat?
       title: Whoops??
+  mode: single
+- id: '1766351821419'
+  alias: CV keep low
+  description: ''
+  triggers:
+  - trigger: numeric_state
+    entity_id:
+    - climate.cv_ketel
+    attribute: temperature
+    above: input_number.cv_gone
+    alias: CV temperature higher
+  conditions:
+  - condition: state
+    entity_id: group.humans
+    state:
+    - not_home
+  actions:
+  - action: climate.set_temperature
+    metadata: {}
+    target:
+      entity_id: climate.cv_ketel
+    data:
+      temperature: 18
   mode: single
