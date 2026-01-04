@@ -23,12 +23,10 @@
         "picture": null
       },
       {
-        "id": "rick",
-        "name": "Rick",
-        "device_trackers": [
-          "device_tracker.sm_a536b"
-        ],
-        "user_id": "e6de3fc760834fb59828f156c849b046",
+        "id": "richard",
+        "name": "Richard",
+        "device_trackers": [],
+        "user_id": "d9223b3afe074726b247bf4456d571fc",
         "picture": null
       }
     ]
