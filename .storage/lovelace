@@ -20,189 +20,6 @@
                   "heading": "Controls"
                 },
                 {
-                  "features": [
-                    {
-                      "type": "light-brightness"
-                    }
-                  ],
-                  "type": "tile",
-                  "features_position": "inline",
-                  "vertical": false,
-                  "grid_options": {
-                    "rows": 1,
-                    "columns": 12
-                  },
-                  "entity": "light.hall_light",
-                  "name": "Hall light"
-                },
-                {
-                  "type": "tile",
-                  "entity": "light.livingroom_lights_2",
-                  "features_position": "inline",
-                  "vertical": false,
-                  "grid_options": {
-                    "rows": 1,
-                    "columns": 12
-                  },
-                  "features": [
-                    {
-                      "type": "light-brightness"
-                    }
-                  ]
-                },
-                {
-                  "features": [
-                    {
-                      "type": "light-brightness"
-                    }
-                  ],
-                  "type": "tile",
-                  "entity": "light.tv_light",
-                  "features_position": "inline",
-                  "vertical": false,
-                  "grid_options": {
-                    "rows": 1,
-                    "columns": 12
-                  }
-                },
-                {
-                  "features": [
-                    {
-                      "type": "light-brightness"
-                    }
-                  ],
-                  "type": "tile",
-                  "entity": "light.table_lights",
-                  "features_position": "inline",
-                  "vertical": false,
-                  "grid_options": {
-                    "rows": 1,
-                    "columns": 12
-                  }
-                },
-                {
-                  "type": "custom:bubble-card",
-                  "card_type": "media-player",
-                  "entity": "media_player.living_room_tv",
-                  "hide": {
-                    "volume_button": true
-                  }
-                },
-                {
-                  "type": "custom:bubble-card",
-                  "card_type": "button",
-                  "card_layout": "large",
-                  "button_type": "name",
-                  "show_icon": false,
-                  "show_name": false,
-                  "sub_button": [
-                    {
-                      "entity": "remote.harmonyjorik",
-                      "icon": "mdi:power",
-                      "tap_action": {
-                        "action": "call-service",
-                        "service": "remote.turn_off",
-                        "target": {
-                          "entity_id": "remote.harmonyjorik"
-                        }
-                      },
-                      "show_background": true,
-                      "show_state": false,
-                      "show_last_changed": false
-                    },
-                    {
-                      "entity": "remote.harmonyjorik",
-                      "icon": "mdi:spotify",
-                      "tap_action": {
-                        "action": "call-service",
-                        "service": "remote.turn_on",
-                        "service_data": {
-                          "entity_id": "remote.harmonyjorik",
-                          "activity": "Stereo"
-                        },
-                        "target": {}
-                      },
-                      "show_background": true,
-                      "show_state": false,
-                      "show_last_changed": false
-                    },
-                    {
-                      "entity": "remote.harmonyjorik",
-                      "icon": "mdi:cast",
-                      "tap_action": {
-                        "action": "call-service",
-                        "service": "remote.turn_on",
-                        "service_data": {
-                          "entity_id": "remote.harmonyjorik",
-                          "activity": "Tv"
-                        },
-                        "target": {}
-                      },
-                      "show_background": true,
-                      "show_state": false,
-                      "show_last_changed": false
-                    },
-                    {
-                      "entity": "remote.harmonyjorik",
-                      "icon": "mdi:volume-minus",
-                      "tap_action": {
-                        "action": "call-service",
-                        "service": "remote.send_command",
-                        "service_data": {
-                          "entity_id": "remote.harmonyjorik",
-                          "command": "VolumeDown",
-                          "device": "Yamaha AV Receiver",
-                          "num_repeats": 5,
-                          "delay_secs": 0.4,
-                          "hold_secs": 0
-                        },
-                        "target": {}
-                      },
-                      "show_background": true,
-                      "show_state": false,
-                      "show_last_changed": false
-                    },
-                    {
-                      "entity": "remote.harmonyjorik",
-                      "icon": "mdi:volume-mute",
-                      "tap_action": {
-                        "action": "call-service",
-                        "service": "remote.send_command",
-                        "service_data": {
-                          "entity_id": "remote.harmonyjorik",
-                          "command": "Mute",
-                          "device": "Yamaha AV Receiver"
-                        },
-                        "target": {}
-                      },
-                      "show_background": true,
-                      "show_state": false,
-                      "show_last_changed": false
-                    },
-                    {
-                      "entity": "remote.harmonyjorik",
-                      "icon": "mdi:volume-plus",
-                      "tap_action": {
-                        "action": "call-service",
-                        "service": "remote.send_command",
-                        "service_data": {
-                          "entity_id": "remote.harmonyjorik",
-                          "command": "VolumeUp",
-                          "device": "Yamaha AV Receiver",
-                          "num_repeats": 5,
-                          "delay_secs": 0.4,
-                          "hold_secs": 0
-                        },
-                        "target": {}
-                      },
-                      "show_background": true,
-                      "show_state": false,
-                      "show_last_changed": false
-                    }
-                  ],
-                  "styles": ".card-content {\n  width: 100%;\n  margin: 0 !important;\n}\n.bubble-sub-button-container {\n  width: 100%;\n  justify-content: space-between !important;\n}\n.bubble-button-background {\n  background-color: var(--background-color,var(--secondary-background-color)) !important;\n}\n.bubble-sub-button-icon {\n    --mdc-icon-size: inherit !important;\n}\n.bubble-name-container {\n    margin-right: 0px !important;\n}\n.bubble-sub-button {\n  color: ${hass.states['remote.harmonyjorik'].attributes.current_activity === 'PowerOff' ? 'var(--disabled-text-color)' : 'var(--enabled-text-color)'} !important;\n  background-color: var(--secondary-background-color) !important;\n}\n.bubble-sub-button-1 {\n  color: ${hass.states['remote.harmonyjorik'].attributes.current_activity === 'PowerOff' ? 'var(--disabled-text-color)' : 'var(--accent-color)'} !important;\n}\n.bubble-sub-button-2 {\n  color: ${hass.states['remote.harmonyjorik'].attributes.current_activity === 'Stereo' ? 'var(--accent-color)' : 'var(--enabled-text-color)'} !important;\n}\n.bubble-sub-button-3 {\n  color: ${hass.states['remote.harmonyjorik'].attributes.current_activity === 'Tv' ? 'var(--accent-color)' : 'var(--enabled-text-color)'} !important;\n}"
-                },
-                {
                   "type": "custom:bubble-card",
                   "card_type": "button",
                   "entity": "select.de_foodzi_unit_feed",
@@ -273,6 +90,272 @@
                       "action": "none"
                     }
                   }
+                },
+                {
+                  "type": "custom:bubble-card",
+                  "card_type": "button",
+                  "button_type": "name",
+                  "name": "Lights",
+                  "icon": "mdi:lightbulb-group",
+                  "sub_button": {
+                    "main": [
+                      {
+                        "name": "open",
+                        "icon": "mdi:chevron-down",
+                        "tap_action": {
+                          "action": "navigate",
+                          "navigation_path": "#bubble_card_open"
+                        }
+                      },
+                      {
+                        "name": "close",
+                        "icon": "mdi:chevron-up",
+                        "tap_action": {
+                          "action": "navigate",
+                          "navigation_path": "#"
+                        }
+                      },
+                      {
+                        "entity": "light.all_lights",
+                        "show_background": true,
+                        "state_background": false,
+                        "tap_action": {
+                          "action": "toggle"
+                        },
+                        "icon": "mdi:power",
+                        "scrolling_effect": false
+                      }
+                    ],
+                    "bottom": []
+                  },
+                  "styles": ".bubble-background {\n  background: rgba(0,0,0,0);\n} .bubble-sub-button-1 {\n  display:\n    ${location.hash === '#bubble_card_open' ? 'none' : ''};\n} .bubble-sub-button-2 {\n  display:\n    ${location.hash === '#bubble_card_open' ? '' : 'none'};\n}\n.bubble-sub-button-3 {\n  color: ${hass.states['light.all_lights'].state === 'on' ? 'var(--accent-color)' : 'var(--disabled-text-color)'} !important;\n}\n",
+                  "modules": [
+                    "home-assistant-default"
+                  ]
+                },
+                {
+                  "type": "custom:bubble-card",
+                  "card_type": "button",
+                  "button_type": "slider",
+                  "sub_button": {
+                    "main": [],
+                    "bottom": []
+                  },
+                  "entity": "light.hall_light",
+                  "modules": [
+                    "bubble_accordion",
+                    "home-assistant-default"
+                  ],
+                  "allow_light_slider_to_0": true
+                },
+                {
+                  "type": "custom:bubble-card",
+                  "card_type": "button",
+                  "button_type": "slider",
+                  "sub_button": {
+                    "main": [],
+                    "bottom": []
+                  },
+                  "entity": "light.table_lights",
+                  "relative_slide": false,
+                  "modules": [
+                    "bubble_accordion"
+                  ],
+                  "allow_light_slider_to_0": true
+                },
+                {
+                  "type": "custom:bubble-card",
+                  "card_type": "button",
+                  "button_type": "slider",
+                  "sub_button": {
+                    "main": [],
+                    "bottom": []
+                  },
+                  "entity": "light.livingroom_lights_2",
+                  "modules": [
+                    "bubble_accordion"
+                  ],
+                  "icon": "mdi:lightbulb-group",
+                  "allow_light_slider_to_0": true
+                },
+                {
+                  "type": "custom:bubble-card",
+                  "card_type": "button",
+                  "button_type": "slider",
+                  "sub_button": {
+                    "main": [],
+                    "bottom": []
+                  },
+                  "entity": "light.tv_light",
+                  "allow_light_slider_to_0": true,
+                  "modules": [
+                    "bubble_accordion"
+                  ]
+                },
+                {
+                  "type": "custom:vertical-stack-in-card",
+                  "cards": [
+                    {
+                      "type": "custom:bubble-card",
+                      "card_type": "button",
+                      "button_type": "name",
+                      "entity": "automation.media_center_handling",
+                      "show_state": false,
+                      "name": "Media Control",
+                      "icon": "mdi:television",
+                      "styles": "",
+                      "force_icon": false,
+                      "show_icon": true,
+                      "sub_button": {
+                        "main": [],
+                        "bottom": []
+                      },
+                      "tap_action": {
+                        "action": "none"
+                      },
+                      "modules": [
+                        "no-background"
+                      ]
+                    },
+                    {
+                      "type": "custom:bubble-card",
+                      "card_type": "button",
+                      "card_layout": "large",
+                      "button_type": "name",
+                      "show_icon": false,
+                      "show_name": false,
+                      "sub_button": {
+                        "main": [
+                          {
+                            "entity": "remote.harmonyjorik",
+                            "icon": "mdi:power",
+                            "tap_action": {
+                              "action": "call-service",
+                              "service": "remote.turn_off",
+                              "target": {
+                                "entity_id": "remote.harmonyjorik"
+                              }
+                            },
+                            "show_background": true,
+                            "show_state": false,
+                            "show_last_changed": false
+                          },
+                          {
+                            "entity": "remote.harmonyjorik",
+                            "icon": "mdi:spotify",
+                            "tap_action": {
+                              "action": "call-service",
+                              "service": "remote.turn_on",
+                              "service_data": {
+                                "entity_id": "remote.harmonyjorik",
+                                "activity": "Stereo"
+                              },
+                              "target": {}
+                            },
+                            "show_background": true,
+                            "show_state": false,
+                            "show_last_changed": false
+                          },
+                          {
+                            "entity": "remote.harmonyjorik",
+                            "icon": "mdi:cast",
+                            "tap_action": {
+                              "action": "call-service",
+                              "service": "remote.turn_on",
+                              "service_data": {
+                                "entity_id": "remote.harmonyjorik",
+                                "activity": "Tv"
+                              },
+                              "target": {}
+                            },
+                            "show_background": true,
+                            "show_state": false,
+                            "show_last_changed": false
+                          },
+                          {
+                            "entity": "remote.harmonyjorik",
+                            "icon": "mdi:volume-minus",
+                            "tap_action": {
+                              "action": "call-service",
+                              "service": "remote.send_command",
+                              "service_data": {
+                                "entity_id": "remote.harmonyjorik",
+                                "command": "VolumeDown",
+                                "device": "Yamaha AV Receiver",
+                                "num_repeats": 5,
+                                "delay_secs": 0.4,
+                                "hold_secs": 0
+                              },
+                              "target": {}
+                            },
+                            "show_background": true,
+                            "show_state": false,
+                            "show_last_changed": false
+                          },
+                          {
+                            "entity": "remote.harmonyjorik",
+                            "icon": "mdi:volume-mute",
+                            "tap_action": {
+                              "action": "call-service",
+                              "service": "remote.send_command",
+                              "service_data": {
+                                "entity_id": "remote.harmonyjorik",
+                                "command": "Mute",
+                                "device": "Yamaha AV Receiver"
+                              },
+                              "target": {}
+                            },
+                            "show_background": true,
+                            "show_state": false,
+                            "show_last_changed": false
+                          },
+                          {
+                            "entity": "remote.harmonyjorik",
+                            "icon": "mdi:volume-plus",
+                            "tap_action": {
+                              "action": "call-service",
+                              "service": "remote.send_command",
+                              "service_data": {
+                                "entity_id": "remote.harmonyjorik",
+                                "command": "VolumeUp",
+                                "device": "Yamaha AV Receiver",
+                                "num_repeats": 5,
+                                "delay_secs": 0.4,
+                                "hold_secs": 0
+                              },
+                              "target": {}
+                            },
+                            "show_background": true,
+                            "show_state": false,
+                            "show_last_changed": false
+                          }
+                        ],
+                        "bottom": []
+                      },
+                      "styles": ".card-content {\n  width: 100%;\n  margin: 0 !important;\n}\n.bubble-sub-button-container {\n  width: 100%;\n  justify-content: space-between !important;\n}\n.bubble-button-background {\n  background-color: var(--card-background-color) !important;\n}\n.bubble-sub-button-icon {\n    --mdc-icon-size: inherit !important;\n}\n.bubble-name-container {\n    margin-right: 0px !important;\n}\n.bubble-sub-button {\n  color: ${hass.states['remote.harmonyjorik'].attributes.current_activity === 'PowerOff' ? 'var(--disabled-text-color)' : 'var(--enabled-text-color)'} !important;\n  background-color: var(--card-background-color) !important;\n}\n.bubble-sub-button-1 {\n  color: ${hass.states['remote.harmonyjorik'].attributes.current_activity === 'PowerOff' ? 'var(--disabled-text-color)' : 'var(--accent-color)'} !important;\n}\n.bubble-sub-button-2 {\n  color: ${hass.states['remote.harmonyjorik'].attributes.current_activity === 'Stereo' ? 'var(--accent-color)' : 'var(--enabled-text-color)'} !important;\n}\n.bubble-sub-button-3 {\n  color: ${hass.states['remote.harmonyjorik'].attributes.current_activity === 'Tv' ? 'var(--accent-color)' : 'var(--enabled-text-color)'} !important;\n}",
+                      "modules": [
+                        "no-background"
+                      ]
+                    },
+                    {
+                      "type": "custom:bubble-card",
+                      "card_type": "media-player",
+                      "entity": "media_player.living_room_tv",
+                      "hide": {
+                        "volume_button": true
+                      },
+                      "sub_button": {
+                        "main": [],
+                        "bottom": []
+                      },
+                      "styles": ".bubble-media-player-container {\n   background: var(--card-background-color) !important;\n} ",
+                      "name": "Chromecast",
+                      "icon": "mdi:cast",
+                      "modules": [
+                        "no-background"
+                      ]
+                    }
+                  ]
                 }
               ]
             },
@@ -581,7 +664,15 @@
                       "action": "none"
                     }
                   },
-                  "styles": "  .bubble-button-background {\n    background-color: var(--background-color,var(--secondary-background-color)) !important;\n  }"
+                  "styles": "  .bubble-button-background {\n    background-color: var(--background-color,var(--secondary-background-color)) !important;\n  }",
+                  "button_type": "switch",
+                  "sub_button": {
+                    "main": [],
+                    "bottom": []
+                  },
+                  "modules": [
+                    "home-assistant-default"
+                  ]
                 },
                 {
                   "type": "custom:bubble-card",
@@ -631,6 +722,93 @@
                       "show_last_changed": false
                     }
                   ]
+                },
+                {
+                  "type": "custom:bubble-card",
+                  "card_type": "button",
+                  "button_type": "switch",
+                  "sub_button": {
+                    "main": [
+                      {
+                        "entity": "automation.vacuum_start_smart",
+                        "show_background": false,
+                        "icon": "mdi:robot",
+                        "tap_action": {
+                          "action": "toggle"
+                        }
+                      },
+                      {
+                        "show_background": false,
+                        "icon": "mdi:vacuum",
+                        "tap_action": {
+                          "action": "perform-action",
+                          "perform_action": "script.start_vacuum",
+                          "target": {}
+                        }
+                      },
+                      {
+                        "entity": "vacuum.kevin",
+                        "icon": "mdi:ev-station",
+                        "show_background": false,
+                        "content_layout": "icon-left",
+                        "tap_action": {
+                          "action": "perform-action",
+                          "target": {
+                            "entity_id": "vacuum.kevin"
+                          },
+                          "perform_action": "vacuum.return_to_base"
+                        }
+                      },
+                      {
+                        "entity": "counter.vacuum_cleans",
+                        "show_background": false,
+                        "icon": "mdi:trash-can",
+                        "tap_action": {
+                          "action": "perform-action",
+                          "target": {
+                            "entity_id": "counter.vacuum_cleans"
+                          },
+                          "perform_action": "counter.reset"
+                        }
+                      }
+                    ],
+                    "bottom": []
+                  },
+                  "entity": "vacuum.kevin",
+                  "modules": [
+                    "home-assistant-default",
+                    "sub_button_conditional_icon"
+                  ],
+                  "button_action": {
+                    "tap_action": {
+                      "action": "none"
+                    },
+                    "hold_action": {
+                      "action": "none"
+                    }
+                  },
+                  "tap_action": {
+                    "action": "none"
+                  },
+                  "sub_button_conditional_icon": {
+                    "button_1": {
+                      "condition": [
+                        {
+                          "condition": "state",
+                          "entity_id": "automation.vacuum_start_smart",
+                          "state": [
+                            "on"
+                          ]
+                        }
+                      ],
+                      "icon": "mdi:robot",
+                      "off_icon": "mdi:robot-outline"
+                    }
+                  },
+                  "show_attribute": true,
+                  "attribute": "supported_features",
+                  "styles": ".bubble-sub-button-container {\n  width: 50%;\n} .bubble-sub-button-1 {\n    color: ${hass.states['binary_sensor.allow_vacuum_to_run'].state === 'off' ? 'var(--primary-text-color)' : 'var(--accent-color)'} !important;\n} .bubble-sub-button-2 {\n    display: ${(hass.states['vacuum.kevin'].state === \"charging\" || hass.states['vacuum.kevin'].state === \"docked\") ? '' : 'none'} !important;\n} .bubble-sub-button-3 {\n    display: ${(hass.states['vacuum.kevin'].state === \"charging\" || hass.states['vacuum.kevin'].state === \"docked\") ? 'none' : ''} !important;\n} .bubble-sub-button-4 {\n    color: ${hass.states['counter.vacuum_cleans'].state < 5 ? 'var(--disabled-text-color)' : 'var(--accent-color)'} !important;\n} ${card.querySelector('.bubble-state').innerText = (new Date(hass.states['input_datetime.vacuum_last_run'].state)).toLocaleString('nl-NL').slice(0,-3)}\n",
+                  "scrolling_effect": true
                 }
               ]
             },
@@ -656,33 +834,93 @@
                   "heading": "Climate"
                 },
                 {
-                  "type": "custom:mushroom-climate-card",
-                  "entity": "climate.cv_ketel",
-                  "fill_container": false,
-                  "secondary_info": "state",
-                  "show_temperature_control": true,
-                  "collapsible_controls": false,
-                  "layout_options": {
-                    "grid_columns": 4,
-                    "grid_rows": 1
-                  },
-                  "layout": "horizontal"
-                },
-                {
-                  "graph": "line",
-                  "type": "sensor",
-                  "entity": "sensor.cv_temperature",
-                  "detail": 1,
-                  "name": "CV  Balkon",
-                  "icon": " "
-                },
-                {
-                  "graph": "line",
-                  "type": "sensor",
-                  "detail": 1,
-                  "entity": "sensor.livingroom_temperature",
-                  "name": "Livingroom",
-                  "icon": " "
+                  "type": "custom:vertical-stack-in-card",
+                  "cards": [
+                    {
+                      "type": "custom:mushroom-climate-card",
+                      "entity": "climate.cv_ketel",
+                      "fill_container": false,
+                      "secondary_info": "state",
+                      "show_temperature_control": true,
+                      "collapsible_controls": false,
+                      "layout_options": {
+                        "grid_columns": 4,
+                        "grid_rows": 1
+                      },
+                      "layout": "horizontal"
+                    },
+                    {
+                      "square": false,
+                      "type": "grid",
+                      "columns": 2,
+                      "cards": [
+                        {
+                          "type": "custom:mushroom-template-card",
+                          "entity": "sensor.livingroom_temperature",
+                          "primary": "{{ states(entity) | round(1) }}°C \n",
+                          "secondary": "Livingroom",
+                          "icon": "mdi:thermometer",
+                          "tap_action": {
+                            "action": "more-info"
+                          },
+                          "features_position": "bottom",
+                          "color": "#cf5f04",
+                          "card_mod": {
+                            "style": "ha-card {\n  border: none;\n}\n"
+                          }
+                        },
+                        {
+                          "type": "custom:mushroom-template-card",
+                          "entity": "sensor.outside_temperature",
+                          "primary": "{{ states(entity) | round(1) }}°C \n",
+                          "secondary": "{{ states('weather.home') }}\n",
+                          "icon": "{% set weather = states('weather.home') %} {% set temp = states('sensor.outside_temperature') | float %} {% if weather == 'sunny' or weather == 'clear-night' %}\n  mdi:weather-sunny\n{% elif weather == 'partlycloudy' %}\n  mdi:weather-partly-cloudy\n{% elif weather == 'cloudy' %}\n  mdi:weather-cloudy\n{% elif weather == 'rainy' or weather == 'pouring' %}\n  mdi:weather-rainy\n{% elif weather == 'lightning' %}\n  mdi:weather-lightning\n{% elif weather == 'snowy' or weather == 'snowy-rainy' %}\n  mdi:weather-snowy\n{% elif weather == 'fog' %}\n  mdi:weather-fog\n{% elif weather == 'windy' %}\n  mdi:weather-windy\n{% elif temp < 5 %}\n  mdi:snowflake\n{% elif temp > 30 %}\n  mdi:fire\n{% else %}\n  mdi:thermometer\n{% endif %}\n",
+                          "tap_action": {
+                            "action": "more-info"
+                          },
+                          "features_position": "bottom",
+                          "color": "#0469c2",
+                          "card_mod": {
+                            "style": "ha-card {\n  border: none;\n}\n"
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "type": "custom:mini-graph-card",
+                      "name": "temperatures",
+                      "hours_to_show": 24,
+                      "points_per_hour": 0.75,
+                      "line_width": 3,
+                      "font_size": 50,
+                      "show": {
+                        "name": false,
+                        "icon": false,
+                        "state": false,
+                        "legend": false,
+                        "fill": "fade",
+                        "points": false,
+                        "labels": false,
+                        "labels_secondary": false
+                      },
+                      "entities": [
+                        {
+                          "entity": "sensor.outside_temperature",
+                          "show_state": true,
+                          "name": "outside",
+                          "color": "#0469c2",
+                          "show_indicator": true
+                        },
+                        {
+                          "entity": "sensor.livingroom_temperature",
+                          "show_state": true,
+                          "name": "inside",
+                          "color": "#cf5f04",
+                          "y_axis": "secondary"
+                        }
+                      ]
+                    }
+                  ]
                 }
               ]
             }
