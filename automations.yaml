@@ -528,19 +528,19 @@
 - id: '1693671628676'
   alias: 'Vacuum: Start Enforce'
   description: ''
-  trigger:
-  - platform: time
-    at: '10:30:00'
-  condition:
-  - alias: Check last clean is 2 days ago
+  triggers:
+  - at: '10:30:00'
+    trigger: time
+  conditions:
+  - alias: Check last clean is 4 days ago
     condition: template
     value_template: '{{ now() > ((states(''input_datetime.vacuum_last_run'') | as_datetime
       | as_local) + timedelta(days=4)) }}
 
       '
-  action:
-  - service: script.start_vacuum
-    data: {}
+  actions:
+  - data: {}
+    action: script.start_vacuum
   mode: single
 - id: '1706179107566'
   alias: 'Vacuum: Clean grit'

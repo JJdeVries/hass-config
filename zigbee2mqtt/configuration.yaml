@@ -28,6 +28,8 @@ devices:
     friendly_name: Hall Light 2
   '0x000d6ffffed9d771':
     friendly_name: Hall Light 3
+  '0x881a14fffe35d393':
+    friendly_name: Kitchen Lights
 groups:
   '0':
     friendly_name: Livingroom Lights
