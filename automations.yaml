@@ -136,7 +136,7 @@
       value: 255
   mode: single
 - id: '1608561879306'
-  alias: 'Lights Livingroom: Turn on (home)'
+  alias: 'Lights House: Turn on (home)'
   description: ''
   triggers:
   - trigger: state
@@ -709,3 +709,26 @@
     data:
       temperature: 18
   mode: single
+- id: '1769354125238'
+  alias: 'Lights Kitchen: turn on (sun)'
+  description: Turn on the kitchen lights if the sun goes under
+  use_blueprint:
+    path: lights/light_enable_sun.yaml
+    input:
+      duration_min: 50
+      elevation_offset: '10'
+      output_light: light.kitchen_lights
+      end_brightness: '255'
+      start_brightness: '38'
+      home_group: group.humans
+- id: '1769354409345'
+  alias: 'Lights Kitchen: dim lights'
+  description: Dim the lights of the kitchen
+  use_blueprint:
+    path: lights/light_dimming.yaml
+    input:
+      dim_start_time: '21:00:00'
+      dim_end_time: '22:30:00'
+      output_light: light.kitchen_lights
+      start_brightness: 180
+      end_brightness: 25

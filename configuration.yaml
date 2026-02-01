@@ -20,9 +20,11 @@ frontend:
     - /local/lovelace-card-mod/card-mod.js
     
 http:
-  ssl_certificate: !secret ssl_certificate_path
-  ssl_key: !secret ssl_key_path
-
+  #ssl_certificate: !secret ssl_certificate_path
+  #ssl_key: !secret ssl_key_path
+  use_x_forwarded_for: true
+  trusted_proxies:
+    - 172.30.33.0/24
 
 input_number:
     hall_brightness:
