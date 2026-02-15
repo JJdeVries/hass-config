@@ -598,39 +598,6 @@
       home_group: group.humans
       output_light: light.hall_light
       end_brightness: 180
-- id: '1717401408625'
-  alias: 'Goodnight: Lights hall'
-  description: Turn off the lights when going to bed
-  trigger:
-  - platform: state
-    entity_id:
-    - light.livingroom_lights
-    to: 'off'
-  condition:
-  - condition: time
-    after: '22:00:00'
-  - condition: state
-    entity_id: light.hall_light
-    state: 'on'
-  action:
-  - alias: Flash the hall light
-    service: light.turn_on
-    target:
-      entity_id: light.hall_light
-    data:
-      flash: short
-  - delay:
-      hours: 0
-      minutes: 10
-      seconds: 0
-      milliseconds: 0
-  - service: light.turn_off
-    metadata: {}
-    data: {}
-    target:
-      entity_id: light.hall_light
-    alias: Turn off the hall light
-  mode: single
 - id: '1717505260925'
   alias: 'Lights: away - Turn off'
   description: Turn off all lights when nobody is home

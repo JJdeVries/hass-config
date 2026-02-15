@@ -23,27 +23,6 @@ play_switch_on_tv:
   mode: single
   alias: Play Switch on TV
   icon: mdi:nintendo-switch
-toggle_vacuum:
-  alias: Toggle Vacuum
-  sequence:
-  - if:
-    - condition: state
-      entity_id: vacuum.kevin
-      state: docked
-    then:
-    - service: automation.trigger
-      data:
-        skip_condition: true
-      target:
-        entity_id: automation.daily_vacuuming
-    else:
-    - service: vacuum.return_to_base
-      data: {}
-      target:
-        entity_id: vacuum.xiaomi_vacuum_cleaner
-      alias: Return kevin to dock
-  mode: single
-  icon: mdi:robot-vacuum
 feed_portion:
   alias: Feed portions
   fields:
