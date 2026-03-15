@@ -96,23 +96,6 @@
   - service: shell_command.git_push
     data: {}
   mode: single
-- id: '1603394623458'
-  alias: 'Lights Hall: Keep on'
-  description: Keep the motion controlled light in the hallway on.
-  trigger:
-  - platform: state
-    entity_id: light.hall_light
-    to: 'off'
-  - platform: state
-    entity_id: automation.keep_hall_light_on
-    to: 'on'
-  condition: []
-  action:
-  - service: light.turn_on
-    data:
-      brightness: '{{ states("input_number.hall_brightness") | int }}'
-    entity_id: light.hall_light
-  mode: single
 - id: '1608038614647'
   alias: Goodmorning
   description: Switch on relevant stuff
@@ -599,7 +582,7 @@
       output_light: light.hall_light
       end_brightness: 180
 - id: '1717505260925'
-  alias: 'Lights: away - Turn off'
+  alias: 'Lights House: away - Turn off'
   description: Turn off all lights when nobody is home
   triggers:
   - entity_id:
@@ -699,3 +682,25 @@
       output_light: light.kitchen_lights
       start_brightness: 180
       end_brightness: 25
+- id: '1773333548040'
+  alias: 'Light couch: turn on sun'
+  description: ''
+  use_blueprint:
+    path: lights/light_enable_sun.yaml
+    input:
+      start_brightness: 1
+      end_brightness: 42
+      home_group: group.humans
+      output_light: light.couch_light
+      elevation_offset: 10
+- id: '1773421169583'
+  alias: 'Light floor: turn on (sun)'
+  description: ''
+  use_blueprint:
+    path: lights/light_enable_sun.yaml
+    input:
+      start_brightness: 1
+      end_brightness: 42
+      home_group: group.humans
+      output_light: light.floor_lamp
+      elevation_offset: 10

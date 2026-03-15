@@ -30,6 +30,10 @@ devices:
     friendly_name: Hall Light 3
   '0x881a14fffe35d393':
     friendly_name: Kitchen Lights
+  '0x001788010f23d796':
+    friendly_name: Couch light
+  '0x001788010f1f7d23':
+    friendly_name: Floor lamp
 groups:
   '0':
     friendly_name: Livingroom Lights
