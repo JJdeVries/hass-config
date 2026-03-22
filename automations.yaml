@@ -689,7 +689,7 @@
     path: lights/light_enable_sun.yaml
     input:
       start_brightness: 1
-      end_brightness: 42
+      end_brightness: 75
       home_group: group.humans
       output_light: light.couch_light
       elevation_offset: 10
@@ -700,7 +700,29 @@
     path: lights/light_enable_sun.yaml
     input:
       start_brightness: 1
-      end_brightness: 42
+      end_brightness: 75
       home_group: group.humans
       output_light: light.floor_lamp
       elevation_offset: 10
+- id: '1773699048466'
+  alias: 'Light couch: dim light'
+  description: Dim the lights of the hall
+  use_blueprint:
+    path: lights/light_dimming.yaml
+    input:
+      dim_start_time: '21:00:00'
+      dim_end_time: '22:30:00'
+      output_light: light.couch_light
+      start_brightness: 75
+      end_brightness: 3
+- id: '1773729374100'
+  alias: 'Light floor: dim'
+  description: Dim the lights of the hall
+  use_blueprint:
+    path: lights/light_dimming.yaml
+    input:
+      dim_start_time: '21:00:00'
+      dim_end_time: '22:30:00'
+      output_light: light.hall_light
+      start_brightness: 75
+      end_brightness: 3
