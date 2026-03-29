@@ -119,7 +119,7 @@
       value: 255
   mode: single
 - id: '1608561879306'
-  alias: 'Lights House: Turn on (home)'
+  alias: 'House lights: Turn on (home)'
   description: ''
   triggers:
   - trigger: state
@@ -150,28 +150,28 @@
     enabled: false
   mode: single
 - id: '1608806095722'
-  alias: 'Lights Livingroom:  dim light'
+  alias: 'Table lights: dim'
   description: ''
   use_blueprint:
     path: lights/light_dimming.yaml
     input:
       end_percentage: '15'
       start_percentage: '100'
-      dim_start_time: '21:00:00'
-      dim_end_time: '23:30:00'
-      output_light: light.livingroom_lights_2
-      start_brightness: 255
+      dim_start_time: input_datetime.dim_lights_start
+      dim_end_time: input_datetime.dim_lights_end
+      output_light: light.kitchen_lights
+      start_brightness: 145
       end_brightness: 38
 - id: '1612192541242'
-  alias: 'Lights Livingroom: Turn on (sun)'
+  alias: 'Table lights: Turn on (sun)'
   description: Turn on the livingroom lights if the sun goes under
   use_blueprint:
     path: lights/light_enable_sun.yaml
     input:
       duration_min: 50
       elevation_offset: '10'
-      output_light: light.livingroom_lights_2
-      end_brightness: '255'
+      output_light: light.table_lights
+      end_brightness: 144
       start_brightness: '38'
       home_group: group.humans
 - id: '1622458308421'
@@ -263,7 +263,7 @@
       title: Kevin is lost :-(
   mode: single
 - id: '1638808746106'
-  alias: 'Lights Livingroom: Morning'
+  alias: 'Livingroom lights: Morning'
   description: ''
   triggers:
   - entity_id:
@@ -286,7 +286,10 @@
       transition: 15
     action: light.turn_on
     target:
-      entity_id: light.livingroom_lights_2
+      entity_id:
+      - light.table_lights
+      - light.ceiling_light
+      - light.hall_light
   mode: single
 - id: '1639509271355'
   alias: 'CV: Outside Temperature Check'
@@ -560,18 +563,18 @@
     action: xiaomi_miio.vacuum_clean_zone
   mode: single
 - id: '1717400577617'
-  alias: 'Lights hall: dim lights'
+  alias: 'Hall lights: dim lights'
   description: Dim the lights of the hall
   use_blueprint:
     path: lights/light_dimming.yaml
     input:
-      dim_start_time: '21:00:00'
-      dim_end_time: '22:30:00'
+      dim_start_time: input_datetime.dim_lights_start
+      dim_end_time: input_datetime.dim_lights_end
       output_light: light.hall_light
       start_brightness: 180
       end_brightness: 3
 - id: '1717401197704'
-  alias: 'Lights hall: turn on (sun)'
+  alias: 'Hall lights: turn on (sun)'
   description: Turn on the hall lights when the sun goes down
   use_blueprint:
     path: lights/light_enable_sun.yaml
@@ -582,7 +585,7 @@
       output_light: light.hall_light
       end_brightness: 180
 - id: '1717505260925'
-  alias: 'Lights House: away - Turn off'
+  alias: 'House lights: away - Turn off'
   description: Turn off all lights when nobody is home
   triggers:
   - entity_id:
@@ -660,7 +663,7 @@
       temperature: 18
   mode: single
 - id: '1769354125238'
-  alias: 'Lights Kitchen: turn on (sun)'
+  alias: 'Kitchen lights: turn on (sun)'
   description: Turn on the kitchen lights if the sun goes under
   use_blueprint:
     path: lights/light_enable_sun.yaml
@@ -672,18 +675,18 @@
       start_brightness: '38'
       home_group: group.humans
 - id: '1769354409345'
-  alias: 'Lights Kitchen: dim lights'
+  alias: 'Kitchen lights: dim lights'
   description: Dim the lights of the kitchen
   use_blueprint:
     path: lights/light_dimming.yaml
     input:
-      dim_start_time: '21:00:00'
-      dim_end_time: '22:30:00'
+      dim_start_time: input_datetime.dim_lights_start
+      dim_end_time: input_datetime.dim_lights_end
       output_light: light.kitchen_lights
       start_brightness: 180
       end_brightness: 25
 - id: '1773333548040'
-  alias: 'Light couch: turn on sun'
+  alias: 'Couch light: turn on sun'
   description: ''
   use_blueprint:
     path: lights/light_enable_sun.yaml
@@ -694,7 +697,7 @@
       output_light: light.couch_light
       elevation_offset: 10
 - id: '1773421169583'
-  alias: 'Light floor: turn on (sun)'
+  alias: 'Floor light: turn on (sun)'
   description: ''
   use_blueprint:
     path: lights/light_enable_sun.yaml
@@ -705,24 +708,71 @@
       output_light: light.floor_lamp
       elevation_offset: 10
 - id: '1773699048466'
-  alias: 'Light couch: dim light'
+  alias: 'Couch light: dim light'
   description: Dim the lights of the hall
   use_blueprint:
     path: lights/light_dimming.yaml
     input:
-      dim_start_time: '21:00:00'
-      dim_end_time: '22:30:00'
+      dim_start_time: input_datetime.dim_lights_start
+      dim_end_time: input_datetime.dim_lights_end
       output_light: light.couch_light
       start_brightness: 75
       end_brightness: 3
 - id: '1773729374100'
-  alias: 'Light floor: dim'
+  alias: 'Floor light: dim'
   description: Dim the lights of the hall
   use_blueprint:
     path: lights/light_dimming.yaml
     input:
-      dim_start_time: '21:00:00'
-      dim_end_time: '22:30:00'
+      dim_start_time: input_datetime.dim_lights_start
+      dim_end_time: input_datetime.dim_lights_end
       output_light: light.hall_light
+      start_brightness: 75
+      end_brightness: 3
+- id: '1774205441805'
+  alias: 'Ceiling light: turn on (sun)'
+  description: Turn on the livingroom lights if the sun goes under
+  use_blueprint:
+    path: lights/light_enable_sun.yaml
+    input:
+      duration_min: 50
+      elevation_offset: '10'
+      output_light: light.ceiling_light
+      end_brightness: 144
+      start_brightness: '38'
+      home_group: group.humans
+- id: '1774289482840'
+  alias: 'Ceiling light: dim'
+  description: ''
+  use_blueprint:
+    path: lights/light_dimming.yaml
+    input:
+      end_percentage: '15'
+      start_percentage: '100'
+      dim_start_time: input_datetime.dim_lights_start
+      dim_end_time: input_datetime.dim_lights_end
+      output_light: light.ceiling_light
+      start_brightness: 144
+      end_brightness: 38
+- id: '1774290285806'
+  alias: 'TV light: turn on (sun)'
+  description: ''
+  use_blueprint:
+    path: lights/light_enable_sun.yaml
+    input:
+      start_brightness: 1
+      end_brightness: 75
+      home_group: group.humans
+      output_light: light.tv_light
+      elevation_offset: 10
+- id: '1774290340638'
+  alias: 'TV Light: dim'
+  description: Dim the lights of the hall
+  use_blueprint:
+    path: lights/light_dimming.yaml
+    input:
+      dim_start_time: input_datetime.dim_lights_start
+      dim_end_time: input_datetime.dim_lights_end
+      output_light: light.tv_light
       start_brightness: 75
       end_brightness: 3

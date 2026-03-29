@@ -24,17 +24,20 @@ blueprint:
 
     # Dim timing inputs          
     dim_start_time:
-      name: Dim start time.
-      description: Start time of dimming lights on lights.
+      name: Helper with the start time for dimming
+      description: Select a time helper (input_datetime)
+      default: input_datetime.dim_lights_start
       selector:
-        # TODO: It would be nice to have configured defaults for time.
-        time:
+        entity:
+          domain: input_datetime
+          
     dim_end_time:
-      name: Dim end time.
-      description: End time of dimming lights on lights.
+      name: Helper with the end time for dimming
+      description: Select a time helper (input_datetime)
+      default: input_datetime.dim_lights_end
       selector:
-        # TODO: It would be nice to have configured defaults for time.
-        time:
+        entity:
+          domain: input_datetime
 
     # Light to dim
     output_light:
@@ -45,68 +48,38 @@ blueprint:
           domain: light
 
 variables:
-  time_fmt: "%H:%M:%S"
-  day_fmt: "%Y-%m-%d"
-  date_fmt: "{{day_fmt + ' ' + time_fmt}}"
+  start_entity: !input dim_start_time
+  end_entity: !input dim_end_time
+  brightness_start: !input start_brightness
+  brightness_end: !input end_brightness
+  morning_reset: "06:00:00"
 
-  day_str: "{{now().strftime(day_fmt)}}"
-
-  input_start: !input dim_start_time
-  start_time_string: "{{day_str + ' ' + input_start}}"
-  start_stamp: "{{as_timestamp(strptime(start_time_string, date_fmt))}}"
-
-  input_end: !input dim_end_time
-  end_time_string: "{{day_str + ' ' + input_end}}"
-  end_stamp: "{{as_timestamp(strptime(end_time_string, date_fmt))}}"
+  now_ts: "{{now().timestamp() | int}}"
+  start_ts: "{{ today_at(states(start_entity)).timestamp() | int }}"
+  end_ts: "{{ today_at(states(end_entity)).timestamp() | int}}"
   
-  # For now we have a hardcoded morning 'reset'
-  morning_time_string: "{{day_str + ' 06:00:00'}}"
-  morning_stamp: "{{as_timestamp(strptime(morning_time_string, date_fmt))}}"
+  transition_time: "{{ [end_ts - start_ts, 1] | max | int }}"
   
-  now_stamp: "{{as_timestamp(now())}}"
-  
-  light_name: !input output_light
-  
-  current: "{{ (state_attr(light_name, 'brightness') or 0) | round}}"
-  start_brtns: !input start_brightness
-  end_brtns: !input end_brightness
-  diff: "{{end_brtns | int - start_brtns | int}}"
-
-  t_diff: '{{(end_stamp - start_stamp)}}'
-  transition_time: >
-    {% if now_stamp < end_stamp %}
-      {{(end_stamp - now_stamp) | int}}
+  set_initial_brightness: "{{trigger is defined and trigger.platform == 'state'}}"
+  initial_brightness: >
+    {% if now_ts <= start_ts %}
+      {{brightness_start}}
+    {% elif now_ts >= end_ts %}
+      {{brightness_end}}
+    {% elif now_ts < today_at(morning_reset).timestamp() %}
+      {{brightness_end}}
     {% else %}
-      0
+      {{ brightness_end + (now_ts - start_ts) / (transition_time) * (brightness_start - brightness_end) }}
     {% endif %}
 
-  output_light_str: !input output_light
-  
-  overwrite_brtns: "{{trigger is defined and trigger.platform == 'state'}}"
 
-  # Let's calculate the start brightness
-  enable_brtns: >
-    {% if not overwrite_brtns %}
-      0
-    {% elif now_stamp <= start_stamp %}
-      {{start_brtns}}
-    {% elif now_stamp >= end_stamp %}
-      {{end_brtns}}
-    {% elif now_stamp < morning_stamp %}
-      {{end_brtns}}
-    {% else %}
-      {{start_brtns | int + (now_stamp - start_stamp) / t_diff * diff}}
-    {% endif %}
-
-# We either start at the dim start time, or whenever the light is enabled
-# After the dim start time.
 trigger:
-- platform: time
-  at: !input dim_start_time
 - platform: state
   entity_id: !input output_light
-  to: 'on'  
-  
+  to: 'on'
+- platform: time
+  at: !input dim_start_time
+
 condition:
 - condition: state
   entity_id: !input output_light
@@ -114,26 +87,25 @@ condition:
 - condition: or
   conditions:
     - condition: template
-      value_template: "{{now_stamp >= start_stamp}}"
+      value_template: "{{now_ts >= start_ts}}"
     - condition: time
       before: "06:00:00"
 
 action:
 - choose:
   - alias: "Turn on the light if necessary"
-    conditions: >
-      {{overwrite_brtns}}
+    conditions: "{{set_initial_brightness}}"
     sequence:
     - service: light.turn_on
       entity_id: !input output_light
       data:
-        brightness: '{{enable_brtns | int}}'
+        brightness: '{{initial_brightness | int}}'
     - delay: "00:00:01"
 
 - delay: "00:00:01"
 
 - service: light.turn_on
   data:
-    brightness: "{{end_brtns | int}}"
+    brightness: !input end_brightness
     transition: '{{transition_time | int}}'
-  entity_id: !input "output_light"
+  entity_id: !input output_light

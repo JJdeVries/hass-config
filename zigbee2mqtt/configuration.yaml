@@ -17,7 +17,7 @@ devices:
   '0x001788010baa7861':
     friendly_name: Table light 2
   '0x001788010ba49b00':
-    friendly_name: TV Light
+    friendly_name: Ceiling Light
   '0x54ef441000714653':
     friendly_name: de_foodzi_unit
   '0x001788010b59fe29':
@@ -34,6 +34,8 @@ devices:
     friendly_name: Couch light
   '0x001788010f1f7d23':
     friendly_name: Floor lamp
+  '0x001788010f20bc5e':
+    friendly_name: TV light
 groups:
   '0':
     friendly_name: Livingroom Lights
