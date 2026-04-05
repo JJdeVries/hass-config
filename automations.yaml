@@ -137,12 +137,25 @@
     entity_id: light.livingroom_lights_2
     state: 'off'
   actions:
-  - data:
-      brightness_pct: 100
+  - alias: Turn on filament lights
+    data:
+      brightness: 74
     action: light.turn_on
     target:
       entity_id:
-      - light.all_lights
+      - light.couch_light
+      - light.tv_light
+      - light.floor_lamp
+  - alias: Turn on ceiling lights
+    data:
+      brightness: 145
+    action: light.turn_on
+    target:
+      entity_id:
+      - light.table_lights
+      - light.ceiling_light
+      - light.hall_light
+      - light.kitchen_lights
   - data:
       title: Lights are now on
       message: Turned the lights on because someone arrived home.
