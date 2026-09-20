@@ -58,28 +58,29 @@
 - id: '1600780656956'
   alias: 'Media Center: turn off'
   description: ''
-  trigger:
-  - platform: state
-    entity_id:
+  triggers:
+  - entity_id:
     - media_player.living_room_tv
     to: 'off'
     for:
       hours: 0
       minutes: 0
       seconds: 10
-  - platform: state
-    entity_id:
+    trigger: state
+  - entity_id:
     - media_player.living_room_tv
-    to: idle
+    to:
+    - idle
     for:
       hours: 0
-      minutes: 0
-      seconds: 30
-  condition: []
-  action:
-  - service: remote.turn_off
-    entity_id: remote.harmonyjorik
+      minutes: 1
+      seconds: 0
+    trigger: state
+  conditions: []
+  actions:
+  - entity_id: remote.harmonyjorik
     data: {}
+    action: remote.turn_off
   mode: single
 - id: '1602060895444'
   alias: 'Backup: HA config'
@@ -596,7 +597,7 @@
       duration_min: 50
       home_group: group.humans
       output_light: light.hall_light
-      end_brightness: 180
+      end_brightness: 122
 - id: '1717505260925'
   alias: 'House lights: away - Turn off'
   description: Turn off all lights when nobody is home

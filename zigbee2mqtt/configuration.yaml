@@ -36,6 +36,8 @@ devices:
     friendly_name: Floor lamp
   '0x001788010f20bc5e':
     friendly_name: TV light
+  '0x00983268ffe610e5':
+    friendly_name: Hall Light 4
 groups:
   '0':
     friendly_name: Livingroom Lights
