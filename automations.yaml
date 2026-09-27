@@ -296,13 +296,19 @@
     below: 125
   actions:
   - data:
-      brightness: 255
       transition: 15
+      brightness_pct: 100
     action: light.turn_on
     target:
       entity_id:
       - light.table_lights
       - light.ceiling_light
+  - data:
+      transition: 15
+      brightness_pct: 50
+    action: light.turn_on
+    target:
+      entity_id:
       - light.hall_light
   mode: single
 - id: '1639509271355'
@@ -614,7 +620,8 @@
   actions:
   - alias: Turn off all lights
     metadata: {}
-    data: {}
+    data:
+      transition: 30
     action: light.turn_off
     target:
       entity_id: light.all_lights
@@ -790,3 +797,20 @@
       output_light: light.tv_light
       start_brightness: 75
       end_brightness: 3
+- id: '1789919549447'
+  alias: Hue button toggle lights
+  description: ''
+  triggers:
+  - trigger: state
+    entity_id:
+    - sensor.hue_light_switch_action
+    to:
+    - on_press
+  conditions: []
+  actions:
+  - action: light.toggle
+    metadata: {}
+    target:
+      entity_id: light.all_lights
+    data: {}
+  mode: single
