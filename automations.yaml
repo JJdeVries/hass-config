@@ -233,21 +233,6 @@
     data: {}
     alias: Restart the system
   mode: single
-- id: '1623509943578'
-  alias: 'Plant: Moisture'
-  description: Warn if the plant should be given water
-  trigger:
-  - platform: time
-    at: '17:00'
-  condition:
-  - condition: numeric_state
-    entity_id: sensor.flower_care_moisture
-    below: '20'
-  action:
-  - service: notify.mobile_app_cph2399
-    data:
-      message: 'The plant should be given water! Moisture: {{states("sensor.miflora_moisture")}}'
-  mode: single
 - id: '1624542421853'
   alias: 'Vacuum: Ensure docked'
   description: Ensure that the vacuum goes to the docking station
