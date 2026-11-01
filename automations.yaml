@@ -340,6 +340,7 @@
     - climate.cv_ketel
     attribute: temperature
     above: input_number.cv_gone
+    enabled: false
   conditions:
   - condition: numeric_state
     entity_id: climate.cv_ketel
