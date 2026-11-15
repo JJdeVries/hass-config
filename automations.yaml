@@ -800,3 +800,21 @@
       entity_id: light.all_lights
     data: {}
   mode: single
+- id: '1794254839105'
+  alias: Reset keep low automation
+  description: ''
+  triggers:
+  - trigger: time
+    at: 01:00:00
+  conditions:
+  - condition: state
+    entity_id: automation.cv_keep_low
+    state:
+    - 'off'
+  actions:
+  - action: automation.turn_on
+    metadata: {}
+    target:
+      entity_id: automation.cv_keep_low
+    data: {}
+  mode: single
